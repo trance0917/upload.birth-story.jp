@@ -1,0 +1,47 @@
+
+@layer components {
+    *:not(i){
+        color:#222222;
+    }
+    body {
+        @apply font-serif;
+    }
+    input[type="text"],input[type="number"],input[type="password"],input[type="tel"],input[type="email"],select,textarea{
+        @apply border border-gray-350 rounded-sm text-sm disabled:bg-gray-100 disabled:border-gray-300;
+    }
+    select{
+        @apply py-0.75 pl-0.75;
+        background-position: right 0.1rem center;
+    }
+    input[type="text"],input[type="number"],input[type="password"],input[type="tel"],input[type="email"],textarea{
+        @apply p-0.75;
+    }
+    input[type="text"]:focus,input[type="number"]:focus,input[type="password"]:focus,input[type="tel"]:focus,input[type="email"]:focus,select:focus,textarea:focus{
+        @apply bg-sky-50;
+    }
+    select[disabled]{
+        @apply border-gray-300 text-gray-300;
+    }
+    textarea{
+        @apply block;
+    }
+    label{
+        @apply whitespace-nowrap bg-white;
+    }
+    input[type='checkbox'], input[type='radio']{
+        @apply rounded-sm;
+    }
+    input[type='checkbox']:focus, input[type='radio']:focus{
+        @apply rounded-sm;
+        --tw-ring-offset-width:0px;
+        --tw-ring-color:transparent;
+    }
+
+    li,ol{
+        list-style:none;
+    }
+
+    label{
+        cursor:pointer;
+    }
+}

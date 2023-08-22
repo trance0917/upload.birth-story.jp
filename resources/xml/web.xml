@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<data>
+	<conf-list>
+
+        <error-404>
+            <robots>no</robots>
+            <title>ページが存在しません - %_SITE_NAME_% </title>
+            <keywords></keywords>
+            <description></description>
+        </error-404>
+
+        <status-419>
+            <robots>no</robots>
+            <title>有効期限が切れました - %_SITE_NAME_% </title>
+            <keywords></keywords>
+            <description></description>
+        </status-419>
+
+        <status-400>
+            <robots>no</robots>
+            <title>情報の送信に失敗 - %_SITE_NAME_% </title>
+            <keywords></keywords>
+            <description></description>
+        </status-400>
+
+        <default>
+            <robots>no</robots>
+            <title>title</title>
+            <keywords>keywords</keywords>
+            <description>description</description>
+        </default>
+
+        <toppage>
+            <robots>yes</robots>
+            <title>出産記念のプレゼント「バースストーリー」</title>
+            <keywords></keywords>
+            <description></description>
+        </toppage>
+
+        <greeting>
+            <robots>yes</robots>
+            <title>ごあいさつ - バースストーリー</title>
+            <keywords></keywords>
+            <description></description>
+        </greeting>
+
+        <service>
+            <robots>yes</robots>
+            <title>サービス紹介 - バースストーリー</title>
+            <keywords></keywords>
+            <description></description>
+        </service>
+
+        <company>
+            <robots>yes</robots>
+            <title>会社概要 - バースストーリー</title>
+            <keywords></keywords>
+            <description></description>
+        </company>
+
+        <service-sample>
+            <robots>yes</robots>
+            <title>サンプル動画 - バースストーリー</title>
+            <keywords></keywords>
+            <description></description>
+        </service-sample>
+
+
+
+        <policy>
+            <robots>yes</robots>
+            <title>プライバシーポリシー - バースストーリー</title>
+            <keywords></keywords>
+            <description></description>
+        </policy>
+
+        <contact>
+            <robots>yes</robots>
+            <title>お問い合わせ - バースストーリー</title>
+            <keywords></keywords>
+            <description></description>
+        </contact>
+
+        <contact-confirm>
+            <robots>yes</robots>
+            <title>確認画面</title>
+            <keywords></keywords>
+            <description></description>
+        </contact-confirm>
+
+        <contact-complete>
+            <robots>yes</robots>
+            <title>お問い合わせ完了</title>
+            <keywords></keywords>
+            <description></description>
+        </contact-complete>
+
+	</conf-list>
+</data>

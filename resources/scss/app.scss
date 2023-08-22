@@ -1,0 +1,83 @@
+/*
+.em-*
+ 部品化しているもの
+
+.pn-*
+ そのページでしか使っていない固有のスタイル
+ body[page-name="***"]の配下で使用
+
+.r-{乱数}
+ スタイル名が決まっていないものは乱数
+ 後から検索しやすいようr-とする。
+ .pn-r-*の場合もある
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+//node_module内のフォントファイルを参照させる。デフォルトは../webfontsなのでresoursesが参照される
+$fa-font-path: "@fortawesome/fontawesome-free/webfonts";
+
+//fontawesomeのcss
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/solid';
+@import '@fortawesome/fontawesome-free/scss/regular';
+@import '@fortawesome/fontawesome-free/scss/brands';
+
+@import '_reset';
+@import '_parts';
+
+
+::-webkit-scrollbar {
+    border-radius: 5px;
+    width: 5px;
+    height: 5px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #ccc;
+}
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background: #eee;
+}
+::selection {
+    background: #f29c4b;
+    color: #fff;
+    text-shadow: none;
+}
+
+@layer components {
+    body {
+
+    }
+    #main{
+        //@apply text-sm;
+    }
+}
+
+
+/* end breeze */
+#test-flg-88{
+    z-index: 99;
+    position: fixed;
+    width:150px;
+    left: 0;
+    bottom: 0;
+    padding:10px 0;
+    background: #dd3333;
+    color:#fff;
+    font-size: 1.2em;
+    text-align: center;
+    animation: test-flash 1.5s linear infinite;
+}
+
+@keyframes test-flash {
+    0%,100% {
+        opacity: .7;
+    }
+    50% {
+        opacity: .3;
+    }
+}

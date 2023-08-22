@@ -1,0 +1,24 @@
+/*
+部品化された
+規則は、「.em-」ではじめる
+*/
+
+@layer components {
+    //チェックボックスを一覧横並びの小さなアイコン
+
+    input[type="checkbox"],input[type="radio"],input[type="file"]{
+        //@apply hidden;
+    }
+    input[type="checkbox"] + label,
+    input[type="radio"] + label{
+        //@apply inline-block cursor-pointer rounded-sm border border-gray-350 px-1.25 py-1.25;
+    }
+    input[type="checkbox"]:checked + label,
+    input[type="radio"]:checked + label{
+        //@apply bg-gray-400 text-white;
+    }
+    input[type="file"] + label{
+        //@apply inline-block cursor-pointer border border-dashed rounded-sm bg-gray-100 border-gray-350 px-2 py-1.25 text-gray-500;
+    }
+
+}
