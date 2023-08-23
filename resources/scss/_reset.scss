@@ -4,7 +4,7 @@
         color:#222222;
     }
     body {
-        @apply font-serif;
+        @apply font-sans;
     }
     input[type="text"],input[type="number"],input[type="password"],input[type="tel"],input[type="email"],select,textarea{
         @apply border border-gray-350 rounded-sm text-sm disabled:bg-gray-100 disabled:border-gray-300;

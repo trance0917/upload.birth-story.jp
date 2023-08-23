@@ -1,6 +1,5 @@
-<footer id="footer" class="bg-[#f9f9f9] mt-30">
-    <div class="w-[1200px] mx-auto py-20 md:w-full md:py-10">
-        <p class="w-90 mx-auto hover:opacity-80 md:w-[200px]"><a href="/"><img src="/images/logo.svg" alt="バースストーリー"></a></p>
-    </div>
+<footer id="footer" class="bg-[#AAAAAA] mt-30 pt-10 pb-2.5">
+    <p class="mb-7.5 text-center"><a class="bg-[#fff] rounded inline-block pt-1 pb-0.5 px-2" href="/contact">お問い合わせ</a></p>
+    <small class="block text-[14px] text-white text-center">©BIRTH-STORY {{\Carbon\Carbon::now()->year}}.</small>
 </footer>
-<small class="w-[1200px] mx-auto block text-sm text-center text-gray-600 mt-1.25 md:w-full">©BirthStory {{\Carbon\Carbon::now()->year}}.</small>
+
