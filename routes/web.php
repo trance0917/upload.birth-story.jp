@@ -34,6 +34,10 @@ Route::get('/production/complete', function () {
     return view('general.production.complete');
 })->name('production-complete');
 
+Route::get('/policy', function () {
+    return view('general.policy');
+})->name('policy');
+
 Route::get('/contact', function () {
     return view('general.contact.index');
 })->name('contact');

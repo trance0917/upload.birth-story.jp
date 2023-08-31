@@ -2,8 +2,8 @@
 @section('meta')@endsection
 @section('contents')
 <main id="main" class="w-[1200px] mx-auto md:w-full">
-    <h1 class="text-[36px] mt-15 text-center md:text-[20px] md:mt-7">お問い合わせ-確認</h1>
-    <div class="mb-15 md:mb-7"><img class="mx-auto md:w-[100px]" src="/images/arrow.png"/></div>
+    <h1 class="text-[36px] mt-15 text-center md:text-[20px] md:mt-7 mb-15 md:mb-7">お問い合わせ-確認</h1>
+
     <form class="w-[620px] mx-auto bg-[#F9F8F6] px-7.5 py-10
     md:w-full md:py-7 md:px-2.5
     " action="/contact/complete" method="post">
@@ -29,13 +29,6 @@
 ">
 
             <div>
-                <dt>{{\App\Http\Requests\General\ContactRequest::capture()->attributes()['company']}}<span>※必須</span></dt>
-                <dd>
-                    <div>{{request('company')}}<input type="hidden" name="company" value="{{request('company')}}" /></div>
-                </dd>
-            </div>
-
-            <div>
                 <dt>{{\App\Http\Requests\General\ContactRequest::capture()->attributes()['name']}}<span>※必須</span></dt>
                 <dd>
                     <div>{{request('name')}}<input type="hidden" name="name" value="{{request('name')}}" /></div>
@@ -43,16 +36,9 @@
             </div>
 
             <div>
-                <dt>{{\App\Http\Requests\General\ContactRequest::capture()->attributes()['position']}}</dt>
+                <dt>{{\App\Http\Requests\General\ContactRequest::capture()->attributes()['tel']}}</dt>
                 <dd>
-                    <div>{{request('position')??'--'}}<input type="hidden" name="position" value="{{request('position')}}" /></div>
-                </dd>
-            </div>
-
-            <div>
-                <dt>{{\App\Http\Requests\General\ContactRequest::capture()->attributes()['tel']}}<span>※必須</span></dt>
-                <dd>
-                    <div>{{request('tel')}}<input type="hidden" name="tel" value="{{request('tel')}}" /></div>
+                    <div>{{request('tel')??'--'}}<input type="hidden" name="tel" value="{{request('tel')}}" /></div>
                 </dd>
             </div>
 
@@ -60,13 +46,6 @@
                 <dt>{{\App\Http\Requests\General\ContactRequest::capture()->attributes()['mail']}}<span>※必須</span></dt>
                 <dd>
                     <div>{{request('mail')}}<input type="hidden" name="mail" value="{{request('mail')}}" /></div>
-                </dd>
-            </div>
-
-            <div>
-                <dt>{{\App\Http\Requests\General\ContactRequest::capture()->attributes()['requirement_type']}}<span>※必須</span></dt>
-                <dd>
-                    <div>{{\App\Models\TblContact::REQUIREMENT_TYPE[request('requirement_type')]}}<input type="hidden" name="requirement_type" value="{{request('requirement_type')}}" /></div>
                 </dd>
             </div>
 

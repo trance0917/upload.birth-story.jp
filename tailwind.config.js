@@ -75,7 +75,7 @@ module.exports = {
                 orange: {DEFAULT: '#FF9733'},
                 brown: {DEFAULT: '#CEA210'},
                 green: {DEFAULT: '#29C124'},
-                red: {DEFAULT: '#CE1032'},
+                red: {DEFAULT: '#DD3333'},
 
                 main:{
                     //lightest: '#F1F8FF',
@@ -86,8 +86,8 @@ module.exports = {
                 },
                 sub:{
                     //lightest: '#F1F8FF',
-                    //light: '#DEEEFE',
-                    DEFAULT: '#866827',
+                    light: '#FBFBCB',
+                    DEFAULT: '#f5f58f',
                     //dark: '#ec7191',
                     //darkest: '#1F4E79',
                 },

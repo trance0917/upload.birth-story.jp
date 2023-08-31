@@ -2,8 +2,7 @@
 @section('meta')@endsection
 @section('contents')
     <main id="main" class="w-[1200px] mx-auto md:w-full">
-        <h1 class="text-[36px] mt-15 text-center md:text-[20px] md:mt-7">お問い合わせ</h1>
-        <div class="mb-15 md:mb-7"><img class="mx-auto md:w-[100px]" src="/images/arrow.png"/></div>
+        <h1 class="text-[36px] mt-15 text-center md:text-[20px] md:mt-7 mb-15 md:mb-7">お問い合わせ</h1>
         <form class="w-[620px] mx-auto bg-[#F9F8F6] px-7.5 py-10
     md:w-full md:py-7 md:px-2.5
     " action="/contact/confirm" method="post">
@@ -28,13 +27,7 @@
 
 ">
 
-                <div>
-                    <dt>{{\App\Http\Requests\General\ContactRequest::capture()->attributes()['company']}}<span>※必須</span></dt>
-                    <dd>
-                        <div><input class="w-[400px] md:!w-full @error('company') inp-err @enderror" type="text" name="company" value="{{old('company')}}"></div>
-                        @error('company')<div class="err">※ {{ $message }}</div>@enderror
-                    </dd>
-                </div>
+
 
                 <div>
                     <dt>{{\App\Http\Requests\General\ContactRequest::capture()->attributes()['name']}}<span>※必須</span></dt>
@@ -44,16 +37,10 @@
                     </dd>
                 </div>
 
-                <div>
-                    <dt>{{\App\Http\Requests\General\ContactRequest::capture()->attributes()['position']}}</dt>
-                    <dd>
-                        <div><input class="w-[200px] md:w-[150px] @error('position') inp-err @enderror" type="text" name="position" value="{{old('position')}}"></div>
-                        @error('position')<div class="err">※ {{ $message }}</div>@enderror
-                    </dd>
-                </div>
+
 
                 <div>
-                    <dt>{{\App\Http\Requests\General\ContactRequest::capture()->attributes()['tel']}}<span>※必須</span></dt>
+                    <dt>{{\App\Http\Requests\General\ContactRequest::capture()->attributes()['tel']}}</dt>
                     <dd>
                         <div><input class="w-[220px] md:w-[200px] @error('tel') inp-err @enderror" type="tel" name="tel" value="{{old('tel')}}" placeholder="例:08012345678"/></div>
                         @error('tel')<div class="err">※ {{ $message }}</div>@enderror
@@ -68,19 +55,7 @@
                     </dd>
                 </div>
 
-                <div>
-                    <dt>{{\App\Http\Requests\General\ContactRequest::capture()->attributes()['requirement_type']}}<span>※必須</span></dt>
-                    <dd>
-                        <div><select class="text-[20px] w-[350px] md:w-[280px] h-11 @error('requirement_type') inp-err @enderror" name="requirement_type">
-                                <option value="">--</option>
-                                @foreach(\App\Models\TblContact::REQUIREMENT_TYPE AS $key=>$val)
-                                    <option value="{{$key}}"
-                                            @if($key==old('requirement_type')) selected="selected"@endif>{{$val}}</option>
-                                @endforeach
-                            </select></div>
-                        @error('requirement_type')<div class="err">※ {{ $message }}</div>@enderror
-                    </dd>
-                </div>
+
 
                 <div>
                     <dt>{{\App\Http\Requests\General\ContactRequest::capture()->attributes()['message']}}<span>※必須</span></dt>
@@ -98,6 +73,9 @@
             </dl>
 
         </form>
+
+        <p class="text-center mt-10"><a class="underline text-main" href="/guide">トップページへ</a></p>
+
     </main>
 @endsection
 
