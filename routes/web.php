@@ -38,6 +38,21 @@ Route::get('/policy', function () {
     return view('general.policy');
 })->name('policy');
 
+
+Route::post('/line/webhook/{mst_maternity_id}', [App\Http\Controllers\General\ContactController::class,'confirm'])->name('contact-confirm');
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/contact', function () {
     return view('general.contact.index');
 })->name('contact');
@@ -47,7 +62,7 @@ Route::post('/contact/complete', [App\Http\Controllers\General\ContactController
 
 Route::get('/contact/confirm', function(){
     abort(400);
-})->name('contact-confirm');
+})->name('contact-confirm-400');
 
 Route::get('/contact/complete', function(){
     return redirect('');
