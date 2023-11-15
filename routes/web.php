@@ -39,7 +39,7 @@ Route::get('/policy', function () {
 })->name('policy');
 
 
-Route::post('/line/webhook/{mst_maternity_id}', [App\Http\Controllers\General\ContactController::class,'confirm'])->name('contact-confirm');
+Route::post('/line/webhook/{mst_maternity_id}', [App\Http\Controllers\General\WebHookController::class,'index'])->name('line-webhook');
 
 
 

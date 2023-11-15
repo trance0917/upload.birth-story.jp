@@ -5,8 +5,10 @@ use Illuminate\Http\Request;
 
 final class WebHookController extends Controller
 {
-    public function index(int $mst_material_group_id,Request $request){
+    public function index(int $mst_maternity_id,Request $request){
 
-        return view('general.contact.index');
+        dump($mst_maternity_id);
+        dump($request->all());
+
     }
 }
