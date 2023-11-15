@@ -3,11 +3,11 @@
 @section('contents')
 <main id="main" class="w-[1200px] mx-auto md:w-full">
     <div class="w-[800px] mx-auto md:w-full">
-        <h1 class="mt-[50px] md:mt-[30px] text-center"><span class="px-[25px] md:px-[20px] pb-[20px] pt-[23px] bg-green text-white font-bold text-[24px] md:text-[16px] inline-block leading-none">このデータは下記の内容で提出済みです</span></h1>
+        <h1 class="mt-[50px] md:mt-[30px] text-center"><span class="px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">このデータは下記の内容で提出済みです</span></h1>
     </div>
 
 
-    <div class="mt-[50px] md:mt-[30px] flex justify-center">
+    <div class="mt-[40px] md:mt-[20px] flex justify-center">
         <div class="inline-block">
             <div class="flex justify-center items-center bg-sub-light px-[40px] md:px-[20px] py-[30px] md:py-[15px]">
                 <img class="w-[52px] md:w-[26px] min-w-[52px] md:min-w-[26px] mr-[20px] md:mr-[10px]" src="/images/icon-finger.png" alt="">
@@ -16,33 +16,31 @@
         </div>
     </div>
 
-    <p class="text-center font-bold text-red text-[16px] md:text-[12px] mt-[40px] md:mt-[20px]">保存コード：<span class="text-[20px] md:text-[16px] text-red">il 972 518</span></p>
+{{--    <p class="text-center font-bold text-red text-[16px] md:text-[12px] mt-[40px] md:mt-[20px]">保存コード：<span class="text-[20px] md:text-[16px] text-red">il 972 518</span></p>--}}
 
-    <div class="bg-[#F5F5F5] mt-[40px] md:mt-[20px] w-[500px] md:w-[350px] mx-auto px-[20px] py-[20px] flex-col flex items-center">
-        <p class="font-bold text-center text-[18px] md:text-[14px]">既に保存コードをお持ちの方</p>
-        <ul class="flex justify-center mt-[10px]">
-            <li><input class="h-[30px]" type="text" value="" /></li>
-            <li><button class="submit font-bold text-center w-[50px] bg-main text-white text-[16px] md:text-[14px] h-[30px]">復元</button></li>
-        </ul>
-        <p class="font-bold text-red text-center text-[16px] md:text-[12px] mt-[5px]">復元データが存在しませんでした。</p>
-        <p class="text-[14px] md:text-[12px] text-[#666666] mt-[10px]">以前のコード番号を入力することで過去に途中で保存した<br class="md:hidden" />データを復元できます。</p>
-    </div>
+{{--    <div class="bg-[#F5F5F5] mt-[40px] md:mt-[20px] w-[500px] md:w-[350px] mx-auto px-[20px] py-[20px] flex-col flex items-center">--}}
+{{--        <p class="font-bold text-center text-[18px] md:text-[14px]">既に保存コードをお持ちの方</p>--}}
+{{--        <ul class="flex justify-center mt-[10px]">--}}
+{{--            <li><input class="h-[30px]" type="text" value="" /></li>--}}
+{{--            <li><button class="submit font-bold text-center w-[50px] bg-main text-white text-[16px] md:text-[14px] h-[30px]">復元</button></li>--}}
+{{--        </ul>--}}
+{{--        <p class="font-bold text-red text-center text-[16px] md:text-[12px] mt-[5px]">復元データが存在しませんでした。</p>--}}
+{{--        <p class="text-[14px] md:text-[12px] text-[#666666] mt-[10px]">以前のコード番号を入力することで過去に途中で保存した<br class="md:hidden" />データを復元できます。</p>--}}
+{{--    </div>--}}
 
     <ul class="flex justify-center mt-[30px] md:mt-[20px] space-x-[10px]
     [&>li>a]:block
     [&>li>a]:w-[200px] md:[&>li>a]:w-[140px]
     [&>li>a]:text-center
-    [&>li>a]:bg-[#999999]
     [&>li>a]:font-bold
     [&>li>a]:text-white
     [&>li>a]:text-[16px] md:[&>li>a]:text-[14px]
     [&>li>a]:py-[13px] md:[&>li>a]:py-[10px]
     [&>li>a]:rounded-sm
 
-
     ">
-        <li><a href="/contact">お問い合わせ</a></li>
-        <li><a href="/faq">よくある質問</a></li>
+        <li><a class="bg-[#00B900]" href="/contact">LINEお問い合わせ</a></li>
+        <li><a class="bg-slate-400" href="/faq">よくある質問</a></li>
     </ul>
 
 
@@ -77,7 +75,7 @@
                 <dl class="box">
                    <div class="item">
                        <dt class="!h-[1.4em] !leading-[1.4em]">産院名</dt>
-                       <dd class="!h-[1.4em] !leading-[1.4em] font-bold">{{env('MATERNITY_NAME')}}</dd>
+                       <dd class="!h-[1.4em] !leading-[1.4em] font-bold">--</dd>
                    </div>
                     <div class="item">
                         <dt>ママのお名前</dt>

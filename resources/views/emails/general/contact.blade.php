@@ -9,7 +9,7 @@
 
 ■ お問い合わせ内容
 [産院]
-{{env('MATERNITY_NAME')}}
+--
 
 [{{\App\Http\Requests\General\ContactRequest::capture()->attributes()['name']}}]
 {{$contact->name}}
