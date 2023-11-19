@@ -40,6 +40,7 @@ Route::get('/policy', function () {
 
 
 Route::post('/line/webhook/{mst_maternity_id}', [App\Http\Controllers\General\WebHookController::class,'index'])->name('line-webhook');
+Route::get('/line/webhook/test', [App\Http\Controllers\General\WebHookController::class,'test'])->name('line-webhook-test');
 
 
 
