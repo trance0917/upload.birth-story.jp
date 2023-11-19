@@ -17,24 +17,23 @@ Route::get('/', function () {
     return view('general.index');
 })->name('toppage');
 
-
-Route::get('/guide', function () {
+Route::get('/{maternity_code}/guide', function () {
     return view('general.guide');
 })->name('guide');
 
-Route::get('/production', function () {
-    return view('general.production.index');
-})->name('production-index');
+Route::get('/{maternity_code}/story', function () {
+    return view('general.story.index');
+})->name('story-index');
 
-Route::get('/production/confirm', function () {
-    return view('general.production.confirm');
-})->name('production-confirm');
+Route::get('/{maternity_code}/story/confirm', function () {
+    return view('general.story.confirm');
+})->name('story-confirm');
 
-Route::get('/production/complete', function () {
-    return view('general.production.complete');
-})->name('production-complete');
+Route::get('/{maternity_code}/story/complete', function () {
+    return view('general.story.complete');
+})->name('story-complete');
 
-Route::get('/policy', function () {
+Route::get('/{maternity_code}/policy', function () {
     return view('general.policy');
 })->name('policy');
 

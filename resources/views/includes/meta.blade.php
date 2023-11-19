@@ -38,7 +38,14 @@
 <link rel="next" href="{{url(\PageHelper::get('next'))}}">
 @endif
 
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+@env(['local'])
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+@endenv
+
+@production
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+@endproduction
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <link href="https://use.fontawesome.com/releases/v5.8.0/css/all.css" rel="stylesheet">
 
