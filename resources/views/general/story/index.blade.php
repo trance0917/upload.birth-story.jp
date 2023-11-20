@@ -1,7 +1,7 @@
 @extends('layout')
 @section('meta')@endsection
 @section('contents')
-<main id="main" class="w-[1200px] mx-auto md:w-full">
+<form id="main" class="w-[1200px] mx-auto md:w-full">
     <div class="w-[800px] mx-auto md:w-full">
         <h1 class="mt-[50px] md:mt-[30px] text-center"><span class="px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">このデータは下記の内容で提出済みです</span></h1>
     </div>
@@ -163,7 +163,7 @@
                         </dd>
                     </div>
                     <div class="item">
-                        <dt>備考</dt>
+                        <dt>備考 <span class="text-slate-600 text-[12px]">(任意)</span></dt>
                         <dd><textarea class="w-full" name="" rows="4" placeholder="伝えておきたいことなど"></textarea></dd>
                     </div>
                     <div class="item pt-[10px]">
@@ -397,13 +397,11 @@
 
 
             <div class="box">
-                <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>エコー写真<span class="count">2枚</span><span class="example">写真例</span></h4>
                 <div class="flex justify-between flex-wrap">
                     <template v-for="(medium,medium_key) in tbl_.mediums">
                         <div v-if="medium.type=='first_cry' || medium.type=='movie'" class="w-[48.5%]">
                             <div v-if="medium.type=='first_cry'" class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
                             <div v-if="medium.type=='movie'" class="text-[14px] font-bold text-center mb-[3px]">動画(横アングル)</div>
-
 
                             <div class="">
                                 <label class="lbl" :for="'medium_'+medium_key">
@@ -429,7 +427,7 @@
     <p class="mt-[50px] md:mt-[30px] w-[340px] md:w-[240px] mx-auto text-center"><button type="submit" value="1" class="relative w-full block bg-green text-white font-bold py-[20px] md:py-[15px] rounded-sm text-[22px] md:text-[16px]" href="/production">確認画面へ<i class="fa-solid fa-angle-right absolute top-[26px] md:top-[18px] right-[15px]"></i></button></p>
 
     <button class="block w-full fixed bottom-0 left-0 text-16px] py-[15px] font-bold text-white bg-[#999]" type="submit" value="2"><i class="fa-solid fa-download mr-[5px]"></i> 途中保存する</button>
-</main>
+</form>
 
 <script>
     Vue.createApp({
@@ -453,7 +451,7 @@
                         {
                             type:'namecard',
                             status:'saved',
-                            src:'https://local.upload.birth-story.jp:8087/storage/test/echo_1.jpg',
+                            src:'https://local.upload.birth-story.jp:8087/storage/test/echo_2.jpg',
                         },
                         {
                             type:'pregnancy',
