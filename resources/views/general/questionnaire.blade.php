@@ -3,37 +3,13 @@
 @section('contents')
 <main id="main" class="w-[1200px] mx-auto md:w-full">
     <div class="w-[800px] mx-auto md:w-full">
+        <h2 class="mt-[30px] text-center leading-none text-[15px] font-bold text-brown">バースストーリーから産院アンケートのお願い</h2>
 
-        <div class="w-[800px] mx-auto md:w-full">
-            <div class="mt-[50px] md:mt-[30px] text-center"><span class="w-[80%] px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">提出が完了しました</span></div>
-        </div>
-        
-        <section class="border border-main rounded mx-[15px] bg-main/5 p-[15px] mt-[30px]">
-            <h2 class="text-center leading-none text-[15px] font-bold text-brown">バースストーリーから産院アンケートのお願い</h2>
-            <div class="text-red text-[12px] font-bold text-center mt-[5px]">(Paypay<span class="text-red underline">300ポイント</span>進呈)</div>            
-            
-            <p class="text-[14px] mt-[15px]">お客様の声は、産院さまにとって非常に重要であり、今後のサービス向上の参考にさせていただいております。</p>
-            <p class="text-[14px] mt-[10px]">産院さまご利用時の<span class="underline">良かった点や改善点</span>など、お客様の貴重なご意見をお聞かせください。</p>
+        <p class="text-[14px] mt-[15px] w-[90%] mx-auto">アンケートにご協力いただきまして、誠にありがとうございます。<br />
+            ★の評価とご感想やご意見を合計で150文字以上いただけますでしょうか。</p>
 
-            <p class="mt-[25px] md:mt-[15px] w-[340px] md:w-[240px] mx-auto text-center">
-                <a class="relative w-full block bg-main text-white font-bold py-[10px] md:py-[7px] rounded-sm text-[20px] md:text-[14px]"
-                >アンケートフォームへ<i class="fa-solid fa-angle-right absolute top-[16px] md:top-[11px] right-[10px]"></i></a>
-            </p>
-        </section>
-        
-        
-        <p class="mt-[10px] text-center"><a class="underline text-[14px] text-slate-600" href="">提出データの確認</a></p>
-        
-        <h1 class="mt-[50px] md:mt-[30px] text-center"><span class="px-[25px] md:px-[15px] pb-[15px] pt-[18px] bg-sub-light font-bold text-[24px] md:text-[16px] inline-block leading-none">ご出産記念DVD「バースストーリー」とは？</span></h1>
-
-
-        <img class="w-[400px] md:w-[260px] mx-auto mt-[30px] md:mt-[20px]" src="/images/guide.png" alt="" />
-
-        <p class="w-[550px] md:w-[350px] mx-auto mt-[30px] md:mt-[20px] text-[18px] md:text-[14px] font-bold">ご出産記念DVD「バースストーリー」は人生最高の思い出にしていただきたいという気持ちを込めた当院からのプレゼントです。<br />
-            お写真とともにメッセージが流れてご出産の感動をいつまでも残していきます。</p>
 
         <div class="mt-[60px] md:mt-[30px]">
-            <h2 class="text-center mb-[40px] md:mb-[20px]"><span class="inline-block font-bold text-white px-[20px] py-[5px] bg-main text-[22px] md:text-[16px]">作成の流れ</span></h2>
             <section class="bg-[#866827]/10 p-[20px] md:p-[10px]">
                 <div class="space-y-[20px] md:space-y-[10px]
 
@@ -91,14 +67,6 @@
                     </section>
                 </div>
 
-                <div class="mt-[20px] md:mt-[10px] flex justify-center">
-                    <div class="inline-block">
-                        <div class="flex justify-center items-center bg-sub-light px-[40px] md:px-[20px] py-[30px] md:py-[15px]">
-                            <img class="w-[52px] md:w-[26px] min-w-[52px] md:min-w-[26px] mr-[20px] md:mr-[10px]" src="/images/icon-finger.png" alt="">
-                            <p class="text-red font-bold text-[16px] md:text-[12px]">途中での保存が可能です。<br />空き時間に少しづつ進めてください。</p>
-                        </div>
-                    </div>
-                </div>
 
             </section>
         </div>

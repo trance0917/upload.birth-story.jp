@@ -1,10 +1,8 @@
 @extends('layout')
 @section('meta')@endsection
 @section('contents')
-<form id="main" class="w-[1200px] mx-auto md:w-full">
-    <div class="w-[800px] mx-auto md:w-full">
-        <h1 class="mt-[50px] md:mt-[30px] text-center"><span class="px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">このデータは下記の内容で提出済みです</span></h1>
-    </div>
+<form id="main" class="w-[800px] mx-auto md:w-full">
+    <h1 class="mt-[50px] md:mt-[30px] text-center"><span class="px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">このデータは下記の内容で提出済みです</span></h1>
 
 
     <div class="mt-[40px] md:mt-[20px] flex justify-center">
