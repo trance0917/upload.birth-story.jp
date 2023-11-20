@@ -9,34 +9,9 @@
         </div>
         
         <section class="border border-main rounded mx-[15px] bg-main/5 p-[15px] mt-[30px]">
-            <h2 class="text-center leading-none text-[16px] font-bold text-brown">産院アンケート</h2>
-            <ul class="flex justify-center text-[32px] 
-[&>li>i]:text-slate-200
-">
-                <li><i class="fa-solid fa-star !text-[#FBBC04]"></i></li>
-                <li><i class="fa-solid fa-star"></i></li>
-                <li><i class="fa-solid fa-star"></i></li>
-                <li><i class="fa-solid fa-star"></i></li>
-                <li><i class="fa-solid fa-star"></i></li>
-            </ul>
-            <div class="text-slate-600 text-[16px] font-bold text-center mt-[5px]">4.2</div>            
-            
-            <p class="text-[14px] mt-[15px] font-bold">高評価をありがとうございます！<br />
-                この評価をそのままGoogle口コミに投稿して<br />
-                いただけませんか？<br />
-                星の評価のみであれば下記リンクから30秒で回答いただけます。</p>
-
-            <p class="mt-[25px] md:mt-[15px] w-[340px] md:w-[240px] mx-auto text-center">
-                <a class="relative w-full block bg-main text-white font-bold py-[10px] md:py-[7px] rounded-sm text-[20px] md:text-[14px]"
-                >評価する<i class="fa-solid fa-angle-right absolute top-[16px] md:top-[11px] right-[10px]"></i></a>
-            </p>
-        </section>
-
-
-        <section class="border border-main rounded mx-[15px] bg-main/5 p-[15px] mt-[30px]">
             <h2 class="text-center leading-none text-[15px] font-bold text-brown">バースストーリーから産院アンケートのお願い</h2>
-            <div class="text-red text-[12px] font-bold text-center mt-[5px]">(Paypay<span class="text-red underline">300ポイント</span>進呈)</div>
-
+            <div class="text-red text-[12px] font-bold text-center mt-[5px]">(Paypay<span class="text-red underline">300ポイント</span>進呈)</div>            
+            
             <p class="text-[14px] mt-[15px]">お客様の声は、産院さまにとって非常に重要であり、今後のサービス向上の参考にさせていただいております。</p>
             <p class="text-[14px] mt-[10px]">産院さまご利用時の<span class="underline">良かった点や改善点</span>など、お客様の貴重なご意見をお聞かせください。</p>
 

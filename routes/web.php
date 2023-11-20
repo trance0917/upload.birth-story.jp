@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('general.index');
 })->name('toppage');
 
-Route::get('/{maternity_code}/guide', function () {
+Route::get('/{maternity_code}', function () {
     return view('general.guide');
 })->name('guide');
 
@@ -32,6 +32,10 @@ Route::get('/{maternity_code}/story/confirm', function () {
 Route::get('/{maternity_code}/story/complete', function () {
     return view('general.story.complete');
 })->name('story-complete');
+
+Route::get('/{maternity_code}/questionnaire', function () {
+    return view('general.questionnaire');
+})->name('questionnaire');
 
 Route::get('/{maternity_code}/policy', function () {
     return view('general.policy');

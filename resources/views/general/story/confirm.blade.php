@@ -201,21 +201,24 @@
                             <div v-if="medium.type=='movie'" class="text-[14px] font-bold text-center mb-[3px]">動画(横アングル)</div>
                             <div class="">
                                 
-                                <div v-if="medium.status==''" class="text-center mt-[3px] py-[10px] bg-slate-150 font-bold text-slate-500 text-[14px]">未登録</div>
-                                <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[10px] bg-green-100 font-bold text-green text-[14px]">登録済</div>
+                                <div v-if="medium.status==''" class="text-center mt-[3px] py-[15px] bg-slate-150 font-bold text-slate-500 text-[14px]">未登録</div>
+                                <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[15px] bg-green-100 font-bold text-green text-[14px]">登録済</div>
                                 <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
                             </div>
                         </div>
                     </template>
                 </div>
             </div>
-            <p class="text-red font-bold text-[14px] leading-none text-center mt-[10px]">※ 動画は20秒前後でお願いします</p>
         </div>
-
-
-
-
     </section>
+
+    <div class="flex items-center flex-col mt-[40px] md:mt-[20px] bg-red text-[18px] md:text-[14px] py-[18px] md:py-[15px]">
+        <div class="flex items-center">
+            <i class="text-white fa-solid fa-circle-exclamation mr-[10px] text-[20px]"></i>
+            <p class="text-white font-bold">登録完了後の変更はお受けできませんので<br />
+                ご了承ください。</p></div>
+        <input class="em-input-check-show" type="checkbox" name="" value="1" id="asdf" /><label class="text-red mt-[7px]" for="asdf">了解しました</label>
+    </div>
 
     <p class="mt-[50px] md:mt-[30px] w-[340px] md:w-[240px] mx-auto text-center">
         <button type="submit" name="action" value="send"
