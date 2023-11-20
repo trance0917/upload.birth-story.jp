@@ -55,7 +55,128 @@ $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
     #main{
         //@apply text-sm;
     }
+
+    .star{
+        li{
+            @apply leading-none;
+            i{
+                color: #e2e8f0;
+            }
+        }
+
+        &-30{
+            background: -webkit-linear-gradient(0deg, #FBBC04 60%, #e2e8f0 60%, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        &-31{
+            background: -webkit-linear-gradient(0deg, #FBBC04 67%, #e2e8f0 67%, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        &-32{
+            background: -webkit-linear-gradient(0deg, #FBBC04 68%, #e2e8f0 68%, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        &-33{
+            background: -webkit-linear-gradient(0deg, #FBBC04 69%, #e2e8f0 69%, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        &-34{
+            background: -webkit-linear-gradient(0deg, #FBBC04 70%, #e2e8f0 70%, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        &-35{
+            background: -webkit-linear-gradient(0deg, #FBBC04 71%, #e2e8f0 71%, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        &-36{
+            background: -webkit-linear-gradient(0deg, #FBBC04 72%, #e2e8f0 72%, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        &-37{
+            background: -webkit-linear-gradient(0deg, #FBBC04 73%, #e2e8f0 73%, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        &-38{
+            background: -webkit-linear-gradient(0deg, #FBBC04 74.5%, #e2e8f0 74.5%, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        &-39{
+            background: -webkit-linear-gradient(0deg, #FBBC04 76%, #e2e8f0 76%, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        &-40{
+            background: -webkit-linear-gradient(0deg, #FBBC04 80%, #e2e8f0 80%, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        &-41{
+            background: -webkit-linear-gradient(0deg, #FBBC04 87.5%, #e2e8f0 87.5%, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        &-42{
+            background: -webkit-linear-gradient(0deg, #FBBC04 88.5%, #e2e8f0 88.5%, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        &-43{
+            background: -webkit-linear-gradient(0deg, #FBBC04 90%, #e2e8f0 90%, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        &-44{
+            background: -webkit-linear-gradient(0deg, #FBBC04 91%, #e2e8f0 91%, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        &-45{
+            background: -webkit-linear-gradient(0deg, #FBBC04 92%, #e2e8f0 92%, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        &-46{
+            background: -webkit-linear-gradient(0deg, #FBBC04 93%, #e2e8f0 93%, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        &-47{
+            background: -webkit-linear-gradient(0deg, #FBBC04 94%, #e2e8f0 94%, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        &-48{
+            background: -webkit-linear-gradient(0deg, #FBBC04 95%, #e2e8f0 95%, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        &-49{
+            background: -webkit-linear-gradient(0deg, #FBBC04 96.5%, #e2e8f0 96.5%, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        &-50{
+            li{
+                i{
+                    color:#FBBC04;
+                }
+            }
+        }
+    }
 }
+
+
+
 
 
 /* end breeze */

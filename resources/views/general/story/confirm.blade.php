@@ -110,7 +110,7 @@
                                 掲載することがあります。</div>
                             <div class="text-center mt-[5px]"><i class="text-red fa-solid fa-xmark mr-[3px]"></i>許可しない</div>
                             <div class="text-center mt-[5px]"><i class="text-green fa-regular fa-circle mr-[3px]"></i>許可する</div>
-                            
+
                         </dd>
                     </div>
                 </dl>
@@ -200,7 +200,7 @@
                             <div v-if="medium.type=='first_cry'" class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
                             <div v-if="medium.type=='movie'" class="text-[14px] font-bold text-center mb-[3px]">動画(横アングル)</div>
                             <div class="">
-                                
+
                                 <div v-if="medium.status==''" class="text-center mt-[3px] py-[15px] bg-slate-150 font-bold text-slate-500 text-[14px]">未登録</div>
                                 <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[15px] bg-green-100 font-bold text-green text-[14px]">登録済</div>
                                 <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
@@ -228,7 +228,7 @@
     <p class="mt-[20px] md:mt-[15px] w-[140px] md:w-[120px] mx-auto text-center">
         <button type="submit" name="action" value="return"
                 class="w-full block bg-slate-400 text-white font-bold py-[8px] md:py-[8px] rounded-sm text-[16px] md:text-[14px]" href="/input">戻る</button></p>
-    
+
 </form>
 
 <script>
@@ -297,17 +297,17 @@
                         {
                             type:'photoart',
                             status:'saved',
-                            src:'https://local.upload.birth-story.jp:8087/storage/test/photoarrt_1.jpg',
+                            src:'https://local.upload.birth-story.jp:8087/storage/test/photoart_1.jpg',
                         },
                         {
                             type:'photoart',
                             status:'saved',
-                            src:'https://local.upload.birth-story.jp:8087/storage/test/photoarrt_2.jpg',
+                            src:'https://local.upload.birth-story.jp:8087/storage/test/photoart_2.jpg',
                         },
                         {
                             type:'photoart',
                             status:'saved',
-                            src:'https://local.upload.birth-story.jp:8087/storage/test/photoarrt_3.jpg',
+                            src:'https://local.upload.birth-story.jp:8087/storage/test/photoart_3.jpg',
                         },
 
                         {
@@ -328,7 +328,7 @@
 
         },
         methods:{
-            
+
         },
         watch:{
 

@@ -434,17 +434,17 @@
                         {
                             type:'echo',
                             status:'',
+                            src:'https://local.upload.birth-story.jp:8087/storage/test/echo_1.jpg',
                         },
                         {
                             type:'echo',
-                            status:'unsaved',
-                            src:'https://local.upload.birth-story.jp:8087/storage/test/echo_1.jpg',
+                            status:'saved',
+                            src:'https://local.upload.birth-story.jp:8087/storage/test/echo_2.jpg',
                         },
-
                         {
                             type:'namecard',
                             status:'saved',
-                            src:'https://local.upload.birth-story.jp:8087/storage/test/echo_2.jpg',
+                            src:'https://local.upload.birth-story.jp:8087/storage/test/namecard.jpg',
                         },
                         {
                             type:'pregnancy',
@@ -453,8 +453,8 @@
                         },
                         {
                             type:'pregnancy',
-                            status:'',
-                            src:'',
+                            status:'saved',
+                            src:'https://local.upload.birth-story.jp:8087/storage/test/pregnancy_2.jpg',
                         },
                         {
                             type:'pregnancy',
@@ -487,16 +487,18 @@
 
                         {
                             type:'photoart',
-                            status:'unsaved',
-                            src:'https://local.upload.birth-story.jp:8087/storage/test/photoarrt_1.jpg',
+                            status:'saved',
+                            src:'https://local.upload.birth-story.jp:8087/storage/test/photoart_1.jpg',
                         },
                         {
                             type:'photoart',
-                            status:'',
+                            status:'saved',
+                            src:'https://local.upload.birth-story.jp:8087/storage/test/photoart_2.jpg',
                         },
                         {
                             type:'photoart',
-                            status:'',
+                            status:'saved',
+                            src:'https://local.upload.birth-story.jp:8087/storage/test/photoart_3.jpg',
                         },
 
                         {type:'first_cry',status:'',},

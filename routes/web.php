@@ -37,6 +37,11 @@ Route::get('/{maternity_code}/questionnaire', function () {
     return view('general.questionnaire');
 })->name('questionnaire');
 
+Route::get('/{maternity_code}/howto', function () {
+    return view('general.howto');
+})->name('howto');
+
+
 Route::get('/{maternity_code}/policy', function () {
     return view('general.policy');
 })->name('policy');
