@@ -7,7 +7,7 @@
         @apply font-sans;
     }
     input[type="text"],input[type="number"],input[type="password"],input[type="tel"],input[type="email"],input[type="date"],input[type="time"],select,textarea{
-        @apply border border-gray-350 rounded-sm text-base disabled:bg-gray-100 disabled:border-gray-300;
+        @apply border border-slate-350 rounded-sm text-base disabled:bg-slate-100 disabled:border-slate-300;
         @apply md:text-sm;
     }
     select{
@@ -25,7 +25,7 @@
         @apply bg-sky-50;
     }
     select[disabled]{
-        @apply border-gray-300 text-gray-300;
+        @apply border-slate-300 text-slate-300;
     }
     textarea{
         @apply block;

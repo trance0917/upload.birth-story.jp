@@ -3,7 +3,7 @@
 @section('contents')
     <div class=" ">
         <div class="max-w-[800px] bg-sub-light/50 mx-auto pt-15 pb-20 px-10 md:px-7 -mb-30">
-            <div class="bg-white border border-[#ccc] flex flex-col items-center px-4 md:px-3 py-7 md:py-5">
+            <div class="bg-white border border-slate-300 flex flex-col items-center px-4 md:px-3 py-7 md:py-5">
                 <h2 class="text-red text-[18px] text-red font-bold mb-2.5">アクセスありがとうございます。</h2>
                 <div class="">
                     <p class="color-red text-[16px]">こちらは　産院様限定サイトになります。<br />

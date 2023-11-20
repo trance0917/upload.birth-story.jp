@@ -96,6 +96,11 @@ module.exports = {
                 background: {DEFAULT:'#F3F7FA'},
                 gray:{
                     350:'#b5bbc4',
+                },
+                slate:{
+                    150:'#eaeff5',
+                    250:'#d9e1ea',
+                    350:'#b0bccd',
                 }
             },
 

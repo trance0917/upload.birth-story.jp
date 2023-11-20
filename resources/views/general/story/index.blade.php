@@ -141,12 +141,12 @@
                                 <option value="">--</option>
 
                             </select>
-                            <span class="unite ml-[10px]">第</span>
+                            <span class="unit ml-[10px]">第</span>
                             <select class="txt w-[60px]" name="">
                                 <option value="">--</option>
 
                             </select>
-                            <span class="unite">子</span>
+                            <span class="unit">子</span>
                             <span class="block text-red font-bold text-[12px]">※ 入力してください</span>
                         </dd>
                     </div>
@@ -377,9 +377,6 @@
         [&_h4>.example]:underline
         [&_h4>.example]:ml-[3px]
 
-
-
-
         [&_.box_.lbl_.not-choice]:bg-slate-100
 
         [&_.box_.lbl_.not-choice]:text-[16px]
@@ -394,7 +391,6 @@
 
 
         ">
-
 
             <div class="box">
                 <div class="flex justify-between flex-wrap">
@@ -419,14 +415,11 @@
             <p class="text-red font-bold text-[14px] leading-none text-center mt-[10px]">※ 動画は20秒前後でお願いします</p>
         </div>
 
-
-
-
     </section>
 
     <p class="mt-[50px] md:mt-[30px] w-[340px] md:w-[240px] mx-auto text-center"><button type="submit" value="1" class="relative w-full block bg-green text-white font-bold py-[20px] md:py-[15px] rounded-sm text-[22px] md:text-[16px]" href="/production">確認画面へ<i class="fa-solid fa-angle-right absolute top-[26px] md:top-[18px] right-[15px]"></i></button></p>
 
-    <button class="block w-full fixed bottom-0 left-0 text-16px] py-[15px] font-bold text-white bg-[#999]" type="submit" value="2"><i class="fa-solid fa-download mr-[5px]"></i> 途中保存する</button>
+    <button class="block w-full fixed bottom-0 left-0 text-16px] py-[15px] font-bold text-white bg-slate-400" type="submit" value="2"><i class="fa-solid fa-download mr-[5px]"></i> 途中保存する</button>
 </form>
 
 <script>

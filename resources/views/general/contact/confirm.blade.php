@@ -58,7 +58,7 @@
             <div>
                 <dd class="flex justify-center items-center">
 
-                    <p class="text-center mr-5"><button class="w-[120px] py-1.5 bg-gray-400 text-white rounded-sm font-bold hover:bg-gray-400/80" type="submit" name="action" value="return">戻る</button></p>
+                    <p class="text-center mr-5"><button class="w-[120px] py-1.5 bg-slate-400 text-white rounded-sm font-bold hover:bg-slate-400/80" type="submit" name="action" value="return">戻る</button></p>
                     <p class="text-center"><button class="w-[200px] py-2.5 bg-main text-white rounded-sm font-bold hover:bg-main/80" type="submit" name="action" value="send">送信する</button></p>
                 </dd>
             </div>

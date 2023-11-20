@@ -11,14 +11,14 @@
     }
     input[type="checkbox"] + label,
     input[type="radio"] + label{
-        @apply inline-block cursor-pointer rounded-sm border border-gray-200 px-[10px] py-[5px];
+        @apply inline-block cursor-pointer rounded-sm border border-slate-200 px-[10px] py-[5px];
     }
     input[type="checkbox"]:checked + label,
     input[type="radio"]:checked + label{
         @apply bg-main text-white;
     }
     input[type="file"] + label{
-        @apply inline-block cursor-pointer border border-dashed rounded-sm bg-gray-100 border-gray-350 px-2 py-1.25 text-gray-500;
+        @apply inline-block cursor-pointer border border-dashed rounded-sm bg-slate-100 border-slate-350 px-2 py-1.25 text-slate-500;
     }
 
 
