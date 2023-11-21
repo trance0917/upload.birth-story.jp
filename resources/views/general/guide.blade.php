@@ -8,7 +8,7 @@
 
         <section class="border border-main rounded mx-[15px] bg-main/5 py-[20px] px-[15px] mt-[30px]">
             <h2 class="text-center leading-none text-[16px] font-bold text-brown">産院アンケート</h2>
-            <div class="mt-[10px] flex justify-center"><ul class="star star-42 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>
+            <div class="mt-[15px] flex justify-center"><ul class="star star-42 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>
 
 {{--            <div class="flex justify-center"><ul class="star star-30 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
 {{--            <div class="flex justify-center"><ul class="star star-31 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
@@ -32,7 +32,7 @@
 {{--            <div class="flex justify-center"><ul class="star star-49 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
 {{--            <div class="flex justify-center"><ul class="star star-50 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
 
-            <div class="text-slate-600 text-[20px] font-bold text-center mt-[5px]">4.2</div>
+            <div class="text-slate-600 text-[20px] font-bold text-center mt-[10px]">4.2</div>
 
             <p class="text-[14px] mt-[15px] font-bold">高評価をありがとうございます！<br />
                 この評価をそのままGoogle口コミに投稿して<br />
