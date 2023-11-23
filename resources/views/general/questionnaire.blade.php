@@ -6,7 +6,7 @@
         <h2 class="mt-[30px] text-center leading-none text-[15px] font-bold text-brown">バースストーリーから産院アンケートのお願い</h2>
 
         <p class="text-[14px] mt-[15px] w-[80%] mx-auto">アンケートにご協力いただきまして、誠にありがとうございます。<br />
-            ★の評価とご感想やご意見を合計で150文字以上いただけますでしょうか。</p>
+            ★の評価とご感想やご意見を150文字以上いただけますでしょうか。</p>
 
 
         <div class="mt-[60px] md:mt-[30px]">
@@ -27,19 +27,17 @@
                 [&>div_dt]:py-[7px] md:[&>div_dt]:py-[5px]
                 [&>div_dt]:px-[13px] md:[&>div_dt]:px-[8px]
                 [&>div_dt]:text-[16px] md:[&>div_dt]:text-[14px]
-                
+
                 [&>div_dd]:text-[16px] md:[&>div_dd]:text-[14px]
-                
+
                 [&>div_dd]:font-bold
                 [&>div_dd]:text-slate-700
                 [&>div_dd]:leading-none
-                [&>div_dd_span]:text-[12px]
-                [&>div_dd_span]:text-slate-500
 
                 ">
                     <div>
                         <dt>1</dt>
-                        <dd>アンケート<span>(合計150文字以上)</span></dd>
+                        <dd>アンケート</dd>
                     </div>
                     <div>
                         <dt>2</dt>
@@ -70,8 +68,8 @@
                     after:right-[calc(50%-7px)]
                     md:text-[16px]"></p>
 
-        
-        
+
+
         <div>
             <section class="bg-[#866827]/10 p-[20px] md:p-[10px]">
                 <div class="space-y-[20px] md:space-y-[10px]">
@@ -89,17 +87,20 @@
                             <li class="leading-none"><i class="fa-solid fa-star text-slate-200"></i></li>
                         </ul>
                         <p class="text-gray-400 mt-[7px] ">星をタップで選択</p>
-                        <textarea class="mt-[15px] w-[100%]" name="" id="" rows="5" placeholder="記入してください"></textarea>
                     </section>
                     @endforeach
+                        <section class="bg-white flex flex-col items-center py-[25px] px-[25px]">
+                            <textarea class="w-[100%]" name="" id="" rows="5" placeholder="記入してください"></textarea>
+                            <div class="text-center text-slate-500 mt-[5px]">文字数：0 / 150</div>
+                        </section>
 
-                    <div class="text-center text-slate-500">文字数：0 / 150</div>
+
 
                     <section class="bg-white flex flex-col items-center py-[25px]  px-[30px]">
                         <p class="text-[14px]">進呈先のPaypayIDもしくは登録電話番号を登録ください。</p>
                         <input class="h-[34px] mt-[10px]" type="text" value="" placeholder="PaypayID / 電話番号" />
                     </section>
-                    
+
                 </div>
             </section>
         </div>

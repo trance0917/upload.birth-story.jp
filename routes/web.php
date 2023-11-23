@@ -17,38 +17,39 @@ Route::get('/', function () {
     return view('general.index');
 })->name('toppage');
 
-Route::get('/{maternity_code}', function () {
+Route::get('/{code}', function () {
     return view('general.guide');
 })->name('guide');
 
-Route::get('/{maternity_code}/story', function () {
+Route::get('/{code}/story', function () {
     return view('general.story.index');
 })->name('story-index');
 
-Route::get('/{maternity_code}/story/confirm', function () {
+Route::get('/{code}/story/confirm', function () {
     return view('general.story.confirm');
 })->name('story-confirm');
 
-Route::get('/{maternity_code}/story/complete', function () {
+Route::get('/{code}/story/complete', function () {
     return view('general.story.complete');
 })->name('story-complete');
 
-Route::get('/{maternity_code}/questionnaire', function () {
+Route::get('/{code}/questionnaire', function () {
     return view('general.questionnaire');
 })->name('questionnaire');
 
-Route::get('/{maternity_code}/howto', function () {
+Route::get('/{code}/howto', function () {
     return view('general.howto');
 })->name('howto');
 
 
-Route::get('/{maternity_code}/policy', function () {
+Route::get('/{code}/policy', function () {
     return view('general.policy');
 })->name('policy');
 
 
 Route::post('/line/webhook/{mst_maternity_id}', [App\Http\Controllers\General\WebHookController::class,'index'])->name('line-webhook');
 Route::get('/line/webhook/test', [App\Http\Controllers\General\WebHookController::class,'test'])->name('line-webhook-test');
+Route::get('/line/webhook/test2', [App\Http\Controllers\General\WebHookController::class,'test2'])->name('line-webhook-test2');
 
 
 
