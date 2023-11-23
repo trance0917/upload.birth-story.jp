@@ -22,7 +22,7 @@ return new class extends Migration
 
             $table->decimal('notification_review_score', 10, 1)->unsigned()->comment('スタッフに通知する評価の点数');
             $table->decimal('minimum_review_score', 10, 1)->unsigned()->comment('google口コミをプッシュするときの最低評価点数');
-            $table->string('review_link', 255)->unsigned()->comment('google口コミの直リンク');
+            $table->string('review_link', 255)->comment('google口コミの直リンク');
 
             $table->text('memo')->nullable()->default(null)->comment('備考');
 
