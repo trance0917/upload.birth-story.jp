@@ -431,7 +431,7 @@
                     mediums:[
                         {
                             type:'echo',
-                            status:'',
+                            status:'saved',
                             src:'/storage/test/echo_1.jpg',
                         },
                         {
