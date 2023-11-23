@@ -156,7 +156,7 @@
                 <dl class="box">
                     <div class="item">
                         <dt>1ヶ月健診日</dt>
-                        <dd><input type="date" value="" placeholder="例：YAMADA HANAKO" />
+                        <dd><input class="w-[140px]" type="date" value="" placeholder="例：YAMADA HANAKO" />
                             <span class="block text-red font-bold text-[12px]">※ 入力してください</span>
                         </dd>
                     </div>
