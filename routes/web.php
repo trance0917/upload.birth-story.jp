@@ -33,9 +33,9 @@ Route::get('/{code}/story/complete', function () {
     return view('general.story.complete');
 })->name('story-complete');
 
-Route::get('/{code}/questionnaire', function () {
-    return view('general.questionnaire');
-})->name('questionnaire');
+Route::get('/{code}/review', function () {
+    return view('general.review');
+})->name('review');
 
 Route::get('/{code}/howto', function () {
     return view('general.howto');

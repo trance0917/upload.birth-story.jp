@@ -86,15 +86,15 @@
                             <span class="complement">※ 大文字または小文字</span>
                         </dd>
                     </div>
-                    <div class="item">
-                        <dt>電話番号</dt>
-                        <dd><input class="txt w-[130px]" type="tel" value="" placeholder="例：08012345678" /><br />
-                        <span class="complement">※ ハイフン不要</span>
-                        </dd>
-                    </div><div class="item">
-                        <dt>メールアドレス</dt>
-                        <dd><input class="txt w-[210px]" type="email" value="" placeholder="例：info@birth-story.jp" /></dd>
-                    </div>
+{{--                    <div class="item">--}}
+{{--                        <dt>電話番号</dt>--}}
+{{--                        <dd><input class="txt w-[130px]" type="tel" value="" placeholder="例：08012345678" /><br />--}}
+{{--                        <span class="complement">※ ハイフン不要</span>--}}
+{{--                        </dd>--}}
+{{--                    </div><div class="item">--}}
+{{--                        <dt>メールアドレス</dt>--}}
+{{--                        <dd><input class="txt w-[210px]" type="email" value="" placeholder="例：info@birth-story.jp" /></dd>--}}
+{{--                    </div>--}}
                 </dl>
             </div>
 

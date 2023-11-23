@@ -49,13 +49,13 @@
                         <dt>ローマ字表記</dt>
                         <dd>YAMADA HANAKO</dd>
                     </div>
-                    <div class="item">
-                        <dt>電話番号</dt>
-                        <dd>08012345678</dd>
-                    </div><div class="item">
-                        <dt>メールアドレス</dt>
-                        <dd>info@birth-story.jp</dd>
-                    </div>
+{{--                    <div class="item">--}}
+{{--                        <dt>電話番号</dt>--}}
+{{--                        <dd>08012345678</dd>--}}
+{{--                    </div><div class="item">--}}
+{{--                        <dt>メールアドレス</dt>--}}
+{{--                        <dd>info@birth-story.jp</dd>--}}
+{{--                    </div>--}}
                 </dl>
             </div>
 
