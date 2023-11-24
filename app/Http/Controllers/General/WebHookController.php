@@ -5,11 +5,14 @@ use Illuminate\Http\Request;
 use App\Services\LineBotService as LINEBot;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
+use App\Models\MstMaternity;
 
 final class WebHookController extends Controller
 {
-    public function index(int $mst_maternity_id,Request $request){
-        dump($mst_maternity_id);
+    public function index(MstMaternity $mst_maternity,Request $request){
+        dump($mst_maternity);
+        dump($request->all());
+        
     }
 
     public function test(Request $request){
