@@ -60,10 +60,6 @@ Route::get('/line/webhook/test2', [App\Http\Controllers\General\WebHookControlle
 
 
 
-
-
-
-
 Route::get('/contact', function () {
     return view('general.contact.index');
 })->name('contact');
