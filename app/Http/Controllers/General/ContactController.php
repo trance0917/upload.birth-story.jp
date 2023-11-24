@@ -20,7 +20,7 @@ final class ContactController extends Controller
 		if(request()->action === 'return'){
 			return redirect('/contact')->withInput();
 		}
-//		if(env('APP_ENV')=='story'){
+//		if(env('APP_ENV')=='production'){
 			request()->session()->regenerateToken();
 //		}
 //

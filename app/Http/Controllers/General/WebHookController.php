@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\LineBotService as LINEBot;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
+use App\Services\LineBotService;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 use App\Models\MstMaternity;
 
@@ -11,14 +12,55 @@ final class WebHookController extends Controller
 {
     public function index(Request $request){
         
-        $request->destination = 'U521b4fe8ebf2b9d99383034188975e81';
-        $request->destination = 'U92d0798c12c2fdf7cca244be08611be5';
-        
+        if (config('app.env') == 'local') {
+            $request->destination = 'U92d0798c12c2fdf7cca244be08611be5';//テスト産婦人科
+            $request->destination = 'U521b4fe8ebf2b9d99383034188975e81';//テストマタニティクリニック
+            $request->events = json_decode(<<<JSON
+            [
+		{
+            "type": "message",
+			"message": {
+            "type": "text",
+				"id": "483138207442010130",
+				"quoteToken": "Ne0LeVWnZDKvQsb5ZZNbVSHy0jehLqIdr16xZvNvwBqd60WIL72P7rCpvFDB_brEfEASjqMHD-ZgX7x9rMs8sa9lcZ2Y4_gLw886MydK8I32-jBKqq5RcETDrcD1mueQGYjlEc-tD0qk1POPzTUdjg",
+				"text": "産院担当者"
+			},
+			"webhookEventId": "01HFZX6FZCXQ40FW3M7F94CKK9",
+			"deliveryContext": {
+            "isRedelivery": false
+			},
+			"timestamp": 1700804116338,
+			"source": {
+                "type": "user",
+                "userId": "U42daeeae41b7d137194c58c41fab5306"
+            },
+			"replyToken": "4bd7423be7be440689c4fcc8c77b4e87",
+			"mode": "active"
+		}
+	]
+JSON,true);
+        }
         
         
         $mst_maternity = MstMaternity::where('line_destination', $request->destination)->first();
-        dump($mst_maternity->line_message_channel_secret);
-        dump($request->all());
+        
+        if($request->events){
+            foreach($request->events AS $event_key=>$event){
+                dump($event);
+                if($event['type']=='message'){
+                    if($event['message']['type']=='text'||$event['message']['text']=='産院担当者'){
+                        $line_bot_service = new LineBotService(new CurlHTTPClient($mst_maternity->line_message_channel_token),['channelSecret' => $mst_maternity->line_message_channel_secret]);
+                        $line_bot_service->pushMessage($event['source']['userId'],new TextMessageBuilder("担当IDを受け取りました。ありがとうございます！\n".$event['source']['userId']));
+                    }
+                }
+            }
+        }
+        
+        
+        
+        
+        
+
     }
 
     public function test(Request $request){
