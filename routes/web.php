@@ -47,7 +47,7 @@ Route::get('/{code}/policy', function () {
 })->name('policy');
 
 
-Route::get('/github/webhook/', [App\Http\Controllers\General\WebHookController::class,'github'])->name('github-webhook');
+Route::post('/github/webhook/', [App\Http\Controllers\General\WebHookController::class,'github'])->name('github-webhook');
 Route::post('/line/webhook/{mst_maternity_id}', [App\Http\Controllers\General\WebHookController::class,'index'])->name('line-webhook');
 Route::get('/line/webhook/test', [App\Http\Controllers\General\WebHookController::class,'test'])->name('line-webhook-test');
 Route::get('/line/webhook/test2', [App\Http\Controllers\General\WebHookController::class,'test2'])->name('line-webhook-test2');
