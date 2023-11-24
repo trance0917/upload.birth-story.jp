@@ -13,7 +13,7 @@
                 <div class="text-center mt-5"><a class="underline" href="mailto:{{env('MAIL_CONTACT')}}?subject=「バースストーリー」お問い合わせ&body=お問い合わせ内容を記入してください。">問い合わせメール</a></div>
             </div>
         </div>
-
+aaaaaa
     </div>
 @endsection
 
