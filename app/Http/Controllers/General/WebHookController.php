@@ -36,29 +36,41 @@ JSON,true);
             
             if($request->events){
                 foreach($request->events AS $event_key=>$event){
+                    $event_type = $event['type'];
                     $log_line_webhook = new LogLineWebhook;
                     $log_line_webhook->type = $event['type'];
                     $log_line_webhook->mst_maternity_id = $mst_maternity->mst_maternity_id;
                     $log_line_webhook->line_user_id = $event['source']['userId'];
                     $log_line_webhook->api_data = $request->all();
                     $log_line_webhook->save();
+                    
+                    
+                    if($event_type=='message'){
+                        if($event['message']['type']=='text'){
+                            if($event['message']['text']=='産院担当者'){
+                                //$line_bot_service->maternityStaffuEntry();
+                                //産院担当者へメールを送る処理
+                                $profile = $line_bot_service->getProfile($event['source']['userId'])->getJSONDecodedBody();
+                                $line_bot_service->pushMessage($event['source']['userId'],new TextMessageBuilder(view('lines/new-staff',
+                                    [
+                                        'line_user_id'=>$event['source']['userId'],
+                                        'line_name'=>$profile['displayName'],
+                                    ]
+                                )->render()));
+                            }else{
+                                //何かしらの応答メッセージを作る
+                            }
+//                        $profile['pictureUrl']
+                        }
+                    }elseif($event_type=='follow'){
+                        //$line_bot_service->follow();
+                    }elseif($event_type=='unfollow'){
+                        //$line_bot_service->unfollow();
+                    }
 
                     
-                    if($event['message']['type']=='text'){
-                        if($event['message']['text']=='産院担当者'){
-                            //産院担当者へメールを送る処理
-                            $profile = $line_bot_service->getProfile($event['source']['userId'])->getJSONDecodedBody();
-                            $line_bot_service->pushMessage($event['source']['userId'],new TextMessageBuilder(view('lines/new-staff',
-                                [
-                                    'line_user_id'=>$event['source']['userId'],
-                                    'line_name'=>$profile['displayName'],
-                                ]
-                            )->render()));
-                        }
-
-                        
-//                        $profile['pictureUrl']
-                    }
+                    
+                    
                     
                 }
             }else{
