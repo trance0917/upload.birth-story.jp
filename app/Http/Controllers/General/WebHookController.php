@@ -43,26 +43,17 @@ final class WebHookController extends Controller
             }else{
                 $log_line_webhook = new LogLineWebhook;
                 $log_line_webhook->type = 'events empty';
+                $log_line_webhook->api_data = $request->all();
                 $log_line_webhook->save();
             }
         }else{
             $log_line_webhook = new LogLineWebhook;
             $log_line_webhook->type = 'destination empty';
+            $log_line_webhook->api_data = $request->all();
             $log_line_webhook->save();
         }
-        
-
-            
-        
 
         
-        
-        
-        
-
-        
-        
-        $mst_maternity = MstMaternity::where('line_destination', $request->destination)->first();
         
 //        if($request->events){
 //            foreach($request->events AS $event_key=>$event){
