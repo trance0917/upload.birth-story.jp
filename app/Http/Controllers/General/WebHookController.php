@@ -48,7 +48,7 @@ JSON,true);
             foreach($request->events AS $event_key=>$event){
                 dump($event);
                 if($event['type']=='message'){
-                    if($event['message']['type']=='text'||$event['message']['text']=='産院担当者'){
+                    if($event['message']['type']=='text'&&$event['message']['text']=='産院担当者'){
                         $line_bot_service = new LineBotService(new CurlHTTPClient($mst_maternity->line_message_channel_token),['channelSecret' => $mst_maternity->line_message_channel_secret]);
                         $line_bot_service->pushMessage($event['source']['userId'],new TextMessageBuilder("担当IDを受け取りました。ありがとうございます！\n".$event['source']['userId']));
                     }
