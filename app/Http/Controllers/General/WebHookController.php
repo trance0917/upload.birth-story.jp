@@ -25,7 +25,7 @@ final class WebHookController extends Controller
         $response = $bot->pushMessage('Ue10f7778b40a1ba8ca5541d1ae5f5925', new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder('https://birth-story.jp/images/index-insta-9.png', 'https://birth-story.jp/images/index-insta-9.png'));
 //        dump($response);
 //        foreach ($events as $event) {
-//aaaaaaa
+//aaaaaaaaaa
         
 //        }
         return;
