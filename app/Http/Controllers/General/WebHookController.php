@@ -31,17 +31,18 @@ final class WebHookController extends Controller
         return;
     }
     public function github(Request $request){
-        $a = chdir('/var/www/dev.upload.birth-story.jp');
-        dump($a);
-        dump(exec("whoami"));
-        dump(exec("pwd"));
+        exec("cd /var/www/dev.upload.birth-story.jp ; echo 'sakura0917' | sudo -S git pull",$opt, $return_ver);
+//        $a = chdir('/var/www/dev.upload.birth-story.jp');
+//        dump($a);
+//        dump(exec("whoami"));
+//        dump(exec("pwd"));
 
-        dump(exec("cd /var/www/dev.upload.birth-story.jp ; git pull",$opt, $return_ver));
-        dump($opt);
-        dump( '実行結果：'.$return_ver);
-        dump(exec("cd /var/www/dev.upload.birth-story.jp ; echo 'sakura0917' | sudo -S git pull",$opt, $return_ver));
-        dump($opt);
-        dump( '実行結果：'.$return_ver);
+//        dump(exec("cd /var/www/dev.upload.birth-story.jp ; git pull",$opt, $return_ver));
+//        dump($opt);
+//        dump( '実行結果：'.$return_ver);
+//        dump(exec("cd /var/www/dev.upload.birth-story.jp ; echo 'sakura0917' | sudo -S git pull",$opt, $return_ver));
+//        dump($opt);
+//        dump( '実行結果：'.$return_ver);
         
         //        dump(exec($cmd, $opt, $return_ver));
 //        
