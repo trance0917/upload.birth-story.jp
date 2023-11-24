@@ -10,7 +10,7 @@
                         サービス内容・お申込みにつきましては<br />
                         下記よりお問い合わせ下さい。</p>
                 </div>
-
+aaaa
                 <div class="text-center mt-5"><a class="underline" href="mailto:{{env('MAIL_CONTACT')}}?subject=「バースストーリー」お問い合わせ&body=お問い合わせ内容を記入してください。">問い合わせメール</a></div>
             </div>
         </div>
