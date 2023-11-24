@@ -32,7 +32,7 @@ final class WebHookController extends Controller
     }
     public function github(Request $request){
         exec("cd /var/www/dev.upload.birth-story.jp ; git pull",$opt, $return_ver);
-        exec("cd /var/www/dev.upload.birth-story.jp ; echo 'sakura0917' | sudo -S git pull",$opt, $return_ver);
+//        exec("cd /var/www/dev.upload.birth-story.jp ; echo 'sakura0917' | sudo -S git pull",$opt, $return_ver);
 //        $a = chdir('/var/www/dev.upload.birth-story.jp');
 //        dump($a);
 //        dump(exec("whoami"));
