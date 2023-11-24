@@ -60,6 +60,9 @@ class MaternityLineBotService extends LINEBot
         $tbl_patient->save();
     }
     public function unfollow($line_user_id){
-
+        $tbl_patient = TblPatient::where('line_user_id', $line_user_id)->first();
+        $tbl_patient->richmenu_id = null;
+        $tbl_patient->save();
+        $tbl_patient->delete();
     }
 }
