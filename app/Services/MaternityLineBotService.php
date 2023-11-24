@@ -39,9 +39,25 @@ class MaternityLineBotService extends LINEBot
 
     public function follow($line_user_id){
         $tbl_patient = new TblPatient;
+        $code = '';
+        $m = null;
 
-        $str_r = substr(str_shuffle('123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ'), 0, 8);
-        dump($str_r);
+        while(true){
+            $code = substr(str_shuffle('123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ'), 0, 8);
+            $m = TblPatient::where('code', $code)->first();
+            if($m){
+                //コードの重複
+                continue;
+            }
+            break;
+        }
+        $tbl_patient->mst_maternity_id = $this->mst_maternity->mst_maternity_id;
+        $tbl_patient->code = $code;
+        $tbl_patient->line_name = $this->getProfile($line_user_id)->getJSONDecodedBody()['displayName'];
+        $tbl_patient->line_user_id = $line_user_id;
+        $tbl_patient->save();
+
+        dump($code);
         dump($line_user_id);
 
 
