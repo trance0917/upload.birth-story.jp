@@ -39,7 +39,6 @@ final class WebHookController extends Controller
             if($request->events){
 
                 foreach($request->events AS $event_key=>$event){
-                    dump($event);
                     $event_type = $event['type'];
                     $log_line_webhook = new LogLineWebhook;
                     $log_line_webhook->type = $event['type'];

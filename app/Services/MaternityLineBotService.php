@@ -65,8 +65,6 @@ class MaternityLineBotService extends LINEBot
             $tbl_patient->line_picture_url = $profile['pictureUrl'];
             $tbl_patient->save();
 
-
-
             //リッチメニューIDを紐づける対応が必要
             $tbl_patient->richmenu_id = 'リッチメニューID';
 
@@ -88,7 +86,6 @@ class MaternityLineBotService extends LINEBot
             $tbl_patient->richmenu_id=null;
             $tbl_patient->save();
             $tbl_patient->delete();
-            dump($tbl_patient->tbl_patient_id);
         }
         //todo リッチメニューを消す処理
     }
