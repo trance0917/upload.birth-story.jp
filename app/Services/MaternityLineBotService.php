@@ -44,7 +44,7 @@ class MaternityLineBotService extends LINEBot
 
         while(true){
             $code = substr(str_shuffle('123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ'), 0, 8);
-            $m = TblPatient::where('code', $code)->first();
+            $m = TblPatient::withTrashed()->where('code', $code)->first();
             if($m){
                 //コードの重複
                 continue;
@@ -55,12 +55,11 @@ class MaternityLineBotService extends LINEBot
         $tbl_patient->code = $code;
         $tbl_patient->line_name = $this->getProfile($line_user_id)->getJSONDecodedBody()['displayName'];
         $tbl_patient->line_user_id = $line_user_id;
+        $tbl_patient->richmenu_id = 'リッチメニューID';
+
         $tbl_patient->save();
-
-        dump($code);
-        dump($line_user_id);
-
+    }
+    public function unfollow($line_user_id){
 
     }
-
 }
