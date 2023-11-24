@@ -36,7 +36,7 @@ final class WebHookController extends Controller
 
         $cmd = "echo 'sakura0917' | sudo -S git pull";
         exec($cmd, $opt, $return_ver);
-        dump($a);
+        dump($opt);
         dump( '実行結果：'.$return_ver);
     }
 }
