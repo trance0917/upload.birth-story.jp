@@ -28,4 +28,6 @@ class LineBotService extends LINEBot
     {
         return $this->httpClient->get('https://api.line.me/v2/bot/group/' . urlencode($groupId) .'/summary');
     }
+    
+    
 }
