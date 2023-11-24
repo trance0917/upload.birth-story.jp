@@ -33,7 +33,7 @@ final class WebHookController extends Controller
     public function github(Request $request){
         $a = chdir('/var/www/dev.upload.birth-story.jp');
         dump($a);
-
+        dump(exec("whoami"));
         $cmd = "echo 'sakura0917' | sudo -S git pull";
         dump(exec($cmd, $opt, $return_ver));
         
