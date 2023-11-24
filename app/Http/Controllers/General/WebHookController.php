@@ -9,10 +9,16 @@ use App\Models\MstMaternity;
 
 final class WebHookController extends Controller
 {
-    public function index(MstMaternity $mst_maternity,Request $request){
-        dump($mst_maternity);
-        dump($request->all());
+    public function index(Request $request){
         
+        $request->destination = 'U521b4fe8ebf2b9d99383034188975e81';
+        $request->destination = 'U92d0798c12c2fdf7cca244be08611be5';
+        
+        
+        
+        $mst_maternity = MstMaternity::where('line_destination', $request->destination)->first();
+        dump($mst_maternity->line_message_channel_secret);
+        dump($request->all());
     }
 
     public function test(Request $request){
