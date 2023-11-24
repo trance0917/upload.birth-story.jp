@@ -10,7 +10,6 @@ final class WebHookController extends Controller
 {
     public function index(int $mst_maternity_id,Request $request){
         dump($mst_maternity_id);
-        dump($request->all());
     }
 
     public function test(Request $request){
@@ -23,11 +22,7 @@ final class WebHookController extends Controller
         $textMessageBuilder = new TextMessageBuilder($message);
         $response = $bot->pushMessage('Ue10f7778b40a1ba8ca5541d1ae5f5925', $textMessageBuilder);
         $response = $bot->pushMessage('Ue10f7778b40a1ba8ca5541d1ae5f5925', new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder('https://birth-story.jp/images/index-insta-9.png', 'https://birth-story.jp/images/index-insta-9.png'));
-//        dump($response);
-//        foreach ($events as $event) {
-//aaaaaaaaaaaaa
-        
-//        }
+
         return;
     }
     public function github(Request $request){
