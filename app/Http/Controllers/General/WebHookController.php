@@ -35,10 +35,23 @@ final class WebHookController extends Controller
         dump($a);
         dump(exec("whoami"));
         dump(exec("pwd"));
-        $cmd = "echo 'sakura0917' | sudo -S git pull";
-        dump(exec($cmd, $opt, $return_ver));
-        
+
+        dump(exec("/var/www/dev.upload.birth-story.jp ; git pull",$opt, $return_ver));
         dump($opt);
         dump( '実行結果：'.$return_ver);
+        dump(exec("/var/www/dev.upload.birth-story.jp ; echo 'sakura0917' | sudo -S git pull",$opt, $return_ver));
+        dump($opt);
+        dump( '実行結果：'.$return_ver);
+        
+        //        dump(exec($cmd, $opt, $return_ver));
+//        
+//        dump($opt);
+//        dump( '実行結果：'.$return_ver);
+        
+//        $cmd = "echo 'sakura0917' | sudo -S git pull";
+//        dump(exec($cmd, $opt, $return_ver));
+//        
+//        dump($opt);
+//        dump( '実行結果：'.$return_ver);
     }
 }
