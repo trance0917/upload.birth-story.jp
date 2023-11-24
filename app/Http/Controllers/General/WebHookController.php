@@ -29,4 +29,10 @@ final class WebHookController extends Controller
 //        }
         return;
     }
+    public function github(Request $request){
+        $a = chdir('/var/www/dev.upload.birth-story.jp');
+        dump($a);
+        $a = exec('git pull');
+        dump($a);
+    }
 }
