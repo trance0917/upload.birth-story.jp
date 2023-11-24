@@ -62,9 +62,10 @@ class MaternityLineBotService extends LINEBot
             $tbl_patient->code = $code;
             $tbl_patient->line_name = $profile['displayName'];
             $tbl_patient->line_user_id = $line_user_id;
+            $tbl_patient->line_picture_url = $profile['pictureUrl'];
             $tbl_patient->save();
 
-            $tbl_patient->line_picture_url = $profile['pictureUrl'];
+
 
             //リッチメニューIDを紐づける対応が必要
             $tbl_patient->richmenu_id = 'リッチメニューID';
