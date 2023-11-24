@@ -34,6 +34,7 @@ final class WebHookController extends Controller
         $a = chdir('/var/www/dev.upload.birth-story.jp');
         dump($a);
         dump(exec("whoami"));
+        dump(exec("pwd"));
         $cmd = "echo 'sakura0917' | sudo -S git pull";
         dump(exec($cmd, $opt, $return_ver));
         
