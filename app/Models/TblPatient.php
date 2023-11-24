@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class TblPatient
- * 
+ *
  * @property int $tbl_patient_id
  * @property int $mst_maternity_id
  * @property string $code
@@ -91,4 +91,9 @@ class TblPatient extends Model
 		'undertook_by',
 		'memo'
 	];
+
+    public function mst_maternity()
+    {
+        return $this->hasOne(MstMaternity::class, 'mst_maternity_id', 'mst_maternity_id');
+    }
 }

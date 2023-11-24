@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\General\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,32 +18,30 @@ Route::get('/', function () {
     return view('general.index');
 })->name('toppage');
 
-Route::get('/{code}', function () {
-    return view('general.guide');
-})->name('guide');
+Route::get('/{tbl_patient:code}', [App\Http\Controllers\General\IndexController::class,'index'])->name('guide');
 
-Route::get('/{code}/story', function () {
+Route::get('/{tbl_patient:code}/story', function () {
     return view('general.story.index');
 })->name('story-index');
 
-Route::get('/{code}/story/confirm', function () {
+Route::get('/{tbl_patient:code}/story/confirm', function () {
     return view('general.story.confirm');
 })->name('story-confirm');
 
-Route::get('/{code}/story/complete', function () {
+Route::get('/{tbl_patient:code}/story/complete', function () {
     return view('general.story.complete');
 })->name('story-complete');
 
-Route::get('/{code}/review', function () {
+Route::get('/{tbl_patient:code}/review', function () {
     return view('general.review');
 })->name('review');
 
-Route::get('/{code}/howto', function () {
+Route::get('/{tbl_patient:code}/howto', function () {
     return view('general.howto');
 })->name('howto');
 
 
-Route::get('/{code}/policy', function () {
+Route::get('/{tbl_patient:code}/policy', function () {
     return view('general.policy');
 })->name('policy');
 
