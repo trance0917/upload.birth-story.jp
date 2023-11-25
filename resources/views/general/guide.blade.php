@@ -4,7 +4,12 @@
 <main id="main" class="w-[1200px] mx-auto md:w-full">
     <div class="w-[800px] mx-auto md:w-full">
 
-        <div class="mt-[50px] md:mt-[30px] text-center"><span class="w-[80%] px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">提出が完了しました</span></div>
+
+        @if($tbl_patient->submitted_at)
+            <div class="mt-[50px] md:mt-[30px] text-center"><span class="w-[80%] px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">提出が完了しました</span></div>
+        @endif
+
+        @if($tbl_patient->review > 3.5)
 
         <section class="border border-main rounded mx-[15px] bg-main/5 py-[20px] px-[15px] mt-[30px]">
             <h2 class="text-center leading-none text-[16px] font-bold text-brown">産院アンケート</h2>
@@ -44,8 +49,9 @@
                 >評価する<i class="fa-solid fa-angle-right absolute top-[16px] md:top-[11px] right-[10px]"></i></a>
             </p>
         </section>
+        @endif
 
-
+        @if($tbl_patient->submitted_at && !$tbl_patient->review)
         <section class="border border-main rounded mx-[15px] bg-main/5 py-[20px] px-[15px] mt-[30px]">
             <h2 class="text-center leading-none text-[15px] font-bold text-brown">バースストーリーから産院アンケートのお願い</h2>
             <div class="text-red text-[12px] font-bold text-center mt-[5px]">(Paypay<span class="text-red underline">300ポイント</span>進呈)</div>
@@ -58,9 +64,12 @@
                 >アンケートフォームへ<i class="fa-solid fa-angle-right absolute top-[16px] md:top-[11px] right-[10px]"></i></a>
             </p>
         </section>
+        @endif
 
 
+        @if($tbl_patient->submitted_at)
         <p class="mt-[10px] text-center"><a class="underline text-[14px] text-slate-600" href="">提出データの確認</a></p>
+        @endif
 
         <h1 class="mt-[50px] md:mt-[30px] text-center"><span class="px-[25px] md:px-[15px] pb-[15px] pt-[18px] bg-sub-light font-bold text-[24px] md:text-[16px] inline-block leading-none">ご出産記念DVD「バースストーリー」とは？</span></h1>
 
