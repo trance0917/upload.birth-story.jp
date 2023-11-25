@@ -6,6 +6,7 @@ use LINE\LINEBot\HTTPClient;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use App\Models\MstMaternity;
 use App\Models\TblPatient;
+use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -67,6 +68,10 @@ class MaternityLineBotService extends LINEBot
 
             //リッチメニューIDを紐づける対応が必要
             $tbl_patient->richmenu_id = 'リッチメニューID';
+
+            new TextMessageBuilder("フォローを確認\nリッチメニューに付けるBSのリンク\n".config('app.url').'.'.$code);
+
+
 
             DB::commit();
         }catch(\Throwable $e){
