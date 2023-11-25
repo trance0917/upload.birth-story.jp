@@ -2,7 +2,11 @@
 @section('meta')@endsection
 @section('contents')
 <form id="main" class="w-[800px] mx-auto md:w-full">
-    <h1 class="mt-[50px] md:mt-[30px] text-center"><span class="px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">このデータは下記の内容で提出済みです</span></h1>
+
+    @if($tbl_patient->submitted_at)
+        <h1 class="mt-[50px] md:mt-[30px] text-center"><span class="px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">このデータは下記の内容で提出済みです</span></h1>
+    @endif
+
 
 
     <div class="mt-[40px] md:mt-[20px] flex justify-center">
@@ -38,7 +42,7 @@
     [&>li>a]:rounded-sm
 
     ">
-        <li><a class="bg-[#00B900]" href="/contact">LINEお問い合わせ</a></li>
+        <li><a class="bg-[#00B900]" href="{{$tbl_patient->mst_maternity->line_url}}">LINEお問い合わせ</a></li>
         <li><a class="bg-slate-400" href="/faq">よくある質問</a></li>
     </ul>
 

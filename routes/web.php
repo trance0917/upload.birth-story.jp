@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\General\IndexController;
+use App\Http\Controllers\General\StoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +19,9 @@ Route::get('/', function () {
     return view('general.index');
 })->name('toppage');
 
-Route::get('/{tbl_patient:code}', [App\Http\Controllers\General\IndexController::class,'index'])->name('guide');
+Route::get('/{tbl_patient:code}', [IndexController::class,'index'])->name('guide');
 
-Route::get('/{tbl_patient:code}/story', function () {
-    return view('general.story.index');
-})->name('story-index');
+Route::get('/{tbl_patient:code}/story', [StoryController::class,'index'])->name('story-index');
 
 Route::get('/{tbl_patient:code}/story/confirm', function () {
     return view('general.story.confirm');
