@@ -71,7 +71,7 @@ class MaternityLineBotService extends LINEBot
             $tbl_patient->richmenu_id = 'リッチメニューID';
 
 
-            $this->pushMessage($line_user_id,new TextMessageBuilder("フォローを確認\nリッチメニューに付けるBSのリンク\n".config('app.url').'.'.$code));
+            $this->pushMessage($line_user_id,new TextMessageBuilder("フォローを確認\nリッチメニューに付けるBSのリンク\n".config('app.url').'/'.$code));
 
 
             DB::commit();
