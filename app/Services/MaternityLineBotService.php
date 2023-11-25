@@ -64,13 +64,14 @@ class MaternityLineBotService extends LINEBot
             $tbl_patient->line_name = $profile['displayName'];
             $tbl_patient->line_user_id = $line_user_id;
             $tbl_patient->line_picture_url = $profile['pictureUrl'];
+
             $tbl_patient->save();
 
             //リッチメニューIDを紐づける対応が必要
             $tbl_patient->richmenu_id = 'リッチメニューID';
 
-            new TextMessageBuilder("フォローを確認\nリッチメニューに付けるBSのリンク\n".config('app.url').'.'.$code);
 
+            $this->pushMessage($line_user_id,new TextMessageBuilder("フォローを確認\nリッチメニューに付けるBSのリンク\n".config('app.url').'.'.$code));
 
 
             DB::commit();
