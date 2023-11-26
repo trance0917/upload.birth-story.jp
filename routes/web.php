@@ -23,17 +23,13 @@ Route::get('/{tbl_patient:code}', [IndexController::class,'index'])->name('guide
 
 Route::get('/{tbl_patient:code}/story', [StoryController::class,'index'])->name('story-index');
 
-Route::get('/{tbl_patient:code}/story/confirm', function () {
-    return view('general.story.confirm');
-})->name('story-confirm');
+Route::post('/{tbl_patient:code}/story/confirm', [StoryController::class,'confirm'])->name('story-confirm');
 
-Route::get('/{tbl_patient:code}/story/complete', function () {
-    return view('general.story.complete');
-})->name('story-complete');
+Route::post('/{tbl_patient:code}/story/complete', [StoryController::class,'complete'])->name('story-complete');
 
-Route::get('/{tbl_patient:code}/review', function () {
-    return view('general.review');
-})->name('review');
+Route::get('/{tbl_patient:code}/review', [IndexController::class,'review'])->name('review');
+Route::get('/{tbl_patient:code}/review_json', [IndexController::class,'review_json'])->name('review_json');
+
 
 Route::get('/{tbl_patient:code}/howto', function () {
     return view('general.howto');

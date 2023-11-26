@@ -4,71 +4,51 @@
 <main id="main" class="w-[1200px] mx-auto md:w-full">
     <div class="w-[800px] mx-auto md:w-full">
 
-
         @if($tbl_patient->submitted_at)
             <div class="mt-[50px] md:mt-[30px] text-center"><span class="w-[80%] px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">提出が完了しました</span></div>
+
+
+            @if(!$tbl_patient->tbl_patient_reviews->count())
+            <section class="border border-main rounded mx-[15px] bg-main/5 py-[20px] px-[15px] mt-[30px]">
+                <h2 class="text-center leading-none text-[15px] font-bold text-brown">バースストーリーから産院アンケートのお願い</h2>
+                <div class="text-red text-[12px] font-bold text-center mt-[5px]">(Paypay<span class="text-red underline">300ポイント</span>進呈)</div>
+
+                <p class="text-[14px] mt-[15px]">お客様の声は、産院さまにとって非常に重要であり、今後のサービス向上の参考にさせていただいております。</p>
+                <p class="text-[14px] mt-[10px]">産院さまご利用時の<span class="underline">良かった点や改善点</span>など、お客様の貴重なご意見をお聞かせください。</p>
+
+                <p class="mt-[25px] md:mt-[15px] w-[300px] md:w-[200px] mx-auto text-center">
+                    <a class="relative w-full block bg-main text-white font-bold py-[10px] md:py-[7px] rounded-sm text-[20px] md:text-[14px]"
+                       href="{{route('review',$tbl_patient)}}"
+                    >アンケートフォームへ<i class="fa-solid fa-angle-right absolute top-[16px] md:top-[11px] right-[10px]"></i></a>
+                </p>
+            </section>
+            @else
+                    <section class="border border-main rounded mx-[15px] bg-main/5 py-[20px] px-[15px] mt-[30px]">
+                        <h2 class="text-center leading-none text-[16px] font-bold text-brown">産院アンケート</h2>
+
+                        @if($tbl_patient->average_score >= $tbl_patient->mst_maternity->minimum_review_score)
+                        <div class="mt-[15px] flex justify-center"><ul class="star star-{{str_replace('.','',(string)$tbl_patient->average_score)}} flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>
+                        <div class="text-slate-600 text-[20px] font-bold text-center mt-[10px]">{{$tbl_patient->average_score}}</div>
+                        <p class="text-[14px] mt-[15px] font-bold">高評価をありがとうございます！<br />
+                            この評価をそのままGoogle口コミに投稿して<br />
+                            いただけませんか？<br />
+                            星の評価のみであれば下記リンクから30秒で回答いただけます。</p>
+
+                        <p class="mt-[25px] md:mt-[15px] w-[240px] md:w-[140px] mx-auto text-center">
+                            <a class="relative w-full block bg-main text-white font-bold py-[10px] md:py-[7px] rounded-sm text-[20px] md:text-[14px]"
+                            >評価する<i class="fa-solid fa-angle-right absolute top-[16px] md:top-[11px] right-[10px]"></i></a>
+                        </p>
+                        @else
+                            <p class="text-[14px] mt-[15px] font-bold">アンケートのご協力をありがとうございました。<br />頂いた内容はサービスの向上ための参考として活用させていただきます。</p>
+                        @endif
+
+                        <p class="text-center text-[14px] mt-[10px]">ポイント進呈状況：<span class="font-bold">手続中</span></p>
+                    </section>
+            @endif
         @endif
-
-        @if($tbl_patient->review > 3.5)
-
-        <section class="border border-main rounded mx-[15px] bg-main/5 py-[20px] px-[15px] mt-[30px]">
-            <h2 class="text-center leading-none text-[16px] font-bold text-brown">産院アンケート</h2>
-            <div class="mt-[15px] flex justify-center"><ul class="star star-42 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>
-
-{{--            <div class="flex justify-center"><ul class="star star-30 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-{{--            <div class="flex justify-center"><ul class="star star-31 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-{{--            <div class="flex justify-center"><ul class="star star-32 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-{{--            <div class="flex justify-center"><ul class="star star-33 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-{{--            <div class="flex justify-center"><ul class="star star-34 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-{{--            <div class="flex justify-center"><ul class="star star-35 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-{{--            <div class="flex justify-center"><ul class="star star-36 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-{{--            <div class="flex justify-center"><ul class="star star-37 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-{{--            <div class="flex justify-center"><ul class="star star-38 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-{{--            <div class="flex justify-center"><ul class="star star-39 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-{{--            <div class="flex justify-center"><ul class="star star-40 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-{{--            <div class="flex justify-center"><ul class="star star-41 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-{{--            <div class="flex justify-center"><ul class="star star-42 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-{{--            <div class="flex justify-center"><ul class="star star-43 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-{{--            <div class="flex justify-center"><ul class="star star-44 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-{{--            <div class="flex justify-center"><ul class="star star-45 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-{{--            <div class="flex justify-center"><ul class="star star-46 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-{{--            <div class="flex justify-center"><ul class="star star-47 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-{{--            <div class="flex justify-center"><ul class="star star-48 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-{{--            <div class="flex justify-center"><ul class="star star-49 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-{{--            <div class="flex justify-center"><ul class="star star-50 flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>--}}
-
-            <div class="text-slate-600 text-[20px] font-bold text-center mt-[10px]">4.2</div>
-
-            <p class="text-[14px] mt-[15px] font-bold">高評価をありがとうございます！<br />
-                この評価をそのままGoogle口コミに投稿して<br />
-                いただけませんか？<br />
-                星の評価のみであれば下記リンクから30秒で回答いただけます。</p>
-
-            <p class="mt-[25px] md:mt-[15px] w-[240px] md:w-[140px] mx-auto text-center">
-                <a class="relative w-full block bg-main text-white font-bold py-[10px] md:py-[7px] rounded-sm text-[20px] md:text-[14px]"
-                >評価する<i class="fa-solid fa-angle-right absolute top-[16px] md:top-[11px] right-[10px]"></i></a>
-            </p>
-        </section>
-        @endif
-
-        @if($tbl_patient->submitted_at && !$tbl_patient->review)
-        <section class="border border-main rounded mx-[15px] bg-main/5 py-[20px] px-[15px] mt-[30px]">
-            <h2 class="text-center leading-none text-[15px] font-bold text-brown">バースストーリーから産院アンケートのお願い</h2>
-            <div class="text-red text-[12px] font-bold text-center mt-[5px]">(Paypay<span class="text-red underline">300ポイント</span>進呈)</div>
-
-            <p class="text-[14px] mt-[15px]">お客様の声は、産院さまにとって非常に重要であり、今後のサービス向上の参考にさせていただいております。</p>
-            <p class="text-[14px] mt-[10px]">産院さまご利用時の<span class="underline">良かった点や改善点</span>など、お客様の貴重なご意見をお聞かせください。</p>
-
-            <p class="mt-[25px] md:mt-[15px] w-[300px] md:w-[200px] mx-auto text-center">
-                <a class="relative w-full block bg-main text-white font-bold py-[10px] md:py-[7px] rounded-sm text-[20px] md:text-[14px]"
-                >アンケートフォームへ<i class="fa-solid fa-angle-right absolute top-[16px] md:top-[11px] right-[10px]"></i></a>
-            </p>
-        </section>
-        @endif
-
 
         @if($tbl_patient->submitted_at)
-        <p class="mt-[10px] text-center"><a class="underline text-[14px] text-slate-600" href="">提出データの確認</a></p>
+        <p class="mt-[10px] text-center"><a class="underline text-[14px] text-slate-600" href="{{route('story-index',$tbl_patient)}}">提出データの確認</a></p>
         @endif
 
         <h1 class="mt-[50px] md:mt-[30px] text-center"><span class="px-[25px] md:px-[15px] pb-[15px] pt-[18px] bg-sub-light font-bold text-[24px] md:text-[16px] inline-block leading-none">ご出産記念DVD「バースストーリー」とは？</span></h1>
@@ -154,10 +134,9 @@
             <span class="text-[16px] md:text-[14px] text-white">[お願い]</span><i class="fa-solid fa-circle-exclamation mx-[5px]"></i>出産から10日以内にお送りください
         </div>
 
-        <p class="mt-[50px] md:mt-[30px] w-[340px] md:w-[240px] mx-auto text-center"><a class="relative block bg-main text-white font-bold py-[20px] md:py-[15px] rounded-sm text-[22px] md:text-[16px]" href="{{route('story-index',$tbl_patient)}}">作成を開始する<i class="fa-solid fa-angle-right absolute top-[26px] md:top-[18px] right-[15px]"></i></a></p>
-
-
-
+            <p class="mt-[50px] md:mt-[30px] w-[340px] md:w-[240px] mx-auto text-center"><a class="relative block bg-main text-white font-bold py-[20px] md:py-[15px] rounded-sm text-[22px] md:text-[16px]" href="{{route('story-index',$tbl_patient)}}">
+                    @if(!$tbl_patient->submitted_at){{'作成を開始する'}}@else{{'提出データの確認'}}@endif
+            <i class="fa-solid fa-angle-right absolute top-[26px] md:top-[18px] right-[15px]"></i></a></p>
 
     </div>
 </main>

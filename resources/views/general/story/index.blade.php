@@ -1,8 +1,8 @@
 @extends('layout')
 @section('meta')@endsection
 @section('contents')
-<form id="main" class="w-[800px] mx-auto md:w-full">
-
+<form id="main" class="w-[800px] mx-auto md:w-full" method="post" action="{{route('story-confirm',$tbl_patient)}}">
+    @csrf
     @if($tbl_patient->submitted_at)
         <h1 class="mt-[50px] md:mt-[30px] text-center"><span class="px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">このデータは下記の内容で提出済みです</span></h1>
     @endif
@@ -67,7 +67,7 @@
         [&_.box>.item>dd_.txt]:h-[34px]
 
         [&_.box>.item>dd_.complement]:text-[12px]
-        [&_.box>.item>dd_.complement]:text-[#666]
+        [&_.box>.item>dd_.complement]:text-slate-500
         [&_.box>.item>dd_.complement]:font-bold
         [&_.box>.item>dd_.complement]:leading-none
         [&_.box>.item>dd_.unit]:ml-[3px]
@@ -78,7 +78,7 @@
                 <dl class="box">
                    <div class="item">
                        <dt class="!h-[1.4em] !leading-[1.4em]">産院名</dt>
-                       <dd class="!h-[1.4em] !leading-[1.4em] font-bold">--</dd>
+                       <dd class="!h-[1.4em] !leading-[1.4em] font-bold">{{$tbl_patient->mst_maternity->name??'--'}}</dd>
                    </div>
                     <div class="item">
                         <dt>ママのお名前</dt>
@@ -419,9 +419,15 @@
 
     </section>
 
-    <p class="mt-[50px] md:mt-[30px] w-[340px] md:w-[240px] mx-auto text-center"><button type="submit" value="1" class="relative w-full block bg-green text-white font-bold py-[20px] md:py-[15px] rounded-sm text-[22px] md:text-[16px]" href="/production">確認画面へ<i class="fa-solid fa-angle-right absolute top-[26px] md:top-[18px] right-[15px]"></i></button></p>
+    @if(!$tbl_patient->submitted_at)
+    <p class="mt-[50px] md:mt-[30px] w-[340px] md:w-[240px] mx-auto text-center"><button type="submit" value="1" class="relative w-full block bg-green text-white font-bold py-[20px] md:py-[15px] rounded-sm text-[22px] md:text-[16px]" href="/production">提出の確認へ<i class="fa-solid fa-angle-right absolute top-[26px] md:top-[18px] right-[15px]"></i></button></p>
+    @else
+        <p class="mt-[20px] md:mt-[15px] w-[140px] md:w-[120px] mx-auto text-center">
+            <a class="w-full block bg-slate-400 text-white font-bold py-[8px] md:py-[8px] rounded-sm text-[16px] md:text-[14px]" href="{{route('guide',$tbl_patient)}}">戻る</a></p>
+    @endif
 
-    <button class="block w-full fixed bottom-0 left-0 text-16px] py-[15px] font-bold text-white bg-slate-400" type="submit" value="2"><i class="fa-solid fa-download mr-[5px]"></i> 途中保存する</button>
+
+{{--    <button class="block w-full fixed bottom-0 left-0 text-16px] py-[15px] font-bold text-white bg-slate-400" type="submit" value="2"><i class="fa-solid fa-download mr-[5px]"></i> 途中保存する</button>--}}
 </form>
 
 <script>

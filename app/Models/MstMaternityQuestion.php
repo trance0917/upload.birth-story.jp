@@ -11,9 +11,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class MstMaternityReview
- * 
- * @property int $mst_maternity_review_id
+ * Class MstMaternityQuestion
+ *
+ * @property int $mst_maternity_question_id
  * @property int $mst_maternity_id
  * @property string $question
  * @property int $order
@@ -23,13 +23,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App\Models
  */
-class MstMaternityReview extends Model
+class MstMaternityQuestion extends Model
 {
 	use SoftDeletes;
-	protected $table = 'mst_maternity_reviews';
-	protected $primaryKey = 'mst_maternity_review_id';
+	protected $table = 'mst_maternity_questions';
+	protected $primaryKey = 'mst_maternity_question_id';
 
-	protected $casts = [
+    protected $casts = [
 		'mst_maternity_id' => 'int',
 		'order' => 'int'
 	];
@@ -39,4 +39,13 @@ class MstMaternityReview extends Model
 		'question',
 		'order'
 	];
+
+    public static $score_type = [
+        1=>'不満',
+        2=>'やや不満',
+        3=>'普通',
+        4=>'やや満足',
+        5=>'満足',
+
+    ];
 }

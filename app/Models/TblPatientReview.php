@@ -11,10 +11,10 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class TblPatientReview
- * 
+ *
  * @property int $tbl_patient_review_id
  * @property int $tbl_patient_id
- * @property int $mst_maternity_review_id
+ * @property int $mst_maternity_question_id
  * @property int $score
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -28,13 +28,20 @@ class TblPatientReview extends Model
 
 	protected $casts = [
 		'tbl_patient_id' => 'int',
-		'mst_maternity_review_id' => 'int',
+		'mst_maternity_question_id' => 'int',
 		'score' => 'int'
 	];
 
 	protected $fillable = [
 		'tbl_patient_id',
-		'mst_maternity_review_id',
+		'mst_maternity_question_id',
 		'score'
 	];
+
+//    public function mst_maternity_question()
+//    {
+//        return $this->hasOne(MstMaternityQuestion::class, 'mst_maternity_question_id', 'mst_maternity_question_id');
+//    }
+
+
 }

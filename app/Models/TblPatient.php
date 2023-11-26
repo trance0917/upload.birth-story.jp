@@ -96,4 +96,16 @@ class TblPatient extends Model
     {
         return $this->hasOne(MstMaternity::class, 'mst_maternity_id', 'mst_maternity_id');
     }
+    public function tbl_patient_reviews()
+    {
+        return $this->hasMany(TblPatientReview::class, 'tbl_patient_id', 'tbl_patient_id');
+    }
+    public function tbl_patient_mediums()
+    {
+        return $this->hasMany(TblPatientMedium::class, 'tbl_patient_id', 'tbl_patient_id');
+    }
+    public function getAverageScoreAttribute()
+    {
+        return sprintf("%.1f",round($this->tbl_patient_reviews->average('score'),1));
+    }
 }

@@ -1,12 +1,12 @@
 @extends('layout')
 @section('meta')@endsection
 @section('contents')
-<form id="main" class="w-[1200px] mx-auto md:w-full">
-
+<form id="main" class="w-[1200px] mx-auto md:w-full" method="post" action="{{route('story-complete',$tbl_patient)}}">
+    @csrf
     <div class="mt-[40px] md:mt-[20px] flex justify-center">
         <div class="inline-block">
             <div class="flex justify-center items-center bg-sub-light px-[40px] md:px-[20px] py-[30px] md:py-[15px]">
-                <p class="font-bold text-[16px] md:text-[12px]">登録内容をご確認のうえ、<br />手続きを完了させてください。</p>
+                <p class="font-bold text-[16px] md:text-[12px]">登録内容をご確認のうえ、<span class="underline font-bold">下部のボタン</span>から<br />手続きを完了させてください。</p>
             </div>
         </div>
     </div>
@@ -215,9 +215,9 @@
     <div class="flex items-center flex-col mt-[40px] md:mt-[20px] bg-red text-[18px] md:text-[14px] py-[18px] md:py-[15px]">
         <div class="flex items-center">
             <i class="text-white fa-solid fa-circle-exclamation mr-[10px] text-[20px]"></i>
-            <p class="text-white font-bold">登録完了後の変更はお受けできませんので<br />
+            <p class="text-white font-bold">提出完了後の変更はお受けできませんので<br />
                 ご了承ください。</p></div>
-        <input class="em-input-check-show" type="checkbox" name="" value="1" id="asdf" /><label class="text-red mt-[7px]" for="asdf">了解しました</label>
+{{--        <input class="em-input-check-show" type="checkbox" name="" value="1" id="asdf" /><label class="text-red mt-[7px]" for="asdf">了解しました</label>--}}
     </div>
 
     <p class="mt-[50px] md:mt-[30px] w-[340px] md:w-[240px] mx-auto text-center">
@@ -227,7 +227,7 @@
     </p>
     <p class="mt-[20px] md:mt-[15px] w-[140px] md:w-[120px] mx-auto text-center">
         <button type="submit" name="action" value="return"
-                class="w-full block bg-slate-400 text-white font-bold py-[8px] md:py-[8px] rounded-sm text-[16px] md:text-[14px]" href="/input">戻る</button></p>
+                class="w-full block bg-slate-400 text-white font-bold py-[8px] md:py-[8px] rounded-sm text-[16px] md:text-[14px]">戻る</button></p>
 
 </form>
 
