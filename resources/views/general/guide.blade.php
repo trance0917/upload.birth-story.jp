@@ -36,8 +36,11 @@
 
                         <p class="mt-[25px] md:mt-[15px] w-[240px] md:w-[140px] mx-auto text-center">
                             <a class="relative w-full block bg-main text-white font-bold py-[10px] md:py-[7px] rounded-sm text-[20px] md:text-[14px]"
+                               target="_blank" href="{{$tbl_patient->mst_maternity->review_link}}"
                             >評価する<i class="fa-solid fa-angle-right absolute top-[16px] md:top-[11px] right-[10px]"></i></a>
                         </p>
+
+                            <ul class="hidden star star-30 star-31 star-32 star-33 star-34 star-35 star-36 star-37 star-38 star-39 star-40 star-41 star-42 star-43 star-44 star-45 star-46 star-47 star-48 star-49 star-50"></ul>
                         @else
                             <p class="text-[14px] mt-[15px] font-bold">アンケートのご協力をありがとうございました。<br />頂いた内容はサービスの向上ための参考として活用させていただきます。</p>
                         @endif

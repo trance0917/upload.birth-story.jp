@@ -1,7 +1,14 @@
 @extends('layout')
 @section('meta')@endsection
 @section('contents')
-<main id="main" class="w-[1200px] mx-auto md:w-full">
+<main id="main" class="w-[1200px] mx-auto md:w-full
+[&_.error]:font-bold
+[&_.error]:text-[12px]
+[&_.error]:text-red
+[&_.error]:leading-none
+[&_.error]:mt-[3px]
+
+">
     <div v-if="is_loading" class="fixed h-full w-full top-[0] left-[0] bg-amber-50/70 z-50 flex flex-col items-center justify-center pb-[100px]">
         <div class="flower-loader !ml-[-16px] !mt-[-16px]"></div>
         <p class="mt-[35px] text-center font-bold">送信中です。<br />しばらくお待ちください。</p>
@@ -12,8 +19,14 @@
 
     <h2 class="mt-[30px] text-center leading-none text-[15px] font-bold text-brown">バースストーリーから産院アンケートのお願い</h2>
 
+
+
     <p class="text-[14px] mt-[15px] w-[80%] mx-auto">アンケートにご協力いただきまして、誠にありがとうございます。<br />
         ★の評価とご感想やご意見をいただけますでしょうか。</p>
+
+    <div v-if="Object.keys(errors).length" class="mt-[30px] flex justify-center">
+        <p class="text-[14px] md:text-[12px] inline-block font-bold bg-red shadow text-white px-[15px] py-[10px] md:px-[10px] md:py-[5px]">※ エラーがあります。ご確認のうえ再送信してください</p>
+    </div>
 
 
     <div class="mt-[60px] md:mt-[30px]">
@@ -101,6 +114,8 @@
                                 <template v-if="score_type[tbl_patient_review.score]">@{{score_type[tbl_patient_review.score]}}</template>
                                 <template v-else="score_type[tbl_patient_review.score]">星をタップで選択</template>
                             </p>
+                            <p class="error" v-if="errors['tbl_patient.tbl_patient_reviews.'+tbl_patient_review_key+'.score']">@{{ errors['tbl_patient.tbl_patient_reviews.'+tbl_patient_review_key+'.score'][0] }}</p>
+
                         </template>
                     </template>
 
@@ -112,11 +127,13 @@
                         <textarea class="w-[100%]" rows="5" placeholder="記入してください" v-model="tbl_patient.review"></textarea>
                     </div>
                     <p class="mt-[5px] text-[12px] font-bold text-slate-500 leading-none">できるだけ詳しく記載いただくと嬉しいです。</p>
+                    <p class="error" v-if="errors['tbl_patient.review']">@{{ errors['tbl_patient.review'][0] }}</p>
                 </section>
 
                 <section class="bg-white flex flex-col items-center py-[25px] px-[30px]">
                     <p class="text-[14px]">進呈先のPaypayIDもしくは登録電話番号を登録ください。</p>
                     <input class="h-[34px] mt-[10px]" type="text" value="" placeholder="PaypayID / 電話番号" v-model="tbl_patient.paypayid" />
+                    <p class="error" v-if="errors['tbl_patient.paypayid']">@{{ errors['tbl_patient.paypayid'][0] }}</p>
                 </section>
 
             </div>
@@ -164,19 +181,14 @@
                         tbl_patient:t.tbl_patient,
                     }
                     ).then((response) => {//リクエストの成功
+                        location.href='/{{$tbl_patient->code}}/';
                     }).catch((error) => {//リクエストの失敗
-                        // // t.api_data.product_data.tbl_product_composition_registration;
-                        // t.system_error = false;
-                        // if(error.response.data.exception=='Exception'){
-                        //     t.system_error = true;
-                        //     return ;
-                        // }
-                        // t.api_data.errors = error.response.data.errors;
-                        // t.api_data.conflicts=[];
-                        // if(error.response.data.conflicts){
-                        //     t.api_data.conflicts = error.response.data.conflicts;
-                        // }
-                        // t.api_data.errors = error_message_translate(t.api_data.errors);
+                        window.scroll({
+                            top: 0,
+                            behavior: "smooth",
+                        });
+                        t.errors = error.response.data.errors;
+                        // t.errors = error_message_translate(t.errors);
 
                     }).finally(() => {
                         this.is_loading=false;
