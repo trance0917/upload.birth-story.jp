@@ -97,7 +97,7 @@
                             <ul v-else class="mt-[12px] flex justify-center text-[32px] space-x-[7px] [&_i]:text-slate-200">
                                 <li v-for="n in 5" :key="n" class="leading-none"><i class="fa-solid fa-star" :class="{'!text-[#FBBC04]':tbl_patient_review.score>=n}"></i></li>
                             </ul>
-                            <p class="text-gray-400 mt-[7px] ">
+                            <p class="text-gray-400 mt-[7px] text-[18px] ">
                                 <template v-if="score_type[tbl_patient_review.score]">@{{score_type[tbl_patient_review.score]}}</template>
                                 <template v-else="score_type[tbl_patient_review.score]">星をタップで選択</template>
                             </p>
