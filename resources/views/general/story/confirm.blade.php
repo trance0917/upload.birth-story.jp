@@ -39,7 +39,7 @@
                 <dl class="box">
                     <div class="item">
                         <dt class="!h-[1.4em] !leading-[1.4em]">産院名</dt>
-                        <dd class="!h-[1.4em] !leading-[1.4em] font-bold">赤井マタニティクリニック</dd>
+                        <dd class="!h-[1.4em] !leading-[1.4em] font-bold">{{$tbl_patient->mst_maternity->name??'--'}}</dd>
                     </div>
                     <div class="item">
                         <dt>ママのお名前</dt>

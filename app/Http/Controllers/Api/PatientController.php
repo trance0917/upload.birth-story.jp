@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Log;
 
 class PatientController extends Controller
 {
+    private $validate_rules=[
+        'tbl_patient.name' => 'required',
+        'tbl_patient.roman_alphabet' => 'required',
+    ];
+
     public function storeReview(TblPatient $tbl_patient,Request $request) {
 
         $validator = Validator:: make([
@@ -73,10 +78,7 @@ class PatientController extends Controller
         sleep(1);
         $validator = Validator:: make([
             'tbl_patient' => $request->tbl_patient,
-        ], [
-            //tbl_supplier
-            'tbl_patient.name' => 'required',
-        ]);
+        ], $this->validate_rules);
         if ($validator->fails()) {
             return response()->json([
                 'result' => false,
@@ -106,12 +108,14 @@ class PatientController extends Controller
     }
 
     public function storeStoryInput(TblPatient $tbl_patient,Request $request){
-//        sleep(1);
+        if(!isset($this->validate_rules[$request->key])){
+            return response()->json(['result' => false,'messages' => '存在しないキー','errors' => [],]);
+        }
+
         $validator = Validator:: make([
             'tbl_patient' => $request->tbl_patient,
         ], [
-            //tbl_supplier
-            $request->key => 'required|numeric',
+            $request->key => $this->validate_rules[$request->key],
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -123,6 +127,8 @@ class PatientController extends Controller
 
         DB::beginTransaction();
         try {
+            $tbl_patient->fill($request->tbl_patient);
+            $tbl_patient->save();
             DB::commit();
         } catch (\Throwable $e) {
             DB::rollback();

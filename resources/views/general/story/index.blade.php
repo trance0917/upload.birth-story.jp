@@ -61,6 +61,10 @@
     <div v-if="Object.keys(errors).length" class="mt-[30px] flex justify-center">
         <p class="text-[14px] md:text-[12px] inline-block font-bold bg-red shadow text-white px-[15px] py-[10px] md:px-[10px] md:py-[5px]">※ エラーがあります。ご確認のうえ再送信してください</p>
     </div>
+    <div v-else class="mt-[30px] flex justify-center opacity-0">
+        <p class="text-[14px] md:text-[12px] inline-block font-bold bg-red shadow text-white px-[15px] py-[10px] md:px-[10px] md:py-[5px]">※</p>
+    </div>
+
 
     <section class="mx-auto w-[800px] md:w-auto mt-[50px] md:mt-[25px]">
         <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>ご出産情報を入力<span class="py-[2px] ml-[5px] inline-block w-[50px] bg-red font-bold text-[14px] text-center text-white">必須</span></h3>
@@ -105,6 +109,7 @@
                         <dt>ローマ字表記</dt>
                         <dd><input class="txt w-[190px]" type="text" placeholder="例：YAMADA HANAKO" v-model="tbl_patient.roman_alphabet" @change="input_save('roman_alphabet',tbl_patient.roman_alphabet)" /><span v-if="'roman_alphabet'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
                             <span class="complement">※ 大文字または小文字</span>
+                            <div class="error" v-if="errors['tbl_patient.roman_alphabet']">@{{ errors['tbl_patient.roman_alphabet'][0] }}</div>
                         </dd>
                     </div>
 {{--                    <div class="item">--}}
@@ -441,6 +446,9 @@
             <a class="w-full block bg-slate-400 text-white font-bold py-[8px] md:py-[8px] rounded-sm text-[16px] md:text-[14px]" href="{{route('guide',$tbl_patient)}}">戻る</a></p>
     @endif
 
+    <form action="{{route('story-confirm',$tbl_patient)}}" method="post" ref="form">
+        @csrf
+    </form>
 
 {{--    <button class="block w-full fixed bottom-0 left-0 text-16px] py-[15px] font-bold text-white bg-slate-400" type="submit" value="2"><i class="fa-solid fa-download mr-[5px]"></i> 途中保存する</button>--}}
 </main>
@@ -552,7 +560,7 @@
                         tbl_patient:t.tbl_patient,
                     }
                 ).then((response) => {//リクエストの成功
-                    location.href='/{{$tbl_patient->code}}/story/confirm';
+                    t.$refs.form.submit();
                 }).catch((error) => {//リクエストの失敗
                     window.scroll({
                         top: 0,
