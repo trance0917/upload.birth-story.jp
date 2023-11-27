@@ -97,7 +97,7 @@
                    </div>
                     <div class="item">
                         <dt>ママのお名前</dt>
-                        <dd><input class="txt w-[150px]" type="text" value="" placeholder="例：山田 花子" />
+                        <dd><input class="txt w-[150px]" type="text" placeholder="例：山田 花子" v-model="tbl_patient.name" @blur="input_save('name',tbl_patient.name)" /><span v-if="'name'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span>
                             <div class="error" v-if="errors['tbl_patient.name']">@{{ errors['tbl_patient.name'][0] }}</div>
                         </dd>
                     </div>
@@ -124,7 +124,7 @@
                 <dl class="box">
                     <div class="item">
                         <dt>お名前</dt>
-                        <dd><input class="txt w-[110px]" type="text" value="" placeholder="例：花子" /><br />
+                        <dd><input class="txt w-[110px]" type="text" placeholder="例：花子"  /><br />
                             <span class="complement">※ 未記入可</span>
                             <span class="block text-red font-bold text-[12px]">※ 入力してください</span>
                         </dd>
@@ -156,16 +156,13 @@
                     </div>
                     <div class="item">
                         <dt>性別</dt>
-                        <dd><select class="txt w-[60px]" name="">
+                        <dd><select class="txt w-[60px] mr-[10px]" name="">
                                 <option value="">--</option>
-
                             </select>
                             <span class="unit ml-[10px]">第</span>
-                            <select class="txt w-[60px]" name="">
+                            <select class="txt w-[60px] ml-[5px]" name="">
                                 <option value="">--</option>
-
-                            </select>
-                            <span class="unit">子</span>
+                            </select><span class="unit">子</span>
                             <span class="block text-red font-bold text-[12px]">※ 入力してください</span>
                         </dd>
                     </div>
@@ -260,7 +257,7 @@
                                 <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
                                 <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(変更可)</div>
                                 <input :id="'medium_'+medium_key" type="file" />
-                                <input type="file" accept="image/*" v-on:change="file_change($event,medium.type)" />
+                                <input type="file" accept="image/*" v-on:change="medium_save($event,medium.type)" />
                             </div>
                         </div>
                         </template>
@@ -454,6 +451,7 @@
         data(){
             return {
                 is_loading:false,
+                loading_input_key:'',
                 errors:[],
 
                 tbl_patient:{
@@ -574,7 +572,22 @@
                     [data[i+1] ,data[i]] = [data[i],data[i+1]];
                 }
             },
-            async file_change(e,type){
+            
+            async input_save(key,val){
+                let data = {[key]:val};
+                this.loading_input_key=key;
+                await axios.post('/api/v1/g/{{$tbl_patient->code}}/story/input',
+                    {
+                        ...data
+                    }
+                ).then((response) => {//リクエストの成功
+                }).catch((error) => {//リクエストの失敗
+                }).finally(() => {
+                    this.loading_input_key='';
+                });
+                
+            },
+            async medium_save(e,type){
                 let t = this;
                 let thumb = '';
 
@@ -603,7 +616,7 @@
             },
         },
         watch:{
-
+            
         },
     }).mount('#main');
 </script>

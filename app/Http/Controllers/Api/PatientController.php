@@ -106,9 +106,18 @@ class PatientController extends Controller
     }
 
     public function storeStoryInput(){
-
+//        sleep(1);
+        return response()->json([
+            'result' => true,
+            'messages' => '',
+            'errors' => [],
+        ]);
     }
     public function storeStoryMedium(){
-        
+        return response()->json([
+            'result' => true,
+            'messages' => '',
+            'errors' => [],
+        ]);
     }
 }
