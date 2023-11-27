@@ -105,15 +105,41 @@ class PatientController extends Controller
         ]);
     }
 
-    public function storeStoryInput(){
+    public function storeStoryInput(TblPatient $tbl_patient,Request $request){
 //        sleep(1);
+        $validator = Validator:: make([
+            'tbl_patient' => $request->tbl_patient,
+        ], [
+            //tbl_supplier
+            $request->key => 'required|numeric',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'result' => false,
+                'messages' => '',
+                'errors' => $validator->errors(),
+            ], 400);
+        }
+
+        DB::beginTransaction();
+        try {
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollback();
+            Log::error($e);
+            return response()->json([
+                'result' => false,
+                'messages' => $e->getMessage(),
+                'errors' => [],
+            ], 500);
+        }
         return response()->json([
             'result' => true,
             'messages' => '',
             'errors' => [],
         ]);
     }
-    public function storeStoryMedium(){
+    public function storeStoryMedium(TblPatient $tbl_patient,Request $request){
         return response()->json([
             'result' => true,
             'messages' => '',

@@ -97,13 +97,13 @@
                    </div>
                     <div class="item">
                         <dt>ママのお名前</dt>
-                        <dd><input class="txt w-[150px]" type="text" placeholder="例：山田 花子" v-model="tbl_patient.name" @blur="input_save('name',tbl_patient.name)" /><span v-if="'name'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span>
+                        <dd><input class="txt w-[150px]" type="text" placeholder="例：山田 花子" v-model="tbl_patient.name" @change="input_save('name',tbl_patient.name)" /><span v-if="'name'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span>
                             <div class="error" v-if="errors['tbl_patient.name']">@{{ errors['tbl_patient.name'][0] }}</div>
                         </dd>
                     </div>
                     <div class="item">
                         <dt>ローマ字表記</dt>
-                        <dd><input class="txt w-[190px]" type="text" value="" placeholder="例：YAMADA HANAKO" /><br />
+                        <dd><input class="txt w-[190px]" type="text" placeholder="例：YAMADA HANAKO" v-model="tbl_patient.roman_alphabet" @change="input_save('roman_alphabet',tbl_patient.roman_alphabet)" /><span v-if="'roman_alphabet'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
                             <span class="complement">※ 大文字または小文字</span>
                         </dd>
                     </div>
@@ -572,20 +572,25 @@
                     [data[i+1] ,data[i]] = [data[i],data[i+1]];
                 }
             },
-            
+
             async input_save(key,val){
+                let t = this;
                 let data = {[key]:val};
                 this.loading_input_key=key;
                 await axios.post('/api/v1/g/{{$tbl_patient->code}}/story/input',
                     {
-                        ...data
+                        tbl_patient:data,
+                        key:'tbl_patient.'+key,
                     }
                 ).then((response) => {//リクエストの成功
+                    delete t.errors['tbl_patient.'+key];
                 }).catch((error) => {//リクエストの失敗
+                    let errors = error_message_translate(error.response.data.errors);
+                    t.errors['tbl_patient.'+key] = errors['tbl_patient.'+key];
                 }).finally(() => {
                     this.loading_input_key='';
                 });
-                
+
             },
             async medium_save(e,type){
                 let t = this;
@@ -599,7 +604,7 @@
                 }).catch((error) => {//リクエストの失敗
                 }).finally(() => {
                 });
-                
+
                 // const reader = new FileReader();
                 // reader.onload =  function(ee) {
                 //     let data = {};
@@ -616,7 +621,7 @@
             },
         },
         watch:{
-            
+
         },
     }).mount('#main');
 </script>
