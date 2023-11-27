@@ -1,8 +1,18 @@
 @extends('layout')
 @section('meta')@endsection
 @section('contents')
-<form id="main" class="w-[800px] mx-auto md:w-full" method="post" action="{{route('story-confirm',$tbl_patient)}}">
-    @csrf
+<main id="main" class="w-[800px] mx-auto md:w-full
+[&_.error]:font-bold
+[&_.error]:text-[12px]
+[&_.error]:text-red
+[&_.error]:leading-none
+[&_.error]:mt-[5px]
+" >
+
+    <div v-if="is_loading" class="fixed h-full w-full top-[0] left-[0] bg-amber-50/70 z-50 flex flex-col items-center justify-center pb-[100px]">
+        <div class="flower-loader !ml-[-16px] !mt-[-16px]"></div>
+        <p class="mt-[35px] text-center font-bold">送信中です。<br />しばらくお待ちください。</p>
+    </div>
     @if($tbl_patient->submitted_at)
         <h1 class="mt-[50px] md:mt-[30px] text-center"><span class="px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">このデータは下記の内容で提出済みです</span></h1>
     @endif
@@ -17,6 +27,8 @@
             </div>
         </div>
     </div>
+
+
 
 {{--    <p class="text-center font-bold text-red text-[16px] md:text-[12px] mt-[40px] md:mt-[20px]">保存コード：<span class="text-[20px] md:text-[16px] text-red">il 972 518</span></p>--}}
 
@@ -46,6 +58,9 @@
         <li><a class="bg-slate-400" href="/faq">よくある質問</a></li>
     </ul>
 
+    <div v-if="Object.keys(errors).length" class="mt-[30px] flex justify-center">
+        <p class="text-[14px] md:text-[12px] inline-block font-bold bg-red shadow text-white px-[15px] py-[10px] md:px-[10px] md:py-[5px]">※ エラーがあります。ご確認のうえ再送信してください</p>
+    </div>
 
     <section class="mx-auto w-[800px] md:w-auto mt-[50px] md:mt-[25px]">
         <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>ご出産情報を入力<span class="py-[2px] ml-[5px] inline-block w-[50px] bg-red font-bold text-[14px] text-center text-white">必須</span></h3>
@@ -82,7 +97,9 @@
                    </div>
                     <div class="item">
                         <dt>ママのお名前</dt>
-                        <dd><input class="txt w-[150px]" type="text" value="" placeholder="例：山田 花子" /></dd>
+                        <dd><input class="txt w-[150px]" type="text" value="" placeholder="例：山田 花子" />
+                            <div class="error" v-if="errors['tbl_patient.name']">@{{ errors['tbl_patient.name'][0] }}</div>
+                        </dd>
                     </div>
                     <div class="item">
                         <dt>ローマ字表記</dt>
@@ -233,7 +250,7 @@
                 <div class="box">
                     <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>エコー写真<span class="count">2枚</span><span class="example">写真例</span></h4>
                     <div class="flex justify-between flex-wrap">
-                        <template v-for="(medium,medium_key) in tbl_.mediums">
+                        <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                         <div v-if="medium.type=='echo'" class="w-[48.5%]">
                             <div class="">
                                 <label class="lbl" :for="'medium_'+medium_key">
@@ -242,7 +259,8 @@
                                 </label>
                                 <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
                                 <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(変更可)</div>
-                                <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
+                                <input :id="'medium_'+medium_key" type="file" />
+                                <input type="file" accept="image/*" v-on:change="file_change($event,medium.type)" />
                             </div>
                         </div>
                         </template>
@@ -252,7 +270,7 @@
                 <div class="box">
                     <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ネームカード<span class="font-normal text-[#999] text-[14px]">(お名前が分かるもの)</span><span class="example">写真例</span></h4>
                     <div class="">
-                        <template v-for="(medium,medium_key) in tbl_.mediums">
+                        <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                             <div v-if="medium.type=='namecard'" class="w-[80%]">
                                 <div class="">
                                     <label class="lbl" :for="'medium_'+medium_key">
@@ -272,7 +290,7 @@
                     <h4><i class="fa-solid fa-pencil"></i>出産前・出産中・出産直後<span class="count">6枚</span><span class="example">写真例</span></h4>
                     <p class="text-red font-bold text-[14px] leading-none mb-[10px]">※ 表示順に作成されます</p>
                     <div class="space-y-[10px]">
-                        <template v-for="(medium,medium_key) in tbl_.mediums">
+                        <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                             <div v-if="medium.type=='pregnancy'" class="
                                 [&_.sort-btns_li:first-child]:first:hidden
                                 [&_.sort-btns_li:last-child]:last:hidden
@@ -296,8 +314,8 @@
                                         [&>li]:text-center
                                         [&>li]:py-[3px]
                                     ">
-                                        <li @click.prevent="change(tbl_.mediums,medium_key,'up')"><i class="fa-solid fa-caret-up"></i></li>
-                                        <li @click.prevent="change(tbl_.mediums,medium_key,'down')"><i class="fa-solid fa-caret-down"></i></li>
+                                        <li @click.prevent="change(tbl_patient.tbl_patient_mediums,medium_key,'up')"><i class="fa-solid fa-caret-up"></i></li>
+                                        <li @click.prevent="change(tbl_patient.tbl_patient_mediums,medium_key,'down')"><i class="fa-solid fa-caret-down"></i></li>
                                     </ul>
                                 </div>
                             </div>
@@ -308,7 +326,7 @@
                 <div class="box">
                     <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ご自由にお好きなシーン<span class="count">8枚</span><span class="example">写真例</span></h4>
                     <div class="space-y-[10px]">
-                        <template v-for="(medium,medium_key) in tbl_.mediums">
+                        <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                             <div v-if="medium.type=='free'" class="
                                 [&_.sort-btns_li:first-child]:first:hidden
                                 [&_.sort-btns_li:last-child]:last:hidden
@@ -332,8 +350,8 @@
                                         [&>li]:text-center
                                         [&>li]:py-[3px]
                                     ">
-                                        <li @click.prevent="change(tbl_.mediums,medium_key,'up')"><i class="fa-solid fa-caret-up"></i></li>
-                                        <li @click.prevent="change(tbl_.mediums,medium_key,'down')"><i class="fa-solid fa-caret-down"></i></li>
+                                        <li @click.prevent="change(tbl_patient.tbl_patient_mediums,medium_key,'up')"><i class="fa-solid fa-caret-up"></i></li>
+                                        <li @click.prevent="change(tbl_patient.tbl_patient_mediums,medium_key,'down')"><i class="fa-solid fa-caret-down"></i></li>
                                     </ul>
                                 </div>
                             </div>
@@ -345,7 +363,7 @@
                     <h4><i class="fa-solid fa-pencil"></i>フォトアートにしたい写真を<span class="count">3枚</span><span class="example">写真例</span></h4>
                     <p class="text-red font-bold text-[14px] leading-none mb-[10px]">※ この中から1枚選んで「ふぉとあーと」にいたします</p>
                     <div class="space-y-[10px]">
-                        <template v-for="(medium,medium_key) in tbl_.mediums">
+                        <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                             <div v-if="medium.type=='photoart'" class="w-[80%]">
                                 <div class="">
                                     <label class="lbl" :for="'medium_'+medium_key">
@@ -396,7 +414,7 @@
 
             <div class="box">
                 <div class="flex justify-between flex-wrap">
-                    <template v-for="(medium,medium_key) in tbl_.mediums">
+                    <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                         <div v-if="medium.type=='first_cry' || medium.type=='movie'" class="w-[48.5%]">
                             <div v-if="medium.type=='first_cry'" class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
                             <div v-if="medium.type=='movie'" class="text-[14px] font-bold text-center mb-[3px]">動画(横アングル)</div>
@@ -420,7 +438,7 @@
     </section>
 
     @if(!$tbl_patient->submitted_at)
-    <p class="mt-[50px] md:mt-[30px] w-[340px] md:w-[240px] mx-auto text-center"><button type="submit" value="1" class="relative w-full block bg-green text-white font-bold py-[20px] md:py-[15px] rounded-sm text-[22px] md:text-[16px]" href="/production">提出の確認へ<i class="fa-solid fa-angle-right absolute top-[26px] md:top-[18px] right-[15px]"></i></button></p>
+    <p class="mt-[50px] md:mt-[30px] w-[340px] md:w-[240px] mx-auto text-center"><span class="relative w-full block bg-green text-white font-bold py-[20px] md:py-[15px] rounded-sm text-[22px] md:text-[16px]" @click.prevent="submit">提出の確認へ<i class="fa-solid fa-angle-right absolute top-[26px] md:top-[18px] right-[15px]"></i></span></p>
     @else
         <p class="mt-[20px] md:mt-[15px] w-[140px] md:w-[120px] mx-auto text-center">
             <a class="w-full block bg-slate-400 text-white font-bold py-[8px] md:py-[8px] rounded-sm text-[16px] md:text-[14px]" href="{{route('guide',$tbl_patient)}}">戻る</a></p>
@@ -428,21 +446,22 @@
 
 
 {{--    <button class="block w-full fixed bottom-0 left-0 text-16px] py-[15px] font-bold text-white bg-slate-400" type="submit" value="2"><i class="fa-solid fa-download mr-[5px]"></i> 途中保存する</button>--}}
-</form>
+</main>
 
 <script>
     Vue.createApp({
         name: 'main',
         data(){
             return {
+                is_loading:false,
                 errors:[],
 
-                tbl_:{
-                    mediums:[
+                tbl_patient:{
+                    tbl_patient_mediums:[
                         {
                             type:'echo',
-                            status:'saved',
-                            src:'/storage/test/echo_1.jpg',
+                            status:'',
+                            src:'',
                         },
                         {
                             type:'echo',
@@ -515,16 +534,72 @@
                 },
             }
         },
+        beforeMount:async function(){
+
+            {{--this.tbl_patient = {!! json_encode($inputs,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT )!!};--}}
+            {{--@if(old('inputs')) @endif--}}
+            {{--    this.errors = {!! json_encode($errors->toArray(),JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT )!!};--}}
+
+        },
         created:async function(){
 
         },
         methods:{
+            async submit(){
+                let t = this;
+                this.errors={};
+                this.is_loading=true;
+                await axios.post('/api/v1/g/{{$tbl_patient->code}}/story/',
+                    {
+                        tbl_patient:t.tbl_patient,
+                    }
+                ).then((response) => {//リクエストの成功
+                    location.href='/{{$tbl_patient->code}}/story/confirm';
+                }).catch((error) => {//リクエストの失敗
+                    window.scroll({
+                        top: 0,
+                        behavior: "smooth",
+                    });
+                    t.errors = error.response.data.errors;
+                    t.errors = error_message_translate(t.errors);
+
+                }).finally(() => {
+                    this.is_loading=false;
+                });
+            },
             change:function(data,i,type){
                 if(type=='up'){
                     [data[i-1] ,data[i]] = [data[i],data[i-1]];
                 }else{
                     [data[i+1] ,data[i]] = [data[i],data[i+1]];
                 }
+            },
+            async file_change(e,type){
+                let t = this;
+                let thumb = '';
+
+                await axios.post('/api/v1/g/{{$tbl_patient->code}}/story/medium',
+                    {
+                        tbl_patient:t.tbl_patient,
+                    }
+                ).then((response) => {//リクエストの成功
+                }).catch((error) => {//リクエストの失敗
+                }).finally(() => {
+                });
+                
+                // const reader = new FileReader();
+                // reader.onload =  function(ee) {
+                //     let data = {};
+                //     data={
+                //         is_image:true,
+                //         src:ee.target.result,
+                //         file:e.target.files[0]
+                //     };
+                //     t.files[type].push(data);
+                // };
+                // if(e.target.files[0] instanceof Object){
+                //     reader.readAsDataURL(e.target.files[0]);
+                // }
             },
         },
         watch:{

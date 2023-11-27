@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Log;
 class PatientController extends Controller
 {
     public function storeReview(TblPatient $tbl_patient,Request $request) {
-        dump($request->tbl_patient['tbl_patient_reviews']);
 
         $validator = Validator:: make([
             'tbl_patient' => $request->tbl_patient,
@@ -61,12 +60,55 @@ class PatientController extends Controller
             ], 500);
         }
 
-        //規定評価以上なら産院にメッセージを送る
+        //todo: 規定評価以上なら産院にメッセージを送る
+        sleep(1);
+        return response()->json([
+            'result' => true,
+            'messages' => '',
+            'errors' => [],
+        ]);
+    }
+
+    public function storeStory(TblPatient $tbl_patient,Request $request){
+        sleep(1);
+        $validator = Validator:: make([
+            'tbl_patient' => $request->tbl_patient,
+        ], [
+            //tbl_supplier
+            'tbl_patient.name' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'result' => false,
+                'messages' => '',
+                'errors' => $validator->errors(),
+            ], 400);
+        }
+
+        DB::beginTransaction();
+        try {
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollback();
+            Log::error($e);
+            return response()->json([
+                'result' => false,
+                'messages' => $e->getMessage(),
+                'errors' => [],
+            ], 500);
+        }
 
         return response()->json([
             'result' => true,
             'messages' => '',
             'errors' => [],
         ]);
+    }
+
+    public function storeStoryInput(){
+
+    }
+    public function storeStoryMedium(){
+        
     }
 }

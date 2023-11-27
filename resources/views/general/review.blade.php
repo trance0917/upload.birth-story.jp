@@ -1,13 +1,12 @@
 @extends('layout')
 @section('meta')@endsection
 @section('contents')
-<main id="main" class="w-[1200px] mx-auto md:w-full
+<main id="main" class="w-[800px] mx-auto md:w-full
 [&_.error]:font-bold
 [&_.error]:text-[12px]
 [&_.error]:text-red
 [&_.error]:leading-none
-[&_.error]:mt-[3px]
-
+[&_.error]:mt-[5px]
 ">
     <div v-if="is_loading" class="fixed h-full w-full top-[0] left-[0] bg-amber-50/70 z-50 flex flex-col items-center justify-center pb-[100px]">
         <div class="flower-loader !ml-[-16px] !mt-[-16px]"></div>
@@ -142,8 +141,8 @@
 
     @if(!$tbl_patient->tbl_patient_reviews->count())
     <p class="mt-[50px] md:mt-[30px] w-[340px] md:w-[240px] mx-auto text-center">
-        <a class="relative block bg-main text-white font-bold py-[20px] md:py-[15px] rounded-sm text-[22px] md:text-[16px]"
-            @click.prevent="submit">提出<i class="fa-solid fa-angle-right absolute top-[26px] md:top-[18px] right-[15px]"></i></a></p>
+        <div class="relative block bg-main text-white font-bold py-[20px] md:py-[15px] rounded-sm text-[22px] md:text-[16px]"
+            @click.prevent="submit">提出<i class="fa-solid fa-angle-right absolute top-[26px] md:top-[18px] right-[15px]"></i></div></p>
     @endif
 
 </main>
@@ -165,11 +164,9 @@
             }
         },
         beforeMount:async function(){
-
             this.tbl_patient = {!! json_encode($inputs,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT )!!};
             @if(old('inputs')) @endif
             this.errors = {!! json_encode($errors->toArray(),JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT )!!};
-
         },
         methods:{
             async submit(){
@@ -180,24 +177,22 @@
                     {
                         tbl_patient:t.tbl_patient,
                     }
-                    ).then((response) => {//リクエストの成功
-                        location.href='/{{$tbl_patient->code}}/';
-                    }).catch((error) => {//リクエストの失敗
-                        window.scroll({
-                            top: 0,
-                            behavior: "smooth",
-                        });
-                        t.errors = error.response.data.errors;
-                        // t.errors = error_message_translate(t.errors);
-
-                    }).finally(() => {
-                        this.is_loading=false;
+                ).then((response) => {//リクエストの成功
+                    location.href='/{{$tbl_patient->code}}/';
+                }).catch((error) => {//リクエストの失敗
+                    window.scroll({
+                        top: 0,
+                        behavior: "smooth",
                     });
+                    t.errors = error.response.data.errors;
+                    t.errors = error_message_translate(t.errors);
+
+                }).finally(() => {
+                    this.is_loading=false;
+                });
             }
         },
         watch:{
-
-
         },
     }).mount('#main');
 </script>

@@ -38,6 +38,8 @@
 <link rel="next" href="{{url(\PageHelper::get('next'))}}">
 @endif
 
+<script src="/js/common.js"></script>
+
 @env(['local'])
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 @endenv
