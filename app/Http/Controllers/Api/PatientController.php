@@ -213,6 +213,7 @@ class PatientController extends Controller
                     $constraint->aspectRatio(); // 縦横比にしてくれる
                     $constraint->upsize(); // 元画像より大きくならないようにする
                 });
+                $img->orientate();
                 $img->save(storage_path('app/'.$directory_path.'/'.$filename . '.' . $filepath['extension']),100);
 
 

@@ -116,8 +116,8 @@
                                 <div><img :src="medium.src" alt="" /></div>
                                 <i v-if="'echo_'+medium_key==loading_input_key"
                                    class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
+                                <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</div>
                             </label>
-                            <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green text-green text-[12px]">保存済(タップで変更)</div>
                             <input :id="'medium_'+medium_key" type="file" accept="image/*" v-on:change="medium_save(medium_key,$event,medium)" />
                         </div>
                         </template>
@@ -141,8 +141,9 @@
                                 <div><img :src="medium.src" alt="" /></div>
                                 <i v-if="'namecard_'+medium_key==loading_input_key"
                                    class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
+                                <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</div>
                             </label>
-                            <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green text-green text-[12px]">保存済(タップで変更)</div>
+
                             <input :id="'medium_'+medium_key" type="file" accept="image/*" v-on:change="medium_save(medium_key,$event,medium)" />
                         </div>
                         </template>
