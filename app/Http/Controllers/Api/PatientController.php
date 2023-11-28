@@ -21,6 +21,7 @@ class PatientController extends Controller
     private $validate_rules=[
         'tbl_patient.name' => 'required',
         'tbl_patient.roman_alphabet' => 'required',
+        'tbl_patient.baby_name' => 'nullable',
     ];
 
     public function storeReview(TblPatient $tbl_patient,Request $request) {

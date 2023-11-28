@@ -129,9 +129,9 @@
                 <dl class="box">
                     <div class="item">
                         <dt>お名前</dt>
-                        <dd><input class="txt w-[110px]" type="text" placeholder="例：花子"  /><br />
+                        <dd><input class="txt w-[110px]" type="text" placeholder="例：花子" v-model="tbl_patient.baby_name" @change="input_save('baby_name',tbl_patient.baby_name)" /><span v-if="'baby_name'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
                             <span class="complement">※ 未記入可</span>
-                            <span class="block text-red font-bold text-[12px]">※ 入力してください</span>
+                            <div class="error" v-if="errors['tbl_patient.baby_name']">@{{ errors['tbl_patient.baby_name'][0] }}</div>
                         </dd>
                     </div>
                     <div class="item">
@@ -463,11 +463,12 @@
                 errors:[],
 
                 tbl_patient:{
+                    name:'',
                     tbl_patient_mediums:[
                         {
                             type:'echo',
-                            status:'',
-                            src:'',
+                            status:'saved',
+                            src:'/storage/test/echo_1.jpg',
                         },
                         {
                             type:'echo',
@@ -541,11 +542,9 @@
             }
         },
         beforeMount:async function(){
-
-            {{--this.tbl_patient = {!! json_encode($inputs,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT )!!};--}}
+            this.tbl_patient = mergeDeeply(this.tbl_patient,{!! json_encode($tbl_patient,JSON_UNESCAPED_UNICODE )!!},{concatArray: true});
             {{--@if(old('inputs')) @endif--}}
             {{--    this.errors = {!! json_encode($errors->toArray(),JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT )!!};--}}
-
         },
         created:async function(){
 

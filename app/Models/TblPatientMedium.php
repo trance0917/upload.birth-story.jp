@@ -9,6 +9,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\SerializeDate;
 
 /**
  * Class TblPatientMedium
@@ -28,12 +29,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class TblPatientMedium extends Model
 {
 	use SoftDeletes;
+    use SerializeDate;
 	protected $table = 'tbl_patient_mediums';
 	protected $primaryKey = 'tbl_patient_medium_id';
 
 	protected $casts = [
 		'tbl_patient_id' => 'int',
-		'type' => 'int',
 		'registered_at' => 'datetime',
 		'order' => 'int'
 	];
@@ -45,4 +46,9 @@ class TblPatientMedium extends Model
 		'registered_ext',
 		'order'
 	];
+    
+     public function getFileNameAttribute()
+    {
+        return $this->tbl_patient_medium_id.'.'.$this->registered_ext;
+    }
 }

@@ -9,6 +9,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\SerializeDate;
 
 /**
  * Class TblPatient
@@ -47,6 +48,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class TblPatient extends Model
 {
 	use SoftDeletes;
+    use SerializeDate;
 	protected $table = 'tbl_patients';
 	protected $primaryKey = 'tbl_patient_id';
 

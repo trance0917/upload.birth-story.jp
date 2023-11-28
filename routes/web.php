@@ -22,6 +22,7 @@ Route::get('/', function () {
 Route::get('/{tbl_patient:code}', [IndexController::class,'index'])->name('guide');
 
 Route::get('/{tbl_patient:code}/story', [StoryController::class,'index'])->name('story-index');
+Route::get('/{tbl_patient:code}/story_json', [StoryController::class,'index_json'])->name('story-index_json');
 
 Route::post('/{tbl_patient:code}/story/confirm', [StoryController::class,'confirm'])->name('story-confirm');
 
