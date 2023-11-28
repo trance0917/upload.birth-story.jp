@@ -254,18 +254,22 @@
                     <div class="flex justify-between flex-wrap">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                         <div v-if="medium.type=='echo'" class="w-[48.5%]">
-                            <div class="">
-                                <label class="lbl" :for="'medium_'+medium_key">
-                                    <div class="choice"><img :src="medium.src" alt="" /></div>
-                                    <div class="not-choice py-[40px]" v-if="medium.status==''">画像を選択</div>
-                                </label>
-                                <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
-                                <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(変更可)</div>
-                                <input :id="'medium_'+medium_key" type="file" />
-                                <input type="file" accept="image/*" v-on:change="medium_save($event,medium.type)" />
-                            </div>
+                            
+                            <label class="lbl" :for="'medium_'+medium_key">
+                                <div class="choice"><img :src="medium.src" alt="" /></div>
+                                <div class="not-choice py-[40px]" v-if="medium.status==''">画像を選択</div>
+                            </label>
+                            <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
+                            <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green text-green text-[12px]">保存済(タップで変更)</div>
+                            <input :id="'medium_'+medium_key" type="file" accept="image/*" v-on:change="medium_save($event,medium.type)" />
                         </div>
                         </template>
+                        <div class="w-[48.5%]">
+                            <label class="lbl">
+                                <div class="not-choice py-[40px]">画像を選択</div>
+                                <input type="file" accept="image/*" v-on:change="medium_save($event,'echo')" />
+                            </label>
+                        </div>
                     </div>
                 </div>
 
@@ -280,7 +284,7 @@
                                         <div class="not-choice py-[70px]" v-if="medium.status==''">画像を選択</div>
                                     </label>
                                     <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
-                                    <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(変更可)</div>
+                                    <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(タップで変更)</div>
                                     <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
                                 </div>
                             </div>
@@ -304,7 +308,7 @@
                                             <div class="not-choice py-[50px]" v-if="medium.status==''">画像を選択</div>
                                         </label>
                                         <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
-                                        <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(変更可)</div>
+                                        <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(タップで変更)</div>
                                         <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
                                     </div>
                                     <ul class="sort-btns ml-[10px] space-y-[5px]
@@ -340,7 +344,7 @@
                                             <div class="not-choice py-[50px]" v-if="medium.status==''">画像を選択</div>
                                         </label>
                                         <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
-                                        <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(変更可)</div>
+                                        <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(タップで変更)</div>
                                         <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
                                     </div>
                                     <ul class="sort-btns ml-[10px] space-y-[5px]
@@ -373,7 +377,7 @@
                                         <div class="not-choice py-[70px]" v-if="medium.status==''">画像を選択</div>
                                     </label>
                                     <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
-                                    <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(変更可)</div>
+                                    <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(タップで変更)</div>
                                     <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
                                 </div>
                             </div>
@@ -427,7 +431,7 @@
                                     <div class="not-choice py-[40px]" v-if="medium.status==''">画像を選択</div>
                                 </label>
                                 <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
-                                <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(変更可)</div>
+                                <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(タップで変更)</div>
                                 <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
                             </div>
                         </div>
@@ -465,78 +469,78 @@
                 tbl_patient:{
                     name:'',
                     tbl_patient_mediums:[
-                        {
-                            type:'echo',
-                            status:'saved',
-                            src:'/storage/test/echo_1.jpg',
-                        },
-                        {
-                            type:'echo',
-                            status:'saved',
-                            src:'/storage/test/echo_2.jpg',
-                        },
-                        {
-                            type:'namecard',
-                            status:'saved',
-                            src:'/storage/test/namecard.jpg',
-                        },
-                        {
-                            type:'pregnancy',
-                            status:'saved',
-                            src:'/storage/test/pregnancy_1.jpg',
-                        },
-                        {
-                            type:'pregnancy',
-                            status:'saved',
-                            src:'/storage/test/pregnancy_2.jpg',
-                        },
-                        {
-                            type:'pregnancy',
-                            status:'saved',
-                            src:'/storage/test/pregnancy_3.jpg',
-                        },
-                        {
-                            type:'pregnancy',
-                            status:'saved',
-                            src:'/storage/test/pregnancy_4.jpg',
-                        },
-                        {
-                            type:'pregnancy',
-                            status:'saved',
-                            src:'/storage/test/pregnancy_5.jpg',
-                        },
-                        {
-                            type:'pregnancy',
-                            status:'saved',
-                            src:'/storage/test/pregnancy_6.jpg',
-                        },
-                        {type:'free',status:'saved',src:'/storage/test/free_1.jpg',},
-                        {type:'free',status:'saved',src:'/storage/test/free_2.jpg',},
-                        {type:'free',status:'saved',src:'/storage/test/free_3.jpg',},
-                        {type:'free',status:'saved',src:'/storage/test/free_4.jpg',},
-                        {type:'free',status:'saved',src:'/storage/test/free_5.jpg',},
-                        {type:'free',status:'saved',src:'/storage/test/free_6.jpg',},
-                        {type:'free',status:'saved',src:'/storage/test/free_7.jpg',},
-                        {type:'free',status:'saved',src:'/storage/test/free_8.jpg',},
-
-                        {
-                            type:'photoart',
-                            status:'saved',
-                            src:'/storage/test/photoart_1.jpg',
-                        },
-                        {
-                            type:'photoart',
-                            status:'saved',
-                            src:'/storage/test/photoart_2.jpg',
-                        },
-                        {
-                            type:'photoart',
-                            status:'saved',
-                            src:'/storage/test/photoart_3.jpg',
-                        },
-
-                        {type:'first_cry',status:'',},
-                        {type:'movie',status:'',},
+                        // {
+                        //     type:'echo',
+                        //     status:'saved',
+                        //     src:'/storage/test/echo_1.jpg',
+                        // },
+                        // {
+                        //     type:'echo',
+                        //     status:'saved',
+                        //     src:'/storage/test/echo_2.jpg',
+                        // },
+                        // {
+                        //     type:'namecard',
+                        //     status:'saved',
+                        //     src:'/storage/test/namecard.jpg',
+                        // },
+                        // {
+                        //     type:'pregnancy',
+                        //     status:'saved',
+                        //     src:'/storage/test/pregnancy_1.jpg',
+                        // },
+                        // {
+                        //     type:'pregnancy',
+                        //     status:'saved',
+                        //     src:'/storage/test/pregnancy_2.jpg',
+                        // },
+                        // {
+                        //     type:'pregnancy',
+                        //     status:'saved',
+                        //     src:'/storage/test/pregnancy_3.jpg',
+                        // },
+                        // {
+                        //     type:'pregnancy',
+                        //     status:'saved',
+                        //     src:'/storage/test/pregnancy_4.jpg',
+                        // },
+                        // {
+                        //     type:'pregnancy',
+                        //     status:'saved',
+                        //     src:'/storage/test/pregnancy_5.jpg',
+                        // },
+                        // {
+                        //     type:'pregnancy',
+                        //     status:'saved',
+                        //     src:'/storage/test/pregnancy_6.jpg',
+                        // },
+                        // {type:'free',status:'saved',src:'/storage/test/free_1.jpg',},
+                        // {type:'free',status:'saved',src:'/storage/test/free_2.jpg',},
+                        // {type:'free',status:'saved',src:'/storage/test/free_3.jpg',},
+                        // {type:'free',status:'saved',src:'/storage/test/free_4.jpg',},
+                        // {type:'free',status:'saved',src:'/storage/test/free_5.jpg',},
+                        // {type:'free',status:'saved',src:'/storage/test/free_6.jpg',},
+                        // {type:'free',status:'saved',src:'/storage/test/free_7.jpg',},
+                        // {type:'free',status:'saved',src:'/storage/test/free_8.jpg',},
+                        //
+                        // {
+                        //     type:'photoart',
+                        //     status:'saved',
+                        //     src:'/storage/test/photoart_1.jpg',
+                        // },
+                        // {
+                        //     type:'photoart',
+                        //     status:'saved',
+                        //     src:'/storage/test/photoart_2.jpg',
+                        // },
+                        // {
+                        //     type:'photoart',
+                        //     status:'saved',
+                        //     src:'/storage/test/photoart_3.jpg',
+                        // },
+                        //
+                        // {type:'first_cry',status:'',},
+                        // {type:'movie',status:'',},
                     ]
                 },
             }
@@ -601,15 +605,24 @@
             },
             async medium_save(e,type){
                 let t = this;
-                let thumb = '';
-
+                this.loading_input_key=type;
+                
                 await axios.post('/api/v1/g/{{$tbl_patient->code}}/story/medium',
                     {
-                        tbl_patient:t.tbl_patient,
+                        tbl_patient:{
+                            tbl_patient_mediums:[
+                                {   
+                                    type:type,
+                                    file:e.target.files[0]
+                                }
+                            ]
+                        }
                     }
+                    ,{headers: {'content-type': 'multipart/form-data'}}
                 ).then((response) => {//リクエストの成功
                 }).catch((error) => {//リクエストの失敗
                 }).finally(() => {
+                    this.loading_input_key='';
                 });
 
                 // const reader = new FileReader();

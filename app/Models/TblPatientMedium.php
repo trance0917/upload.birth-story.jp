@@ -18,7 +18,7 @@ use App\Traits\SerializeDate;
  * @property int $tbl_patient_id
  * @property int $type
  * @property Carbon|null $registered_at
- * @property string|null $registered_ext
+ * @property string|null $extension
  * @property int $order
  * @property string|null $deleted_at
  * @property Carbon|null $created_at
@@ -42,13 +42,19 @@ class TblPatientMedium extends Model
 	protected $fillable = [
 		'tbl_patient_id',
 		'type',
+        'file_name',
 		'registered_at',
-		'registered_ext',
+		'extension',
 		'order'
 	];
-    
-     public function getFileNameAttribute()
+
+    public function tbl_patient()
     {
-        return $this->tbl_patient_medium_id.'.'.$this->registered_ext;
+        return $this->hasOne(TblPatient::class, 'tbl_patient_id', 'tbl_patient_id');
+    }
+
+    public function getSrcAttribute()
+    {
+        return config('app.url').'/storage/patients/'.$this->tbl_patient_id.'_'.$this->tbl_patient->code.'/'.$this->file_name.'.'.$this->extension;
     }
 }

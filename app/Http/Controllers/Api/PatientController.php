@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\MstMaternityQuestion;
 use App\Models\TblPatient;
+use App\Models\TblPatientMedium;
 use App\Models\TblPatientReview;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -147,6 +149,55 @@ class PatientController extends Controller
         ]);
     }
     public function storeStoryMedium(TblPatient $tbl_patient,Request $request){
+        $type=$request->tbl_patient['tbl_patient_mediums'][0]['type'];
+        $file=$request->tbl_patient['tbl_patient_mediums'][0]['file'];
+        
+        $max_order = TblPatientMedium::where('tbl_patient_id', $tbl_patient->tbl_patient_id)
+            ->where('type', $type)
+            ->max('order');
+        
+        
+        if ($file instanceof UploadedFile) {
+
+            $directory_path = 'public/patients/'.$tbl_patient->tbl_patient_id.'_'.$tbl_patient->code;
+            if(\Storage::exists($directory_path)){
+                    \Storage::makeDirectory($directory_path);
+            }
+            
+            
+            $filepath = pathinfo($file->getClientOriginalName());
+            $filename = preg_replace('/[^0-9]/' ,'' , microtime());
+            $medium_file = [
+                'tbl_patient_id' => $tbl_patient->tbl_patient_id,
+                'file_name' => $filename,
+                'extension' => $filepath['extension'],
+                'type' => $type,
+                'registered_at' => now(),
+            ];
+            DB::beginTransaction();
+            try {
+                $new_medium_file = TblPatientMedium::create($medium_file);
+                if (empty($new_medium_file)) {
+                    throw new \Exception('');
+                }
+                $file->storeAs($directory_path, $filename . '.' . $filepath['extension']);
+                DB::commit();
+            } catch (\Throwable $e) {
+                DB::rollback();
+                Log::error($e);
+                return response()->json([
+                    'result' => false,
+                    'messages' => $e->getMessage(),
+                    'errors' => [],
+                ], 500);
+            }
+            
+        }
+        
+        
+        
+        
+        
         return response()->json([
             'result' => true,
             'messages' => '',

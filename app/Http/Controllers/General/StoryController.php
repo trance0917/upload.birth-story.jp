@@ -10,7 +10,13 @@ use App\Models\TblPatient;
 class StoryController extends Controller
 {
     public function index(TblPatient $tbl_patient,Request $request){
-        $tbl_patient = TblPatient::with(['tbl_patient_mediums:*'])->find($tbl_patient->tbl_patient_id);
+        $tbl_patient = TblPatient::with([
+            'tbl_patient_mediums'=>function ($query){
+                //ファイル名 空にしているのはミューテタで取得できるため
+                $query->select(['tbl_patient_id','extension','tbl_patient_medium_id','type','file_name','order'])->selectRaw('\'\' AS `src`, \'saved\' AS `status`');
+            },
+            'tbl_patient_mediums.tbl_patient:tbl_patient_id,code'
+        ])->select(['tbl_patient_id','mst_maternity_id','line_picture_url','code','name','roman_alphabet','baby_name','baby_roman_alphabet','birth_day','birth_time','weight','height','sex','what_number','health_check','message','is_use_instagram','submitted_at'])->find($tbl_patient->tbl_patient_id);
         return view('general.story.index',compact('tbl_patient'));
     }
 
@@ -18,9 +24,10 @@ class StoryController extends Controller
         $tbl_patient = TblPatient::with([
             'tbl_patient_mediums'=>function ($query){
                 //ファイル名 空にしているのはミューテタで取得できるため
-                $query->select(['tbl_patient_id','registered_ext','tbl_patient_medium_id','type','order'])->selectRaw('\'\' AS `file_name`');
-            }
-        ])->find($tbl_patient->tbl_patient_id);
+                $query->select(['tbl_patient_id','extension','tbl_patient_medium_id','type','file_name','order'])->selectRaw('\'\' AS `src`, \'saved\' AS `status`');
+            },
+            'tbl_patient_mediums.tbl_patient:tbl_patient_id,code'
+        ])->select(['tbl_patient_id','mst_maternity_id','code','name','roman_alphabet','baby_name','baby_roman_alphabet','birth_day','birth_time','weight','height','sex','what_number','health_check','message','is_use_instagram','submitted_at'])->find($tbl_patient->tbl_patient_id);
         return response()->json([
             'result' => false,
             'messages' => '',
