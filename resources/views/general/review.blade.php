@@ -1,3 +1,6 @@
+{{--
+todo: paypapyではなくamazonが保存できるように
+ --}}
 @extends('layout')
 @section('meta')@endsection
 @section('contents')
@@ -140,9 +143,9 @@
     </div>
 
     @if(!$tbl_patient->tbl_patient_reviews->count())
-    <p class="mt-[50px] md:mt-[30px] w-[340px] md:w-[240px] mx-auto text-center">
-        <div class="relative block bg-main text-white font-bold py-[20px] md:py-[15px] rounded-sm text-[22px] md:text-[16px]"
-            @click.prevent="submit">提出<i class="fa-solid fa-angle-right absolute top-[26px] md:top-[18px] right-[15px]"></i></div></p>
+    <div class="mt-[50px] md:mt-[30px] w-[340px] md:w-[240px] mx-auto text-center">
+        <p class="relative block bg-main text-white font-bold py-[20px] md:py-[15px] rounded-sm text-[22px] md:text-[16px]"
+            @click.prevent="submit">提出<i class="fa-solid fa-angle-right absolute top-[26px] md:top-[18px] right-[15px]"></i></p></div>
     @endif
 
 </main>
