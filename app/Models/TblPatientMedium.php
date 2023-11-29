@@ -13,7 +13,7 @@ use App\Traits\SerializeDate;
 
 /**
  * Class TblPatientMedium
- * 
+ *
  * @property int $tbl_patient_medium_id
  * @property int $tbl_patient_id
  * @property int $type
@@ -47,6 +47,20 @@ class TblPatientMedium extends Model
 		'extension',
 		'order'
 	];
+
+
+    public static $type_counts = [
+        'echo' => 2,
+        'namecard' => 1,
+        'pregnancy' => 6,
+        'free' => 8,
+        'photoart' => 3,
+        'first_cry' => 1,
+        'movie' => 1,
+    ];
+
+    //基準とする通貨単位
+
 
     public function tbl_patient()
     {

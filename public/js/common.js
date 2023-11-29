@@ -54,13 +54,17 @@ function error_message_translate(errors){
             errors[error_key][0] = '正常値を入力してください。';
         }else if(errors[error_key][0] == 'validation.max.string'){
             errors[error_key][0] = '入力値が大きいです。';
+        }else if(errors[error_key][0] == 'validation.mimes'){
+            errors[error_key][0] = '対応していない拡張子です。';
+        }else if(errors[error_key][0] == 'validation.between.numeric'){
+            errors[error_key][0] = '範囲が不適切です。';
         }else{
         }
     }
     return errors;
 }
 function get_error_status_message(status){
-    
+
     if(status=='400'){
         return 'リクエストに誤りがあります。';
     }else if(status=='401'){
@@ -71,6 +75,8 @@ function get_error_status_message(status){
             '            この内容を優先 → 強制保存';
     }else if(status=='500'){
         return '予期しないエラーが発生しています。<br />管理者にお問合せください。(500)';
+    }else if(status=='413'){
+        return 'ファイル容量が大きすぎるため受信できませんでした。';
     }else if(status==''){
         return '';
     }else{
@@ -88,7 +94,7 @@ function is_json(data) {
 }
 
 function is_image_extension(extension) {
-    
+
     if(
         extension.toLowerCase() == 'jpg'
         || extension.toLowerCase() == 'jpeg'
@@ -99,7 +105,7 @@ function is_image_extension(extension) {
     }else{
         return false;
     }
-    
+
 }
 function generate_token(){
     let chars = 'abcdefghijklmnopqrstuvwxyz';

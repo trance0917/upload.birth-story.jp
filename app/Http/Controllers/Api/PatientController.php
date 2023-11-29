@@ -28,8 +28,8 @@ class PatientController extends Controller
         'tbl_patient.baby_roman_alphabet' => 'nullable',
         'tbl_patient.birth_day' => 'required|date',
         'tbl_patient.birth_time' => 'required|date_format:H:i',
-        'tbl_patient.weight' => 'required|integer',
-        'tbl_patient.height' => 'required|numeric',
+        'tbl_patient.weight' => 'required|integer|between:500,6500',
+        'tbl_patient.height' => 'required|numeric|between:19.0,63.0',
         'tbl_patient.sex' => 'required|in:1,2',
         'tbl_patient.what_number' => 'required|in:1,2,3,4,5,6,7,8,9',
         'tbl_patient.health_check' => 'required|date',
@@ -89,10 +89,36 @@ class PatientController extends Controller
     }
 
     public function storeStory(TblPatient $tbl_patient,Request $request){
-        sleep(1);
-        $validator = Validator:: make([
-            'tbl_patient' => $request->tbl_patient,
-        ], $this->validate_rules);
+        $rules = $this->validate_rules;
+
+        foreach(TblPatientMedium::$type_counts AS $type_count_key=>$type_count){
+
+            if($type_count_key=='first_cry' || $type_count_key=='movie'){
+                $rules['tbl_patient.tbl_patient_mediums.'.$type_count_key] = 'nullable|array|max:'.$type_count;
+            }else{
+                $rules['tbl_patient.tbl_patient_mediums.'.$type_count_key] = 'required|array|size:'.$type_count;
+            }
+        }
+
+//        $tbl_patient->tbl_patient_mediums->filter(function ($value) {return $value->type=='free';});
+//        dump($rules);
+//        $a = ['test2'=>2,'test3'=>3];
+//        dump([1,...$a]);
+
+        $valid = [
+            'tbl_patient' => $tbl_patient->toArray(),
+        ];
+
+        foreach(TblPatientMedium::$type_counts AS $type_count_key=>$type_count){
+            $valid['tbl_patient']['tbl_patient_mediums'][$type_count_key] = $tbl_patient->tbl_patient_mediums->filter(function ($value) use($type_count_key) {return $value->type==$type_count_key;})->toArray();
+            if(!$valid['tbl_patient']['tbl_patient_mediums'][$type_count_key]){
+                $valid['tbl_patient']['tbl_patient_mediums'][$type_count_key]=null;
+            }
+        }
+//        dump($rules);
+        dump($valid);
+
+        $validator = Validator:: make($valid, $rules);
         if ($validator->fails()) {
             return response()->json([
                 'result' => false,
@@ -162,6 +188,19 @@ class PatientController extends Controller
     public function storeStoryMedium(TblPatient $tbl_patient,Request $request){
         //todo:バリデート
 
+        $validator = Validator:: make([
+            'tbl_patient' => $request->tbl_patient,
+        ], [
+            'tbl_patient.tbl_patient_mediums.*.file' => 'mimes:jpg,bmp,png,mp4,mp3,mov',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'result' => false,
+                'messages' => '',
+                'errors' => $validator->errors(),
+            ], 400);
+        }
+
         $key=$request->key;
         $tbl_patient_medium_id=$request->tbl_patient['tbl_patient_mediums'][$key]['tbl_patient_medium_id']??null;
         $type=$request->tbl_patient['tbl_patient_mediums'][$key]['type'];
@@ -211,11 +250,11 @@ class PatientController extends Controller
                         'registered_at' => now(),
                     ];
                     $tbl_patient_medium = TblPatientMedium::find($tbl_patient_medium_id);
-                    
+
                     //古い情報を取得しておく
                     $old_file_name = $tbl_patient_medium->file_name;
                     $old_extension = $tbl_patient_medium->extension;
-                    
+
                     $tbl_patient_medium->fill($medium);
                     $tbl_patient_medium->save();
                 }
@@ -235,8 +274,8 @@ class PatientController extends Controller
                 }else{
                     $file->storeAs($directory_path, $filename . '.' . $filepath['extension']);
                 }
-                
-                
+
+
                 //古いファイルは消しておく
                 if($tbl_patient_medium_id){
                     dump($directory_path .'/'. $old_file_name.'.'.$old_extension);

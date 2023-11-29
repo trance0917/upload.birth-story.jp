@@ -125,7 +125,7 @@
                     <div class="inline-block">
                         <div class="flex justify-center items-center bg-sub-light px-[40px] md:px-[20px] py-[30px] md:py-[15px]">
                             <img class="w-[52px] md:w-[26px] min-w-[52px] md:min-w-[26px] mr-[20px] md:mr-[10px]" src="/images/icon-finger.png" alt="">
-                            <p class="text-red font-bold text-[16px] md:text-[12px]">途中での保存が可能です。<br />空き時間に少しづつ進めてください。</p>
+                            <p class="text-red font-bold text-[16px] md:text-[12px]">リアルタイムで保存されます。<br />空き時間に少しづつ進めてください。</p>
                         </div>
                     </div>
                 </div>

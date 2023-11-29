@@ -10,7 +10,7 @@
 " >
 
     <div v-if="is_loading" class="fixed h-full w-full top-[0] left-[0] bg-amber-50/70 z-50 flex flex-col items-center justify-center pb-[100px]">
-        <div class="flower-loader !ml-[-16px] !mt-[-16px]"></div>
+        <div class="flower-loader !ml-[-8px] !mt-[-8px]"></div>
         <p class="mt-[35px] text-center font-bold">送信中です。<br />しばらくお待ちください。</p>
     </div>
     @if($tbl_patient->submitted_at)
@@ -23,7 +23,7 @@
         <div class="inline-block">
             <div class="flex justify-center items-center bg-sub-light px-[40px] md:px-[20px] py-[30px] md:py-[15px]">
                 <img class="w-[52px] md:w-[26px] min-w-[52px] md:min-w-[26px] mr-[20px] md:mr-[10px]" src="/images/icon-finger.png" alt="">
-                <p class="text-red font-bold text-[16px] md:text-[12px]">途中での保存が可能です。<br />空き時間に少しづつ進めてください。</p>
+                <p class="text-red font-bold text-[16px] md:text-[12px]">リアルタイムで保存されます。<br />空き時間に少しづつ進めてください。</p>
             </div>
         </div>
     </div>
@@ -81,7 +81,7 @@
 
         [&_.box_.lbl]:relative
         [&_.box_.lbl_img]:mx-auto
-        
+
         [&_.box_.lbl_.choice]:bg-slate-100
 
         [&_.box_.lbl_.choice]:text-[16px]
@@ -109,7 +109,7 @@
 
             <div class="space-y-[25px]">
                 <div class="box">
-                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>エコー写真<span class="count">2枚</span><span class="example">写真例</span></h4>
+                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>エコー写真<span class="count">@{{ type_counts.echo }}枚</span><span class="example">写真例</span></h4>
                     <div class="flex justify-between flex-wrap">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                         <div v-if="medium.type=='echo'" class="w-[48.5%]">
@@ -122,7 +122,7 @@
                             <input :id="'medium_'+medium_key" type="file" accept="image/*" v-on:change="medium_save(medium_key,$event,medium)" />
                         </div>
                         </template>
-                        <div class="w-[48.5%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='echo'}).length<2">
+                        <div class="w-[48.5%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='echo'}).length<type_counts.echo">
                             <label class="lbl">
                                 <div class="choice py-[40px]">画像を追加</div>
                                 <input type="file" accept="image/*" v-on:change="medium_save('new',$event,{type:'echo'})" />
@@ -147,7 +147,7 @@
                             <input :id="'medium_'+medium_key" type="file" accept="image/*" v-on:change="medium_save(medium_key,$event,medium)" />
                         </div>
                         </template>
-                        <div class="w-[80%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='namecard'}).length<1">
+                        <div class="w-[80%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='namecard'}).length<type_counts.namecard">
                             <label class="lbl">
                                 <div class="choice py-[70px]">画像を追加</div>
                                 <input type="file" accept="image/*" v-on:change="medium_save('new',$event,{type:'namecard'})" />
@@ -159,7 +159,7 @@
                 </div>
 
                 <div class="box">
-                    <h4><i class="fa-solid fa-pencil"></i>出産前・出産中・出産直後<span class="count">6枚</span><span class="example">写真例</span></h4>
+                    <h4><i class="fa-solid fa-pencil"></i>出産前・出産中・出産直後<span class="count">@{{ type_counts.pregnancy }}枚</span><span class="example">写真例</span></h4>
                     <p class="text-red font-bold text-[14px] leading-none mb-[10px]">※ 表示順に作成されます</p>
                     <div class="space-y-[10px]">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
@@ -193,7 +193,7 @@
                             </div>
                         </template>
                     </div>
-                    <div class="w-[65%] mt-[10px]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='pregnancy'}).length<6">
+                    <div class="w-[65%] mt-[10px]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='pregnancy'}).length<type_counts.pregnancy">
                         <label class="lbl">
                             <div class="choice py-[50px]">画像を追加</div>
                             <input type="file" accept="image/*" v-on:change="medium_save('new',$event,{type:'pregnancy'})" />
@@ -204,7 +204,7 @@
                 </div>
 
                 <div class="box">
-                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ご自由にお好きなシーン<span class="count">8枚</span><span class="example">写真例</span></h4>
+                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ご自由にお好きなシーン<span class="count">@{{ type_counts.free }}枚</span><span class="example">写真例</span></h4>
                     <div class="space-y-[10px]">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                             <div v-if="medium.type=='free'" class="
@@ -237,7 +237,7 @@
                             </div>
                         </template>
                     </div>
-                    <div class="w-[65%] mt-[10px]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='free'}).length<8">
+                    <div class="w-[65%] mt-[10px]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='free'}).length<type_counts.free">
                         <label class="lbl">
                             <div class="choice py-[50px]">画像を追加</div>
                             <input type="file" accept="image/*" v-on:change="medium_save('new',$event,{type:'free'})" />
@@ -248,7 +248,7 @@
                 </div>
 
                 <div class="box">
-                    <h4><i class="fa-solid fa-pencil"></i>フォトアートにしたい写真を<span class="count">3枚</span><span class="example">写真例</span></h4>
+                    <h4><i class="fa-solid fa-pencil"></i>フォトアートにしたい写真を<span class="count">@{{ type_counts.photoart }}枚</span><span class="example">写真例</span></h4>
                     <p class="text-red font-bold text-[14px] leading-none mb-[10px]">※ この中から1枚選んで「ふぉとあーと」にいたします</p>
                     <div class="space-y-[10px]">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
@@ -262,7 +262,7 @@
                                 <input :id="'medium_'+medium_key" type="file" accept="image/*" v-on:change="medium_save(medium_key,$event,medium)" />
                             </div>
                         </template>
-                        <div class="w-[80%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='photoart'}).length<3">
+                        <div class="w-[80%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='photoart'}).length<type_counts.photoart">
                             <label class="lbl">
                                 <div class="choice py-[70px]">画像を追加</div>
                                 <input type="file" accept="image/*" v-on:change="medium_save('new',$event,{type:'photoart'})" />
@@ -320,7 +320,7 @@
                             </div>
                         </div>
                     </template>
-                    <div class="w-[48.5%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='first_cry'}).length<1">
+                    <div class="w-[48.5%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='first_cry'}).length<type_counts.movie">
                         <div class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
                         <label class="lbl">
                             <div class="choice py-[40px]">動画を追加</div>
@@ -346,7 +346,7 @@
                             </div>
                         </div>
                     </template>
-                    <div class="w-[48.5%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='movie'}).length<1">
+                    <div class="w-[48.5%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='movie'}).length<type_counts.movie">
                         <div class="text-[14px] font-bold text-center mb-[3px]">動画(横アングル)</div>
                         <label class="lbl">
                             <div class="choice py-[40px]">動画を追加</div>
@@ -355,8 +355,8 @@
                                class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
                         </label>
                     </div>
-                    
-                    
+
+
                 </div>
             </div>
             <p class="text-red font-bold text-[14px] leading-none text-center mt-[10px]">※ 動画は20秒前後でお願いします</p>
@@ -536,6 +536,10 @@
                 loading_input_key:'',
                 errors:[],
                 sex_types:{!! json_encode(App\Models\TblPatient::$sex_types,JSON_UNESCAPED_UNICODE )!!},
+
+                type_counts:{!! json_encode(App\Models\TblPatientMedium::$type_counts,JSON_UNESCAPED_UNICODE )!!},
+
+
                 tbl_patient:{
                     name:'',
                     tbl_patient_mediums:[
@@ -701,6 +705,7 @@
                         }
                     }
                 }).catch((error) => {//リクエストの失敗
+                    alert(get_error_status_message(error.response.status));
                 }).finally(() => {
                     e.target.value='';
                     this.loading_input_key='';
@@ -721,7 +726,7 @@
                 //     reader.readAsDataURL(e.target.files[0]);
                 // }
             },
-            
+
             refleshSort:function(){
                 this.tbl_patient.tbl_patient_mediums.sort(function(a,b) {
                     return a.type < b.type ? -1 : 1;
