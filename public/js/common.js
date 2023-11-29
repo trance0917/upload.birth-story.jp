@@ -52,8 +52,9 @@ function error_message_translate(errors){
             errors[error_key][0] = '正しい値を入力してください。';
         }else if(errors[error_key][0] == 'validation.between'){
             errors[error_key][0] = '正常値を入力してください。';
+        }else if(errors[error_key][0] == 'validation.max.string'){
+            errors[error_key][0] = '入力値が大きいです。';
         }else{
-            errors[error_key][0] = '正しい値を入力してください。';
         }
     }
     return errors;

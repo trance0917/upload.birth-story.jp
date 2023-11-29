@@ -54,13 +54,13 @@ class TblPatient extends Model
 
 	protected $casts = [
 		'mst_maternity_id' => 'int',
-		'birth_day' => 'datetime',
-		'birth_time' => 'datetime',
+		'birth_day' => 'datetime:Y-m-d',
+		'birth_time' => 'datetime:H:i',
 		'weight' => 'int',
 		'height' => 'float',
 		'sex' => 'int',
 		'what_number' => 'int',
-		'health_check' => 'datetime',
+		'health_check' => 'datetime:Y-m-d',
 		'is_use_instagram' => 'int',
 		'completed_at' => 'datetime',
 		'undertook_at' => 'datetime',
@@ -93,6 +93,11 @@ class TblPatient extends Model
 		'undertook_by',
 		'memo'
 	];
+
+    public static $sex_types = [
+        1=>'男の子',
+        2=>'女の子',
+    ];
 
     public function mst_maternity()
     {

@@ -80,6 +80,8 @@
         [&_h4>.example]:ml-[3px]
 
         [&_.box_.lbl]:relative
+        [&_.box_.lbl_img]:mx-auto
+        
         [&_.box_.lbl_.choice]:bg-slate-100
 
         [&_.box_.lbl_.choice]:text-[16px]
@@ -105,7 +107,6 @@
                 </div>
             </div>
 
-
             <div class="space-y-[25px]">
                 <div class="box">
                     <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>エコー写真<span class="count">2枚</span><span class="example">写真例</span></h4>
@@ -115,7 +116,7 @@
                             <label class="lbl" :for="'medium_'+medium_key">
                                 <div><img :src="medium.src" alt="" /></div>
                                 <i v-if="'echo_'+medium_key==loading_input_key"
-                                   class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
+                                   class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
                                 <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</div>
                             </label>
                             <input :id="'medium_'+medium_key" type="file" accept="image/*" v-on:change="medium_save(medium_key,$event,medium)" />
@@ -140,7 +141,7 @@
                             <label class="lbl" :for="'medium_'+medium_key">
                                 <div><img :src="medium.src" alt="" /></div>
                                 <i v-if="'namecard_'+medium_key==loading_input_key"
-                                   class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
+                                   class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
                                 <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</div>
                             </label>
 
@@ -167,15 +168,16 @@
                                 [&_.sort-btns_li:first-child]:first:hidden
                                 [&_.sort-btns_li:last-child]:last:hidden
                             ">
+                                
                                 <div class="flex items-center">
                                     <div class="w-[65%]">
                                         <label class="lbl" :for="'medium_'+medium_key">
                                             <div><img :src="medium.src" alt="" /></div>
-                                            <div class="choice py-[50px]" v-if="medium.status==''">画像を追加</div>
+                                            <i v-if="'pregnancy_'+medium_key==loading_input_key"
+                                               class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
+                                            <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</div>
                                         </label>
-                                        <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
-                                        <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(タップで変更)</div>
-                                        <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
+                                        <input :id="'pregnancy_'+medium_key" type="file" accept="image/*" v-on:change="medium_save(medium_key,$event,medium)" />
                                     </div>
                                     <ul class="sort-btns ml-[10px] space-y-[5px]
                                         [&>li]:border
@@ -192,6 +194,14 @@
                                 </div>
                             </div>
                         </template>
+                    </div>
+                    <div class="w-[65%] mt-[10px]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='pregnancy'}).length<6">
+                        <label class="lbl">
+                            <div class="choice py-[50px]">画像を追加</div>
+                            <input type="file" accept="image/*" v-on:change="medium_save('new',$event,{type:'pregnancy'})" />
+                            <i v-if="'pregnancy_new'==loading_input_key"
+                               class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
+                        </label>
                     </div>
                 </div>
 
@@ -270,6 +280,7 @@
         [&_h4>.example]:ml-[3px]
 
         [&_.box_.lbl]:relative
+        [&_.box_.lbl_img]:mx-auto
         [&_.box_.lbl_.choice]:bg-slate-100
 
         [&_.box_.lbl_.choice]:text-[16px]
@@ -380,39 +391,48 @@
                     </div>
                     <div class="item">
                         <dt>ローマ字表記</dt>
-                        <dd><input class="txt w-[140px]" type="text" value="" placeholder="例：HANAKO" /><br />
+                        <dd><input class="txt w-[140px]" type="text" placeholder="例：HANAKO" v-model="tbl_patient.baby_roman_alphabet" @change="input_save('baby_roman_alphabet',tbl_patient.baby_roman_alphabet)" /><span v-if="'baby_roman_alphabet'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
                             <span class="complement">※ 未記入可</span>
+                            <div class="error" v-if="errors['tbl_patient.baby_roman_alphabet']">@{{ errors['tbl_patient.baby_roman_alphabet'][0] }}</div>
                         </dd>
                     </div>
                     <div class="item">
                         <dt>生まれた日</dt>
-                        <dd><input class="txt w-[120px]" type="date" value="" placeholder="年 / 月 / 日" />
+                        <dd><input class="txt w-[120px]" type="date" placeholder="年 / 月 / 日" v-model="tbl_patient.birth_day" @change="input_save('birth_day',tbl_patient.birth_day)" /><span v-if="'birth_day'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
+                            <div class="error" v-if="errors['tbl_patient.birth_day']">@{{ errors['tbl_patient.birth_day'][0] }}</div>
                         </dd>
                     </div>
                     <div class="item">
                         <dt>生まれた時刻</dt>
-                        <dd><input class="txt w-[100px]" type="time" value="" placeholder="--:--" />
+                        <dd><input class="txt w-[100px]" type="time" placeholder="--:--" v-model="tbl_patient.birth_time" @change="input_save('birth_time',tbl_patient.birth_time)" /><span v-if="'birth_time'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
+                            <div class="error" v-if="errors['tbl_patient.birth_time']">@{{ errors['tbl_patient.birth_time'][0] }}</div>
                         </dd>
                     </div>
                     <div class="item">
                         <dt>体重</dt>
-                        <dd><input class="txt w-[80px]" type="number" value="" /><span class="unit">g</span></dd>
+                        <dd><input class="txt w-[80px]" type="number" v-model="tbl_patient.weight" @change="input_save('weight',tbl_patient.weight)" /><span class="unit">g</span><span v-if="'weight'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
+                            <div class="error" v-if="errors['tbl_patient.weight']">@{{ errors['tbl_patient.weight'][0] }}</div>
+                        </dd>
                     </div>
                     <div class="item">
                         <dt>身長</dt>
-                        <dd><input class="txt w-[70px]" type="number" value="" /><span class="unit">cm</span>
-                            <span class="block text-red font-bold text-[12px]">※ 入力してください</span></dd>
+                        <dd><input class="txt w-[70px]" type="number" v-model="tbl_patient.height" @change="input_save('height',tbl_patient.height)" /><span class="unit">cm</span><span v-if="'height'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
+                            <div class="error" v-if="errors['tbl_patient.height']">@{{ errors['tbl_patient.height'][0] }}</div>
+                        </dd>
                     </div>
                     <div class="item">
                         <dt>性別</dt>
-                        <dd><select class="txt w-[60px] mr-[10px]" name="">
+                        <dd><select class="txt text-center w-[70px] mr-[10px]" v-model="tbl_patient.sex" @change="input_save('sex',tbl_patient.sex)">
                                 <option value="">--</option>
+                                <option v-for="(sex_type,sex_type_key) in sex_types" :value="sex_type_key">@{{ sex_type }}</option>
                             </select>
                             <span class="unit ml-[10px]">第</span>
-                            <select class="txt w-[60px] ml-[5px]" name="">
+                            <select class="txt text-center w-[50px] ml-[5px]" v-model="tbl_patient.what_number" @change="input_save('what_number',tbl_patient.what_number)">
                                 <option value="">--</option>
-                            </select><span class="unit">子</span>
-                            <span class="block text-red font-bold text-[12px]">※ 入力してください</span>
+                                <option v-for="n in 9" :key="n" :value="n">@{{ n }}</option>
+                            </select><span class="unit">子</span><span v-if="'sex'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><span v-if="'what_number'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span>
+                            <div class="error" v-if="errors['tbl_patient.sex']">@{{ errors['tbl_patient.sex'][0] }}</div>
+                            <div class="error" v-if="errors['tbl_patient.what_number']">@{{ errors['tbl_patient.what_number'][0] }}</div>
                         </dd>
                     </div>
                 </dl>
@@ -423,22 +443,25 @@
                 <dl class="box">
                     <div class="item">
                         <dt>1ヶ月健診日</dt>
-                        <dd><input class="w-[140px]" type="date" value="" placeholder="例：YAMADA HANAKO" />
-                            <span class="block text-red font-bold text-[12px]">※ 入力してください</span>
+                        <dd><input class="w-[140px]" type="date" placeholder="例：YAMADA HANAKO" v-model="tbl_patient.health_check" @change="input_save('health_check',tbl_patient.health_check)" /><span v-if="'health_check'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
+                            <div class="error" v-if="errors['tbl_patient.health_check']">@{{ errors['tbl_patient.health_check'][0] }}</div>
                         </dd>
                     </div>
                     <div class="item">
                         <dt>備考 <span class="text-slate-600 text-[12px]">(任意)</span></dt>
-                        <dd><textarea class="w-full" name="" rows="4" placeholder="伝えておきたいことなど"></textarea></dd>
+                        <dd><textarea class="w-full" rows="4" placeholder="伝えておきたいことなど" v-model="tbl_patient.message" @change="input_save('message',tbl_patient.message)"></textarea><span v-if="'message'==loading_input_key" class="text-green font-bold">保存中</span>
+                            <div class="error" v-if="errors['tbl_patient.message']">@{{ errors['tbl_patient.message'][0] }}</div>
+                        </dd>
                     </div>
                     <div class="item pt-[10px]">
                         <dd>
                             <div class="text-center text-[12px] font-bold">ベビー写真を色補正してインスタグラムに<br />
                                 掲載することがあります。</div>
                             <ul class="flex space-x-[15px] mt-[5px] justify-center">
-                                <li><input class="mr-[3px]" name="a" type="radio" id="a"><label for="a" class="flex items-center">許可する</label></li>
-                                <li><input class="mr-[3px]" name="a" type="radio" id="b"><label for="b" class="flex items-center">許可しない</label></li>
+                                <li><input class="mr-[3px]" name="is_use_instagram" type="radio" id="is_use_instagram_1" value="1" v-model="tbl_patient.is_use_instagram" @change="input_save('is_use_instagram',tbl_patient.is_use_instagram)"><label for="is_use_instagram_1" class="flex items-center">許可する</label></li>
+                                <li><input class="mr-[3px]" name="is_use_instagram" type="radio" id="is_use_instagram_2" value="2" v-model="tbl_patient.is_use_instagram" @change="input_save('is_use_instagram',tbl_patient.is_use_instagram)"><label for="is_use_instagram_2" class="flex items-center">許可しない</label></li>
                             </ul>
+                            <div class="error text-center" v-if="errors['tbl_patient.is_use_instagram']">@{{ errors['tbl_patient.is_use_instagram'][0] }}</div>
                             <div class="text-center mt-[20px]"><a class="text-main underline" href="https://www.instagram.com/birthstory.jp/" target="_blank">BIRTH STORY公式インスタはこちら</a></div>
                         </dd>
                     </div>
@@ -469,7 +492,7 @@
                 is_loading:false,
                 loading_input_key:'',
                 errors:[],
-
+                sex_types:{!! json_encode(App\Models\TblPatient::$sex_types,JSON_UNESCAPED_UNICODE )!!},
                 tbl_patient:{
                     name:'',
                     tbl_patient_mediums:[
@@ -551,6 +574,7 @@
         },
         beforeMount:async function(){
             this.tbl_patient = mergeDeeply(this.tbl_patient,{!! json_encode($tbl_patient,JSON_UNESCAPED_UNICODE )!!},{concatArray: true});
+            // this.refleshSort();
             {{--@if(old('inputs')) @endif--}}
             {{--    this.errors = {!! json_encode($errors->toArray(),JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT )!!};--}}
         },
@@ -637,6 +661,7 @@
                 }).finally(() => {
                     e.target.value='';
                     this.loading_input_key='';
+                    this.refleshSort();
                 });
 
                 // const reader = new FileReader();
@@ -652,6 +677,12 @@
                 // if(e.target.files[0] instanceof Object){
                 //     reader.readAsDataURL(e.target.files[0]);
                 // }
+            },
+            
+            refleshSort:function(){
+                this.tbl_patient.tbl_patient_mediums.sort(function(a,b) {
+                    return a.type < b.type ? -1 : 1;
+                });
             },
         },
         watch:{

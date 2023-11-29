@@ -46,6 +46,5 @@ class MstMaternityQuestion extends Model
         3=>'普通',
         4=>'やや満足',
         5=>'満足',
-
     ];
 }

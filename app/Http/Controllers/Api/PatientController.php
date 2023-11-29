@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Cache;
 use App\Services\ReviewService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
 
 class PatientController extends Controller
 {
@@ -24,6 +25,16 @@ class PatientController extends Controller
         'tbl_patient.name' => 'required',
         'tbl_patient.roman_alphabet' => 'required',
         'tbl_patient.baby_name' => 'nullable',
+        'tbl_patient.baby_roman_alphabet' => 'nullable',
+        'tbl_patient.birth_day' => 'required|date',
+        'tbl_patient.birth_time' => 'required|date_format:H:i',
+        'tbl_patient.weight' => 'required|integer',
+        'tbl_patient.height' => 'required|numeric',
+        'tbl_patient.sex' => 'required|in:1,2',
+        'tbl_patient.what_number' => 'required|in:1,2,3,4,5,6,7,8,9',
+        'tbl_patient.health_check' => 'required|date',
+        'tbl_patient.message' => 'nullable|max:200',
+        'tbl_patient.is_use_instagram' => 'required|in:1,2',
     ];
 
     public function storeReview(TblPatient $tbl_patient,Request $request) {
