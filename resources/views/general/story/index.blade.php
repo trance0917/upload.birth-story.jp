@@ -65,8 +65,252 @@
         <p class="text-[14px] md:text-[12px] inline-block font-bold bg-red shadow text-white px-[15px] py-[10px] md:px-[10px] md:py-[5px]">※</p>
     </div>
 
+    <section class="mt-[50px] md:mt-[25px]">
+        <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>お写真を登録<span class="py-[2px] ml-[5px] inline-block w-[50px] bg-red font-bold text-[14px] text-center text-white">必須</span></h3>
+        <div class="mx-[20px] py-[15px]
+        [&_h4]:text-brown
+        [&_h4]:text-[18px]
+        [&_h4]:font-bold
+        [&_h4>i]:mr-[8px] md:[&_h4>i]:mr-[5px]
+        [&_h4>.count]:ml-[3px]
+        [&_h4>.count]:text-red
+        [&_h4>.example]:text-[14px]
+        [&_h4>.example]:text-[#666]
+        [&_h4>.example]:underline
+        [&_h4>.example]:ml-[3px]
 
-    <section class="mx-auto w-[800px] md:w-auto mt-[50px] md:mt-[25px]">
+        [&_.box_.lbl]:relative
+        [&_.box_.lbl_.choice]:bg-slate-100
+
+        [&_.box_.lbl_.choice]:text-[16px]
+        [&_.box_.lbl_.choice]:block
+        [&_.box_.lbl_.choice]:text-center
+        [&_.box_.lbl_.choice]:border
+        [&_.box_.lbl_.choice]:border-dashed
+        [&_.box_.lbl_.choice]:border-slate-300
+
+        [&_.box_.lbl_div]:text-slate-400
+
+        ">
+            <div class="flex justify-center mb-[30px]">
+                <div class="inline-block">
+                    <div class="flex justify-center items-center bg-sub-light px-[30px] md:px-[15px] py-[20px] md:py-[10px]">
+                        <img class="w-[52px] md:hidden min-w-[52px] mr-[20px] md:mr-[10px]" src="/images/icon-finger.png" alt="">
+                        <p class="text-red font-bold text-[14px] md:text-[12px] leading-tight">・横のアングル写真〇　縦のアングル×<br />
+                            ・指定の写真がない場合は、他の写真でも可<br />
+                            ・逆さまの写真でも編集時に対応します<br />
+                            ・写真サイズは大きめのものをアップロードしてください<br />
+                            ・アプリなどで加工された写真だと画質が荒くなります</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="space-y-[25px]">
+                <div class="box">
+                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>エコー写真<span class="count">2枚</span><span class="example">写真例</span></h4>
+                    <div class="flex justify-between flex-wrap">
+                        <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
+                        <div v-if="medium.type=='echo'" class="w-[48.5%]">
+                            <label class="lbl" :for="'medium_'+medium_key">
+                                <div><img :src="medium.src" alt="" /></div>
+                                <i v-if="'echo_'+medium_key==loading_input_key"
+                                   class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
+                                <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</div>
+                            </label>
+                            <input :id="'medium_'+medium_key" type="file" accept="image/*" v-on:change="medium_save(medium_key,$event,medium)" />
+                        </div>
+                        </template>
+                        <div class="w-[48.5%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='echo'}).length<2">
+                            <label class="lbl">
+                                <div class="choice py-[40px]">画像を追加</div>
+                                <input type="file" accept="image/*" v-on:change="medium_save('new',$event,{type:'echo'})" />
+                                <i v-if="'echo_new'==loading_input_key"
+                                    class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ネームカード<span class="font-normal text-[#999] text-[14px]">(お名前が分かるもの)</span><span class="example">写真例</span></h4>
+                    <div class="">
+                        <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
+                        <div v-if="medium.type=='namecard'" class="w-[80%]">
+                            <label class="lbl" :for="'medium_'+medium_key">
+                                <div><img :src="medium.src" alt="" /></div>
+                                <i v-if="'namecard_'+medium_key==loading_input_key"
+                                   class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
+                                <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</div>
+                            </label>
+
+                            <input :id="'medium_'+medium_key" type="file" accept="image/*" v-on:change="medium_save(medium_key,$event,medium)" />
+                        </div>
+                        </template>
+                        <div class="w-[80%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='namecard'}).length<1">
+                            <label class="lbl">
+                                <div class="choice py-[70px]">画像を追加</div>
+                                <input type="file" accept="image/*" v-on:change="medium_save('new',$event,{type:'namecard'})" />
+                                <i v-if="'namecard_new'==loading_input_key"
+                                   class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h4><i class="fa-solid fa-pencil"></i>出産前・出産中・出産直後<span class="count">6枚</span><span class="example">写真例</span></h4>
+                    <p class="text-red font-bold text-[14px] leading-none mb-[10px]">※ 表示順に作成されます</p>
+                    <div class="space-y-[10px]">
+                        <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
+                            <div v-if="medium.type=='pregnancy'" class="
+                                [&_.sort-btns_li:first-child]:first:hidden
+                                [&_.sort-btns_li:last-child]:last:hidden
+                            ">
+                                <div class="flex items-center">
+                                    <div class="w-[65%]">
+                                        <label class="lbl" :for="'medium_'+medium_key">
+                                            <div><img :src="medium.src" alt="" /></div>
+                                            <div class="choice py-[50px]" v-if="medium.status==''">画像を追加</div>
+                                        </label>
+                                        <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
+                                        <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(タップで変更)</div>
+                                        <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
+                                    </div>
+                                    <ul class="sort-btns ml-[10px] space-y-[5px]
+                                        [&>li]:border
+                                        [&>li]:border-slate-300
+                                        [&>li]:text-slate-400
+                                        [&>li]:w-[50px]
+                                        [&>li]:rounded-sm
+                                        [&>li]:text-center
+                                        [&>li]:py-[3px]
+                                    ">
+                                        <li @click.prevent="change(tbl_patient.tbl_patient_mediums,medium_key,'up')"><i class="fa-solid fa-caret-up"></i></li>
+                                        <li @click.prevent="change(tbl_patient.tbl_patient_mediums,medium_key,'down')"><i class="fa-solid fa-caret-down"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ご自由にお好きなシーン<span class="count">8枚</span><span class="example">写真例</span></h4>
+                    <div class="space-y-[10px]">
+                        <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
+                            <div v-if="medium.type=='free'" class="
+                                [&_.sort-btns_li:first-child]:first:hidden
+                                [&_.sort-btns_li:last-child]:last:hidden
+                            ">
+                                <div class="flex items-center">
+                                    <div class="w-[65%]">
+                                        <label class="lbl" :for="'medium_'+medium_key">
+                                            <div><img :src="medium.src" alt="" /></div>
+                                            <div class="choice py-[50px]" v-if="medium.status==''">画像を追加</div>
+                                        </label>
+                                        <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
+                                        <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(タップで変更)</div>
+                                        <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
+                                    </div>
+                                    <ul class="sort-btns ml-[10px] space-y-[5px]
+                                        [&>li]:border
+                                        [&>li]:border-slate-300
+                                        [&>li]:text-slate-400
+                                        [&>li]:w-[50px]
+                                        [&>li]:rounded-sm
+                                        [&>li]:text-center
+                                        [&>li]:py-[3px]
+                                    ">
+                                        <li @click.prevent="change(tbl_patient.tbl_patient_mediums,medium_key,'up')"><i class="fa-solid fa-caret-up"></i></li>
+                                        <li @click.prevent="change(tbl_patient.tbl_patient_mediums,medium_key,'down')"><i class="fa-solid fa-caret-down"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h4><i class="fa-solid fa-pencil"></i>フォトアートにしたい写真を<span class="count">3枚</span><span class="example">写真例</span></h4>
+                    <p class="text-red font-bold text-[14px] leading-none mb-[10px]">※ この中から1枚選んで「ふぉとあーと」にいたします</p>
+                    <div class="space-y-[10px]">
+                        <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
+                            <div v-if="medium.type=='photoart'" class="w-[80%]">
+                                <div class="">
+                                    <label class="lbl" :for="'medium_'+medium_key">
+                                        <div><img :src="medium.src" alt="" /></div>
+                                        <div class="choice py-[70px]" v-if="medium.status==''">画像を追加</div>
+                                    </label>
+                                    <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
+                                    <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(タップで変更)</div>
+                                    <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mt-[50px] md:mt-[25px]">
+        <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>産声・動画の登録<span class="py-[2px] ml-[5px] inline-block w-[50px] bg-green font-bold text-[14px] text-center text-white">任意</span></h3>
+
+        <div class="mx-[20px] py-[15px]
+        [&_h4]:text-brown
+        [&_h4]:text-[18px]
+        [&_h4]:font-bold
+        [&_h4>i]:mr-[8px] md:[&_h4>i]:mr-[5px]
+        [&_h4>.count]:ml-[3px]
+        [&_h4>.count]:text-red
+        [&_h4>.example]:text-[14px]
+        [&_h4>.example]:text-[#666]
+        [&_h4>.example]:underline
+        [&_h4>.example]:ml-[3px]
+
+        [&_.box_.lbl]:relative
+        [&_.box_.lbl_.choice]:bg-slate-100
+
+        [&_.box_.lbl_.choice]:text-[16px]
+        [&_.box_.lbl_.choice]:block
+        [&_.box_.lbl_.choice]:text-center
+        [&_.box_.lbl_.choice]:border
+        [&_.box_.lbl_.choice]:border-dashed
+        [&_.box_.lbl_.choice]:border-slate-300
+
+        [&_.box_.lbl_div]:text-slate-400
+
+
+
+        ">
+
+            <div class="box">
+                <div class="flex justify-between flex-wrap">
+                    <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
+                        <div v-if="medium.type=='first_cry' || medium.type=='movie'" class="w-[48.5%]">
+                            <div v-if="medium.type=='first_cry'" class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
+                            <div v-if="medium.type=='movie'" class="text-[14px] font-bold text-center mb-[3px]">動画(横アングル)</div>
+
+                            <div class="">
+                                <label class="lbl" :for="'medium_'+medium_key">
+                                    <div><img :src="medium.src" alt="" /></div>
+                                    <div class="choice py-[40px]" v-if="medium.status==''">画像を追加</div>
+                                </label>
+                                <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
+                                <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(タップで変更)</div>
+                                <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+            <p class="text-red font-bold text-[14px] leading-none text-center mt-[10px]">※ 動画は20秒前後でお願いします</p>
+        </div>
+
+    </section>
+
+    <section class="mt-[50px] md:mt-[25px]">
         <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>ご出産情報を入力<span class="py-[2px] ml-[5px] inline-block w-[50px] bg-red font-bold text-[14px] text-center text-white">必須</span></h3>
         <div class="
         space-y-[20px]
@@ -95,10 +339,10 @@
             <div class="outer">
                 <h4><i class="fa-solid fa-pencil"></i>ママの情報</h4>
                 <dl class="box">
-                   <div class="item">
-                       <dt class="!h-[1.4em] !leading-[1.4em]">産院名</dt>
-                       <dd class="!h-[1.4em] !leading-[1.4em] font-bold">{{$tbl_patient->mst_maternity->name??'--'}}</dd>
-                   </div>
+                    <div class="item">
+                        <dt class="!h-[1.4em] !leading-[1.4em]">産院名</dt>
+                        <dd class="!h-[1.4em] !leading-[1.4em] font-bold">{{$tbl_patient->mst_maternity->name??'--'}}</dd>
+                    </div>
                     <div class="item">
                         <dt>ママのお名前</dt>
                         <dd><input class="txt w-[150px]" type="text" placeholder="例：山田 花子" v-model="tbl_patient.name" @change="input_save('name',tbl_patient.name)" /><span v-if="'name'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span>
@@ -112,15 +356,15 @@
                             <div class="error" v-if="errors['tbl_patient.roman_alphabet']">@{{ errors['tbl_patient.roman_alphabet'][0] }}</div>
                         </dd>
                     </div>
-{{--                    <div class="item">--}}
-{{--                        <dt>電話番号</dt>--}}
-{{--                        <dd><input class="txt w-[130px]" type="tel" value="" placeholder="例：08012345678" /><br />--}}
-{{--                        <span class="complement">※ ハイフン不要</span>--}}
-{{--                        </dd>--}}
-{{--                    </div><div class="item">--}}
-{{--                        <dt>メールアドレス</dt>--}}
-{{--                        <dd><input class="txt w-[210px]" type="email" value="" placeholder="例：info@birth-story.jp" /></dd>--}}
-{{--                    </div>--}}
+                    {{--                    <div class="item">--}}
+                    {{--                        <dt>電話番号</dt>--}}
+                    {{--                        <dd><input class="txt w-[130px]" type="tel" value="" placeholder="例：08012345678" /><br />--}}
+                    {{--                        <span class="complement">※ ハイフン不要</span>--}}
+                    {{--                        </dd>--}}
+                    {{--                    </div><div class="item">--}}
+                    {{--                        <dt>メールアドレス</dt>--}}
+                    {{--                        <dd><input class="txt w-[210px]" type="email" value="" placeholder="例：info@birth-story.jp" /></dd>--}}
+                    {{--                    </div>--}}
                 </dl>
             </div>
 
@@ -190,7 +434,7 @@
                     <div class="item pt-[10px]">
                         <dd>
                             <div class="text-center text-[12px] font-bold">ベビー写真を色補正してインスタグラムに<br />
-                            掲載することがあります。</div>
+                                掲載することがあります。</div>
                             <ul class="flex space-x-[15px] mt-[5px] justify-center">
                                 <li><input class="mr-[3px]" name="a" type="radio" id="a"><label for="a" class="flex items-center">許可する</label></li>
                                 <li><input class="mr-[3px]" name="a" type="radio" id="b"><label for="b" class="flex items-center">許可しない</label></li>
@@ -201,246 +445,6 @@
                 </dl>
             </div>
         </div>
-    </section>
-
-    <section class="mx-auto w-[800px] md:w-auto mt-[50px] md:mt-[25px]">
-        <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>お写真を登録<span class="py-[2px] ml-[5px] inline-block w-[50px] bg-red font-bold text-[14px] text-center text-white">必須</span></h3>
-        <div class="mx-[20px] py-[15px]
-        [&_h4]:text-brown
-        [&_h4]:text-[18px]
-        [&_h4]:font-bold
-        [&_h4>i]:mr-[8px] md:[&_h4>i]:mr-[5px]
-        [&_h4>.count]:ml-[3px]
-        [&_h4>.count]:text-red
-        [&_h4>.example]:text-[14px]
-        [&_h4>.example]:text-[#666]
-        [&_h4>.example]:underline
-        [&_h4>.example]:ml-[3px]
-
-
-
-
-        [&_.box_.lbl_.not-choice]:bg-slate-100
-
-        [&_.box_.lbl_.not-choice]:text-[16px]
-        [&_.box_.lbl_.not-choice]:block
-        [&_.box_.lbl_.not-choice]:text-center
-        [&_.box_.lbl_.not-choice]:border
-        [&_.box_.lbl_.not-choice]:border-dashed
-        [&_.box_.lbl_.not-choice]:border-slate-300
-
-        [&_.box_.lbl_div]:text-slate-400
-
-
-
-        ">
-            <div class="flex justify-center mb-[30px]">
-                <div class="inline-block">
-                    <div class="flex justify-center items-center bg-sub-light px-[30px] md:px-[15px] py-[20px] md:py-[10px]">
-                        <img class="w-[52px] md:hidden min-w-[52px] mr-[20px] md:mr-[10px]" src="/images/icon-finger.png" alt="">
-                        <p class="text-red font-bold text-[14px] md:text-[12px] leading-tight">・横のアングル写真〇　縦のアングル×<br />
-                            ・指定の写真がない場合は、他の写真でも可<br />
-                            ・逆さまの写真でも編集時に対応します<br />
-                            ・写真サイズは大きめのものをアップロードしてください<br />
-                            ・アプリなどで加工された写真だと画質が荒くなります</p>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="space-y-[25px]">
-                <div class="box">
-                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>エコー写真<span class="count">2枚</span><span class="example">写真例</span></h4>
-                    <div class="flex justify-between flex-wrap">
-                        <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
-                        <div v-if="medium.type=='echo'" class="w-[48.5%]">
-                            
-                            <label class="lbl" :for="'medium_'+medium_key">
-                                <div class="choice"><img :src="medium.src" alt="" /></div>
-                                <div class="not-choice py-[40px]" v-if="medium.status==''">画像を選択</div>
-                            </label>
-                            <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
-                            <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green text-green text-[12px]">保存済(タップで変更)</div>
-                            <input :id="'medium_'+medium_key" type="file" accept="image/*" v-on:change="medium_save($event,medium.type)" />
-                        </div>
-                        </template>
-                        <div class="w-[48.5%]">
-                            <label class="lbl">
-                                <div class="not-choice py-[40px]">画像を選択</div>
-                                <input type="file" accept="image/*" v-on:change="medium_save($event,'echo')" />
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ネームカード<span class="font-normal text-[#999] text-[14px]">(お名前が分かるもの)</span><span class="example">写真例</span></h4>
-                    <div class="">
-                        <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
-                            <div v-if="medium.type=='namecard'" class="w-[80%]">
-                                <div class="">
-                                    <label class="lbl" :for="'medium_'+medium_key">
-                                        <div class="choice"><img :src="medium.src" alt="" /></div>
-                                        <div class="not-choice py-[70px]" v-if="medium.status==''">画像を選択</div>
-                                    </label>
-                                    <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
-                                    <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(タップで変更)</div>
-                                    <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
-                                </div>
-                            </div>
-                        </template>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <h4><i class="fa-solid fa-pencil"></i>出産前・出産中・出産直後<span class="count">6枚</span><span class="example">写真例</span></h4>
-                    <p class="text-red font-bold text-[14px] leading-none mb-[10px]">※ 表示順に作成されます</p>
-                    <div class="space-y-[10px]">
-                        <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
-                            <div v-if="medium.type=='pregnancy'" class="
-                                [&_.sort-btns_li:first-child]:first:hidden
-                                [&_.sort-btns_li:last-child]:last:hidden
-                            ">
-                                <div class="flex items-center">
-                                    <div class="w-[65%]">
-                                        <label class="lbl" :for="'medium_'+medium_key">
-                                            <div class="choice"><img :src="medium.src" alt="" /></div>
-                                            <div class="not-choice py-[50px]" v-if="medium.status==''">画像を選択</div>
-                                        </label>
-                                        <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
-                                        <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(タップで変更)</div>
-                                        <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
-                                    </div>
-                                    <ul class="sort-btns ml-[10px] space-y-[5px]
-                                        [&>li]:border
-                                        [&>li]:border-slate-300
-                                        [&>li]:text-slate-400
-                                        [&>li]:w-[50px]
-                                        [&>li]:rounded-sm
-                                        [&>li]:text-center
-                                        [&>li]:py-[3px]
-                                    ">
-                                        <li @click.prevent="change(tbl_patient.tbl_patient_mediums,medium_key,'up')"><i class="fa-solid fa-caret-up"></i></li>
-                                        <li @click.prevent="change(tbl_patient.tbl_patient_mediums,medium_key,'down')"><i class="fa-solid fa-caret-down"></i></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </template>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ご自由にお好きなシーン<span class="count">8枚</span><span class="example">写真例</span></h4>
-                    <div class="space-y-[10px]">
-                        <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
-                            <div v-if="medium.type=='free'" class="
-                                [&_.sort-btns_li:first-child]:first:hidden
-                                [&_.sort-btns_li:last-child]:last:hidden
-                            ">
-                                <div class="flex items-center">
-                                    <div class="w-[65%]">
-                                        <label class="lbl" :for="'medium_'+medium_key">
-                                            <div class="choice"><img :src="medium.src" alt="" /></div>
-                                            <div class="not-choice py-[50px]" v-if="medium.status==''">画像を選択</div>
-                                        </label>
-                                        <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
-                                        <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(タップで変更)</div>
-                                        <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
-                                    </div>
-                                    <ul class="sort-btns ml-[10px] space-y-[5px]
-                                        [&>li]:border
-                                        [&>li]:border-slate-300
-                                        [&>li]:text-slate-400
-                                        [&>li]:w-[50px]
-                                        [&>li]:rounded-sm
-                                        [&>li]:text-center
-                                        [&>li]:py-[3px]
-                                    ">
-                                        <li @click.prevent="change(tbl_patient.tbl_patient_mediums,medium_key,'up')"><i class="fa-solid fa-caret-up"></i></li>
-                                        <li @click.prevent="change(tbl_patient.tbl_patient_mediums,medium_key,'down')"><i class="fa-solid fa-caret-down"></i></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </template>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <h4><i class="fa-solid fa-pencil"></i>フォトアートにしたい写真を<span class="count">3枚</span><span class="example">写真例</span></h4>
-                    <p class="text-red font-bold text-[14px] leading-none mb-[10px]">※ この中から1枚選んで「ふぉとあーと」にいたします</p>
-                    <div class="space-y-[10px]">
-                        <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
-                            <div v-if="medium.type=='photoart'" class="w-[80%]">
-                                <div class="">
-                                    <label class="lbl" :for="'medium_'+medium_key">
-                                        <div class="choice"><img :src="medium.src" alt="" /></div>
-                                        <div class="not-choice py-[70px]" v-if="medium.status==''">画像を選択</div>
-                                    </label>
-                                    <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
-                                    <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(タップで変更)</div>
-                                    <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
-                                </div>
-                            </div>
-                        </template>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="mx-auto w-[800px] md:w-auto mt-[50px] md:mt-[25px]">
-        <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>産声・動画の登録<span class="py-[2px] ml-[5px] inline-block w-[50px] bg-green font-bold text-[14px] text-center text-white">任意</span></h3>
-
-        <div class="mx-[20px] py-[15px]
-        [&_h4]:text-brown
-        [&_h4]:text-[18px]
-        [&_h4]:font-bold
-        [&_h4>i]:mr-[8px] md:[&_h4>i]:mr-[5px]
-        [&_h4>.count]:ml-[3px]
-        [&_h4>.count]:text-red
-        [&_h4>.example]:text-[14px]
-        [&_h4>.example]:text-[#666]
-        [&_h4>.example]:underline
-        [&_h4>.example]:ml-[3px]
-
-        [&_.box_.lbl_.not-choice]:bg-slate-100
-
-        [&_.box_.lbl_.not-choice]:text-[16px]
-        [&_.box_.lbl_.not-choice]:block
-        [&_.box_.lbl_.not-choice]:text-center
-        [&_.box_.lbl_.not-choice]:border
-        [&_.box_.lbl_.not-choice]:border-dashed
-        [&_.box_.lbl_.not-choice]:border-slate-300
-
-        [&_.box_.lbl_div]:text-slate-400
-
-
-
-        ">
-
-            <div class="box">
-                <div class="flex justify-between flex-wrap">
-                    <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
-                        <div v-if="medium.type=='first_cry' || medium.type=='movie'" class="w-[48.5%]">
-                            <div v-if="medium.type=='first_cry'" class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
-                            <div v-if="medium.type=='movie'" class="text-[14px] font-bold text-center mb-[3px]">動画(横アングル)</div>
-
-                            <div class="">
-                                <label class="lbl" :for="'medium_'+medium_key">
-                                    <div class="choice"><img :src="medium.src" alt="" /></div>
-                                    <div class="not-choice py-[40px]" v-if="medium.status==''">画像を選択</div>
-                                </label>
-                                <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
-                                <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(タップで変更)</div>
-                                <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
-                            </div>
-                        </div>
-                    </template>
-                </div>
-            </div>
-            <p class="text-red font-bold text-[14px] leading-none text-center mt-[10px]">※ 動画は20秒前後でお願いします</p>
-        </div>
-
     </section>
 
     @if(!$tbl_patient->submitted_at)
@@ -601,27 +605,37 @@
                 }).finally(() => {
                     this.loading_input_key='';
                 });
-
             },
-            async medium_save(e,type){
+            async medium_save(key,e,medium){
                 let t = this;
-                this.loading_input_key=type;
-                
+                this.loading_input_key=medium.type+'_'+key;
+
                 await axios.post('/api/v1/g/{{$tbl_patient->code}}/story/medium',
                     {
                         tbl_patient:{
-                            tbl_patient_mediums:[
-                                {   
-                                    type:type,
-                                    file:e.target.files[0]
+                            tbl_patient_mediums:{
+                                [key]:{
+                                    ...medium,
+                                    file:e.target.files[0],
                                 }
-                            ]
-                        }
+                            }
+                        },
+                        key:key,
                     }
                     ,{headers: {'content-type': 'multipart/form-data'}}
                 ).then((response) => {//リクエストの成功
+
+                    if(!medium.tbl_patient_medium_id){
+                        t.tbl_patient.tbl_patient_mediums.push(response.data.result);
+                    }
+                    for(let tbl_patient_medium_key in t.tbl_patient.tbl_patient_mediums){
+                        if(medium.tbl_patient_medium_id == t.tbl_patient.tbl_patient_mediums[tbl_patient_medium_key].tbl_patient_medium_id){
+                            t.tbl_patient.tbl_patient_mediums[tbl_patient_medium_key] = response.data.result;
+                        }
+                    }
                 }).catch((error) => {//リクエストの失敗
                 }).finally(() => {
+                    e.target.value='';
                     this.loading_input_key='';
                 });
 

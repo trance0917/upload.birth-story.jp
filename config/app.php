@@ -198,6 +198,7 @@ return [
         App\Providers\TelescopeServiceProvider::class,
 
         App\Providers\FacadeServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -214,6 +215,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
         'PageHelper' => App\Facades\PageHelper::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ])->toArray(),
 
 ];

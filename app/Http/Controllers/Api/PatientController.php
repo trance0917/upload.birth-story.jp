@@ -149,38 +149,74 @@ class PatientController extends Controller
         ]);
     }
     public function storeStoryMedium(TblPatient $tbl_patient,Request $request){
-        $type=$request->tbl_patient['tbl_patient_mediums'][0]['type'];
-        $file=$request->tbl_patient['tbl_patient_mediums'][0]['file'];
-        
-        $max_order = TblPatientMedium::where('tbl_patient_id', $tbl_patient->tbl_patient_id)
+        //todo:バリデート
+
+        $key=$request->key;
+        $tbl_patient_medium_id=$request->tbl_patient['tbl_patient_mediums'][$key]['tbl_patient_medium_id']??null;
+        $type=$request->tbl_patient['tbl_patient_mediums'][$key]['type'];
+        $file=$request->tbl_patient['tbl_patient_mediums'][$key]['file'];
+
+        $order = TblPatientMedium::where('tbl_patient_id', $tbl_patient->tbl_patient_id)
             ->where('type', $type)
             ->max('order');
-        
-        
+
+        if (empty($order)) {
+            $order = 0;//一枚目は1
+        }
+
         if ($file instanceof UploadedFile) {
 
             $directory_path = 'public/patients/'.$tbl_patient->tbl_patient_id.'_'.$tbl_patient->code;
+            $original_directory_path = $directory_path.'/original';
             if(\Storage::exists($directory_path)){
-                    \Storage::makeDirectory($directory_path);
+                \Storage::makeDirectory($directory_path);
+                \Storage::makeDirectory($original_directory_path);
             }
-            
-            
             $filepath = pathinfo($file->getClientOriginalName());
             $filename = preg_replace('/[^0-9]/' ,'' , microtime());
-            $medium_file = [
-                'tbl_patient_id' => $tbl_patient->tbl_patient_id,
-                'file_name' => $filename,
-                'extension' => $filepath['extension'],
-                'type' => $type,
-                'registered_at' => now(),
-            ];
+
             DB::beginTransaction();
             try {
-                $new_medium_file = TblPatientMedium::create($medium_file);
-                if (empty($new_medium_file)) {
-                    throw new \Exception('');
+                //新規の場合
+                if(!$tbl_patient_medium_id){
+                    $medium = [
+                        'tbl_patient_id' => $tbl_patient->tbl_patient_id,
+                        'file_name' => $filename,
+                        'extension' => $filepath['extension'],
+                        'type' => $type,
+                        'registered_at' => now(),
+                        'order' => $order+1,
+                    ];
+                    $tbl_patient_medium = TblPatientMedium::create($medium);
+                    if (empty($tbl_patient_medium)) {
+                        throw new \Exception('');
+                    }
+                }else{
+                    //更新の場合
+                    $medium = [
+                        'file_name' => $filename,
+                        'extension' => $filepath['extension'],
+                        'type' => $type,
+                        'registered_at' => now(),
+                    ];
+                    $tbl_patient_medium = TblPatientMedium::find($tbl_patient_medium_id);
+                    $tbl_patient_medium->fill($medium);
+                    $tbl_patient_medium->save();
                 }
-                $file->storeAs($directory_path, $filename . '.' . $filepath['extension']);
+
+                //原本の保存
+                $file->storeAs($original_directory_path, $filename . '.' . $filepath['extension']);
+
+                //サムネイルの保存
+                $img = \Image::make($file);
+                $img->resize(350, null, function($constraint){
+                    $constraint->aspectRatio(); // 縦横比にしてくれる
+                    $constraint->upsize(); // 元画像より大きくならないようにする
+                });
+                $img->orientate();
+                $img->save(storage_path('app/'.$directory_path.'/'.$filename . '.' . $filepath['extension']),100);
+
+
                 DB::commit();
             } catch (\Throwable $e) {
                 DB::rollback();
@@ -191,15 +227,10 @@ class PatientController extends Controller
                     'errors' => [],
                 ], 500);
             }
-            
         }
-        
-        
-        
-        
-        
+        $tbl_patient_medium->src = $tbl_patient_medium->src;
         return response()->json([
-            'result' => true,
+            'result' => $tbl_patient_medium,
             'messages' => '',
             'errors' => [],
         ]);
