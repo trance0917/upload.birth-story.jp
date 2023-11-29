@@ -312,7 +312,7 @@
                             <div class="">
                                 <label class="lbl" :for="'medium_'+medium_key">
                                     <i v-if="'first_cry_'+medium_key==loading_input_key"
-                                       class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
+                                       class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
                                     <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px] py-[40px] bg-green-50">保存済(タップで変更)</div>
                                 </label>
                                 <p class="mt-[8px] text-center text-center"><a :href="medium.src" class="border rounded-sm border-main px-[7px] py-[3px] inline-block underline text-main font-bold text-[14px]" target="_blank">内容を確認</a></p>
@@ -338,7 +338,7 @@
                             <div class="">
                                 <label class="lbl" :for="'medium_'+medium_key">
                                     <i v-if="'movie_'+medium_key==loading_input_key"
-                                       class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
+                                       class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
                                     <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px] py-[40px] bg-green-50">保存済(タップで変更)</div>
                                 </label>
                                 <p class="mt-[8px] text-center text-center"><a :href="medium.src" class="border rounded-sm border-main px-[7px] py-[3px] inline-block underline text-main font-bold text-[14px]" target="_blank">内容を確認</a></p>
