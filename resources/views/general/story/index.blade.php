@@ -17,8 +17,6 @@
         <h1 class="mt-[50px] md:mt-[30px] text-center"><span class="px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">このデータは下記の内容で提出済みです</span></h1>
     @endif
 
-
-
     <div class="mt-[40px] md:mt-[20px] flex justify-center">
         <div class="inline-block">
             <div class="flex justify-center items-center bg-sub-light px-[40px] md:px-[20px] py-[30px] md:py-[15px]">
@@ -27,8 +25,6 @@
             </div>
         </div>
     </div>
-
-
 
 {{--    <p class="text-center font-bold text-red text-[16px] md:text-[12px] mt-[40px] md:mt-[20px]">保存コード：<span class="text-[20px] md:text-[16px] text-red">il 972 518</span></p>--}}
 
@@ -59,7 +55,7 @@
     </ul>
 
     <div v-if="Object.keys(errors).length" class="mt-[30px] flex justify-center">
-        <p class="text-[14px] md:text-[12px] inline-block font-bold bg-red shadow text-white px-[15px] py-[10px] md:px-[10px] md:py-[5px]">※ エラーがあります。ご確認のうえ再送信してください</p>
+        <p class="text-[14px] md:text-[12px] inline-block font-bold bg-red shadow text-white px-[15px] py-[10px] md:px-[10px] md:py-[5px]">※ 不足があります。ご確認のうえ再送信してください</p>
     </div>
     <div v-else class="mt-[30px] flex justify-center opacity-0">
         <p class="text-[14px] md:text-[12px] inline-block font-bold bg-red shadow text-white px-[15px] py-[10px] md:px-[10px] md:py-[5px]">※</p>
@@ -131,6 +127,7 @@
                             </label>
                         </div>
                     </div>
+                    <div class="error text-center" v-if="errors['tbl_patient.tbl_patient_mediums.echo']">@{{ errors['tbl_patient.tbl_patient_mediums.echo'][0] }}</div>
                 </div>
 
                 <div class="box">
@@ -156,6 +153,7 @@
                             </label>
                         </div>
                     </div>
+                    <div class="error text-center" v-if="errors['tbl_patient.tbl_patient_mediums.namecard']">@{{ errors['tbl_patient.tbl_patient_mediums.namecard'][0] }}</div>
                 </div>
 
                 <div class="box">
@@ -201,6 +199,8 @@
                                class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
                         </label>
                     </div>
+                    <div class="error text-center" v-if="errors['tbl_patient.tbl_patient_mediums.pregnancy']">@{{ errors['tbl_patient.tbl_patient_mediums.pregnancy'][0] }}</div>
+
                 </div>
 
                 <div class="box">
@@ -245,6 +245,8 @@
                                class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
                         </label>
                     </div>
+                    <div class="error text-center" v-if="errors['tbl_patient.tbl_patient_mediums.free']">@{{ errors['tbl_patient.tbl_patient_mediums.free'][0] }}</div>
+
                 </div>
 
                 <div class="box">
@@ -271,6 +273,8 @@
                             </label>
                         </div>
                     </div>
+                    <div class="error text-center" v-if="errors['tbl_patient.tbl_patient_mediums.photoart']">@{{ errors['tbl_patient.tbl_patient_mediums.photoart'][0] }}</div>
+
                 </div>
             </div>
         </div>
@@ -358,6 +362,9 @@
 
 
                 </div>
+                <div class="error text-center" v-if="errors['tbl_patient.tbl_patient_mediums.photoart']">@{{ errors['tbl_patient.tbl_patient_mediums.photoart'][0] }}</div>
+                <div class="error text-center" v-if="errors['tbl_patient.tbl_patient_mediums.photoart']">@{{ errors['tbl_patient.tbl_patient_mediums.photoart'][0] }}</div>
+
             </div>
             <p class="text-red font-bold text-[14px] leading-none text-center mt-[10px]">※ 動画は20秒前後でお願いします</p>
         </div>
@@ -395,7 +402,7 @@
                 <dl class="box">
                     <div class="item">
                         <dt class="!h-[1.4em] !leading-[1.4em]">産院名</dt>
-                        <dd class="!h-[1.4em] !leading-[1.4em] font-bold">{{$tbl_patient->mst_maternity->name??'--'}}</dd>
+                        <dd class="!h-[1.4em] !leading-[1.4em] font-bold">@{{tbl_patient.mst_maternity.name}}</dd>
                     </div>
                     <div class="item">
                         <dt>ママのお名前</dt>
@@ -514,7 +521,10 @@
     </section>
 
     @if(!$tbl_patient->submitted_at)
-    <p class="mt-[50px] md:mt-[30px] w-[340px] md:w-[240px] mx-auto text-center"><span class="relative w-full block bg-green text-white font-bold py-[20px] md:py-[15px] rounded-sm text-[22px] md:text-[16px]" @click.prevent="submit">提出の確認へ<i class="fa-solid fa-angle-right absolute top-[26px] md:top-[18px] right-[15px]"></i></span></p>
+
+    <p v-if="Object.keys(errors).length" class="mt-[50px] md:mt-[30px] w-[340px] md:w-[240px] mx-auto text-center"><span class="relative w-full block bg-slate-300 text-white font-bold py-[20px] md:py-[15px] rounded-sm text-[22px] md:text-[16px]" @click.prevent="">提出の確認へ<i class="fa-solid fa-angle-right absolute top-[26px] md:top-[18px] right-[15px]"></i></span></p>
+    <p v-else class="mt-[50px] md:mt-[30px] w-[340px] md:w-[240px] mx-auto text-center"><span class="relative w-full block bg-green text-white font-bold py-[20px] md:py-[15px] rounded-sm text-[22px] md:text-[16px]" @click.prevent="submit">提出の確認へ<i class="fa-solid fa-angle-right absolute top-[26px] md:top-[18px] right-[15px]"></i></span></p>
+
     @else
         <p class="mt-[20px] md:mt-[15px] w-[140px] md:w-[120px] mx-auto text-center">
             <a class="w-full block bg-slate-400 text-white font-bold py-[8px] md:py-[8px] rounded-sm text-[16px] md:text-[14px]" href="{{route('guide',$tbl_patient)}}">戻る</a></p>
@@ -536,94 +546,15 @@
                 loading_input_key:'',
                 errors:[],
                 sex_types:{!! json_encode(App\Models\TblPatient::$sex_types,JSON_UNESCAPED_UNICODE )!!},
-
                 type_counts:{!! json_encode(App\Models\TblPatientMedium::$type_counts,JSON_UNESCAPED_UNICODE )!!},
 
-
                 tbl_patient:{
-                    name:'',
-                    tbl_patient_mediums:[
-                        // {
-                        //     type:'echo',
-                        //     status:'saved',
-                        //     src:'/storage/test/echo_1.jpg',
-                        // },
-                        // {
-                        //     type:'echo',
-                        //     status:'saved',
-                        //     src:'/storage/test/echo_2.jpg',
-                        // },
-                        // {
-                        //     type:'namecard',
-                        //     status:'saved',
-                        //     src:'/storage/test/namecard.jpg',
-                        // },
-                        // {
-                        //     type:'pregnancy',
-                        //     status:'saved',
-                        //     src:'/storage/test/pregnancy_1.jpg',
-                        // },
-                        // {
-                        //     type:'pregnancy',
-                        //     status:'saved',
-                        //     src:'/storage/test/pregnancy_2.jpg',
-                        // },
-                        // {
-                        //     type:'pregnancy',
-                        //     status:'saved',
-                        //     src:'/storage/test/pregnancy_3.jpg',
-                        // },
-                        // {
-                        //     type:'pregnancy',
-                        //     status:'saved',
-                        //     src:'/storage/test/pregnancy_4.jpg',
-                        // },
-                        // {
-                        //     type:'pregnancy',
-                        //     status:'saved',
-                        //     src:'/storage/test/pregnancy_5.jpg',
-                        // },
-                        // {
-                        //     type:'pregnancy',
-                        //     status:'saved',
-                        //     src:'/storage/test/pregnancy_6.jpg',
-                        // },
-                        // {type:'free',status:'saved',src:'/storage/test/free_1.jpg',},
-                        // {type:'free',status:'saved',src:'/storage/test/free_2.jpg',},
-                        // {type:'free',status:'saved',src:'/storage/test/free_3.jpg',},
-                        // {type:'free',status:'saved',src:'/storage/test/free_4.jpg',},
-                        // {type:'free',status:'saved',src:'/storage/test/free_5.jpg',},
-                        // {type:'free',status:'saved',src:'/storage/test/free_6.jpg',},
-                        // {type:'free',status:'saved',src:'/storage/test/free_7.jpg',},
-                        // {type:'free',status:'saved',src:'/storage/test/free_8.jpg',},
-                        //
-                        // {
-                        //     type:'photoart',
-                        //     status:'saved',
-                        //     src:'/storage/test/photoart_1.jpg',
-                        // },
-                        // {
-                        //     type:'photoart',
-                        //     status:'saved',
-                        //     src:'/storage/test/photoart_2.jpg',
-                        // },
-                        // {
-                        //     type:'photoart',
-                        //     status:'saved',
-                        //     src:'/storage/test/photoart_3.jpg',
-                        // },
-                        //
-                        // {type:'first_cry',status:'',},
-                        // {type:'movie',status:'',},
-                    ]
+                    tbl_patient_mediums:[]
                 },
             }
         },
         beforeMount:async function(){
             this.tbl_patient = mergeDeeply(this.tbl_patient,{!! json_encode($tbl_patient,JSON_UNESCAPED_UNICODE )!!},{concatArray: true});
-            // this.refleshSort();
-            {{--@if(old('inputs')) @endif--}}
-            {{--    this.errors = {!! json_encode($errors->toArray(),JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT )!!};--}}
         },
         created:async function(){
 
@@ -660,6 +591,10 @@
             },
 
             async input_save(key,val){
+                if(ths.tbl_patient.submitted_at){
+                    return;
+                }
+
                 let t = this;
                 let data = {[key]:val};
                 this.loading_input_key=key;
@@ -678,6 +613,9 @@
                 });
             },
             async medium_save(key,e,medium){
+                if(ths.tbl_patient.submitted_at){
+                    return;
+                }
                 let t = this;
                 this.loading_input_key=medium.type+'_'+key;
 
@@ -709,6 +647,8 @@
                 }).finally(() => {
                     e.target.value='';
                     this.loading_input_key='';
+                    delete t.errors['tbl_patient.tbl_patient_mediums.'+medium.type];
+
                     this.refleshSort();
                 });
 

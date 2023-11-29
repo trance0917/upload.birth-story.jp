@@ -92,18 +92,12 @@ class PatientController extends Controller
         $rules = $this->validate_rules;
 
         foreach(TblPatientMedium::$type_counts AS $type_count_key=>$type_count){
-
             if($type_count_key=='first_cry' || $type_count_key=='movie'){
                 $rules['tbl_patient.tbl_patient_mediums.'.$type_count_key] = 'nullable|array|max:'.$type_count;
             }else{
                 $rules['tbl_patient.tbl_patient_mediums.'.$type_count_key] = 'required|array|size:'.$type_count;
             }
         }
-
-//        $tbl_patient->tbl_patient_mediums->filter(function ($value) {return $value->type=='free';});
-//        dump($rules);
-//        $a = ['test2'=>2,'test3'=>3];
-//        dump([1,...$a]);
 
         $valid = [
             'tbl_patient' => $tbl_patient->toArray(),
@@ -116,9 +110,9 @@ class PatientController extends Controller
             }
         }
 //        dump($rules);
-        dump($valid);
+//        dump($valid);
 
-        $validator = Validator:: make($valid, $rules);
+        $validator = Validator:: make($valid, $rules,['size'=>'枚数が不足しています。']);
         if ($validator->fails()) {
             return response()->json([
                 'result' => false,
@@ -148,6 +142,13 @@ class PatientController extends Controller
     }
 
     public function storeStoryInput(TblPatient $tbl_patient,Request $request){
+        if($tbl_patient->submitted_at){
+            return response()->json([
+                'result' => true,
+                'messages' => '',
+                'errors' => [],
+            ]);
+        }
         if(!isset($this->validate_rules[$request->key])){
             return response()->json(['result' => false,'messages' => '存在しないキー','errors' => [],]);
         }
@@ -186,6 +187,14 @@ class PatientController extends Controller
         ]);
     }
     public function storeStoryMedium(TblPatient $tbl_patient,Request $request){
+        if($tbl_patient->submitted_at){
+            return response()->json([
+                'result' => true,
+                'messages' => '',
+                'errors' => [],
+            ]);
+        }
+
         //todo:バリデート
 
         $validator = Validator:: make([

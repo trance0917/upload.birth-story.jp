@@ -57,7 +57,7 @@ function error_message_translate(errors){
         }else if(errors[error_key][0] == 'validation.mimes'){
             errors[error_key][0] = '対応していない拡張子です。';
         }else if(errors[error_key][0] == 'validation.between.numeric'){
-            errors[error_key][0] = '範囲が不適切です。';
+            errors[error_key][0] = '範囲が不適切です。' ;
         }else{
         }
     }

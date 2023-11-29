@@ -11,7 +11,118 @@
         </div>
     </div>
 
-    <section class="mx-auto w-[800px] md:w-auto mt-[50px] md:mt-[25px]">
+
+
+    <section class="mt-[50px] md:mt-[25px]">
+        <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>お写真を登録</h3>
+        <div class="mx-[20px] py-[15px]
+    [&_h4]:text-brown
+    [&_h4]:text-[18px]
+    [&_h4]:font-bold
+    [&_h4>i]:mr-[8px] md:[&_h4>i]:mr-[5px]
+    [&_.box_img]:mx-auto
+    ">
+            <div class="space-y-[25px]">
+                <div class="box">
+                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>エコー写真</h4>
+                    <div class="flex justify-between flex-wrap">
+                        <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
+                            <div v-if="medium.type=='echo'" class="w-[48.5%]">
+                                        <img :src="medium.src" alt="" />
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ネームカード</h4>
+                    <div class="flex justify-between flex-wrap">
+                        <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
+                            <div v-if="medium.type=='namecard'" class="w-[48.5%]">
+                                <img :src="medium.src" alt="" />
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h4><i class="fa-solid fa-pencil"></i>出産前・出産中・出産直後</h4>
+                    <p class="text-red font-bold text-[14px] leading-none mb-[10px]">※ 表示順に作成されます</p>
+                    <div class="flex justify-between flex-wrap [&>div:nth-last-child(2)]:mb-[0px]">
+                        <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
+                            <div v-if="medium.type=='pregnancy'" class="w-[48.5%] mb-[10px] last:mb-[0px]">
+                                <img :src="medium.src" alt="" />
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ご自由にお好きなシーン</h4>
+                    <div class="flex justify-between flex-wrap [&>div:nth-last-child(2)]:mb-[0px]">
+                        <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
+                            <div v-if="medium.type=='free'" class="w-[48.5%] mb-[10px] last:mb-[0px]">
+                                <img :src="medium.src" alt="" />
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h4><i class="fa-solid fa-pencil"></i>フォトアートにしたい写真を</h4>
+                    <p class="text-red font-bold text-[14px] leading-none mb-[10px]">※ この中から1枚選んで「ふぉとあーと」にいたします</p>
+                    <div class="flex justify-between flex-wrap [&>div:nth-last-child(2)]:mb-[0px]">
+                        <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
+                            <div v-if="medium.type=='photoart'" class="w-[48.5%] mb-[10px] last:mb-[0px]">
+                                <img :src="medium.src" alt="" />
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mt-[50px] md:mt-[25px]">
+        <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>産声・動画の登録</h3>
+
+        <div class="mx-[20px] py-[15px]">
+
+
+            <div class="box">
+                <div class="flex justify-between flex-wrap
+                [&_.nothing]:block
+                [&_.item+.nothing]:hidden
+                ">
+                    <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
+                        <div v-if="medium.type=='first_cry'" class="item w-[48.5%]">
+                            <div class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
+                            <div class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px] py-[40px] bg-green-50">保存済み</div>
+                            <p class="mt-[8px] text-center text-center"><a :href="medium.src" class="border rounded-sm border-main px-[7px] py-[3px] inline-block underline text-main font-bold text-[14px]" target="_blank">内容を確認</a></p>
+                        </div>
+                    </template>
+                    <div class="nothing w-[48.5%]">
+                        <div class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
+                        <div class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-slate !text-slate text-[12px] py-[40px] bg-slate-50">未保存</div>
+                    </div>
+
+                    <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
+                        <div v-if="medium.type=='movie'" class="item w-[48.5%]">
+                            <div class="text-[14px] font-bold text-center mb-[3px]">動画(横アングル)</div>
+                            <div class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px] py-[40px] bg-green-50">保存済み</div>
+                            <p class="mt-[8px] text-center text-center"><a :href="medium.src" class="border rounded-sm border-main px-[7px] py-[3px] inline-block underline text-main font-bold text-[14px]" target="_blank">内容を確認</a></p>
+                        </div>
+                    </template>
+                    <div class="nothing w-[48.5%]">
+                        <div class="text-[14px] font-bold text-center mb-[3px]">動画(横アングル)</div>
+                        <div class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-slate !text-slate text-[12px] py-[40px] bg-slate-50">未保存</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mt-[50px] md:mt-[25px]">
         <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>ご出産情報を入力</h3>
         <div class="
     space-y-[20px]
@@ -39,23 +150,16 @@
                 <dl class="box">
                     <div class="item">
                         <dt class="!h-[1.4em] !leading-[1.4em]">産院名</dt>
-                        <dd class="!h-[1.4em] !leading-[1.4em] font-bold">{{$tbl_patient->mst_maternity->name??'--'}}</dd>
+                        <dd class="!h-[1.4em] !leading-[1.4em] font-bold">@{{tbl_patient.mst_maternity.name}}</dd>
                     </div>
                     <div class="item">
                         <dt>ママのお名前</dt>
-                        <dd>山田 花子</dd>
+                        <dd>@{{tbl_patient.name}}</dd>
                     </div>
                     <div class="item">
                         <dt>ローマ字表記</dt>
-                        <dd>YAMADA HANAKO</dd>
+                        <dd>@{{tbl_patient.roman_alphabet}}</dd>
                     </div>
-{{--                    <div class="item">--}}
-{{--                        <dt>電話番号</dt>--}}
-{{--                        <dd>08012345678</dd>--}}
-{{--                    </div><div class="item">--}}
-{{--                        <dt>メールアドレス</dt>--}}
-{{--                        <dd>info@birth-story.jp</dd>--}}
-{{--                    </div>--}}
                 </dl>
             </div>
 
@@ -64,31 +168,39 @@
                 <dl class="box">
                     <div class="item">
                         <dt>お名前</dt>
-                        <dd>花子</dd>
+                        <dd>
+                            <template v-if="tbl_patient.baby_name">@{{ tbl_patient.baby_name }}</template>
+                            <template v-else>--</template>
+                        </dd>
                     </div>
                     <div class="item">
                         <dt>ローマ字表記</dt>
-                        <dd>HANAKO</dd>
+                        <dd>
+                            <template v-if="tbl_patient.baby_roman_alphabet">@{{ tbl_patient.baby_roman_alphabet }}</template>
+                            <template v-else>--</template>
+                        </dd>
                     </div>
                     <div class="item">
                         <dt>生まれた日</dt>
-                        <dd>2023-10-23</dd>
+                        <dd>@{{tbl_patient.birth_day}}</dd>
                     </div>
                     <div class="item">
                         <dt>生まれた時刻</dt>
-                        <dd>12:20</dd>
+                        <dd>@{{tbl_patient.birth_time}}</dd>
                     </div>
                     <div class="item">
                         <dt>体重</dt>
-                        <dd>3000<span class="unit">g</span></dd>
+                        <dd>@{{tbl_patient.weight}}<span class="unit">g</span></dd>
                     </div>
                     <div class="item">
                         <dt>身長</dt>
-                        <dd>56<span class="unit">cm</span></dd>
+                        <dd>@{{tbl_patient.height}}<span class="unit">cm</span></dd>
                     </div>
                     <div class="item">
                         <dt>性別</dt>
-                        <dd>男の子 / 第3子</dd>
+
+
+                        <dd>@{{ sex_types[tbl_patient.sex] }} / 第@{{ tbl_patient.what_number }}子</dd>
                     </div>
                 </dl>
             </div>
@@ -98,116 +210,25 @@
                 <dl class="box">
                     <div class="item">
                         <dt>1ヶ月健診日</dt>
-                        <dd>2023-12-25</dd>
+                        <dd>@{{ tbl_patient.health_check }}</dd>
                     </div>
                     <div class="item">
                         <dt>備考</dt>
-                        <dd>--</dd>
+                        <dd>
+                            <template v-if="tbl_patient.message">@{{ tbl_patient.message }}</template>
+                            <template v-else>--</template>
+                        </dd>
                     </div>
                     <div class="item pt-[10px]">
                         <dd>
                             <div class="text-center text-[12px] font-bold">ベビー写真を色補正してインスタグラムに<br />
                                 掲載することがあります。</div>
-                            <div class="text-center mt-[5px]"><i class="text-red fa-solid fa-xmark mr-[3px]"></i>許可しない</div>
-                            <div class="text-center mt-[5px]"><i class="text-green fa-regular fa-circle mr-[3px]"></i>許可する</div>
+                            <div class="text-center mt-[5px]" v-if="tbl_patient.is_use_instagram==1"><i class="text-green fa-regular fa-circle mr-[3px]"></i>許可する</div>
+                            <div class="text-center mt-[5px]" v-if="tbl_patient.is_use_instagram==2"><i class="text-red fa-solid fa-xmark mr-[3px]"></i>許可しない</div>
 
                         </dd>
                     </div>
                 </dl>
-            </div>
-        </div>
-    </section>
-
-    <section class="mx-auto w-[800px] md:w-auto mt-[50px] md:mt-[25px]">
-        <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>お写真を登録</h3>
-        <div class="mx-[20px] py-[15px]
-    [&_h4]:text-brown
-    [&_h4]:text-[18px]
-    [&_h4]:font-bold
-    [&_h4>i]:mr-[8px] md:[&_h4>i]:mr-[5px]
-    ">
-            <div class="space-y-[25px]">
-                <div class="box">
-                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>エコー写真</h4>
-                    <div class="flex justify-between flex-wrap">
-                        <template v-for="(medium,medium_key) in tbl_.mediums">
-                            <div v-if="medium.type=='echo'" class="w-[48.5%]">
-                                        <img :src="medium.src" alt="" />
-                            </div>
-                        </template>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ネームカード</h4>
-                    <div class="flex justify-between flex-wrap">
-                        <template v-for="(medium,medium_key) in tbl_.mediums">
-                            <div v-if="medium.type=='namecard'" class="w-[48.5%]">
-                                <img :src="medium.src" alt="" />
-                            </div>
-                        </template>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <h4><i class="fa-solid fa-pencil"></i>出産前・出産中・出産直後</h4>
-                    <p class="text-red font-bold text-[14px] leading-none mb-[10px]">※ 表示順に作成されます</p>
-                    <div class="flex justify-between flex-wrap [&>div:nth-last-child(2)]:mb-[0px]">
-                        <template v-for="(medium,medium_key) in tbl_.mediums">
-                            <div v-if="medium.type=='pregnancy'" class="w-[48.5%] mb-[10px] last:mb-[0px]">
-                                <img :src="medium.src" alt="" />
-                            </div>
-                        </template>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ご自由にお好きなシーン</h4>
-                    <div class="flex justify-between flex-wrap [&>div:nth-last-child(2)]:mb-[0px]">
-                        <template v-for="(medium,medium_key) in tbl_.mediums">
-                            <div v-if="medium.type=='free'" class="w-[48.5%] mb-[10px] last:mb-[0px]">
-                                <img :src="medium.src" alt="" />
-                            </div>
-                        </template>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <h4><i class="fa-solid fa-pencil"></i>フォトアートにしたい写真を</h4>
-                    <p class="text-red font-bold text-[14px] leading-none mb-[10px]">※ この中から1枚選んで「ふぉとあーと」にいたします</p>
-                    <div class="flex justify-between flex-wrap [&>div:nth-last-child(2)]:mb-[0px]">
-                        <template v-for="(medium,medium_key) in tbl_.mediums">
-                            <div v-if="medium.type=='photoart'" class="w-[48.5%] mb-[10px] last:mb-[0px]">
-                                <img :src="medium.src" alt="" />
-                            </div>
-                        </template>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="mx-auto w-[800px] md:w-auto mt-[50px] md:mt-[25px]">
-        <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>産声・動画の登録</h3>
-
-        <div class="mx-[20px] py-[15px]">
-
-
-            <div class="box">
-                <div class="flex justify-between flex-wrap">
-                    <template v-for="(medium,medium_key) in tbl_.mediums">
-                        <div v-if="medium.type=='first_cry' || medium.type=='movie'" class="w-[48.5%]">
-                            <div v-if="medium.type=='first_cry'" class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
-                            <div v-if="medium.type=='movie'" class="text-[14px] font-bold text-center mb-[3px]">動画(横アングル)</div>
-                            <div class="">
-
-                                <div v-if="medium.status==''" class="text-center mt-[3px] py-[15px] bg-slate-150 font-bold text-slate-500 text-[14px]">未登録</div>
-                                <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[15px] bg-green-100 font-bold text-green text-[14px]">登録済</div>
-                                <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
-                            </div>
-                        </div>
-                    </template>
-                </div>
             </div>
         </div>
     </section>
@@ -236,93 +257,15 @@
         name: 'main',
         data(){
             return {
-                errors:[],
-
-                tbl_:{
-                    mediums:[
-                        {
-                            type:'echo',
-                            status:'saved',
-                            src:'/storage/test/echo_1.jpg',
-                        },
-                        {
-                            type:'echo',
-                            status:'saved',
-                            src:'/storage/test/echo_2.jpg',
-                        },
-                        {
-                            type:'namecard',
-                            status:'saved',
-                            src:'/storage/test/namecard.jpg',
-                        },
-                        {
-                            type:'pregnancy',
-                            status:'saved',
-                            src:'/storage/test/pregnancy_1.jpg',
-                        },
-                        {
-                            type:'pregnancy',
-                            status:'saved',
-                            src:'/storage/test/pregnancy_2.jpg',
-                        },
-                        {
-                            type:'pregnancy',
-                            status:'saved',
-                            src:'/storage/test/pregnancy_3.jpg',
-                        },
-                        {
-                            type:'pregnancy',
-                            status:'saved',
-                            src:'/storage/test/pregnancy_4.jpg',
-                        },
-                        {
-                            type:'pregnancy',
-                            status:'saved',
-                            src:'/storage/test/pregnancy_5.jpg',
-                        },
-                        {
-                            type:'pregnancy',
-                            status:'saved',
-                            src:'/storage/test/pregnancy_6.jpg',
-                        },
-                        {type:'free',status:'saved',src:'/storage/test/free_1.jpg',},
-                        {type:'free',status:'saved',src:'/storage/test/free_2.jpg',},
-                        {type:'free',status:'saved',src:'/storage/test/free_3.jpg',},
-                        {type:'free',status:'saved',src:'/storage/test/free_4.jpg',},
-                        {type:'free',status:'saved',src:'/storage/test/free_5.jpg',},
-                        {type:'free',status:'saved',src:'/storage/test/free_6.jpg',},
-                        {type:'free',status:'saved',src:'/storage/test/free_7.jpg',},
-                        {type:'free',status:'saved',src:'/storage/test/free_8.jpg',},
-
-                        {
-                            type:'photoart',
-                            status:'saved',
-                            src:'/storage/test/photoart_1.jpg',
-                        },
-                        {
-                            type:'photoart',
-                            status:'saved',
-                            src:'/storage/test/photoart_2.jpg',
-                        },
-                        {
-                            type:'photoart',
-                            status:'saved',
-                            src:'/storage/test/photoart_3.jpg',
-                        },
-
-                        {
-                            type:'first_cry',
-                            status:'',
-                            src:    '/storage/test/photoarrt_3.jpg',
-                        },
-                        {
-                            type:'movie',
-                            status:'saved',
-                            src:'/storage/test/photoarrt_3.jpg',
-                        },
-                    ]
+                sex_types:{!! json_encode(App\Models\TblPatient::$sex_types,JSON_UNESCAPED_UNICODE )!!},
+                type_counts:{!! json_encode(App\Models\TblPatientMedium::$type_counts,JSON_UNESCAPED_UNICODE )!!},
+                tbl_patient:{
+                    tbl_patient_mediums:[]
                 },
             }
+        },
+        beforeMount:async function(){
+            this.tbl_patient = mergeDeeply(this.tbl_patient,{!! json_encode($tbl_patient,JSON_UNESCAPED_UNICODE )!!},{concatArray: true});
         },
         created:async function(){
 

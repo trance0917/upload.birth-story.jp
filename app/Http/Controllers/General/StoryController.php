@@ -36,6 +36,14 @@ class StoryController extends Controller
     }
 
     public function confirm(TblPatient $tbl_patient,Request $request){
+        $tbl_patient = TblPatient::with([
+            'tbl_patient_mediums'=>function ($query){
+                //ファイル名 空にしているのはミューテタで取得できるため
+                $query->select(['tbl_patient_id','extension','tbl_patient_medium_id','type','file_name','order'])->selectRaw('\'\' AS `src`')->orderBy('type')->orderBy('order');
+            },
+            'tbl_patient_mediums.tbl_patient:tbl_patient_id,code',
+            'mst_maternity:mst_maternity_id,name',
+        ])->select(['tbl_patient_id','mst_maternity_id','line_picture_url','code','name','roman_alphabet','baby_name','baby_roman_alphabet','birth_day','birth_time','weight','height','sex','what_number','health_check','message','is_use_instagram','submitted_at'])->find($tbl_patient->tbl_patient_id);
         return view('general.story.confirm',compact('tbl_patient'));
     }
     public function complete(TblPatient $tbl_patient,Request $request){
