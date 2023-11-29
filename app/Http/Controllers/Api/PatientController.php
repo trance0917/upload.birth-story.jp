@@ -176,7 +176,7 @@ class PatientController extends Controller
         }
 
         if ($file instanceof UploadedFile) {
-
+            $mime_type = explode('/',$file->getMimeType())[0];
             $directory_path = 'public/patients/'.$tbl_patient->tbl_patient_id.'_'.$tbl_patient->code;
             $original_directory_path = $directory_path.'/original';
             if(\Storage::exists($directory_path)){
@@ -211,6 +211,11 @@ class PatientController extends Controller
                         'registered_at' => now(),
                     ];
                     $tbl_patient_medium = TblPatientMedium::find($tbl_patient_medium_id);
+                    
+                    //古い情報を取得しておく
+                    $old_file_name = $tbl_patient_medium->file_name;
+                    $old_extension = $tbl_patient_medium->extension;
+                    
                     $tbl_patient_medium->fill($medium);
                     $tbl_patient_medium->save();
                 }
@@ -218,14 +223,26 @@ class PatientController extends Controller
                 //原本の保存
                 $file->storeAs($original_directory_path, $filename . '.' . $filepath['extension']);
 
-                //サムネイルの保存
-                $img = \Image::make($file);
-                $img->resize(350, null, function($constraint){
-                    $constraint->aspectRatio(); // 縦横比にしてくれる
-                    $constraint->upsize(); // 元画像より大きくならないようにする
-                });
-                $img->orientate();
-                $img->save(storage_path('app/'.$directory_path.'/'.$filename . '.' . $filepath['extension']),100);
+                if($mime_type=='image'){
+                    //サムネイルの保存
+                    $img = \Image::make($file);
+                    $img->resize(350, null, function($constraint){
+                        $constraint->aspectRatio(); // 縦横比にしてくれる
+                        $constraint->upsize(); // 元画像より大きくならないようにする
+                    });
+                    $img->orientate();
+                    $img->save(storage_path('app/'.$directory_path.'/'.$filename . '.' . $filepath['extension']),100);
+                }else{
+                    $file->storeAs($directory_path, $filename . '.' . $filepath['extension']);
+                }
+                
+                
+                //古いファイルは消しておく
+                if($tbl_patient_medium_id){
+                    dump($directory_path .'/'. $old_file_name.'.'.$old_extension);
+                    \Storage::disk('local')->delete(''.$directory_path .'/'. $old_file_name.'.'.$old_extension);
+                    \Storage::disk('local')->delete(''.$original_directory_path .'/'. $old_file_name.'.'.$old_extension);
+                }
 
 
                 DB::commit();

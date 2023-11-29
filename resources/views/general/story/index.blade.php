@@ -144,7 +144,6 @@
                                    class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
                                 <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</div>
                             </label>
-
                             <input :id="'medium_'+medium_key" type="file" accept="image/*" v-on:change="medium_save(medium_key,$event,medium)" />
                         </div>
                         </template>
@@ -168,7 +167,6 @@
                                 [&_.sort-btns_li:first-child]:first:hidden
                                 [&_.sort-btns_li:last-child]:last:hidden
                             ">
-                                
                                 <div class="flex items-center">
                                     <div class="w-[65%]">
                                         <label class="lbl" :for="'medium_'+medium_key">
@@ -177,7 +175,7 @@
                                                class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
                                             <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</div>
                                         </label>
-                                        <input :id="'pregnancy_'+medium_key" type="file" accept="image/*" v-on:change="medium_save(medium_key,$event,medium)" />
+                                        <input :id="'medium_'+medium_key" type="file" accept="image/*" v-on:change="medium_save(medium_key,$event,medium)" />
                                     </div>
                                     <ul class="sort-btns ml-[10px] space-y-[5px]
                                         [&>li]:border
@@ -217,11 +215,11 @@
                                     <div class="w-[65%]">
                                         <label class="lbl" :for="'medium_'+medium_key">
                                             <div><img :src="medium.src" alt="" /></div>
-                                            <div class="choice py-[50px]" v-if="medium.status==''">画像を追加</div>
+                                            <i v-if="'free_'+medium_key==loading_input_key"
+                                               class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
+                                            <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</div>
                                         </label>
-                                        <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
-                                        <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(タップで変更)</div>
-                                        <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
+                                        <input :id="'medium_'+medium_key" type="file" accept="image/*" v-on:change="medium_save(medium_key,$event,medium)" />
                                     </div>
                                     <ul class="sort-btns ml-[10px] space-y-[5px]
                                         [&>li]:border
@@ -239,6 +237,14 @@
                             </div>
                         </template>
                     </div>
+                    <div class="w-[65%] mt-[10px]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='free'}).length<8">
+                        <label class="lbl">
+                            <div class="choice py-[50px]">画像を追加</div>
+                            <input type="file" accept="image/*" v-on:change="medium_save('new',$event,{type:'free'})" />
+                            <i v-if="'free_new'==loading_input_key"
+                               class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
+                        </label>
+                    </div>
                 </div>
 
                 <div class="box">
@@ -247,17 +253,23 @@
                     <div class="space-y-[10px]">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                             <div v-if="medium.type=='photoart'" class="w-[80%]">
-                                <div class="">
-                                    <label class="lbl" :for="'medium_'+medium_key">
-                                        <div><img :src="medium.src" alt="" /></div>
-                                        <div class="choice py-[70px]" v-if="medium.status==''">画像を追加</div>
-                                    </label>
-                                    <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
-                                    <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(タップで変更)</div>
-                                    <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
-                                </div>
+                                <label class="lbl" :for="'medium_'+medium_key">
+                                    <div><img :src="medium.src" alt="" /></div>
+                                    <i v-if="'photoart_'+medium_key==loading_input_key"
+                                       class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
+                                    <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</div>
+                                </label>
+                                <input :id="'medium_'+medium_key" type="file" accept="image/*" v-on:change="medium_save(medium_key,$event,medium)" />
                             </div>
                         </template>
+                        <div class="w-[80%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='photoart'}).length<3">
+                            <label class="lbl">
+                                <div class="choice py-[70px]">画像を追加</div>
+                                <input type="file" accept="image/*" v-on:change="medium_save('new',$event,{type:'photoart'})" />
+                                <i v-if="'photoart_new'==loading_input_key"
+                                   class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -289,31 +301,62 @@
         [&_.box_.lbl_.choice]:border
         [&_.box_.lbl_.choice]:border-dashed
         [&_.box_.lbl_.choice]:border-slate-300
-
         [&_.box_.lbl_div]:text-slate-400
-
-
-
         ">
 
             <div class="box">
                 <div class="flex justify-between flex-wrap">
                     <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
-                        <div v-if="medium.type=='first_cry' || medium.type=='movie'" class="w-[48.5%]">
-                            <div v-if="medium.type=='first_cry'" class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
-                            <div v-if="medium.type=='movie'" class="text-[14px] font-bold text-center mb-[3px]">動画(横アングル)</div>
-
+                        <div v-if="medium.type=='first_cry'" class="w-[48.5%]">
+                            <div class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
                             <div class="">
                                 <label class="lbl" :for="'medium_'+medium_key">
-                                    <div><img :src="medium.src" alt="" /></div>
-                                    <div class="choice py-[40px]" v-if="medium.status==''">画像を追加</div>
+                                    <i v-if="'first_cry_'+medium_key==loading_input_key"
+                                       class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
+                                    <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px] py-[40px] bg-green-50">保存済(タップで変更)</div>
                                 </label>
-                                <div v-if="medium.status=='unsaved'" class="text-center mt-[3px] py-[2px] bg-slate-400 text-white text-[12px]">未保存</div>
-                                <div v-if="medium.status=='saved'" class="text-center mt-[3px] py-[2px] bg-green text-white text-[12px]">保存済(タップで変更)</div>
-                                <input :id="'medium_'+medium_key" type="file" :name="'medium_'+medium_key" accept="image/*" />
+                                <p class="mt-[8px] text-center text-center"><a :href="medium.src" class="border rounded-sm border-main px-[7px] py-[3px] inline-block underline text-main font-bold text-[14px]" target="_blank">内容を確認</a></p>
+                                <input :id="'medium_'+medium_key" type="file" accept="video/*" v-on:change="medium_save(medium_key,$event,medium)" />
                             </div>
                         </div>
                     </template>
+                    <div class="w-[48.5%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='first_cry'}).length<1">
+                        <div class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
+                        <label class="lbl">
+                            <div class="choice py-[40px]">動画を追加</div>
+                            <input type="file" accept="video/*" v-on:change="medium_save('new',$event,{type:'first_cry'})" />
+                            <i v-if="'first_cry_new'==loading_input_key"
+                               class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
+                        </label>
+                    </div>
+
+
+
+                    <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
+                        <div v-if="medium.type=='movie'" class="w-[48.5%]">
+                            <div class="text-[14px] font-bold text-center mb-[3px]">動画(横アングル)</div>
+                            <div class="">
+                                <label class="lbl" :for="'medium_'+medium_key">
+                                    <i v-if="'movie_'+medium_key==loading_input_key"
+                                       class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
+                                    <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px] py-[40px] bg-green-50">保存済(タップで変更)</div>
+                                </label>
+                                <p class="mt-[8px] text-center text-center"><a :href="medium.src" class="border rounded-sm border-main px-[7px] py-[3px] inline-block underline text-main font-bold text-[14px]" target="_blank">内容を確認</a></p>
+                                <input :id="'medium_'+medium_key" type="file" accept="video/*" v-on:change="medium_save(medium_key,$event,medium)" />
+                            </div>
+                        </div>
+                    </template>
+                    <div class="w-[48.5%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='movie'}).length<1">
+                        <div class="text-[14px] font-bold text-center mb-[3px]">動画(横アングル)</div>
+                        <label class="lbl">
+                            <div class="choice py-[40px]">動画を追加</div>
+                            <input type="file" accept="video/*" v-on:change="medium_save('new',$event,{type:'movie'})" />
+                            <i v-if="'movie_new'==loading_input_key"
+                               class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
+                        </label>
+                    </div>
+                    
+                    
                 </div>
             </div>
             <p class="text-red font-bold text-[14px] leading-none text-center mt-[10px]">※ 動画は20秒前後でお願いします</p>
