@@ -49,6 +49,9 @@ Route::get('/line/webhook/test', [App\Http\Controllers\General\WebHookController
 Route::get('/line/webhook/test2', [App\Http\Controllers\General\WebHookController::class,'test2'])->name('line-webhook-test2');
 
 
+Route::get('/phpinfo', function () {
+    echo phpinfo();
+})->name('phpinfo');
 
 
 
