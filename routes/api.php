@@ -19,4 +19,5 @@ Route::prefix('v1/g')->group(function () {
     Route::post('/{tbl_patient:code}/story', [PatientController::class, 'storeStory']);
     Route::post('/{tbl_patient:code}/story/input', [PatientController::class, 'storeStoryInput']);
     Route::post('/{tbl_patient:code}/story/medium', [PatientController::class, 'storeStoryMedium']);
+    Route::post('/{tbl_patient:code}/story/medium/sort', [PatientController::class, 'storeStoryMediumSort']);
 });

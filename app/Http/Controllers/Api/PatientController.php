@@ -287,7 +287,6 @@ class PatientController extends Controller
 
                 //古いファイルは消しておく
                 if($tbl_patient_medium_id){
-                    dump($directory_path .'/'. $old_file_name.'.'.$old_extension);
                     \Storage::disk('local')->delete(''.$directory_path .'/'. $old_file_name.'.'.$old_extension);
                     \Storage::disk('local')->delete(''.$original_directory_path .'/'. $old_file_name.'.'.$old_extension);
                 }
@@ -307,6 +306,22 @@ class PatientController extends Controller
         $tbl_patient_medium->src = $tbl_patient_medium->src;
         return response()->json([
             'result' => $tbl_patient_medium,
+            'messages' => '',
+            'errors' => [],
+        ]);
+    }
+    public function storeStoryMediumSort(TblPatient $tbl_patient,Request $request){
+        if($request->tbl_patient_medium_ids){
+            $order = 0;
+            foreach($request->tbl_patient_medium_ids AS $tbl_patient_medium_id){
+                $order++;
+                $tbl_patient_medium = TblPatientMedium::find($tbl_patient_medium_id);
+                $tbl_patient_medium->order = $order;
+                $tbl_patient_medium->save();
+            }
+        }
+        return response()->json([
+            'result' => true,
             'messages' => '',
             'errors' => [],
         ]);

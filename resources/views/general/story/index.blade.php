@@ -159,7 +159,7 @@
                 <div class="box">
                     <h4><i class="fa-solid fa-pencil"></i>出産前・出産中・出産直後<span class="count">@{{ type_counts.pregnancy }}枚</span><span class="example">写真例</span></h4>
                     <p class="text-red font-bold text-[14px] leading-none mb-[10px]">※ 表示順に作成されます</p>
-                    <div class="space-y-[10px]">
+                    <div class="space-y-[10px]" :class="{'opacity-60':sorting_key=='pregnancy'}">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                             <div v-if="medium.type=='pregnancy'" class="
                                 [&_.sort-btns_li:first-child]:first:hidden
@@ -184,8 +184,8 @@
                                         [&>li]:text-center
                                         [&>li]:py-[3px]
                                     ">
-                                        <li @click.prevent="change(tbl_patient.tbl_patient_mediums,medium_key,'up')"><i class="fa-solid fa-caret-up"></i></li>
-                                        <li @click.prevent="change(tbl_patient.tbl_patient_mediums,medium_key,'down')"><i class="fa-solid fa-caret-down"></i></li>
+                                        <li @click.prevent="sort_change(tbl_patient.tbl_patient_mediums,medium_key,'up','pregnancy')"><i class="fa-solid fa-caret-up"></i></li>
+                                        <li @click.prevent="sort_change(tbl_patient.tbl_patient_mediums,medium_key,'down','pregnancy')"><i class="fa-solid fa-caret-down"></i></li>
                                     </ul>
                                 </div>
                             </div>
@@ -205,7 +205,7 @@
 
                 <div class="box">
                     <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ご自由にお好きなシーン<span class="count">@{{ type_counts.free }}枚</span><span class="example">写真例</span></h4>
-                    <div class="space-y-[10px]">
+                    <div class="space-y-[10px]" :class="{'opacity-60':sorting_key=='free'}">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                             <div v-if="medium.type=='free'" class="
                                 [&_.sort-btns_li:first-child]:first:hidden
@@ -230,8 +230,8 @@
                                         [&>li]:text-center
                                         [&>li]:py-[3px]
                                     ">
-                                        <li @click.prevent="change(tbl_patient.tbl_patient_mediums,medium_key,'up')"><i class="fa-solid fa-caret-up"></i></li>
-                                        <li @click.prevent="change(tbl_patient.tbl_patient_mediums,medium_key,'down')"><i class="fa-solid fa-caret-down"></i></li>
+                                        <li @click.prevent="sort_change(tbl_patient.tbl_patient_mediums,medium_key,'up','free')"><i class="fa-solid fa-caret-up"></i></li>
+                                        <li @click.prevent="sort_change(tbl_patient.tbl_patient_mediums,medium_key,'down','free')"><i class="fa-solid fa-caret-down"></i></li>
                                     </ul>
                                 </div>
                             </div>
@@ -332,6 +332,7 @@
                             <i v-if="'first_cry_new'==loading_input_key"
                                class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
                         </label>
+                        <div class="error text-center" v-if="errors['tbl_patient.tbl_patient_mediums.first_cry']">@{{ errors['tbl_patient.tbl_patient_mediums.first_cry'][0] }}</div>
                     </div>
 
 
@@ -350,6 +351,7 @@
                             </div>
                         </div>
                     </template>
+                    
                     <div class="w-[48.5%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='movie'}).length<type_counts.movie">
                         <div class="text-[14px] font-bold text-center mb-[3px]">動画(横アングル)</div>
                         <label class="lbl">
@@ -358,12 +360,11 @@
                             <i v-if="'movie_new'==loading_input_key"
                                class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
                         </label>
+                        <div class="error text-center" v-if="errors['tbl_patient.tbl_patient_mediums.movie']">@{{ errors['tbl_patient.tbl_patient_mediums.movie'][0] }}</div>
                     </div>
 
-
                 </div>
-                <div class="error text-center" v-if="errors['tbl_patient.tbl_patient_mediums.photoart']">@{{ errors['tbl_patient.tbl_patient_mediums.photoart'][0] }}</div>
-                <div class="error text-center" v-if="errors['tbl_patient.tbl_patient_mediums.photoart']">@{{ errors['tbl_patient.tbl_patient_mediums.photoart'][0] }}</div>
+                
 
             </div>
             <p class="text-red font-bold text-[14px] leading-none text-center mt-[10px]">※ 動画は20秒前後でお願いします</p>
@@ -544,6 +545,7 @@
             return {
                 is_loading:false,
                 loading_input_key:'',
+                sorting_key:'',
                 errors:[],
                 sex_types:{!! json_encode(App\Models\TblPatient::$sex_types,JSON_UNESCAPED_UNICODE )!!},
                 type_counts:{!! json_encode(App\Models\TblPatientMedium::$type_counts,JSON_UNESCAPED_UNICODE )!!},
@@ -582,16 +584,34 @@
                     this.is_loading=false;
                 });
             },
-            change:function(data,i,type){
-                if(type=='up'){
+            async sort_change(data,i,direction,medium_type){
+                if(direction=='up'){
                     [data[i-1] ,data[i]] = [data[i],data[i-1]];
                 }else{
                     [data[i+1] ,data[i]] = [data[i],data[i+1]];
                 }
+
+                this.sorting_key=medium_type;
+
+                let tbl_patient_medium_ids = this.tbl_patient.tbl_patient_mediums.filter((e) => {return e.type==medium_type}).map((e) => {return e.tbl_patient_medium_id});
+                
+                await axios.post('/api/v1/g/{{$tbl_patient->code}}/story/medium/sort',
+                    {tbl_patient_medium_ids:tbl_patient_medium_ids}
+                ).then((response) => {//リクエストの成功
+                    // delete t.errors['tbl_patient.'+key];
+                }).catch((error) => {//リクエストの失敗
+                    // let errors = error_message_translate(error.response.data.errors);
+                    // t.errors['tbl_patient.'+key] = errors['tbl_patient.'+key];
+                }).finally(() => {
+                    this.sorting_key='';
+                });
+
+               
+                
             },
 
             async input_save(key,val){
-                if(ths.tbl_patient.submitted_at){
+                if(this.tbl_patient.submitted_at){
                     return;
                 }
 
@@ -613,7 +633,7 @@
                 });
             },
             async medium_save(key,e,medium){
-                if(ths.tbl_patient.submitted_at){
+                if(this.tbl_patient.submitted_at){
                     return;
                 }
                 let t = this;
