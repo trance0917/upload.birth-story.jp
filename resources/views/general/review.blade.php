@@ -10,6 +10,7 @@ todo: paypapyではなくamazonが保存できるように
 [&_.error]:text-red
 [&_.error]:leading-none
 [&_.error]:mt-[5px]
+[&_.error]:mt-[4px]
 ">
     <div v-if="is_loading" class="fixed h-full w-full top-[0] left-[0] bg-amber-50/70 z-50 flex flex-col items-center justify-center pb-[100px]">
         <div class="flower-loader !ml-[-8px] !mt-[-8px]"></div>
