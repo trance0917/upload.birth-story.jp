@@ -43,38 +43,14 @@ class PatientController extends Controller
     }
 
     public function storeStory(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
-        $rules = $patient_service->validate_rules;
-
-        foreach(TblPatientMedium::$type_counts AS $type_count_key=>$type_count){
-            if($type_count_key=='first_cry' || $type_count_key=='movie'){
-                $rules['tbl_patient.tbl_patient_mediums.'.$type_count_key] = 'nullable|array|max:'.$type_count;
-            }else{
-                $rules['tbl_patient.tbl_patient_mediums.'.$type_count_key] = 'required|array|size:'.$type_count;
-            }
-        }
-
-        $valid = [
-            'tbl_patient' => $tbl_patient->toArray(),
-        ];
-
-        foreach(TblPatientMedium::$type_counts AS $type_count_key=>$type_count){
-            $valid['tbl_patient']['tbl_patient_mediums'][$type_count_key] = $tbl_patient->tbl_patient_mediums->filter(function ($value) use($type_count_key) {return $value->type==$type_count_key;})->toArray();
-            if(!$valid['tbl_patient']['tbl_patient_mediums'][$type_count_key]){
-                $valid['tbl_patient']['tbl_patient_mediums'][$type_count_key]=null;
-            }
-        }
-//        dump($rules);
-//        dump($valid);
-
-        $validator = Validator:: make($valid, $rules,['size'=>'枚数が不足しています。']);
-        if ($validator->fails()) {
-            return response()->json([
-                'result' => false,
-                'messages' => '',
-                'errors' => $validator->errors(),
+        $result = $patient_service->storeStory($tbl_patient);
+        if (!$result['result']) {
+            $res = response()->json([
+                'messages' => $result['messages'],
+                'errors' => $result['errors'],
             ], 400);
+            throw new HttpResponseException($res);
         }
-
         return response()->json([
             'result' => true,
             'messages' => '',

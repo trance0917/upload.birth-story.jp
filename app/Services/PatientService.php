@@ -85,7 +85,44 @@ class PatientService{
             'errors' => [],
         ];
     }
+    
+    public function storeStory($tbl_patient){
+        $rules = $this->validate_rules;
 
+        foreach(TblPatientMedium::$type_counts AS $type_count_key=>$type_count){
+            if($type_count_key=='first_cry' || $type_count_key=='movie'){
+                $rules['tbl_patient.tbl_patient_mediums.'.$type_count_key] = 'nullable|array|max:'.$type_count;
+            }else{
+                $rules['tbl_patient.tbl_patient_mediums.'.$type_count_key] = 'required|array|size:'.$type_count;
+            }
+        }
+
+        $valid = [
+            'tbl_patient' => $tbl_patient->toArray(),
+        ];
+
+        foreach(TblPatientMedium::$type_counts AS $type_count_key=>$type_count){
+            $valid['tbl_patient']['tbl_patient_mediums'][$type_count_key] = $tbl_patient->tbl_patient_mediums->filter(function ($value) use($type_count_key) {return $value->type==$type_count_key;})->toArray();
+            if(!$valid['tbl_patient']['tbl_patient_mediums'][$type_count_key]){
+                $valid['tbl_patient']['tbl_patient_mediums'][$type_count_key]=null;
+            }
+        }
+
+        $validator = Validator:: make($valid, $rules,['size'=>'枚数が不足しています。']);
+        if ($validator->fails()) {
+            return [
+                'result' => false,
+                'messages' => '',
+                'errors' => $validator->errors(),
+            ];
+        }
+
+        return [
+            'result' => true,
+            'messages' => '',
+            'errors' => [],
+        ];
+    }
     public function storeStoryInput($tbl_patient,$tbl_patient_input,$key){
         $validator = Validator:: make([
             'tbl_patient' => $tbl_patient_input,
