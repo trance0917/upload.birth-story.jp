@@ -11,7 +11,7 @@
             @if(!$tbl_patient->tbl_patient_reviews->count())
             <section class="border border-main rounded mx-[15px] bg-main/5 py-[20px] px-[15px] mt-[30px]">
                 <h2 class="text-center leading-none text-[15px] font-bold text-brown">バースストーリーから産院アンケートのお願い</h2>
-                <div class="text-red text-[12px] font-bold text-center mt-[5px]">(Paypay<span class="text-red underline">300ポイント</span>進呈)</div>
+                <div class="text-red text-[12px] font-bold text-center mt-[5px]">(Amazonギフトカード<span class="text-red underline">300ポイント</span>進呈)</div>
 
                 <p class="text-[14px] mt-[15px]">お客様の声は、産院さまにとって非常に重要であり、今後のサービス向上の参考にさせていただいております。</p>
                 <p class="text-[14px] mt-[10px]">産院さまご利用時の<span class="underline">良かった点や改善点</span>など、お客様の貴重なご意見をお聞かせください。</p>
@@ -34,10 +34,16 @@
                             いただけませんか？<br />
                             星の評価のみであれば下記リンクから30秒で回答いただけます。</p>
 
-                        <p class="mt-[25px] md:mt-[15px] w-[240px] md:w-[140px] mx-auto text-center">
-                            <a class="relative w-full block bg-main text-white font-bold py-[10px] md:py-[7px] rounded-sm text-[20px] md:text-[14px]"
+                        <p @click.prevent="review_copy" class="relative text-[14px] border-dotted border-slate-300 text-slate-250 bg-slate-50 border p-[5px] rounded overflow-hidden text-ellipsis h-[3.3em] leading-[1.3em]">{{$tbl_patient->review}}
+                            <span class="absolute block w-full top-[calc(50%-10px)] font-bold text-center text-[16px]">タップしてコピー</span>
+                        </p>
+                        <p v-if="is_copy" class="font-bold text-green text-center">コピーしました</p>
+
+
+                        <p class="mt-[25px] md:mt-[15px] w-[240px] md:w-[180px] mx-auto text-center">
+                            <a class="relative w-full block bg-main text-white font-bold py-[10px] md:py-[10px] rounded-sm text-[20px] md:text-[14px]"
                                target="_blank" href="{{$tbl_patient->mst_maternity->review_link}}"
-                            >評価する<i class="fa-solid fa-angle-right absolute top-[16px] md:top-[11px] right-[10px]"></i></a>
+                            >評価する<i class="fa-solid fa-angle-right absolute top-[16px] md:top-[14px] right-[10px]"></i></a>
                         </p>
 
                             <ul class="hidden star star-30 star-31 star-32 star-33 star-34 star-35 star-36 star-37 star-38 star-39 star-40 star-41 star-42 star-43 star-44 star-45 star-46 star-47 star-48 star-49 star-50"></ul>
@@ -45,7 +51,8 @@
                             <p class="text-[14px] mt-[15px] font-bold">アンケートのご協力をありがとうございました。<br />頂いた内容はサービスの向上ための参考として活用させていただきます。</p>
                         @endif
 
-                        <p class="text-center text-[14px] mt-[10px]">ポイント進呈状況：<span class="font-bold">手続中</span></p>
+                        <p class="text-center text-[14px] mt-[12px]">ポイント進呈状況：<span class="font-bold">手続中</span></p>
+                        <p class="text-center text-[12px] mt-[2px]">進呈先：{{$tbl_patient->amazon_id}}</p>
                     </section>
             @endif
         @endif
@@ -143,6 +150,34 @@
 
     </div>
 </main>
+<script>
+    Vue.createApp({
+        name: 'main',
+        data(){
+            return{
+                is_copy:false
+            }
+        },
+        methods:{
+            review_copy:function(){
+                let review = {!!json_encode($tbl_patient->review,JSON_UNESCAPED_UNICODE)!!};
+
+                navigator.clipboard.writeText(review).then(
+                    () => {
+                        this.is_copy=true;
+                    },
+                    () => {
+                        // コピーに失敗したときの処理
+                    });
+
+
+            },
+        },
+        watch:{
+
+        },
+    }).mount('#main');
+</script>
 @endsection
 
 @section('javascript')@endsection

@@ -34,7 +34,7 @@ use App\Traits\SerializeDate;
  * @property string|null $message
  * @property int|null $is_use_instagram
  * @property string|null $review
- * @property string|null $paypayid
+ * @property string|null $amazon_id
  * @property Carbon|null $completed_at
  * @property Carbon|null $undertook_at
  * @property int $undertook_by
@@ -87,7 +87,7 @@ class TblPatient extends Model
 		'message',
 		'is_use_instagram',
 		'review',
-		'paypayid',
+		'amazon_id',
 		'completed_at',
 		'undertook_at',
 		'undertook_by',

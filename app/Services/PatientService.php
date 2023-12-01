@@ -26,7 +26,7 @@ class PatientService{
         'tbl_patient.message' => 'nullable|max:200',
         'tbl_patient.is_use_instagram' => 'required|in:1,2',
     ];
-    
+
     public function mediumSort($tbl_patient_medium_ids){
         $order = 0;
         foreach($tbl_patient_medium_ids AS $tbl_patient_medium_id){
@@ -45,7 +45,7 @@ class PatientService{
         ], [
             //tbl_supplier
             'tbl_patient.review' => 'required',
-            'tbl_patient.paypayid' => 'required',
+            'tbl_patient.amazon_id' => 'required',
             'tbl_patient.tbl_patient_reviews.*.score' => 'required',
         ]);
         if ($validator->fails()) {
@@ -66,7 +66,7 @@ class PatientService{
                 $tbl_patient_review->save();
             }
             $tbl_patient->review = $tbl_patient_input['review'];
-            $tbl_patient->paypayid = $tbl_patient_input['paypayid'];
+            $tbl_patient->amazon_id = $tbl_patient_input['amazon_id'];
             $tbl_patient->save();
 
             DB::commit();
@@ -85,7 +85,7 @@ class PatientService{
             'errors' => [],
         ];
     }
-    
+
     public function storeStory($tbl_patient){
         $rules = $this->validate_rules;
 
@@ -151,7 +151,7 @@ class PatientService{
                 'errors' => [],
             ];
         }
-        
+
         return [
             'result' => true,
             'messages' => '',
@@ -269,8 +269,8 @@ class PatientService{
             'errors' => [],
         ];
     }
-    
+
     public function generateFile($tbl_patient){
-        
+
     }
 }

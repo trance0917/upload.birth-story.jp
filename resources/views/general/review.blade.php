@@ -21,8 +21,6 @@ todo: paypapyではなくamazonが保存できるように
 
     <h2 class="mt-[30px] text-center leading-none text-[15px] font-bold text-brown">バースストーリーから産院アンケートのお願い</h2>
 
-
-
     <p class="text-[14px] mt-[15px] w-[80%] mx-auto">アンケートにご協力いただきまして、誠にありがとうございます。<br />
         ★の評価とご感想やご意見をいただけますでしょうか。</p>
 
@@ -63,7 +61,7 @@ todo: paypapyではなくamazonが保存できるように
                 </div>
                 <div>
                     <dt>2</dt>
-                    <dd>進呈先のPaypay IDを入力</dd>
+                    <dd>進呈先の連絡先を入力</dd>
                 </div>
             </dl>
         </section>
@@ -133,9 +131,9 @@ todo: paypapyではなくamazonが保存できるように
                 </section>
 
                 <section class="bg-white flex flex-col items-center py-[25px] px-[30px]">
-                    <p class="text-[14px]">進呈先のPaypayIDもしくは登録電話番号を登録ください。</p>
-                    <input class="h-[34px] mt-[10px]" type="text" value="" placeholder="PaypayID / 電話番号" v-model="tbl_patient.paypayid" />
-                    <p class="error" v-if="errors['tbl_patient.paypayid']">@{{ errors['tbl_patient.paypayid'][0] }}</p>
+                    <p class="text-[14px]">Amazonギフトを届けるメールアドレスもしくは携帯番号を入力してください</p>
+                    <input class="h-[34px] mt-[10px] w-[240px] text-center" type="text" value="" placeholder="メールアドレス / 携帯番号" v-model="tbl_patient.amazon_id" />
+                    <p class="error" v-if="errors['tbl_patient.amazon_id']">@{{ errors['tbl_patient.amazon_id'][0] }}</p>
                 </section>
 
             </div>
