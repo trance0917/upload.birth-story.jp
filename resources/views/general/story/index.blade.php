@@ -122,7 +122,7 @@
                             <label class="lbl">
                                 <div class="choice py-[40px]">画像を追加</div>
                                 <input type="file" accept="image/*" v-on:change="medium_save('new',$event,{type:'echo'})" />
-                                <i v-if="'echo_new'==loading_input_key"
+                                <i
                                     class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
                             </label>
                         </div>
@@ -351,7 +351,7 @@
                             </div>
                         </div>
                     </template>
-                    
+
                     <div class="w-[48.5%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='movie'}).length<type_counts.movie">
                         <div class="text-[14px] font-bold text-center mb-[3px]">動画(横アングル)</div>
                         <label class="lbl">
@@ -364,7 +364,7 @@
                     </div>
 
                 </div>
-                
+
 
             </div>
             <p class="text-red font-bold text-[14px] leading-none text-center mt-[10px]">※ 動画は20秒前後でお願いします</p>
@@ -594,7 +594,7 @@
                 this.sorting_key=medium_type;
 
                 let tbl_patient_medium_ids = this.tbl_patient.tbl_patient_mediums.filter((e) => {return e.type==medium_type}).map((e) => {return e.tbl_patient_medium_id});
-                
+
                 await axios.post('/api/v1/g/{{$tbl_patient->code}}/story/medium/sort',
                     {tbl_patient_medium_ids:tbl_patient_medium_ids}
                 ).then((response) => {//リクエストの成功
@@ -606,8 +606,8 @@
                     this.sorting_key='';
                 });
 
-               
-                
+
+
             },
 
             async input_save(key,val){
