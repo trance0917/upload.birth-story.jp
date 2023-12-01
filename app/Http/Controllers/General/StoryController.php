@@ -4,6 +4,7 @@ namespace App\Http\Controllers\General;
 
 use App\Events\ContactSendEvent;
 use App\Http\Controllers\Controller;
+use App\Services\PatientService;
 use Illuminate\Http\Request;
 use App\Models\TblPatient;
 
@@ -46,7 +47,7 @@ class StoryController extends Controller
         ])->select(['tbl_patient_id','mst_maternity_id','line_picture_url','code','name','roman_alphabet','baby_name','baby_roman_alphabet','birth_day','birth_time','weight','height','sex','what_number','health_check','message','is_use_instagram','submitted_at'])->find($tbl_patient->tbl_patient_id);
         return view('general.story.confirm',compact('tbl_patient'));
     }
-    public function complete(TblPatient $tbl_patient,Request $request){
+    public function complete(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
 
         if($request->action == 'return'){
             return redirect()->route('story-index',$tbl_patient);
@@ -64,6 +65,8 @@ class StoryController extends Controller
 
         $tbl_patient->submitted_at = now();
         $tbl_patient->save();
+
+        $patient_service->generateFile($tbl_patient);
         return redirect()->route('guide',$tbl_patient);
 //        return view('general.story.complete',compact('tbl_patient'));
     }

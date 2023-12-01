@@ -18,25 +18,10 @@ use App\Services\ReviewService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
+use App\Services\PatientService;
 
 class PatientController extends Controller
 {
-    private $validate_rules=[
-        'tbl_patient.name' => 'required',
-        'tbl_patient.roman_alphabet' => 'required',
-        'tbl_patient.baby_name' => 'nullable',
-        'tbl_patient.baby_roman_alphabet' => 'nullable',
-        'tbl_patient.birth_day' => 'required|date',
-        'tbl_patient.birth_time' => 'required|date_format:H:i',
-        'tbl_patient.weight' => 'required|integer|between:500,6500',
-        'tbl_patient.height' => 'required|numeric|between:19.0,63.0',
-        'tbl_patient.sex' => 'required|in:1,2',
-        'tbl_patient.what_number' => 'required|in:1,2,3,4,5,6,7,8,9',
-        'tbl_patient.health_check' => 'required|date',
-        'tbl_patient.message' => 'nullable|max:200',
-        'tbl_patient.is_use_instagram' => 'required|in:1,2',
-    ];
-
     public function storeReview(TblPatient $tbl_patient,Request $request) {
 
         $validator = Validator:: make([
@@ -88,8 +73,8 @@ class PatientController extends Controller
         ]);
     }
 
-    public function storeStory(TblPatient $tbl_patient,Request $request){
-        $rules = $this->validate_rules;
+    public function storeStory(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
+        $rules = $patient_service->validate_rules;
 
         foreach(TblPatientMedium::$type_counts AS $type_count_key=>$type_count){
             if($type_count_key=='first_cry' || $type_count_key=='movie'){
@@ -141,7 +126,7 @@ class PatientController extends Controller
         ]);
     }
 
-    public function storeStoryInput(TblPatient $tbl_patient,Request $request){
+    public function storeStoryInput(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
         if($tbl_patient->submitted_at){
             return response()->json([
                 'result' => true,
@@ -149,14 +134,14 @@ class PatientController extends Controller
                 'errors' => [],
             ]);
         }
-        if(!isset($this->validate_rules[$request->key])){
+        if(!isset($patient_service->validate_rules[$request->key])){
             return response()->json(['result' => false,'messages' => '存在しないキー','errors' => [],]);
         }
 
         $validator = Validator:: make([
             'tbl_patient' => $request->tbl_patient,
         ], [
-            $request->key => $this->validate_rules[$request->key],
+            $request->key => $patient_service->validate_rules[$request->key],
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -194,8 +179,6 @@ class PatientController extends Controller
                 'errors' => [],
             ]);
         }
-
-        //todo:バリデート
 
         $validator = Validator:: make([
             'tbl_patient' => $request->tbl_patient,
@@ -310,18 +293,13 @@ class PatientController extends Controller
             'errors' => [],
         ]);
     }
-    public function storeStoryMediumSort(TblPatient $tbl_patient,Request $request){
+    
+    public function storeStoryMediumSort(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
         if($request->tbl_patient_medium_ids){
-            $order = 0;
-            foreach($request->tbl_patient_medium_ids AS $tbl_patient_medium_id){
-                $order++;
-                $tbl_patient_medium = TblPatientMedium::find($tbl_patient_medium_id);
-                $tbl_patient_medium->order = $order;
-                $tbl_patient_medium->save();
-            }
+            $result = $patient_service->mediumSort($request->tbl_patient_medium_ids);
         }
         return response()->json([
-            'result' => true,
+            'result' => $result['result'],
             'messages' => '',
             'errors' => [],
         ]);
