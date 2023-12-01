@@ -76,6 +76,7 @@
         [&_h4>.example]:ml-[3px]
 
         [&_.box_.lbl]:relative
+        [&_.box_.lbl]:block
         [&_.box_.lbl_img]:mx-auto
 
         [&_.box_.lbl_.choice]:bg-slate-100
@@ -109,7 +110,7 @@
                     <div class="flex justify-between flex-wrap">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                         <div v-if="medium.type=='echo'" class="w-[48.5%]">
-                            <label class="lbl block" :for="'medium_'+medium_key">
+                            <label class="lbl" :for="'medium_'+medium_key">
                                 <div><img :src="medium.src" alt="" /></div>
                                 <i v-if="'echo_'+medium_key==loading_input_key"
                                    class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
@@ -119,10 +120,10 @@
                         </div>
                         </template>
                         <div class="w-[48.5%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='echo'}).length<type_counts.echo">
-                            <label class="lbl block">
+                            <label class="lbl">
                                 <div class="choice py-[40px]">画像を追加</div>
                                 <input type="file" accept="image/*" v-on:change="medium_save('new',$event,{type:'echo'})" />
-                                <i
+                                <i v-if="'echo_new'==loading_input_key"
                                     class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
                             </label>
                         </div>
