@@ -22,50 +22,19 @@ use App\Services\PatientService;
 
 class PatientController extends Controller
 {
-    public function storeReview(TblPatient $tbl_patient,Request $request) {
+    public function storeReview(TblPatient $tbl_patient,Request $request,PatientService $patient_service) {
 
-        $validator = Validator:: make([
-            'tbl_patient' => $request->tbl_patient,
-        ], [
-            //tbl_supplier
-            'tbl_patient.review' => 'required',
-            'tbl_patient.paypayid' => 'required',
-            'tbl_patient.tbl_patient_reviews.*.score' => 'required',
-        ]);
-        if ($validator->fails()) {
-            return response()->json([
-                'result' => false,
-                'messages' => '',
-                'errors' => $validator->errors(),
+        $result = $patient_service->storeReview($tbl_patient,$request->tbl_patient);
+
+        if (!$result['result']) {
+            $res = response()->json([
+                'messages' => $result['messages'],
+                'errors' => $result['errors'],
             ], 400);
-        }
-
-        DB::beginTransaction();
-
-        try {
-            foreach($request->tbl_patient['tbl_patient_reviews'] AS $tbl_patient_review_key=>$tbl_patient_review_input){
-                $tbl_patient_review = new TblPatientReview;
-                $tbl_patient_review->tbl_patient_id = $tbl_patient->tbl_patient_id;
-                $tbl_patient_review->fill($tbl_patient_review_input);
-                $tbl_patient_review->save();
-            }
-            $tbl_patient->review = $request->tbl_patient['review'];
-            $tbl_patient->paypayid = $request->tbl_patient['paypayid'];
-            $tbl_patient->save();
-
-            DB::commit();
-        } catch (\Throwable $e) {
-            DB::rollback();
-            Log::error($e);
-            return response()->json([
-                'result' => false,
-                'messages' => $e->getMessage(),
-                'errors' => [],
-            ], 500);
+            throw new HttpResponseException($res);
         }
 
         //todo: 規定評価以上なら産院にメッセージを送る
-        sleep(1);
         return response()->json([
             'result' => true,
             'messages' => '',
@@ -137,33 +106,13 @@ class PatientController extends Controller
         if(!isset($patient_service->validate_rules[$request->key])){
             return response()->json(['result' => false,'messages' => '存在しないキー','errors' => [],]);
         }
-
-        $validator = Validator:: make([
-            'tbl_patient' => $request->tbl_patient,
-        ], [
-            $request->key => $patient_service->validate_rules[$request->key],
-        ]);
-        if ($validator->fails()) {
-            return response()->json([
-                'result' => false,
-                'messages' => '',
-                'errors' => $validator->errors(),
+        $result = $patient_service->storeStoryInput($tbl_patient,$request->tbl_patient,$request->key);
+        if (!$result['result']) {
+            $res = response()->json([
+                'messages' => $result['messages'],
+                'errors' => $result['errors'],
             ], 400);
-        }
-
-        DB::beginTransaction();
-        try {
-            $tbl_patient->fill($request->tbl_patient);
-            $tbl_patient->save();
-            DB::commit();
-        } catch (\Throwable $e) {
-            DB::rollback();
-            Log::error($e);
-            return response()->json([
-                'result' => false,
-                'messages' => $e->getMessage(),
-                'errors' => [],
-            ], 500);
+            throw new HttpResponseException($res);
         }
         return response()->json([
             'result' => true,
@@ -179,7 +128,7 @@ class PatientController extends Controller
                 'errors' => [],
             ]);
         }
-
+        
         $validator = Validator:: make([
             'tbl_patient' => $request->tbl_patient,
         ], [
@@ -267,13 +216,11 @@ class PatientController extends Controller
                     $file->storeAs($directory_path, $filename . '.' . $filepath['extension']);
                 }
 
-
                 //古いファイルは消しておく
                 if($tbl_patient_medium_id){
                     \Storage::disk('local')->delete(''.$directory_path .'/'. $old_file_name.'.'.$old_extension);
                     \Storage::disk('local')->delete(''.$original_directory_path .'/'. $old_file_name.'.'.$old_extension);
                 }
-
 
                 DB::commit();
             } catch (\Throwable $e) {

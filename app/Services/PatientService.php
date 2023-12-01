@@ -3,6 +3,10 @@ namespace App\Services;
 
 use App\Models\MstMaternityQuestion;
 use App\Models\TblPatientMedium;
+use App\Models\TblPatientReview;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class PatientService{
 
@@ -34,4 +38,87 @@ class PatientService{
             'result' => true
         ];
     }
+    public function storeReview($tbl_patient,$tbl_patient_input){
+        $validator = Validator:: make([
+            'tbl_patient' => $tbl_patient_input,
+        ], [
+            //tbl_supplier
+            'tbl_patient.review' => 'required',
+            'tbl_patient.paypayid' => 'required',
+            'tbl_patient.tbl_patient_reviews.*.score' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return [
+                'result' => false,
+                'messages' => '',
+                'errors' => $validator->errors(),
+            ];
+        }
+
+        DB::beginTransaction();
+
+        try {
+            foreach($tbl_patient_input['tbl_patient_reviews'] AS $tbl_patient_review_key=>$tbl_patient_review_input){
+                $tbl_patient_review = new TblPatientReview;
+                $tbl_patient_review->tbl_patient_id = $tbl_patient->tbl_patient_id;
+                $tbl_patient_review->fill($tbl_patient_review_input);
+                $tbl_patient_review->save();
+            }
+            $tbl_patient->review = $tbl_patient_input['review'];
+            $tbl_patient->paypayid = $tbl_patient_input['paypayid'];
+            $tbl_patient->save();
+
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollback();
+            Log::error($e);
+            return [
+                'result' => false,
+                'messages' => $e->getMessage(),
+                'errors' => [],
+            ];
+        }
+        return [
+            'result' => true,
+            'messages' => '',
+            'errors' => [],
+        ];
+    }
+
+    public function storeStoryInput($tbl_patient,$tbl_patient_input,$key){
+        $validator = Validator:: make([
+            'tbl_patient' => $tbl_patient_input,
+        ], [
+            $key => $this->validate_rules[$key],
+        ]);
+        if ($validator->fails()) {
+            return [
+                'result' => false,
+                'messages' => '',
+                'errors' => $validator->errors(),
+            ];
+        }
+
+        DB::beginTransaction();
+        try {
+            $tbl_patient->fill($tbl_patient_input);
+            $tbl_patient->save();
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollback();
+            Log::error($e);
+            return [
+                'result' => false,
+                'messages' => $e->getMessage(),
+                'errors' => [],
+            ];
+        }
+        
+        return [
+            'result' => true,
+            'messages' => '',
+            'errors' => [],
+        ];
+    }
+
 }
