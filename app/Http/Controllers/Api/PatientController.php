@@ -75,19 +75,6 @@ class PatientController extends Controller
             ], 400);
         }
 
-        DB::beginTransaction();
-        try {
-            DB::commit();
-        } catch (\Throwable $e) {
-            DB::rollback();
-            Log::error($e);
-            return response()->json([
-                'result' => false,
-                'messages' => $e->getMessage(),
-                'errors' => [],
-            ], 500);
-        }
-
         return response()->json([
             'result' => true,
             'messages' => '',
@@ -120,7 +107,7 @@ class PatientController extends Controller
             'errors' => [],
         ]);
     }
-    public function storeStoryMedium(TblPatient $tbl_patient,Request $request){
+    public function storeStoryMedium(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
         if($tbl_patient->submitted_at){
             return response()->json([
                 'result' => true,
@@ -128,114 +115,18 @@ class PatientController extends Controller
                 'errors' => [],
             ]);
         }
-        
-        $validator = Validator:: make([
-            'tbl_patient' => $request->tbl_patient,
-        ], [
-            'tbl_patient.tbl_patient_mediums.*.file' => 'mimes:jpg,bmp,png,mp4,mp3,mov',
-        ]);
-        if ($validator->fails()) {
-            return response()->json([
-                'result' => false,
-                'messages' => '',
-                'errors' => $validator->errors(),
+
+        $result = $patient_service->storeStoryMedium($tbl_patient,$request->tbl_patient,$request->key);
+        if (!$result['result']) {
+            $res = response()->json([
+                'messages' => $result['messages'],
+                'errors' => $result['errors'],
             ], 400);
+            throw new HttpResponseException($res);
         }
-
-        $key=$request->key;
-        $tbl_patient_medium_id=$request->tbl_patient['tbl_patient_mediums'][$key]['tbl_patient_medium_id']??null;
-        $type=$request->tbl_patient['tbl_patient_mediums'][$key]['type'];
-        $file=$request->tbl_patient['tbl_patient_mediums'][$key]['file'];
-
-        $order = TblPatientMedium::where('tbl_patient_id', $tbl_patient->tbl_patient_id)
-            ->where('type', $type)
-            ->max('order');
-
-        if (empty($order)) {
-            $order = 0;//一枚目は1
-        }
-
-        if ($file instanceof UploadedFile) {
-            $mime_type = explode('/',$file->getMimeType())[0];
-            $directory_path = 'public/patients/'.$tbl_patient->tbl_patient_id.'_'.$tbl_patient->code;
-            $original_directory_path = $directory_path.'/original';
-            if(\Storage::exists($directory_path)){
-                \Storage::makeDirectory($directory_path);
-                \Storage::makeDirectory($original_directory_path);
-            }
-            $filepath = pathinfo($file->getClientOriginalName());
-            $filename = preg_replace('/[^0-9]/' ,'' , microtime());
-
-            DB::beginTransaction();
-            try {
-                //新規の場合
-                if(!$tbl_patient_medium_id){
-                    $medium = [
-                        'tbl_patient_id' => $tbl_patient->tbl_patient_id,
-                        'file_name' => $filename,
-                        'extension' => $filepath['extension'],
-                        'type' => $type,
-                        'registered_at' => now(),
-                        'order' => $order+1,
-                    ];
-                    $tbl_patient_medium = TblPatientMedium::create($medium);
-                    if (empty($tbl_patient_medium)) {
-                        throw new \Exception('');
-                    }
-                }else{
-                    //更新の場合
-                    $medium = [
-                        'file_name' => $filename,
-                        'extension' => $filepath['extension'],
-                        'type' => $type,
-                        'registered_at' => now(),
-                    ];
-                    $tbl_patient_medium = TblPatientMedium::find($tbl_patient_medium_id);
-
-                    //古い情報を取得しておく
-                    $old_file_name = $tbl_patient_medium->file_name;
-                    $old_extension = $tbl_patient_medium->extension;
-
-                    $tbl_patient_medium->fill($medium);
-                    $tbl_patient_medium->save();
-                }
-
-                //原本の保存
-                $file->storeAs($original_directory_path, $filename . '.' . $filepath['extension']);
-
-                if($mime_type=='image'){
-                    //サムネイルの保存
-                    $img = \Image::make($file);
-                    $img->resize(350, null, function($constraint){
-                        $constraint->aspectRatio(); // 縦横比にしてくれる
-                        $constraint->upsize(); // 元画像より大きくならないようにする
-                    });
-                    $img->orientate();
-                    $img->save(storage_path('app/'.$directory_path.'/'.$filename . '.' . $filepath['extension']),100);
-                }else{
-                    $file->storeAs($directory_path, $filename . '.' . $filepath['extension']);
-                }
-
-                //古いファイルは消しておく
-                if($tbl_patient_medium_id){
-                    \Storage::disk('local')->delete(''.$directory_path .'/'. $old_file_name.'.'.$old_extension);
-                    \Storage::disk('local')->delete(''.$original_directory_path .'/'. $old_file_name.'.'.$old_extension);
-                }
-
-                DB::commit();
-            } catch (\Throwable $e) {
-                DB::rollback();
-                Log::error($e);
-                return response()->json([
-                    'result' => false,
-                    'messages' => $e->getMessage(),
-                    'errors' => [],
-                ], 500);
-            }
-        }
-        $tbl_patient_medium->src = $tbl_patient_medium->src;
+        
         return response()->json([
-            'result' => $tbl_patient_medium,
+            'result' => $result['result'],
             'messages' => '',
             'errors' => [],
         ]);

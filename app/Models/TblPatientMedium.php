@@ -59,6 +59,16 @@ class TblPatientMedium extends Model
         'movie' => 1,
     ];
 
+    public static $type_orders = [
+        'echo' => 1,
+        'namecard' => 2,
+        'pregnancy' => 3,
+        'free' => 4,
+        'photoart' => 5,
+        'first_cry' => 6,
+        'movie' => 7,
+    ];
+
     //基準とする通貨単位
 
 
@@ -70,5 +80,10 @@ class TblPatientMedium extends Model
     public function getSrcAttribute()
     {
         return config('app.url').'/storage/patients/'.$this->tbl_patient_id.'_'.$this->tbl_patient->code.'/'.$this->file_name.'.'.$this->extension;
+    }
+
+    public function getSubmittedFileNameAttribute()
+    {
+        return self::$type_orders[$this->type].'_'.$this->order.'.'.$this->extension;
     }
 }

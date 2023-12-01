@@ -55,7 +55,7 @@ class StoryController extends Controller
 //        if(env('APP_ENV')=='production'){
 //            session()->regenerateToken();
 //        }
-
+        
         //本来到達しないが万が一完了ユーザーからもう一度来た場合飛ばす
         if($tbl_patient->submitted_at){
             return redirect()->route('guide',$tbl_patient);

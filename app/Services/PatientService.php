@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Models\MstMaternityQuestion;
 use App\Models\TblPatientMedium;
 use App\Models\TblPatientReview;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -120,5 +121,119 @@ class PatientService{
             'errors' => [],
         ];
     }
+    public function storeStoryMedium($tbl_patient,$tbl_patient_input,$key){
+        $validator = Validator:: make([
+            'tbl_patient' => $tbl_patient_input,
+        ], [
+            'tbl_patient.tbl_patient_mediums.*.file' => 'mimes:jpg,bmp,png,mp4,mp3,mov',
+        ]);
+        if ($validator->fails()) {
+            return [
+                'result' => false,
+                'messages' => '',
+                'errors' => $validator->errors(),
+            ];
+        }
 
+        $tbl_patient_medium_id=$tbl_patient_input['tbl_patient_mediums'][$key]['tbl_patient_medium_id']??null;
+        $type=$tbl_patient_input['tbl_patient_mediums'][$key]['type'];
+        $file=$tbl_patient_input['tbl_patient_mediums'][$key]['file'];
+
+        $order = TblPatientMedium::where('tbl_patient_id', $tbl_patient->tbl_patient_id)
+            ->where('type', $type)
+            ->max('order');
+
+        if (empty($order)) {
+            $order = 0;//一枚目は1
+        }
+
+        if ($file instanceof UploadedFile) {
+            $mime_type = explode('/',$file->getMimeType())[0];
+            $directory_path = 'public/patients/'.$tbl_patient->tbl_patient_id.'_'.$tbl_patient->code;
+            $original_directory_path = $directory_path.'/original';
+            if(\Storage::exists($directory_path)){
+                \Storage::makeDirectory($directory_path);
+                \Storage::makeDirectory($original_directory_path);
+            }
+            $filepath = pathinfo($file->getClientOriginalName());
+            $filename = preg_replace('/[^0-9]/' ,'' , microtime());
+
+            DB::beginTransaction();
+            try {
+                //新規の場合
+                if(!$tbl_patient_medium_id){
+                    $medium = [
+                        'tbl_patient_id' => $tbl_patient->tbl_patient_id,
+                        'file_name' => $filename,
+                        'extension' => $filepath['extension'],
+                        'type' => $type,
+                        'registered_at' => now(),
+                        'order' => $order+1,
+                    ];
+                    $tbl_patient_medium = TblPatientMedium::create($medium);
+                    if (empty($tbl_patient_medium)) {
+                        throw new \Exception('');
+                    }
+                }else{
+                    //更新の場合
+                    $medium = [
+                        'file_name' => $filename,
+                        'extension' => $filepath['extension'],
+                        'type' => $type,
+                        'registered_at' => now(),
+                    ];
+                    $tbl_patient_medium = TblPatientMedium::find($tbl_patient_medium_id);
+
+                    //古い情報を取得しておく
+                    $old_file_name = $tbl_patient_medium->file_name;
+                    $old_extension = $tbl_patient_medium->extension;
+
+                    $tbl_patient_medium->fill($medium);
+                    $tbl_patient_medium->save();
+                }
+
+                //原本の保存
+                $file->storeAs($original_directory_path, $filename . '.' . $filepath['extension']);
+
+                if($mime_type=='image'){
+                    //サムネイルの保存
+                    $img = \Image::make($file);
+                    $img->resize(350, null, function($constraint){
+                        $constraint->aspectRatio(); // 縦横比にしてくれる
+                        $constraint->upsize(); // 元画像より大きくならないようにする
+                    });
+                    $img->orientate();
+                    $img->save(storage_path('app/'.$directory_path.'/'.$filename . '.' . $filepath['extension']),100);
+                }else{
+                    $file->storeAs($directory_path, $filename . '.' . $filepath['extension']);
+                }
+
+                //古いファイルは消しておく
+                if($tbl_patient_medium_id){
+                    \Storage::disk('local')->delete(''.$directory_path .'/'. $old_file_name.'.'.$old_extension);
+                    \Storage::disk('local')->delete(''.$original_directory_path .'/'. $old_file_name.'.'.$old_extension);
+                }
+
+                DB::commit();
+            } catch (\Throwable $e) {
+                DB::rollback();
+                Log::error($e);
+                return [
+                    'result' => false,
+                    'messages' => $e->getMessage(),
+                    'errors' => [],
+                ];
+            }
+        }
+        $tbl_patient_medium->src = $tbl_patient_medium->src;
+        return [
+            'result' => $tbl_patient_medium,
+            'messages' => '',
+            'errors' => [],
+        ];
+    }
+    
+    public function generateFile($tbl_patient){
+        
+    }
 }
