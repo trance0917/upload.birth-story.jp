@@ -17,7 +17,7 @@ class StoryController extends Controller
                 $query->select(['tbl_patient_id','extension','tbl_patient_medium_id','type','file_name','order'])->selectRaw('\'\' AS `src`')->orderBy('type')->orderBy('order');
             },
             'tbl_patient_mediums.tbl_patient:tbl_patient_id,code'
-        ])->select(['tbl_patient_id','mst_maternity_id','line_picture_url','code','name','roman_alphabet','baby_name','baby_roman_alphabet','birth_day','birth_time','weight','height','sex','what_number','health_check','message','is_use_instagram','submitted_at'])->find($tbl_patient->tbl_patient_id);
+        ])->select(['tbl_patient_id','mst_maternity_id','line_picture_url','code','name','roman_alphabet','baby_name','baby_roman_alphabet','birth_day','birth_time','weight','height','sex','what_number','health_check_date','message','is_use_instagram','submitted_at'])->find($tbl_patient->tbl_patient_id);
         return view('general.story.index',compact('tbl_patient'));
     }
 
@@ -28,7 +28,7 @@ class StoryController extends Controller
                 $query->select(['tbl_patient_id','extension','tbl_patient_medium_id','type','file_name','order'])->selectRaw('\'\' AS `src`');
             },
             'tbl_patient_mediums.tbl_patient:tbl_patient_id,code'
-        ])->select(['tbl_patient_id','mst_maternity_id','code','name','roman_alphabet','baby_name','baby_roman_alphabet','birth_day','birth_time','weight','height','sex','what_number','health_check','message','is_use_instagram','submitted_at'])->find($tbl_patient->tbl_patient_id);
+        ])->select(['tbl_patient_id','mst_maternity_id','code','name','roman_alphabet','baby_name','baby_roman_alphabet','birth_day','birth_time','weight','height','sex','what_number','health_check_date','message','is_use_instagram','submitted_at'])->find($tbl_patient->tbl_patient_id);
         return response()->json([
             'result' => false,
             'messages' => '',
@@ -44,7 +44,7 @@ class StoryController extends Controller
             },
             'tbl_patient_mediums.tbl_patient:tbl_patient_id,code',
             'mst_maternity:mst_maternity_id,name',
-        ])->select(['tbl_patient_id','mst_maternity_id','line_picture_url','code','name','roman_alphabet','baby_name','baby_roman_alphabet','birth_day','birth_time','weight','height','sex','what_number','health_check','message','is_use_instagram','submitted_at'])->find($tbl_patient->tbl_patient_id);
+        ])->select(['tbl_patient_id','mst_maternity_id','line_picture_url','code','name','roman_alphabet','baby_name','baby_roman_alphabet','birth_day','birth_time','weight','height','sex','what_number','health_check_date','message','is_use_instagram','submitted_at'])->find($tbl_patient->tbl_patient_id);
         return view('general.story.confirm',compact('tbl_patient'));
     }
     public function complete(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
@@ -55,7 +55,7 @@ class StoryController extends Controller
 //        if(env('APP_ENV')=='production'){
 //            session()->regenerateToken();
 //        }
-        
+
         //本来到達しないが万が一完了ユーザーからもう一度来た場合飛ばす
         if($tbl_patient->submitted_at){
             return redirect()->route('guide',$tbl_patient);

@@ -495,8 +495,8 @@
                 <dl class="box">
                     <div class="item">
                         <dt>1ヶ月健診日</dt>
-                        <dd><input class="w-[140px]" type="date" placeholder="例：YAMADA HANAKO" v-model="tbl_patient.health_check" @change="input_save('health_check',tbl_patient.health_check)" /><span v-if="'health_check'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
-                            <div class="error" v-if="errors['tbl_patient.health_check']">@{{ errors['tbl_patient.health_check'][0] }}</div>
+                        <dd><input class="w-[140px]" type="date" placeholder="例：YAMADA HANAKO" v-model="tbl_patient.health_check_date" @change="input_save('health_check_date',tbl_patient.health_check_date)" /><span v-if="'health_check_date'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
+                            <div class="error" v-if="errors['tbl_patient.health_check_date']">@{{ errors['tbl_patient.health_check_date'][0] }}</div>
                         </dd>
                     </div>
                     <div class="item">

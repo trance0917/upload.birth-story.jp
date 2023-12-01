@@ -64,6 +64,8 @@ class MaternityLineBotService extends LINEBot
             $tbl_patient->line_name = $profile['displayName'];
             $tbl_patient->line_user_id = $line_user_id;
             $tbl_patient->line_picture_url = $profile['pictureUrl'];
+            $tbl_patient->review_point = $this->mst_maternity->review_point;
+
 
             $tbl_patient->save();
 

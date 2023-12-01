@@ -30,7 +30,7 @@ use App\Traits\SerializeDate;
  * @property float|null $height
  * @property int|null $sex
  * @property int|null $what_number
- * @property Carbon|null $health_check
+ * @property Carbon|null $health_check_date
  * @property string|null $message
  * @property int|null $is_use_instagram
  * @property string|null $review
@@ -60,7 +60,7 @@ class TblPatient extends Model
 		'height' => 'float',
 		'sex' => 'int',
 		'what_number' => 'int',
-		'health_check' => 'datetime:Y-m-d',
+		'health_check_date' => 'datetime:Y-m-d',
 		'is_use_instagram' => 'int',
 		'completed_at' => 'datetime',
 		'undertook_at' => 'datetime',
@@ -83,7 +83,7 @@ class TblPatient extends Model
 		'height',
 		'sex',
 		'what_number',
-		'health_check',
+		'health_check_date',
 		'message',
 		'is_use_instagram',
 		'review',

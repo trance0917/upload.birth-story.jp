@@ -22,7 +22,7 @@ class PatientService{
         'tbl_patient.height' => 'required|numeric|between:19.0,63.0',
         'tbl_patient.sex' => 'required|in:1,2',
         'tbl_patient.what_number' => 'required|in:1,2,3,4,5,6,7,8,9',
-        'tbl_patient.health_check' => 'required|date',
+        'tbl_patient.health_check_date' => 'required|date',
         'tbl_patient.message' => 'nullable|max:200',
         'tbl_patient.is_use_instagram' => 'required|in:1,2',
     ];

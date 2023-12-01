@@ -210,7 +210,7 @@
                 <dl class="box">
                     <div class="item">
                         <dt>1ヶ月健診日</dt>
-                        <dd>@{{ tbl_patient.health_check }}</dd>
+                        <dd>@{{ tbl_patient.health_check_date }}</dd>
                     </div>
                     <div class="item">
                         <dt>備考</dt>
