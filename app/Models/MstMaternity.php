@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class MstMaternity
- * 
+ *
  * @property int $mst_maternity_id
  * @property string $name
  * @property string $line_message_channel_secret
@@ -52,4 +52,9 @@ class MstMaternity extends Model
 		'review_link',
 		'memo'
 	];
+
+    public function mst_maternity_users()
+    {
+        return $this->hasMany(MstMaternityUser::class, 'mst_maternity_id', 'mst_maternity_id');
+    }
 }
