@@ -3,15 +3,23 @@
 namespace App\Http\Controllers\General;
 
 use App\Http\Controllers\Controller;
+use App\Services\MaternityLineBotService;
 use App\Services\MaternityService;
 use Illuminate\Http\Request;
 use App\Models\TblPatient;
 use App\Models\TblPatientReview;
 use App\Models\MstMaternityQuestion;
+use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 
 class IndexController extends Controller
 {
     public function index(TblPatient $tbl_patient,Request $request){
+//        $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
+//        $maternity_line_bot_service->sendReviewNotification($tbl_patient);
+
+//        $maternity_line_bot_service->pushMessage($tbl_patient->line_user_id,new TextMessageBuilder('test'),$tbl_patient);
+//        $maternity_line_bot_service->pushMessage($tbl_patient->line_user_id, new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder('https://birth-story.jp/images/index-insta-9.png', 'https://birth-story.jp/images/index-insta-9.png'),$tbl_patient);
+
         return view('general.guide',compact('tbl_patient'));
     }
 

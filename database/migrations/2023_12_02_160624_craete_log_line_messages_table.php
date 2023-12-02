@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('tbl_patient_id')->default(null)->nullable()->unsigned()->comment('患者ID');
             $table->integer('mst_maternity_user_id')->default(null)->nullable()->unsigned()->comment('産院スタッフID');
             $table->string('line_user_id', 255)->comment('送り先LINE user ID');
-            $table->text('memo')->nullable()->default(null)->comment('送信内容');
+            $table->json('message')->nullable()->default(null)->comment('送信内容');
             $table->softDeletes()->default(null)->nullable()->comment('削除日時(論理削除)');
             $table->timestamps();
 

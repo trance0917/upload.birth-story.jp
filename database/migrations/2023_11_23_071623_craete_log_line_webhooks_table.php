@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('line_user_id', 255)->comment('LINE user ID');
             $table->jsonb('api_data')->comment('APIのデータ丸ごと');
             $table->softDeletes()->default(null)->nullable()->comment('削除日時(論理削除)');
-
             $table->timestamps();
         });
     }

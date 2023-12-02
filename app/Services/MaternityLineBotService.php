@@ -5,7 +5,11 @@ use LINE\LINEBot;
 use LINE\LINEBot\HTTPClient;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use App\Models\MstMaternity;
+use App\Models\MstMaternityUser;
 use App\Models\TblPatient;
+use App\Models\LogLineMessage;
+
+use LINE\LINEBot\MessageBuilder;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -26,6 +30,28 @@ class MaternityLineBotService extends LINEBot
         $this->httpClient = $httpClient;
         $this->channelSecret = $args['channelSecret'];
         $this->mst_maternity = $mst_maternity;
+    }
+
+    public function pushMessage($to, MessageBuilder $messageBuilder,$model=null)
+    {
+        $log_line_message = new LogLineMessage;
+
+        if($model instanceof TblPatient){
+            $log_line_message->type=1;
+            $log_line_message->tbl_patient_id=$model->tbl_patient_id;
+            $log_line_message->line_user_id=$model->line_user_id;
+            $log_line_message->message=json_encode($messageBuilder->buildMessage());
+            $log_line_message->save();
+        }elseif($model instanceof MstMaternityUser){
+            $log_line_message->type=2;
+            $log_line_message->mst_maternity_user_id=$model->mst_maternity_user_id;
+            $log_line_message->line_user_id=$model->line_user_id;
+            $log_line_message->message=json_encode($messageBuilder->buildMessage());
+            $log_line_message->save();
+        }
+
+        $res = parent::pushMessage($to, $messageBuilder);
+        return $res;
     }
 
     // 例：送信されたメッセージを取得するAPI
@@ -72,20 +98,12 @@ class MaternityLineBotService extends LINEBot
             //リッチメニューIDを紐づける対応が必要
             $tbl_patient->richmenu_id = 'リッチメニューID';
 
-
-            $this->pushMessage($line_user_id,new TextMessageBuilder("フォローを確認\nリッチメニューに付けるBSのリンク\n".config('app.url').'/'.$code.'?openExternalBrowser=1'));
-
-
+            $this->pushMessage($line_user_id,new TextMessageBuilder("フォローを確認\nリッチメニューに付けるBSのリンク\n".config('app.url').'/'.$code.'?openExternalBrowser=1'),$tbl_patient);
             DB::commit();
         }catch(\Throwable $e){
             DB::rollback();
             Log::error($e);
         }
-
-
-
-
-
     }
     public function unfollow($line_user_id){
         $tbl_patients = TblPatient::where('line_user_id', $line_user_id)->get();
@@ -96,5 +114,22 @@ class MaternityLineBotService extends LINEBot
             $tbl_patient->delete();
         }
         //todo リッチメニューを消す処理
+    }
+
+    public function sendReviewNotification($tbl_patient){
+        //ユーザーに送る処理
+        //
+        dump($tbl_patient->line_user_id);
+
+        //産院スタッフに送る処理
+        if($this->mst_maternity->mst_maternity_users->count()){
+            foreach($this->mst_maternity->mst_maternity_users AS $mst_maternity_user_key=>$mst_maternity_user){
+                if($mst_maternity_user->is_review_notification){
+                    //dump($mst_maternity_user->line_user_id);
+                }
+            }
+        }
+
+
     }
 }
