@@ -67,7 +67,7 @@ class StoryController extends Controller
         $tbl_patient->save();
 
         $patient_service->generateFile($tbl_patient);
-        return redirect()->route('guide',$tbl_patient);
+        return redirect()->route('review',$tbl_patient);
 //        return view('general.story.complete',compact('tbl_patient'));
     }
 }

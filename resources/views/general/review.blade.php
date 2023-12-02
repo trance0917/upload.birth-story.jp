@@ -15,19 +15,25 @@ todo: paypapyではなくamazonが保存できるように
         <div class="flower-loader !ml-[-8px] !mt-[-8px]"></div>
         <p class="mt-[35px] text-center font-bold">送信中です。<br />しばらくお待ちください。</p>
     </div>
+
     @if($tbl_patient->tbl_patient_reviews->count())
-    <div class="mt-[50px] md:mt-[30px] text-center"><span class="w-[80%] px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">ご協力ありがとうございます</span></div>
+        <div class="mt-[50px] md:mt-[30px] text-center"><span class="w-[80%] px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">ご協力ありがとうございます</span></div>
+    @elseif($tbl_patient->submitted_at)
+        <div class="mt-[50px] md:mt-[30px] text-center"><span class="w-[80%] px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">提出が完了しました</span></div>
     @endif
 
-    <h2 class="mt-[30px] text-center leading-none text-[15px] font-bold text-brown">バースストーリーから産院アンケートのお願い</h2>
+    @if($tbl_patient->submitted_at)
+        @if(!$tbl_patient->tbl_patient_reviews->count())
+            <section class="border border-main rounded mx-[15px] bg-main/5 py-[20px] px-[15px] mt-[30px]">
+                <h2 class="text-center leading-none text-[15px] font-bold text-brown">バースストーリーから産院アンケートのお願い</h2>
 
-    <p class="text-[14px] mt-[15px] w-[80%] mx-auto">アンケートにご協力いただきまして、誠にありがとうございます。<br />
-        ★の評価とご感想やご意見をいただけますでしょうか。</p>
+                <div class="text-red text-[12px] font-bold text-center mt-[5px]">(Amazonギフトカード<span class="text-red underline">{{$tbl_patient->review_point}}ポイント</span>進呈)</div>
 
-    <div v-if="Object.keys(errors).length" class="mt-[30px] flex justify-center">
-        <p class="text-[14px] md:text-[12px] inline-block font-bold bg-red shadow text-white px-[15px] py-[10px] md:px-[10px] md:py-[5px]">※ エラーがあります。ご確認のうえ再送信してください</p>
-    </div>
-
+                <p class="text-[14px] mt-[15px]">お客様の声は、産院さまにとって非常に重要であり、今後のサービス向上の参考にさせていただいております。</p>
+                <p class="text-[14px] mt-[10px]">産院さまご利用時の<span class="underline">良かった点や改善点</span>など、お客様の貴重なご意見をお聞かせください。</p>
+            </section>
+        @endif
+    @endif
 
     <div class="mt-[60px] md:mt-[30px]">
         <section class="bg-[#866827]/10 p-[20px] md:p-[10px]">

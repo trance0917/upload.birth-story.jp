@@ -13,7 +13,7 @@
                 <h2 class="text-center leading-none text-[15px] font-bold text-brown">バースストーリーから産院アンケートのお願い</h2>
 
 
-                <div class="text-red text-[12px] font-bold text-center mt-[5px]">(Amazonギフトカード<span class="text-red underline">{{$tbl_patient->mst_maternity->review_point}}ポイント</span>進呈)</div>
+                <div class="text-red text-[12px] font-bold text-center mt-[5px]">(Amazonギフトカード<span class="text-red underline">{{$tbl_patient->review_point}}ポイント</span>進呈)</div>
 
                 <p class="text-[14px] mt-[15px]">お客様の声は、産院さまにとって非常に重要であり、今後のサービス向上の参考にさせていただいております。</p>
                 <p class="text-[14px] mt-[10px]">産院さまご利用時の<span class="underline">良かった点や改善点</span>など、お客様の貴重なご意見をお聞かせください。</p>
@@ -36,8 +36,8 @@
                             いただけませんか？<br />
                             星の評価のみであれば下記リンクから30秒で回答いただけます。</p>
 
-                        <p @click.prevent="review_copy" class="relative text-[14px] border-dotted border-slate-300 text-slate-250 bg-slate-50 border p-[5px] rounded overflow-hidden text-ellipsis h-[3.3em] leading-[1.3em]">{{$tbl_patient->review}}
-                            <span class="absolute block w-full top-[calc(50%-10px)] font-bold text-center text-[16px]">タップしてコピー</span>
+                        <p @click.prevent="review_copy" class="relative text-[14px] border-dotted border-slate-400 text-slate-250 bg-slate-50 border p-[5px] rounded overflow-hidden text-ellipsis h-[3.3em] leading-[1.3em] mt-[10px]">{{$tbl_patient->review}}
+                            <span class="absolute block w-full top-[calc(50%-8px)] font-bold text-center text-[16px]">タップしてコピー</span>
                         </p>
                         <p v-if="is_copy" class="mt-[3px] font-bold text-green text-center">コピーしました</p>
                         <p v-if="is_fail_copy" class="mt-[3px] font-bold text-red text-[12px] text-center">端末の制限によりコピーできませんでした。</p>

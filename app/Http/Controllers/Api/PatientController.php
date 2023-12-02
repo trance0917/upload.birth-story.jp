@@ -3,26 +3,16 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\MstMaternityQuestion;
 use App\Models\TblPatient;
-use App\Models\TblPatientMedium;
-use App\Models\TblPatientReview;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Arr;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Support\Facades\Cache;
-use App\Services\ReviewService;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Validation\Rule;
 use App\Services\PatientService;
+use App\Services\MaternityService;
 
 class PatientController extends Controller
 {
-    public function storeReview(TblPatient $tbl_patient,Request $request,PatientService $patient_service) {
+    public function storeReview(TblPatient $tbl_patient,Request $request,PatientService $patient_service,MaternityService $maternity_service) {
 
         $result = $patient_service->storeReview($tbl_patient,$request->tbl_patient);
 
@@ -33,6 +23,8 @@ class PatientController extends Controller
             ], 400);
             throw new HttpResponseException($res);
         }
+
+        //$maternity_service->sendReviewNotification();
 
         //todo: 規定評価以上なら産院にメッセージを送る
         return response()->json([
@@ -100,14 +92,14 @@ class PatientController extends Controller
             ], 400);
             throw new HttpResponseException($res);
         }
-        
+
         return response()->json([
             'result' => $result['result'],
             'messages' => '',
             'errors' => [],
         ]);
     }
-    
+
     public function storeStoryMediumSort(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
         if($request->tbl_patient_medium_ids){
             $result = $patient_service->mediumSort($request->tbl_patient_medium_ids);

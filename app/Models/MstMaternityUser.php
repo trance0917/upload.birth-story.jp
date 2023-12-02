@@ -12,12 +12,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class MstMaternityUser
- * 
+ *
  * @property int $mst_maternity_user_id
  * @property int $mst_maternity_id
  * @property string $name
  * @property string|null $line_user_id
- * @property int $is_score_notification
+ * @property int $is_review_notification
  * @property int $is_take_photoart
  * @property string|null $deleted_at
  * @property Carbon|null $created_at
@@ -33,7 +33,7 @@ class MstMaternityUser extends Model
 
 	protected $casts = [
 		'mst_maternity_id' => 'int',
-		'is_score_notification' => 'int',
+		'is_review_notification' => 'int',
 		'is_take_photoart' => 'int'
 	];
 
@@ -41,7 +41,7 @@ class MstMaternityUser extends Model
 		'mst_maternity_id',
 		'name',
 		'line_user_id',
-		'is_score_notification',
+		'is_review_notification',
 		'is_take_photoart'
 	];
 }

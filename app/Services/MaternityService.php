@@ -3,7 +3,7 @@ namespace App\Services;
 
 use App\Models\MstMaternityQuestion;
 
-class ReviewService
+class MaternityService
 {
     public function getMstMaternityQuestions($mst_maternity_id){
         $mst_maternity_questions = MstMaternityQuestion::select([
