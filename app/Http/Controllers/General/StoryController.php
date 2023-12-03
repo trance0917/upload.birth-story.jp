@@ -4,6 +4,7 @@ namespace App\Http\Controllers\General;
 
 use App\Events\ContactSendEvent;
 use App\Http\Controllers\Controller;
+use App\Services\MaternityLineBotService;
 use App\Services\PatientService;
 use Illuminate\Http\Request;
 use App\Models\TblPatient;
@@ -62,11 +63,13 @@ class StoryController extends Controller
         }
 
 
+        $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
+        $maternity_line_bot_service->sendStoreCompleteNotification(TblPatient::find($tbl_patient->tbl_patient_id));
 
         $tbl_patient->submitted_at = now();
         $tbl_patient->save();
 
-        $patient_service->generateFile($tbl_patient);
+        //$patient_service->generateFile($tbl_patient);
         return redirect()->route('review',$tbl_patient);
 //        return view('general.story.complete',compact('tbl_patient'));
     }

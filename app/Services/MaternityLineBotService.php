@@ -116,20 +116,31 @@ class MaternityLineBotService extends LINEBot
         //todo リッチメニューを消す処理
     }
 
-    public function sendReviewNotification($tbl_patient){
+    public function sendReviewNotification(TblPatient $tbl_patient){
         //ユーザーに送る処理
-        //
-        dump($tbl_patient->line_user_id);
+        //指定評価以上だった場合のメッセージ
+        if($tbl_patient->average_score >= $tbl_patient->mst_maternity->minimum_review_score){
+            //googleの口コミをプッシュする
+            $this->pushMessage($tbl_patient->line_user_id,new TextMessageBuilder(view('lines/review-patient-high-rating', ['tbl_patient'=>$tbl_patient,])->render()),$tbl_patient);
+        }else{
+            //そうでなかった場合のメッセージ
+            $this->pushMessage($tbl_patient->line_user_id,new TextMessageBuilder(view('lines/review-patient-low-rating', ['tbl_patient'=>$tbl_patient,])->render()),$tbl_patient);
+        }
 
         //産院スタッフに送る処理
         if($this->mst_maternity->mst_maternity_users->count()){
             foreach($this->mst_maternity->mst_maternity_users AS $mst_maternity_user_key=>$mst_maternity_user){
+                //通知を許可しているか
                 if($mst_maternity_user->is_review_notification){
-                    //dump($mst_maternity_user->line_user_id);
+                    //通知を受けるべき点数の場合
+                    if($tbl_patient->average_score >= $this->mst_maternity->notification_review_score){
+                        $this->pushMessage($mst_maternity_user->line_user_id,new TextMessageBuilder(view('lines/review-maternity-user', ['tbl_patient'=>$tbl_patient,])->render()),$mst_maternity_user);
+                    }
                 }
             }
         }
-
-
+    }
+    public function sendStoreCompleteNotification(TblPatient $tbl_patient){
+        $this->pushMessage($tbl_patient->line_user_id,new TextMessageBuilder(view('lines/story-complete', ['tbl_patient'=>$tbl_patient,])->render()),$tbl_patient);
     }
 }

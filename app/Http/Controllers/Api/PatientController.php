@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\TblPatient;
 
+use App\Services\MaternityLineBotService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use App\Services\PatientService;
@@ -13,6 +14,9 @@ use App\Services\MaternityService;
 class PatientController extends Controller
 {
     public function storeReview(TblPatient $tbl_patient,Request $request,PatientService $patient_service,MaternityService $maternity_service) {
+        if($tbl_patient->tbl_patient_reviews->count()){
+            return response()->json(['result' => true,'messages' => '','errors' => [],]);
+        }
 
         $result = $patient_service->storeReview($tbl_patient,$request->tbl_patient);
 
@@ -24,7 +28,8 @@ class PatientController extends Controller
             throw new HttpResponseException($res);
         }
 
-        //$maternity_service->sendReviewNotification();
+        $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
+        $maternity_line_bot_service->sendReviewNotification(TblPatient::find($tbl_patient->tbl_patient_id));
 
         //todo: 規定評価以上なら産院にメッセージを送る
         return response()->json([

@@ -270,7 +270,7 @@ class PatientService{
         ];
     }
 
-    public function generateFile($tbl_patient){
+    public function createAdoptMediums($tbl_patient){
 
     }
 }

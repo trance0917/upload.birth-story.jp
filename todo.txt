@@ -15,10 +15,11 @@
 ・アンケートフォームの支払い方の変更paypay→amazon(mail or tel)
 ・ポイント支払い額の設定(mst_maternityカラム追加だけ)
 ・販売単価の設定(mst_maternityカラム追加だけ)
-------------------------------------------------------------
-・提出完了時、完成データ出力処理
 ・アンケート規定評価以上なら産院にメッセージを送る
 ・LINE送信ログ
+------------------------------------------------------------
+・提出完了時、完成データ出力処理
+
 ・赤井二人まで
 
 
@@ -48,3 +49,97 @@
 
 
 
+
+
+
+
+
+
+
+
+{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "md",
+    "action": {
+      "type": "uri",
+      "uri": "https://linecorp.com"
+    },
+    "contents": [
+      {
+        "type": "text",
+        "text": "高評価ありがとうございます！",
+        "size": "md",
+        "weight": "bold"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "type": "text",
+        "text": "〇〇産婦人科の高評価レビューをお付けいただきまして誠にありがとうございます！よろしければこの内容をそのままgoogleに投稿いただけませんか？",
+        "wrap": true,
+        "color": "#555555",
+        "size": "md",
+        "weight": "regular",
+        "contents": [
+          {
+            "type": "span",
+            "text": "〇〇産婦人科の高評価レビューをお付けいただきまして誠にありがとうございます！\nよろしければこの内容をそのまま"
+          },
+          {
+            "type": "span",
+            "text": "googleに投稿",
+            "decoration": "underline",
+            "weight": "bold"
+          },
+          {
+            "type": "span",
+            "text": "いただけませんか？"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "text": "下記のボタンから、レビューをコピーして30秒で投稿ができます。",
+        "contents": [
+          {
+            "type": "span",
+            "text": "下記のボタンから、"
+          },
+          {
+            "type": "span",
+            "text": "レビューをコピーして30秒で投稿",
+            "decoration": "underline",
+            "weight": "bold"
+          },
+          {
+            "type": "span",
+            "text": "ができます。"
+          }
+        ],
+        "wrap": true
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "button",
+        "style": "primary",
+        "color": "#905c44",
+        "margin": "xs",
+        "action": {
+          "type": "uri",
+          "label": "コピーして投稿する",
+          "uri": "http://linecorp.com/"
+        },
+        "height": "sm"
+      }
+    ]
+  }
+}

@@ -35,6 +35,10 @@ todo: paypapyではなくamazonが保存できるように
         @endif
     @endif
 
+    <div v-if="Object.keys(errors).length" class="mt-[30px] flex justify-center">
+        <p class="text-[14px] md:text-[12px] inline-block font-bold bg-red shadow text-white px-[15px] py-[10px] md:px-[10px] md:py-[5px]">※ エラーがあります。ご確認のうえ再送信してください</p>
+    </div>
+
     <div class="mt-[60px] md:mt-[30px]">
         <section class="bg-[#866827]/10 p-[20px] md:p-[10px]">
             <dl class="space-y-[20px] md:space-y-[5px]

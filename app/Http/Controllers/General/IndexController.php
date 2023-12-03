@@ -5,20 +5,32 @@ namespace App\Http\Controllers\General;
 use App\Http\Controllers\Controller;
 use App\Services\MaternityLineBotService;
 use App\Services\MaternityService;
+use App\Services\PatientService;
 use Illuminate\Http\Request;
 use App\Models\TblPatient;
 use App\Models\TblPatientReview;
 use App\Models\MstMaternityQuestion;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
+use LINE\LINEBot\MessageBuilder\FlexMessageBuilder;
+
 
 class IndexController extends Controller
 {
-    public function index(TblPatient $tbl_patient,Request $request){
-//        $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
-//        $maternity_line_bot_service->sendReviewNotification($tbl_patient);
+    public function index(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
 
-//        $maternity_line_bot_service->pushMessage($tbl_patient->line_user_id,new TextMessageBuilder('test'),$tbl_patient);
-//        $maternity_line_bot_service->pushMessage($tbl_patient->line_user_id, new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder('https://birth-story.jp/images/index-insta-9.png', 'https://birth-story.jp/images/index-insta-9.png'),$tbl_patient);
+//        $bubble_container_builder = new \LINE\LINEBot\MessageBuilder\Flex\ContainerBuilder\BubbleContainerBuilder(
+//            \LINE\LINEBot\Constant\Flex\ContainerDirection::LTR,
+//            null,
+//            null,
+//            null,
+//            null,
+//            null,
+//        );
+//        $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
+//        $maternity_line_bot_service->pushMessage($tbl_patient->line_user_id,new FlexMessageBuilder('高評価ありがとうございます',$bubble_container_builder),$tbl_patient);
+
+
+        $patient_service->createAdoptMediums($tbl_patient);
 
         return view('general.guide',compact('tbl_patient'));
     }

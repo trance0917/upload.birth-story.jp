@@ -38,10 +38,10 @@ class TblPatientReview extends Model
 		'score'
 	];
 
-//    public function mst_maternity_question()
-//    {
-//        return $this->hasOne(MstMaternityQuestion::class, 'mst_maternity_question_id', 'mst_maternity_question_id');
-//    }
+    public function mst_maternity_question()
+    {
+        return $this->hasOne(MstMaternityQuestion::class, 'mst_maternity_question_id', 'mst_maternity_question_id');
+    }
 
 
 }
