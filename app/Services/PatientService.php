@@ -271,6 +271,13 @@ class PatientService{
     }
 
     public function createAdoptMediums($tbl_patient){
-
+        $directory_path = 'public/patients/'.$tbl_patient->tbl_patient_id.'_'.$tbl_patient->code.'/adoption';
+        if(\Storage::exists($directory_path)) {
+            umask(0);
+            \Storage::makeDirectory($directory_path,0777);
+        }
+        foreach($tbl_patient->tbl_patient_mediums AS $tbl_patient_medium_key => $tbl_patient_medium){
+            \Storage::putFileAs('public/patients/'.$tbl_patient->tbl_patient_id.'_'.$tbl_patient->code.'/adoption',$tbl_patient_medium->local_original_src,$tbl_patient_medium->submitted_file_name);
+        }
     }
 }

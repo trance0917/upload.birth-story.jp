@@ -30,7 +30,7 @@ class IndexController extends Controller
 //        $maternity_line_bot_service->pushMessage($tbl_patient->line_user_id,new FlexMessageBuilder('高評価ありがとうございます',$bubble_container_builder),$tbl_patient);
 
 
-        $patient_service->createAdoptMediums($tbl_patient);
+
 
         return view('general.guide',compact('tbl_patient'));
     }
