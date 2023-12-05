@@ -22,7 +22,6 @@ use LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder;
 class IndexController extends Controller
 {
     public function index(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
-
         
        ///////////////////////////////////////////////////////////////////////////////////////////
 //        $rich_menu_builder = new RichMenuBuilder(
@@ -45,8 +44,8 @@ class IndexController extends Controller
         $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
 //        dump($maternity_line_bot_service->getRichMenuList()->getJSONDecodedBody());
         
-        dump(asset('images/richmenu/active.png'));
-        dump($maternity_line_bot_service->uploadRichMenuImage('richmenu-29f5c95014ae2396ba223167503d672c',asset('images/richmenu/active.png'),'image/png'));
+        dump(public_path('images/richmenu/active.png'));
+        dump($maternity_line_bot_service->uploadRichMenuImage('richmenu-29f5c95014ae2396ba223167503d672c',public_path('images/richmenu/active.png'),'image/png'));
         dump($maternity_line_bot_service->linkRichMenu($tbl_patient->line_user_id,'richmenu-29f5c95014ae2396ba223167503d672c'));
 
         ///////////////////////////////////////////////////////////////////////////////////////////
