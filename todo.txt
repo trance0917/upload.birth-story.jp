@@ -27,13 +27,6 @@
 ・足型の登録処理
 
 
-
-
-
-
-
-
-
 ・管理画面でのフォトアート登録
 ・一か月健診時の提出処理(バッチ処理)
 
@@ -41,7 +34,7 @@
 ・産院のLINEオフィシャルでの設定状況が確認できる画面
 
 
-
+デフォルト(すべての手続きが終わった)のリッチメニュー
 初期：HP インスタ BS(4)
 投稿後＞レビュー無し：HP インスタ BS(2) アンケート(2)
 投稿後＞レビュー有り＞高評価：HP インスタ BS(2) google(2)
@@ -53,7 +46,56 @@
 
 
 
-
+'{
+    "size": {
+        "width": 2500,
+        "height": 1686
+    },
+    "selected": false,
+    "name": "デフォルトのリッチメニューのテスト",
+    "chatBarText": "Tap to open",
+    "areas": [
+        {
+            "bounds": {
+                "x": 0,
+                "y": 0,
+                "width": 1666,
+                "height": 1686
+            },
+            "action": {
+                "type": "uri",
+                "label": "タップ領域A",
+                "uri": "https://developers.line.biz/ja/news/"
+            }
+        },
+        {
+            "bounds": {
+                "x": 1667,
+                "y": 0,
+                "width": 834,
+                "height": 843
+            },
+            "action": {
+                "type": "uri",
+                "label": "タップ領域B",
+                "uri": "https://www.line-community.me/ja/"
+            }
+        },
+        {
+            "bounds": {
+                "x": 1667,
+                "y": 844,
+                "width": 834,
+                "height": 843
+            },
+            "action": {
+                "type": "uri",
+                "label": "タップ領域C",
+                "uri": "https://techblog.lycorp.co.jp/ja/"
+            }
+        }
+    ]
+}'
 
 
 

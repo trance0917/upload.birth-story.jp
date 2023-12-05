@@ -143,4 +143,71 @@ class MaternityLineBotService extends LINEBot
     public function sendStoreCompleteNotification(TblPatient $tbl_patient){
         $this->pushMessage($tbl_patient->line_user_id,new TextMessageBuilder(view('lines/story-complete', ['tbl_patient'=>$tbl_patient,])->render()),$tbl_patient);
     }
+    
+    
+    
+    /**
+     * 最初のリッチメニューを作成する
+     * @return void
+     */
+    public function makeFirstRichMenu(){
+        
+    }
+
+    /**
+     * 写真提出後、レビューが無い場合のリッチメニュー
+     * @return void
+     */
+    public function makeStorySubmittedRichMenu(){
+
+    }
+
+    /**
+     * 写真提出後、レビューが有り、高評価の場合のリッチメニュー
+     * @return void
+     */
+    public function makeHighScoreReviewRichMenu(){
+
+    }
+
+    /**
+     * 写真提出後、レビューが有り、低評価の場合のリッチメニュー
+     * @return void
+     */
+    public function makeLowScoreReviewRichMenu(){
+
+    }
+
+    /**
+     * 1ヶ月健診、レビューが無い場合のリッチメニュー
+     * @return void
+     */
+    public function makeHealthCheckRichMenu(){
+
+    }
+
+    /**
+     * 1ヶ月健診、レビューが有り、高評価の場合のリッチメニュー
+     * @return void
+     */
+    public function makeHealthCheckHighScoreReviewRichMenu(){
+
+    }
+
+    /**
+     * 1ヶ月健診、レビューが有り、低評価の場合のリッチメニュー
+     * @return void
+     */
+    public function makeHealthCheckLowScoreReviewRichMenu(){
+
+    }
+
+    /**
+     * デフォルト(すべての手続きが終わった)のリッチメニュー
+     * @return void
+     */
+    public function makeDefaultRichMenu(){
+
+    }
+
 }
