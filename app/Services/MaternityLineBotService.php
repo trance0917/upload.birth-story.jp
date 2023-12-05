@@ -103,9 +103,9 @@ class MaternityLineBotService extends LINEBot
             $tbl_patient->save();
 
             //リッチメニューIDを紐づける対応が必要
-            $tbl_patient->richmenu_id = 'リッチメニューID';
 
             $this->pushMessage($line_user_id,new TextMessageBuilder("フォローを確認\nリッチメニューに付けるBSのリンク\n".config('app.url').'/'.$code.'?openExternalBrowser=1'),$tbl_patient);
+            $this->makeFirstRichMenu($tbl_patient);
             DB::commit();
         }catch(\Throwable $e){
             DB::rollback();
