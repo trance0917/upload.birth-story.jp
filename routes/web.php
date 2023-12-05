@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\General\IndexController;
 use App\Http\Controllers\General\StoryController;
+use App\Http\Controllers\General\CheckController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,26 +15,13 @@ use App\Http\Controllers\General\StoryController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/phpinfo', function () {
-    echo phpinfo();
-})->name('phpinfo');
-
 
 Route::get('/', function () {
     return view('general.index');
 })->name('toppage');
 
-Route::get('/{tbl_patient:code}', [IndexController::class,'index'])->name('guide');
 
-Route::get('/{tbl_patient:code}/story', [StoryController::class,'index'])->name('story-index');
-Route::get('/{tbl_patient:code}/story_json', [StoryController::class,'index_json'])->name('story-index_json');
 
-Route::post('/{tbl_patient:code}/story/confirm', [StoryController::class,'confirm'])->name('story-confirm');
-
-Route::post('/{tbl_patient:code}/story/complete', [StoryController::class,'complete'])->name('story-complete');
-
-Route::get('/{tbl_patient:code}/review', [IndexController::class,'review'])->name('review');
-Route::get('/{tbl_patient:code}/review_json', [IndexController::class,'review_json'])->name('review_json');
 
 
 Route::get('/{tbl_patient:code}/howto', function () {
@@ -72,3 +60,18 @@ Route::get('/contact/complete', function(){
     return redirect('');
 });
 
+
+Route::get('/{tbl_patient:code}/check', [CheckController::class,'index'])->name('check-index');
+
+
+Route::get('/{tbl_patient:code}/story', [StoryController::class,'index'])->name('story-index');
+Route::get('/{tbl_patient:code}/story_json', [StoryController::class,'index_json'])->name('story-index_json');
+
+Route::post('/{tbl_patient:code}/story/confirm', [StoryController::class,'confirm'])->name('story-confirm');
+
+Route::post('/{tbl_patient:code}/story/complete', [StoryController::class,'complete'])->name('story-complete');
+
+Route::get('/{tbl_patient:code}/review', [IndexController::class,'review'])->name('review');
+Route::get('/{tbl_patient:code}/review_json', [IndexController::class,'review_json'])->name('review_json');
+
+Route::get('/{tbl_patient:code}', [IndexController::class,'index'])->name('guide');

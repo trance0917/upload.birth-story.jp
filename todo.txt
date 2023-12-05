@@ -34,7 +34,7 @@
 ・産院のLINEオフィシャルでの設定状況が確認できる画面
 
 
-デフォルト(すべての手続きが終わった)のリッチメニュー
+デフォルト(すべての手続きが終わった)：HP インスタ
 初期：HP インスタ BS(4)
 投稿後＞レビュー無し：HP インスタ BS(2) アンケート(2)
 投稿後＞レビュー有り＞高評価：HP インスタ BS(2) google(2)
@@ -43,6 +43,16 @@
 健診後＞レビュー無し：HP インスタ アンケート(4)
 健診後＞レビュー有り＞高評価：HP インスタ google(4)
 健診後＞レビュー有り＞低評価：HP インスタ アンケート(4)
+
+default.jpg
+first.jpg
+story-submitted.jpg
+story-submitted-high-score-review.jpg
+story-submitted-low-score-review.jpg
+health-check.jpg
+health-check-high-score-review.jpg
+health-check-low-score-review.jpg
+
 
 CURLOPT_SSL_VERIFYPEER
 
