@@ -44,7 +44,7 @@ class IndexController extends Controller
         $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
 //        dump($maternity_line_bot_service->getRichMenuList()->getJSONDecodedBody());
         
-        dump(public_path('images/richmenu/active.png'));
+        dump(fopen(public_path('images/richmenu/active.png')));
         dump($maternity_line_bot_service->uploadRichMenuImage('richmenu-29f5c95014ae2396ba223167503d672c',public_path('images/richmenu/active.png'),'image/png'));
         dump($maternity_line_bot_service->linkRichMenu($tbl_patient->line_user_id,'richmenu-29f5c95014ae2396ba223167503d672c'));
 
