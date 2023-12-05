@@ -161,7 +161,7 @@ class MaternityLineBotService extends LINEBot
     public function makeFirstRichMenu(TblPatient $tbl_patient){
         $rich_menu_builder = new RichMenuBuilder(
             RichMenuSizeBuilder::getFull(),
-            false,
+            true,
             $tbl_patient->line_name.'さん('.$tbl_patient->code.')の初期メニュー',
             'メニューを開く',
             [

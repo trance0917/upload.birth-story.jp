@@ -24,7 +24,7 @@ class CheckController extends Controller
     public function index(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
 
 
-//        $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
+        $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
 
 
 //        $d = $maternity_line_bot_service->getRichMenuList()->getJSONDecodedBody();
@@ -34,7 +34,7 @@ class CheckController extends Controller
 //
 //        }
 
-//        dump($maternity_line_bot_service->getRichMenuList()->getJSONDecodedBody());
+        dump($maternity_line_bot_service->getRichMenuList()->getJSONDecodedBody());
 
         return view('general.check.index',compact('tbl_patient'));
     }
