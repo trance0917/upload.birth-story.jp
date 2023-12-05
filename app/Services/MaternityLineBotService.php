@@ -167,7 +167,7 @@ class MaternityLineBotService extends LINEBot
             [
                 new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(0,0,834,843),new UriTemplateActionBuilder('産院HP',$tbl_patient->mst_maternity->official_url.'?openExternalBrowser=1')),
                 new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(0,844,834,843),new UriTemplateActionBuilder('産院インスタ',$tbl_patient->mst_maternity->instagram_url.'?openExternalBrowser=1')),
-                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(835,0,1666,843),new UriTemplateActionBuilder('写真提出',route('guide',$tbl_patient).'?openExternalBrowser=1')),
+                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(835,0,1666,1686),new UriTemplateActionBuilder('写真提出',route('guide',$tbl_patient).'?openExternalBrowser=1')),
             ],
         );
         try{
