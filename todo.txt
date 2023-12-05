@@ -44,7 +44,7 @@
 健診後＞レビュー有り＞高評価：HP インスタ google(4)
 健診後＞レビュー有り＞低評価：HP インスタ アンケート(4)
 
-
+CURLOPT_SSL_VERIFYPEER
 
 '{
     "size": {
