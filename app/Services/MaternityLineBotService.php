@@ -17,8 +17,21 @@ use LINE\LINEBot\RichMenuBuilder;
 use LINE\LINEBot\RichMenuBuilder\RichMenuSizeBuilder;
 use LINE\LINEBot\RichMenuBuilder\RichMenuAreaBuilder;
 use LINE\LINEBot\RichMenuBuilder\RichMenuAreaBoundsBuilder;
+use LINE\LINEBot\MessageBuilder\FlexMessageBuilder;
+use LINE\LINEBot\MessageBuilder\Flex\ContainerBuilder\BubbleContainerBuilder;
+use LINE\LINEBot\Constant\Flex\ContainerDirection;
+use LINE\LINEBot\Constant\Flex\ComponentLayout;
+use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\ButtonComponentBuilder;
+use LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder;
+use LINE\LINEBot\Constant\Flex\ComponentButtonHeight;
+use LINE\LINEBot\Constant\Flex\ComponentButtonStyle;
+use LINE\LINEBot\Constant\Flex\ComponentMargin;
+
 
 use LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder;
+
+
+use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\BoxComponentBuilder;
 
 
 class MaternityLineBotService extends LINEBot
@@ -115,13 +128,11 @@ class MaternityLineBotService extends LINEBot
     public function unfollow($line_user_id){
         $tbl_patients = TblPatient::where('line_user_id', $line_user_id)->get();
         foreach($tbl_patients AS $tbl_patient_key=>$tbl_patient){
-            //リッチメニューIDを取得して解除＆削除する処理が必要
             $this->deleteRichMenu($tbl_patient->richmenu_id);
             $tbl_patient->richmenu_id=null;
             $tbl_patient->save();
             $tbl_patient->delete();
         }
-        //todo リッチメニューを消す処理
     }
 
     public function sendReviewNotification(TblPatient $tbl_patient){
@@ -151,8 +162,6 @@ class MaternityLineBotService extends LINEBot
     public function sendStoreCompleteNotification(TblPatient $tbl_patient){
         $this->pushMessage($tbl_patient->line_user_id,new TextMessageBuilder(view('lines/story-complete', ['tbl_patient'=>$tbl_patient,])->render()),$tbl_patient);
     }
-
-
 
     /**
      * 最初のリッチメニューを作成する
@@ -191,7 +200,7 @@ class MaternityLineBotService extends LINEBot
      * 写真提出後、レビューが無い場合のリッチメニュー
      * @return void
      */
-    public function makeStorySubmittedRichMenu($tbl_patient){
+    public function makeStorySubmittedRichMenu(TblPatient $tbl_patient){
         $this->deleteRichMenu($tbl_patient->richmenu_id);
     }
 
@@ -199,7 +208,7 @@ class MaternityLineBotService extends LINEBot
      * 写真提出後、レビューが有り、高評価の場合のリッチメニュー
      * @return void
      */
-    public function makeStorySubmittedHighScoreReviewRichMenu($tbl_patient){
+    public function makeStorySubmittedHighScoreReviewRichMenu(TblPatient $tbl_patient){
         $this->deleteRichMenu($tbl_patient->richmenu_id);
         $rich_menu_builder = new RichMenuBuilder(
             RichMenuSizeBuilder::getFull(),
@@ -233,7 +242,7 @@ class MaternityLineBotService extends LINEBot
      * 写真提出後、レビューが有り、低評価の場合のリッチメニュー
      * @return void
      */
-    public function makeStorySubmittedLowScoreReviewRichMenu($tbl_patient){
+    public function makeStorySubmittedLowScoreReviewRichMenu(TblPatient $tbl_patient){
         $this->deleteRichMenu($tbl_patient->richmenu_id);
     }
 
@@ -241,7 +250,7 @@ class MaternityLineBotService extends LINEBot
      * 1ヶ月健診、レビューが無い場合のリッチメニュー
      * @return void
      */
-    public function makeHealthCheckRichMenu($tbl_patient){
+    public function makeHealthCheckRichMenu(TblPatient $tbl_patient){
         $this->deleteRichMenu($tbl_patient->richmenu_id);
     }
 
@@ -249,7 +258,7 @@ class MaternityLineBotService extends LINEBot
      * 1ヶ月健診、レビューが有り、高評価の場合のリッチメニュー
      * @return void
      */
-    public function makeHealthCheckHighScoreReviewRichMenu($tbl_patient){
+    public function makeHealthCheckHighScoreReviewRichMenu(TblPatient $tbl_patient){
         $this->deleteRichMenu($tbl_patient->richmenu_id);
     }
 
@@ -257,7 +266,7 @@ class MaternityLineBotService extends LINEBot
      * 1ヶ月健診、レビューが有り、低評価の場合のリッチメニュー
      * @return void
      */
-    public function makeHealthCheckLowScoreReviewRichMenu($tbl_patient){
+    public function makeHealthCheckLowScoreReviewRichMenu(TblPatient $tbl_patient){
         $this->deleteRichMenu($tbl_patient->richmenu_id);
     }
 
@@ -265,10 +274,9 @@ class MaternityLineBotService extends LINEBot
      * デフォルト(すべての手続きが終わった)のリッチメニュー
      * @return void
      */
-    public function makeDefaultRichMenu($tbl_patient){
+    public function makeDefaultRichMenu(TblPatient $tbl_patient){
         $this->deleteRichMenu($tbl_patient->richmenu_id);
     }
-
 
     public function uploadRichMenuImage($richMenuId, $imagePath, $contentType)
     {
@@ -276,5 +284,36 @@ class MaternityLineBotService extends LINEBot
         return $this->httpClient->post(
             $url,['__file' => $imagePath,'__type' => $contentType,],[ "Content-Type: $contentType" ]
         );
+    }
+
+    public function test(TblPatient $tbl_patient){
+
+        $bubble_container_builder = new BubbleContainerBuilder(
+            ContainerDirection::LTR,
+            null,
+            null,
+            null,
+            new BoxComponentBuilder(
+                ComponentLayout::VERTICAL,
+                [
+                    new ButtonComponentBuilder(
+                        new UriTemplateActionBuilder('ラベル','https://yahoo.co.jp'),
+                        null,
+                        ComponentMargin::XS,
+                        ComponentButtonHeight::SM,
+                        ComponentButtonStyle::PRIMARY,
+                        '#905c44'
+                    )
+                ]
+            ),
+            null
+        );
+        $flex_message_builder = new FlexMessageBuilder('反響が来ました！', $bubble_container_builder);
+
+
+        dump($bubble_container_builder->build());
+
+        dump($flex_message_builder->buildMessage());
+
     }
 }

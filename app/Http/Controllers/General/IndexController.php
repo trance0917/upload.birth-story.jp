@@ -24,8 +24,9 @@ class IndexController extends Controller
     public function index(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
 
         $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
+        $maternity_line_bot_service->test($tbl_patient);
 //        $maternity_line_bot_service->makeFirstRichMenu($tbl_patient);
-        $maternity_line_bot_service->makeStorySubmittedHighScoreReviewRichMenu($tbl_patient);
+//        $maternity_line_bot_service->makeStorySubmittedHighScoreReviewRichMenu($tbl_patient);
 //        dump(public_path('images/richmenu/active.png'));
 //        dump(filesize(public_path('images/richmenu/active.png')));
 //        $ch = curl_init();
@@ -34,7 +35,7 @@ class IndexController extends Controller
 //        curl_setopt($ch, CURLOPT_POST, true);
 //        curl_setopt($ch, CURLOPT_INFILE, fopen(public_path('images/richmenu/active.png'),'r'));
 //        curl_setopt($ch, CURLOPT_INFILESIZE, filesize(public_path('images/richmenu/active.png')));
-//       
+//
 //        $result = curl_exec($ch);
 //        dump(filesize(public_path('images/richmenu/active.png')));
 //        dump($result);
