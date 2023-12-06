@@ -17,22 +17,21 @@
 ・販売単価の設定(mst_maternityカラム追加だけ)
 ・アンケート規定評価以上なら産院にメッセージを送る
 ・LINE送信ログ
-------------------------------------------------------------
-・デフォルトリッチメニューの構築
-・アクティブリッチメニューの構築
+・初期リッチメニューの構築
+・投稿後リッチメニューの構築
 ・アンフォロー時にリッチメニュー削除処理
+------------------------------------------------------------
+・その他のリッチメニュー構築
 ・1ヶ月健診の手続きが完了したかのカラム追加
-
-
 ・足型の登録処理
-
-
-・管理画面でのフォトアート登録
 ・一か月健診時の提出処理(バッチ処理)
 
+
+------------------------------------------------------------
+・管理画面でのフォトアート登録
 ・リッチテキストの登録件数状況が確認できる画面
 ・産院のLINEオフィシャルでの設定状況が確認できる画面
-
+------------------------------------------------------------
 
 デフォルト(すべての手続きが終わった)：HP インスタ
 初期：HP インスタ BS(4)
@@ -53,67 +52,7 @@ health-check.jpg
 health-check-high-score-review.jpg
 health-check-low-score-review.jpg
 
-
-CURLOPT_SSL_VERIFYPEER
-
-'{
-    "size": {
-        "width": 2500,
-        "height": 1686
-    },
-    "selected": false,
-    "name": "デフォルトのリッチメニューのテスト",
-    "chatBarText": "Tap to open",
-    "areas": [
-        {
-            "bounds": {
-                "x": 0,
-                "y": 0,
-                "width": 1666,
-                "height": 1686
-            },
-            "action": {
-                "type": "uri",
-                "label": "タップ領域A",
-                "uri": "https://developers.line.biz/ja/news/"
-            }
-        },
-        {
-            "bounds": {
-                "x": 1667,
-                "y": 0,
-                "width": 834,
-                "height": 843
-            },
-            "action": {
-                "type": "uri",
-                "label": "タップ領域B",
-                "uri": "https://www.line-community.me/ja/"
-            }
-        },
-        {
-            "bounds": {
-                "x": 1667,
-                "y": 844,
-                "width": 834,
-                "height": 843
-            },
-            "action": {
-                "type": "uri",
-                "label": "タップ領域C",
-                "uri": "https://techblog.lycorp.co.jp/ja/"
-            }
-        }
-    ]
-}'
-
-
-
-
-
-
-
-
+Thanks for your excellent review!
 
 {
   "type": "bubble",

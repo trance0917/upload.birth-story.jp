@@ -22,6 +22,22 @@ use LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder;
 class IndexController extends Controller
 {
     public function index(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
+
+        $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
+//        $maternity_line_bot_service->makeFirstRichMenu($tbl_patient);
+        $maternity_line_bot_service->makeStorySubmittedHighScoreReviewRichMenu($tbl_patient);
+//        dump(public_path('images/richmenu/active.png'));
+//        dump(filesize(public_path('images/richmenu/active.png')));
+//        $ch = curl_init();
+//        curl_setopt($ch, CURLOPT_URL, "https://api-data.line.me/v2/bot/richmenu/richmenu-29f5c95014ae2396ba223167503d672c/conten");
+//        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Authorization: Bearer {$tbl_patient->mst_maternity->line_message_channel_token}","Content-Type: image/png"));
+//        curl_setopt($ch, CURLOPT_POST, true);
+//        curl_setopt($ch, CURLOPT_INFILE, fopen(public_path('images/richmenu/active.png'),'r'));
+//        curl_setopt($ch, CURLOPT_INFILESIZE, filesize(public_path('images/richmenu/active.png')));
+//       
+//        $result = curl_exec($ch);
+//        dump(filesize(public_path('images/richmenu/active.png')));
+//        dump($result);
 //        $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
 //        $a = $maternity_line_bot_service->makeFirstRichMenu($tbl_patient);
 
