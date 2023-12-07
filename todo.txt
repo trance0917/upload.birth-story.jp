@@ -58,6 +58,33 @@ Thanks for your excellent review!
   "type": "bubble",
   "size": "giga",
   "direction": "ltr",
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "ありがとうございます！",
+        "size": "lg",
+        "margin": "none",
+        "weight": "bold",
+        "align": "start"
+      }
+    ],
+    "backgroundColor": "#99ff99",
+    "spacing": "xs",
+    "margin": "lg"
+  },
+  "hero": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "hello, world"
+      }
+    ]
+  },
   "body": {
     "type": "box",
     "layout": "vertical",
@@ -140,5 +167,20 @@ Thanks for your excellent review!
         "height": "sm"
       }
     ]
+  },
+  "styles": {
+    "header": {
+      "backgroundColor": "#ff9999",
+      "separator": true
+    },
+    "hero": {
+      "backgroundColor": "#FF99FF"
+    },
+    "body": {
+      "backgroundColor": "#eeeeff"
+    },
+    "footer": {
+      "backgroundColor": "#cccccc"
+    }
   }
 }
