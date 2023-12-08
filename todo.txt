@@ -186,3 +186,112 @@ Thanks for your excellent review!
     }
   }
 }
+
+
+
+{
+  "type": "bubble",
+  "size": "mega",
+  "direction": "ltr",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "高評価ありがとうございます！",
+        "size": "md",
+        "weight": "bold",
+        "align": "center"
+      },
+      {
+        "type": "separator",
+        "margin": "md"
+      },
+      {
+        "type": "image",
+        "url": "https://dev.upload.birth-story.jp/images/line-star.png?sadf",
+        "margin": "md",
+        "offsetTop": "0px",
+        "offsetBottom": "0px",
+        "offsetStart": "0px",
+        "offsetEnd": "0px",
+        "aspectRatio": "5:1",
+        "size": "3xl"
+      },
+      {
+        "type": "text",
+        "text": "〇〇産婦人科の高評価レビューをお付けいただきまして誠にありがとうございます！よろしければこの内容をそのままgoogleに投稿いただけませんか？",
+        "wrap": true,
+        "color": "#555555",
+        "size": "md",
+        "weight": "regular",
+        "contents": [
+          {
+            "type": "span",
+            "text": "〇〇産婦人科の高評価レビューをお付けいただきまして誠にありがとうございます！\nよろしければこの内容をそのまま"
+          },
+          {
+            "type": "span",
+            "text": "googleの口コミに投稿",
+            "decoration": "underline",
+            "weight": "bold"
+          },
+          {
+            "type": "span",
+            "text": "いただけませんか？"
+          }
+        ],
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "下記のボタンから、レビューをコピーして30秒で投稿ができます。",
+        "contents": [
+          {
+            "type": "span",
+            "text": "下記のボタンから、"
+          },
+          {
+            "type": "span",
+            "text": "レビューをコピーして30秒で投稿",
+            "decoration": "underline",
+            "weight": "bold"
+          },
+          {
+            "type": "span",
+            "text": "ができます。"
+          }
+        ],
+        "wrap": true
+      }
+    ],
+    "spacing": "none",
+    "margin": "none"
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "button",
+        "style": "primary",
+        "color": "#905c44",
+        "margin": "none",
+        "action": {
+          "type": "uri",
+          "label": "コピーして投稿する",
+          "uri": "http://linecorp.com/"
+        },
+        "height": "md"
+      }
+    ],
+    "margin": "none",
+    "spacing": "none"
+  },
+  "styles": {
+    "footer": {
+      "separator": true
+    }
+  }
+}
