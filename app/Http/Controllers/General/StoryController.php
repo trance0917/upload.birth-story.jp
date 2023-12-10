@@ -65,6 +65,7 @@ class StoryController extends Controller
 
         $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
         $maternity_line_bot_service->sendStoreCompleteNotification(TblPatient::find($tbl_patient->tbl_patient_id));
+        $maternity_line_bot_service->makeStorySubmittedRichMenu($tbl_patient);
 
         $tbl_patient->submitted_at = now();
         $tbl_patient->save();

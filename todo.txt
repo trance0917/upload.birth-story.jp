@@ -20,10 +20,14 @@
 ・初期リッチメニューの構築
 ・投稿後リッチメニューの構築
 ・アンフォロー時にリッチメニュー削除処理
-------------------------------------------------------------
 ・flexメッセージ作る
-・その他のリッチメニュー構築
+・その他のリッチメニュー画像準備(仮)
+・リッチメニュー、配置に合わせたリンクなどの構築
+------------------------------------------------------------
+・フレックスメッセージ設定
 ・登録画面のイメージポップアップ画面
+
+・
 ・1ヶ月健診の手続きが完了したかのカラム追加
 ・足型の登録処理
 ・一か月健診時の提出処理(バッチ処理)
@@ -288,6 +292,696 @@ Thanks for your excellent review!
     ],
     "margin": "none",
     "spacing": "none"
+  },
+  "styles": {
+    "footer": {
+      "separator": true
+    }
+  }
+}
+
+
+{
+  "type": "bubble",
+  "size": "kilo",
+  "direction": "ltr",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "margin": "none",
+    "spacing": "none",
+    "contents": [
+      {
+        "size": "md",
+        "text": "産院の評価をいただきました。",
+        "type": "text",
+        "align": "center",
+        "weight": "bold"
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#999999"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "[回答した患者さま]"
+          },
+          {
+            "type": "text",
+            "text": "山田はなこ さま"
+          }
+        ],
+        "margin": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "[総合評価]"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "size": "lg",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                "margin": "none"
+              },
+              {
+                "type": "icon",
+                "size": "lg",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "lg",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "lg",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "lg",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
+              },
+              {
+                "type": "text",
+                "text": "4.2",
+                "size": "md",
+                "color": "#666666",
+                "margin": "md",
+                "offsetTop": "-3px",
+                "weight": "bold"
+              }
+            ]
+          }
+        ],
+        "margin": "lg"
+      },
+      {
+        "type": "separator",
+        "margin": "lg",
+        "color": "#999999"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "[1] お食事の内容はいかがでしたか？",
+            "wrap": true,
+            "size": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                "size": "sm"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
+              },
+              {
+                "type": "text",
+                "text": "4",
+                "size": "md",
+                "color": "#666666",
+                "margin": "sm",
+                "weight": "bold",
+                "offsetTop": "-1px"
+              }
+            ]
+          }
+        ],
+        "margin": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "[2] 健診時の看護師・助産師の対応はいかがでしたか？",
+            "wrap": true,
+            "size": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                "size": "sm"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
+              },
+              {
+                "type": "text",
+                "text": "4",
+                "size": "md",
+                "color": "#666666",
+                "margin": "sm",
+                "weight": "bold",
+                "offsetTop": "-1px"
+              }
+            ]
+          }
+        ],
+        "margin": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "[3] 医師の対応はいかがでしたか？",
+            "wrap": true,
+            "size": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                "size": "sm"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
+              },
+              {
+                "type": "text",
+                "text": "4",
+                "size": "md",
+                "color": "#666666",
+                "margin": "sm",
+                "weight": "bold",
+                "offsetTop": "-1px"
+              }
+            ]
+          }
+        ],
+        "margin": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "[4] ご出産時の看護師・助産師の対応はいかがでしたか？",
+            "wrap": true,
+            "size": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                "size": "sm"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
+              },
+              {
+                "type": "text",
+                "text": "4",
+                "size": "md",
+                "color": "#666666",
+                "margin": "sm",
+                "weight": "bold",
+                "offsetTop": "-1px"
+              }
+            ]
+          }
+        ],
+        "margin": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "[5] 入院時の看護師・助産師の対応はいかがでしたか？",
+            "wrap": true,
+            "size": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                "size": "sm"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
+              },
+              {
+                "type": "text",
+                "text": "4",
+                "size": "md",
+                "color": "#666666",
+                "margin": "sm",
+                "weight": "bold",
+                "offsetTop": "-1px"
+              }
+            ]
+          }
+        ],
+        "margin": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "[6] 受付の対応はいかがでしたか？",
+            "wrap": true,
+            "size": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                "size": "sm"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+              },
+              {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
+              },
+              {
+                "type": "text",
+                "text": "4",
+                "size": "md",
+                "color": "#666666",
+                "margin": "sm",
+                "weight": "bold",
+                "offsetTop": "-1px"
+              }
+            ]
+          }
+        ],
+        "margin": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "[レビュー]",
+            "size": "sm"
+          },
+          {
+            "type": "text",
+            "text": "初診だと予約できないみたいでした。 産科ではなく、婦人科目的行きました。平日の午前中でしたが、めちゃくちゃ人が多くてびっくり……！ モニターに番号が出ますが、小さくて見えない（笑） 1時間ぐらい待ったかな？ 若い女医さんでしたが、ハキハキしてて好印象でした。 受付の人たちも親切である。忙しそうだったけど……！ 横の施設で子どもも見てくれるみたいなので、次から予約して使ってみたいです(´ω｀)",
+            "wrap": true,
+            "size": "sm",
+            "margin": "sm"
+          }
+        ],
+        "margin": "lg"
+      }
+    ]
+  },
+  "styles": {
+    "footer": {
+      "separator": true
+    }
+  }
+}
+
+{
+  "type": "bubble",
+  "size": "kilo",
+  "direction": "ltr",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "margin": "none",
+    "spacing": "none",
+    "contents": [
+      {
+        "size": "md",
+        "text": "お写真の提出が完了しました。",
+        "type": "text",
+        "align": "center",
+        "weight": "bold"
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#999999"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "提出のご対応ありがとうございます。一生に一度しかない〇〇ちゃんの誕生を記念ムービーとしてお作り致します。１か月健診時にお受け取りいただけるようにいたします。",
+            "wrap": true
+          }
+        ],
+        "margin": "lg"
+      }
+    ]
+  },
+  "styles": {
+    "footer": {
+      "separator": true
+    }
+  }
+}
+
+
+
+
+
+
+
+{
+  "type": "bubble",
+  "size": "kilo",
+  "direction": "ltr",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "margin": "none",
+    "spacing": "none",
+    "contents": [
+      {
+        "size": "md",
+        "text": "アンケートのお願い",
+        "type": "text",
+        "align": "center",
+        "weight": "bold"
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#999999"
+      },
+      {
+        "type": "text",
+        "text": "産院さまにとってママさまのご意見はとても大切です。",
+        "wrap": true,
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "バースストーリーは産院さまに代わってママさんのご意見を集め、さらなる満足度の向上に努めております。",
+        "wrap": true,
+        "margin": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "アンケートにお答えいただけますと、心ばかりではありますが、Amazonギフト300ptを進呈いたします。",
+            "wrap": true,
+            "contents": [
+              {
+                "type": "span",
+                "text": "アンケートにお答えいただけますと、心ばかりではありますが、"
+              },
+              {
+                "type": "span",
+                "text": "Amazonギフト300ptを進呈",
+                "color": "#cc3333",
+                "weight": "bold"
+              },
+              {
+                "type": "span",
+                "text": "を進呈いたします。"
+              }
+            ]
+          }
+        ],
+        "margin": "lg"
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "アンケートに答える",
+          "uri": "http://linecorp.com/"
+        },
+        "style": "primary"
+      }
+    ]
+  },
+  "styles": {
+    "footer": {
+      "separator": true
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+{
+  "type": "bubble",
+  "size": "kilo",
+  "direction": "ltr",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "margin": "none",
+    "spacing": "none",
+    "contents": [
+      {
+        "type": "text",
+        "text": "ご出産おめでとうございます！",
+        "weight": "bold",
+        "align": "center",
+        "wrap": true
+      },
+      {
+        "type": "separator",
+        "color": "#999999",
+        "margin": "md"
+      },
+      {
+        "type": "text",
+        "text": "この度は〇〇産婦人科でのご出産、おめでとうございます。",
+        "wrap": true,
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "産院からのプレゼントで、一生に一度しかないご出産を記念した、感動する出産記念ムービーをプレゼントしております。",
+        "margin": "md",
+        "wrap": true
+      },
+      {
+        "type": "text",
+        "text": "無料でお作りいただけます。",
+        "margin": "md",
+        "wrap": true,
+        "contents": [
+          {
+            "type": "span",
+            "text": "無料",
+            "weight": "bold",
+            "decoration": "underline"
+          },
+          {
+            "type": "span",
+            "text": "でお作りいただけます。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "text": "下記からお写真を提出してください。",
+        "margin": "md",
+        "wrap": true
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "写真を提出する",
+          "uri": "http://linecorp.com/"
+        },
+        "style": "primary",
+        "color": "#F68CA9",
+        "margin": "lg"
+      },
+      {
+        "type": "separator",
+        "color": "#999999",
+        "margin": "xxl"
+      },
+      {
+        "type": "text",
+        "text": "お写真の提出が完了し、簡単なアンケートをにお答えいただけますと、バースストーリーからAmazonギフト300ptを進呈しております。",
+        "wrap": true,
+        "margin": "xl",
+        "contents": [
+          {
+            "type": "span",
+            "text": "お写真の提出が完了し、簡単なアンケートにお答えいただけますと、バースストーリーから"
+          },
+          {
+            "type": "span",
+            "text": "Amazonギフト300pt",
+            "color": "#ee3333",
+            "weight": "bold"
+          },
+          {
+            "type": "span",
+            "text": "を進呈しております。"
+          }
+        ],
+        "size": "sm"
+      }
+    ]
   },
   "styles": {
     "footer": {

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use App\Services\PatientService;
 use App\Services\MaternityService;
+use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 
 class PatientController extends Controller
 {
@@ -29,7 +30,14 @@ class PatientController extends Controller
         }
 
         $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
-        $maternity_line_bot_service->sendReviewNotification(TblPatient::find($tbl_patient->tbl_patient_id));
+        $tbl_patient = TblPatient::find($tbl_patient->tbl_patient_id);
+        $maternity_line_bot_service->sendReviewNotification($tbl_patient);
+
+        if ($tbl_patient->average_score >= $tbl_patient->mst_maternity->minimum_review_score) {
+            $maternity_line_bot_service->makeStorySubmittedHighScoreReviewRichMenu($tbl_patient);
+        } else {
+            $maternity_line_bot_service->makeStorySubmittedLowScoreReviewRichMenu($tbl_patient);
+        }
 
         //todo: 規定評価以上なら産院にメッセージを送る
         return response()->json([

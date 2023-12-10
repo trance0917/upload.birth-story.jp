@@ -22,8 +22,20 @@ use LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder;
 class IndexController extends Controller
 {
     public function index(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
-//        $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
+        $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
+
+        $maternity_line_bot_service->sendReviewNotification($tbl_patient);
 //        $maternity_line_bot_service->pushLineReviewPatientHighRating($tbl_patient);
+
+
+//        $maternity_line_bot_service->makeFirstRichMenu($tbl_patient);
+//        $maternity_line_bot_service->makeStorySubmittedRichMenu($tbl_patient);
+//        $maternity_line_bot_service->makeStorySubmittedHighScoreReviewRichMenu($tbl_patient);
+//        $maternity_line_bot_service->makeStorySubmittedLowScoreReviewRichMenu($tbl_patient);
+//        $maternity_line_bot_service->makeHealthCheckRichMenu($tbl_patient);
+//        $maternity_line_bot_service->makeHealthCheckHighScoreReviewRichMenu($tbl_patient);
+//        $maternity_line_bot_service->makeHealthCheckLowScoreReviewRichMenu($tbl_patient);
+//        $maternity_line_bot_service->makeDefaultRichMenu($tbl_patient);
 
         return view('general.guide',compact('tbl_patient'));
     }
