@@ -14,6 +14,81 @@ use LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder;
 
 trait MaternityLineBotServicePushMessageTrait
 {
+    public $total_stars = [
+        1 => [
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'lg'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'lg'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'lg'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'lg'],
+        ],
+        2 => [
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'lg'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'lg'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'lg'],
+        ],
+        3 => [
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'lg'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'lg'],
+        ],
+        4 => [
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'lg'],
+        ],
+        5 => [
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
+        ],
+    ];
+
+    public $small_stars = [
+        1 => [
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'sm'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'sm'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'sm'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'sm'],
+        ],
+        2 => [
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'sm'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'sm'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'sm'],
+        ],
+        3 => [
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'sm'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'sm'],
+        ],
+        4 => [
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'sm'],
+        ],
+        5 => [
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
+            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
+        ],
+    ];
     public function pushMessageFollow(TblPatient $tbl_patient){
         $message = [
             'type' => 'flex', 'altText' => 'ご出産おめでとうございます！',
@@ -122,8 +197,8 @@ trait MaternityLineBotServicePushMessageTrait
         ];
         $this->pushMessage($tbl_patient->line_user_id, new RawMessageBuilder($message2), $tbl_patient);
     }
-    
-    
+
+
     public function pushMessageReviewPatientHighRating(TblPatient $tbl_patient){
         $message = [
             'type' => 'flex', 'altText' => '高評価ありがとうございます！',
@@ -159,7 +234,7 @@ trait MaternityLineBotServicePushMessageTrait
                                 ['type' => 'span','text' => 'レビューをコピーして30秒で投稿','decoration' => 'underline', 'weight' => 'bold'],
                                 ['type' => 'span', 'text' => 'ができます。']
                             ],
-                            
+
                         ]
                     ]
                 ],
@@ -167,7 +242,7 @@ trait MaternityLineBotServicePushMessageTrait
                     'type' => 'box', 'layout' => 'vertical','margin' => 'none', 'spacing' => 'none',
                     'contents' => [
                         [
-                            'type' => 'button', 'style' => 'primary', 'color' => '#905c44', 'margin' => 'none','height' => 'md',
+                            'type' => 'button', 'style' => 'primary', 'color' => '#F68CA9', 'margin' => 'none','height' => 'md',
                             'action' => [
                                 'type' => 'uri', 'label' => 'コピーして投稿する',
                                 'uri' => route('guide',$tbl_patient ). '?openExternalBrowser=1'
@@ -196,7 +271,7 @@ trait MaternityLineBotServicePushMessageTrait
                             'type' => 'box','layout' => 'vertical','margin' => 'lg',
                             'contents' => [
                                 ['type' => 'text','text' => '[回答した患者さま]'],
-                                ['type' => 'text','text' => '山田はなこ さま']
+                                ['type' => 'text','text' => $tbl_patient->name.' さま']
                             ]
                         ],
                         [
@@ -206,131 +281,45 @@ trait MaternityLineBotServicePushMessageTrait
                                 [
                                     'type' => 'box','layout' => 'baseline',
                                     'contents' => [
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
-                                        ['type' => 'text','text' => '4.2','size' => 'md','color' => '#666666','margin' => 'md','offsetTop' => '-3px','weight' => 'bold']
+                                        ...$this->total_stars[(int)round($tbl_patient->average_score)],
+                                        ['type' => 'text','text' => $tbl_patient->average_score,'size' => 'md','color' => '#666666','margin' => 'md','offsetTop' => '-3px','weight' => 'bold']
                                     ]
                                 ]
                             ]
                         ],
                         ['type' => 'separator','margin' => 'lg','color' => '#999999'],
-                        [
-                            'type' => 'box','layout' => 'vertical','margin' => 'lg',
-                            'contents' => [
-                                ['text' => '[1] お食事の内容はいかがでしたか？','type' => 'text','wrap' => true,'size' => 'sm'],
-                                [
-                                    'type' => 'box','layout' => 'baseline',
-                                    'contents' => [
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['type' => 'text','text' => '4','size' => 'md','color' => '#666666','margin' => 'sm','weight' => 'bold','offsetTop' => '-1px']
-                                    ]
-                                ]
-                            ]
-                        ],
-                        [
-                            'type' => 'box','layout' => 'vertical','margin' => 'lg',
-                            'contents' => [
-                                ['text' => '[2] 健診時の看護師・助産師の対応はいかがでしたか？','type' => 'text','wrap' => true,'size' => 'sm'],
-                                [
-                                    'type' => 'box','layout' => 'baseline',
-                                    'contents' => [
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['type' => 'text','text' => '4','size' => 'md','color' => '#666666','margin' => 'sm','weight' => 'bold','offsetTop' => '-1px']
-                                    ]
-                                ]
-                            ]
-                        ],
-                        [
-                            'type' => 'box','layout' => 'vertical','margin' => 'lg',
-                            'contents' => [
-                                ['text' => '[3] 医師の対応はいかがでしたか？','type' => 'text','wrap' => true,'size' => 'sm'],
-                                [
-                                    'type' => 'box','layout' => 'baseline',
-                                    'contents' => [
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['type' => 'text','text' => '4','size' => 'md','color' => '#666666','margin' => 'sm','weight' => 'bold','offsetTop' => '-1px']
-                                    ]
-                                ]
-                            ]
-                        ],
-                        [
-                            'type' => 'box','layout' => 'vertical','margin' => 'lg',
-                            'contents' => [
-                                ['text' => '[4] ご出産時の看護師・助産師の対応はいかがでしたか？','type' => 'text','wrap' => true,'size' => 'sm'],
-                                [
-                                    'type' => 'box','layout' => 'baseline',
-                                    'contents' => [
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['type' => 'text','text' => '4','size' => 'md','color' => '#666666','margin' => 'sm','weight' => 'bold','offsetTop' => '-1px']
-                                    ]
-                                ]
-                            ]
-                        ],
-                        [
-                            'type' => 'box','layout' => 'vertical','margin' => 'lg',
-                            'contents' => [
-                                ['text' => '[5] 入院時の看護師・助産師の対応はいかがでしたか？','type' => 'text','wrap' => true,'size' => 'sm'],
-                                [
-                                    'type' => 'box','layout' => 'baseline',
-                                    'contents' => [
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['type' => 'text','text' => '4','size' => 'md','color' => '#666666','margin' => 'sm','weight' => 'bold','offsetTop' => '-1px']
-                                    ]
-                                ]
-                            ]
-                        ],
-                        [
-                            'type' => 'box','layout' => 'vertical','margin' => 'lg',
-                            'contents' => [
-                                ['text' => '[6] 受付の対応はいかがでしたか？','type' => 'text','wrap' => true,'size' => 'sm'],
-                                [
-                                    'type' => 'box','layout' => 'baseline',
-                                    'contents' => [
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-                                        ['type' => 'text','text' => '4','size' => 'md','color' => '#666666','margin' => 'sm','weight' => 'bold','offsetTop' => '-1px']
-                                    ]
-                                ]
-                            ]
-                        ],
-                        [
-                            'type' => 'box','layout' => 'vertical','margin' => 'lg',
-                            'contents' => [
-                                ['type' => 'text','text' => '[レビュー]','size' => 'sm'],
-                                ['text' => '初診だと予約できないみたいでした。 産科ではなく、婦人科目的行きました。平日の午前中でしたが、めちゃくちゃ人が多くてびっくり……！ モニターに番号が出ますが、小さくて見えない（笑） 1時間ぐらい待ったかな？ 若い女医さんでしたが、ハキハキしてて好印象でした。 受付の人たちも親切である。忙しそうだったけど……！ 横の施設で子どもも見てくれるみたいなので、次から予約して使ってみたいです(´ω｀)','type' => 'text','wrap' => true,'size' => 'sm','margin' => 'sm']
-                            ]
-                        ]
+
                     ]
                 ]
             ]
         ];
-//        dump(json_encode($message));
+
+
+        foreach($tbl_patient->tbl_patient_reviews AS $tbl_patient_review_key => $tbl_patient_review){
+            $message['contents']['body']['contents'][] = [
+                'type' => 'box','layout' => 'vertical','margin' => 'lg',
+                'contents' => [
+                    ['text' => '['.($tbl_patient_review_key+1).'] '.$tbl_patient_review->mst_maternity_question->question,'type' => 'text','wrap' => true,'size' => 'sm'],
+                    [
+                        'type' => 'box','layout' => 'baseline',
+                        'contents' => [
+                            ...$this->small_stars[$tbl_patient_review->score],
+                            ['type' => 'text','text' => (String)$tbl_patient_review->score,'size' => 'md','color' => '#666666','margin' => 'sm','weight' => 'bold','offsetTop' => '-1px']
+                        ]
+                    ]
+                ]
+            ];
+
+        }
+        $message['contents']['body']['contents'][] = [
+            'type' => 'box','layout' => 'vertical','margin' => 'lg',
+            'contents' => [
+                ['type' => 'text','text' => '[レビュー]','size' => 'sm'],
+                ['text' => '初診だと予約できないみたいでした。 産科ではなく、婦人科目的行きました。平日の午前中でしたが、めちゃくちゃ人が多くてびっくり……！ モニターに番号が出ますが、小さくて見えない（笑） 1時間ぐらい待ったかな？ 若い女医さんでしたが、ハキハキしてて好印象でした。 受付の人たちも親切である。忙しそうだったけど……！ 横の施設で子どもも見てくれるみたいなので、次から予約して使ってみたいです(´ω｀)','type' => 'text','wrap' => true,'size' => 'sm','margin' => 'sm']
+            ]
+        ];
+
+//        dump(($message));
         $this->pushMessage($tbl_patient->line_user_id, new RawMessageBuilder($message), $mst_maternity_user);
     }
 }

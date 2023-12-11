@@ -30,7 +30,7 @@ class PatientController extends Controller
         }
 
         $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
-        
+
         //最新を取り直す
         $tbl_patient = TblPatient::find($tbl_patient->tbl_patient_id);
 
@@ -52,13 +52,13 @@ class PatientController extends Controller
                 //通知を許可しているか
                 if ($mst_maternity_user->is_review_notification) {
                     //通知を受けるべき点数の場合
-                    if ($tbl_patient->average_score >= $this->mst_maternity->notification_review_score) {
-                        $this->pushMessageReviewHighRatingToMaternityUser($mst_maternity_user,$tbl_patient);
+                    if ($tbl_patient->average_score >= $tbl_patient->mst_maternity->notification_review_score) {
+                        $maternity_line_bot_service->pushMessageReviewHighRatingToMaternityUser($mst_maternity_user,$tbl_patient);
                     }
                 }
             }
         }
-        
+
         //todo: 規定評価以上なら産院にメッセージを送る
         return response()->json([
             'result' => true,
