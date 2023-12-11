@@ -24,10 +24,11 @@ class IndexController extends Controller
     public function index(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
         $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
 
-        $maternity_line_bot_service->sendReviewNotification($tbl_patient);
-//        $maternity_line_bot_service->pushLineReviewPatientHighRating($tbl_patient);
+//        $maternity_line_bot_service->pushMessageReviewHighRatingToMaternityUser($tbl_patient->mst_maternity->mst_maternity_users[0],$tbl_patient);
+//        $maternity_line_bot_service->pushMessageFollow($tbl_patient);
+//        $maternity_line_bot_service->pushMessageReviewPatientHighRating($tbl_patient);
 
-
+//        $maternity_line_bot_service->pushMessageStorySubmitted($tbl_patient);
 //        $maternity_line_bot_service->makeFirstRichMenu($tbl_patient);
 //        $maternity_line_bot_service->makeStorySubmittedRichMenu($tbl_patient);
 //        $maternity_line_bot_service->makeStorySubmittedHighScoreReviewRichMenu($tbl_patient);

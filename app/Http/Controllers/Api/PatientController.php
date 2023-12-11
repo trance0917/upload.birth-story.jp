@@ -30,15 +30,35 @@ class PatientController extends Controller
         }
 
         $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
+        
+        //最新を取り直す
         $tbl_patient = TblPatient::find($tbl_patient->tbl_patient_id);
-        $maternity_line_bot_service->sendReviewNotification($tbl_patient);
 
+        //ユーザーに送る処理
+        //指定評価以上だった場合のメッセージ
         if ($tbl_patient->average_score >= $tbl_patient->mst_maternity->minimum_review_score) {
+            //googleの口コミをプッシュする
+            $maternity_line_bot_service->pushMessageReviewPatientHighRating($tbl_patient);
             $maternity_line_bot_service->makeStorySubmittedHighScoreReviewRichMenu($tbl_patient);
         } else {
+            //そうでなかった場合のメッセージ
+            $maternity_line_bot_service->pushMessage($tbl_patient->line_user_id, new TextMessageBuilder(view('lines/review-patient-low-rating', ['tbl_patient' => $tbl_patient,])->render()), $tbl_patient);
             $maternity_line_bot_service->makeStorySubmittedLowScoreReviewRichMenu($tbl_patient);
         }
 
+        //産院スタッフに送る処理
+        if ($tbl_patient->mst_maternity->mst_maternity_users->count()) {
+            foreach ($tbl_patient->mst_maternity->mst_maternity_users as $mst_maternity_user_key => $mst_maternity_user) {
+                //通知を許可しているか
+                if ($mst_maternity_user->is_review_notification) {
+                    //通知を受けるべき点数の場合
+                    if ($tbl_patient->average_score >= $this->mst_maternity->notification_review_score) {
+                        $this->pushMessageReviewHighRatingToMaternityUser($mst_maternity_user,$tbl_patient);
+                    }
+                }
+            }
+        }
+        
         //todo: 規定評価以上なら産院にメッセージを送る
         return response()->json([
             'result' => true,
