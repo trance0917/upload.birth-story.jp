@@ -251,7 +251,7 @@
                 </div>
 
                 <div class="box">
-                    <h4><i class="fa-solid fa-pencil"></i>フォトアートにしたい写真を<span class="count">@{{ type_counts.photoart }}枚</span><span class="example">写真例</span></h4>
+                    <h4><i class="fa-solid fa-pencil"></i>フォトアートにしたい写真を<span class="count">@{{ type_counts.photoart }}枚</span><span class="example" @click="is_overlay_photoart=true">写真例</span></h4>
                     <p class="text-red font-bold text-[14px] leading-none mb-[10px]">※ この中から1枚選んで「ふぉとあーと」にいたします</p>
                     <div class="space-y-[10px]">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
@@ -594,6 +594,33 @@
             <p class="mt-[10px] text-center text-[14px] text-slate-500">タップで閉じる</p>
         </div>
     </div>
+
+    <div v-if="is_overlay_photoart" class="flex items-center justify-center" style="width:100%;height:100%;position:fixed;top:0;left:0;background: rgba(0,0,0,.15);" @click="is_overlay_photoart=false">
+        <div class="w-[80%] p-[20px] border border-slate-300 bg-white">
+            <p class="mb-[30px] text-red text-[18px] font-bold text-center">フォトアートにしたい写真の例</p>
+            <div class="flex justify-center mb-[20px]">
+                <div class="mr-[10px] w-[46%]"><img class="mx-auto" src="/img/sample-photoart-1.png" alt="" /></div>
+                <div class="w-[46%]"><img class="mx-auto" src="/img/sample-photoart-2.png" alt="" /></div>
+            </div>
+
+            <div class="flex justify-center mb-[20px]">
+                <div class="mr-[10px] w-[46%]"><img class="mx-auto" src="/img/sample-photoart-3.png" alt="" /></div>
+                <div class="w-[46%]"><img class="mx-auto" src="/img/sample-photoart-4.png" alt="" /></div>
+            </div>
+
+            <div class="flex justify-center mb-[20px]">
+                <div class="mr-[10px] w-[46%]"><img class="mx-auto" src="/img/sample-photoart-5.png" alt="" /></div>
+                <div class="w-[46%]"><img class="mx-auto" src="/img/sample-photoart-6.png" alt="" /></div>
+            </div>
+
+            <div class="flex justify-center">
+                <div class="mr-[10px] w-[46%]"><img class="mx-auto" src="/img/sample-photoart-7.png" alt="" /></div>
+                <div class="w-[46%]"><img class="mx-auto" src="/img/sample-photoart-8.png" alt="" /></div>
+            </div>
+            <p class="mt-[10px] text-center text-[14px] text-slate-500">タップで閉じる</p>
+        </div>
+    </div>
+
 </main>
 
 <script>
@@ -609,6 +636,7 @@
                 is_overlay_namecard:false,
                 is_overlay_pregnancy:false,
                 is_overlay_free:false,
+                is_overlay_photoart:false,
                 sex_types:{!! json_encode(App\Models\TblPatient::$sex_types,JSON_UNESCAPED_UNICODE )!!},
                 type_counts:{!! json_encode(App\Models\TblPatientMedium::$type_counts,JSON_UNESCAPED_UNICODE )!!},
 
