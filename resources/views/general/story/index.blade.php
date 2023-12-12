@@ -599,18 +599,18 @@
         <div class="w-[80%] p-[15px] border border-slate-300 bg-white">
             <p class="mb-[15px] text-red text-[18px] font-bold text-center">フォトアートにしたい写真の例</p>
             <div class="flex justify-center mb-[10px]">
-                <div class="mr-[10px] w-[46%]"><img class="mx-auto" src="/images/sample-photoart-1.png" alt="" /></div>
-                <div class="w-[46%]"><img class="mx-auto" src="/images/sample-photoart-2.png" alt="" /></div>
+                <div class="mr-[10px] w-[42%]"><img class="mx-auto" src="/images/sample-photoart-1.png" alt="" /></div>
+                <div class="w-[42%]"><img class="mx-auto" src="/images/sample-photoart-2.png" alt="" /></div>
             </div>
 
             <div class="flex justify-center mb-[10px]">
-                <div class="mr-[10px] w-[46%]"><img class="mx-auto" src="/images/sample-photoart-3.png" alt="" /></div>
-                <div class="w-[46%]"><img class="mx-auto" src="/images/sample-photoart-4.png" alt="" /></div>
+                <div class="mr-[10px] w-[42%]"><img class="mx-auto" src="/images/sample-photoart-3.png" alt="" /></div>
+                <div class="w-[42%]"><img class="mx-auto" src="/images/sample-photoart-4.png" alt="" /></div>
             </div>
 
             <div class="flex justify-center">
-                <div class="mr-[10px] w-[46%]"><img class="mx-auto" src="/images/sample-photoart-5.png" alt="" /></div>
-                <div class="w-[46%]"><img class="mx-auto" src="/images/sample-photoart-6.png" alt="" /></div>
+                <div class="mr-[10px] w-[42%]"><img class="mx-auto" src="/images/sample-photoart-5.png" alt="" /></div>
+                <div class="w-[42%]"><img class="mx-auto" src="/images/sample-photoart-6.png" alt="" /></div>
             </div>
 
             <p class="mt-[10px] text-center text-[14px] text-slate-500">タップで閉じる</p>
