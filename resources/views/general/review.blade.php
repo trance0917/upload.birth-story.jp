@@ -1,6 +1,4 @@
-{{--
-todo: paypapyではなくamazonが保存できるように
- --}}
+
 @extends('layout')
 @section('meta')@endsection
 @section('contents')
@@ -27,7 +25,10 @@ todo: paypapyではなくamazonが保存できるように
             <section class="border border-main rounded mx-[15px] bg-main/5 py-[20px] px-[15px] mt-[30px]">
                 <h2 class="text-center leading-none text-[15px] font-bold text-brown">バースストーリーから産院アンケートのお願い</h2>
 
-                <div class="text-red text-[12px] font-bold text-center mt-[5px]">(Amazonギフトカード<span class="text-red underline">{{$tbl_patient->review_point}}ポイント</span>進呈)</div>
+                @if($tbl_patient->review_point)
+                    <div class="text-red text-[12px] font-bold text-center mt-[5px]">(Amazonギフトカード<span class="text-red underline">{{$tbl_patient->review_point}}ポイント</span>進呈)</div>
+                @endif
+
 
                 <p class="text-[14px] mt-[15px]">お客様の声は、産院さまにとって非常に重要であり、今後のサービス向上の参考にさせていただいております。</p>
                 <p class="text-[14px] mt-[10px]">産院さまご利用時の<span class="underline">良かった点や改善点</span>など、お客様の貴重なご意見をお聞かせください。</p>
@@ -67,12 +68,18 @@ todo: paypapyではなくamazonが保存できるように
             ">
                 <div>
                     <dt>1</dt>
-                    <dd>アンケート</dd>
+                    <dd>星の評価付け</dd>
                 </div>
                 <div>
                     <dt>2</dt>
-                    <dd>進呈先の連絡先を入力</dd>
+                    <dd>テキストでのレビュー</dd>
                 </div>
+                @if($tbl_patient->review_point)
+                <div>
+                    <dt>3</dt>
+                    <dd>進呈先の情報を入力</dd>
+                </div>
+                @endif
             </dl>
         </section>
     </div>
@@ -140,12 +147,13 @@ todo: paypapyではなくamazonが保存できるように
                     <p class="error" v-if="errors['tbl_patient.review']">@{{ errors['tbl_patient.review'][0] }}</p>
                 </section>
 
+                @if($tbl_patient->review_point)
                 <section class="bg-white flex flex-col items-center py-[25px] px-[30px]">
                     <p class="text-[14px]">Amazonギフトを届けるメールアドレスもしくは携帯番号を入力してください</p>
                     <input class="h-[34px] mt-[10px] w-[240px] text-center" type="text" value="" placeholder="メールアドレス / 携帯番号" v-model="tbl_patient.amazon_id" />
                     <p class="error" v-if="errors['tbl_patient.amazon_id']">@{{ errors['tbl_patient.amazon_id'][0] }}</p>
                 </section>
-
+                @endif
             </div>
         </section>
     </div>

@@ -169,20 +169,6 @@ trait MaternityLineBotServicePushMessageTrait
                         ['type' => 'separator','margin' => 'md','color' => '#999999'],
                         ['type' => 'text','text' => '産院さまにとってママさまのご意見はとても大切です。','wrap' => true,'margin' => 'lg'],
                         ['type' => 'text','text' => 'バースストーリーは産院さまに代わってママさんのご意見を集め、さらなる満足度の向上に努めております。','wrap' => true,'margin' => 'lg'],
-                        [
-                            'type' => 'box','layout' => 'vertical','margin' => 'lg',
-                            'contents' => [
-                                [
-                                    'type' => 'text','wrap' => true,
-                                    'text' => 'アンケートにお答えいただけますと、心ばかりではありますが、Amazonギフト'.$tbl_patient->review_point.'ptを進呈いたします。',
-                                    'contents' => [
-                                        ['type' => 'span','text' => 'アンケートにお答えいただけますと、心ばかりではありますが、'],
-                                        ['type' => 'span','text' => 'Amazonギフト'.$tbl_patient->review_point.'ptを進呈','color' => '#cc3333','weight' => 'bold'],
-                                        ['type' => 'span','text' => 'を進呈いたします。']
-                                    ]
-                                ]
-                            ]
-                        ]
                     ]
                 ],
                 'footer' => [
@@ -199,6 +185,22 @@ trait MaternityLineBotServicePushMessageTrait
                 ]
             ]
         ];
+        if($tbl_patient->review_point){
+            $message2['contents']['body']['contents'][] = [
+                'type' => 'box','layout' => 'vertical','margin' => 'lg',
+                'contents' => [
+                    [
+                        'type' => 'text','wrap' => true,
+                        'text' => 'アンケートにお答えいただけますと、心ばかりではありますが、Amazonギフト'.$tbl_patient->review_point.'ptを進呈いたします。',
+                        'contents' => [
+                            ['type' => 'span','text' => 'アンケートにお答えいただけますと、心ばかりではありますが、'],
+                            ['type' => 'span','text' => 'Amazonギフト'.$tbl_patient->review_point.'ptを進呈','color' => '#cc3333','weight' => 'bold'],
+                            ['type' => 'span','text' => 'を進呈いたします。']
+                        ]
+                    ]
+                ]
+            ];
+        }
         $this->pushMessage($tbl_patient->line_user_id, new RawMessageBuilder($message2), $tbl_patient);
     }
 

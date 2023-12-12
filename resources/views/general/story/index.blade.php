@@ -106,7 +106,7 @@
 
             <div class="space-y-[25px]">
                 <div class="box">
-                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>エコー写真<span class="count">@{{ type_counts.echo }}枚</span><span class="example">写真例</span></h4>
+                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>エコー写真<span class="count">@{{ type_counts.echo }}枚</span><span class="example" @click="is_overlay_echo=true">写真例</span></h4>
                     <div class="flex justify-between flex-wrap">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                         <div v-if="medium.type=='echo'" class="w-[48.5%]">
@@ -132,7 +132,7 @@
                 </div>
 
                 <div class="box">
-                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ネームカード<span class="font-normal text-[#999] text-[14px]">(お名前が分かるもの)</span><span class="example">写真例</span></h4>
+                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ネームカード<span class="font-normal text-[#999] text-[14px]">(お名前が分かるもの)</span><span class="example" @click="is_overlay_namecard=true">写真例</span></h4>
                     <div class="">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                         <div v-if="medium.type=='namecard'" class="w-[80%]">
@@ -158,7 +158,7 @@
                 </div>
 
                 <div class="box">
-                    <h4><i class="fa-solid fa-pencil"></i>出産前・出産中・出産直後<span class="count">@{{ type_counts.pregnancy }}枚</span><span class="example">写真例</span></h4>
+                    <h4><i class="fa-solid fa-pencil"></i>出産前・出産中・出産直後<span class="count">@{{ type_counts.pregnancy }}枚</span><span class="example" @click="is_overlay_pregnancy=true">写真例</span></h4>
                     <p class="text-red font-bold text-[14px] leading-none mb-[10px]">※ 表示順に作成されます</p>
                     <div class="space-y-[10px]" :class="{'opacity-60':sorting_key=='pregnancy'}">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
@@ -205,7 +205,7 @@
                 </div>
 
                 <div class="box">
-                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ご自由にお好きなシーン<span class="count">@{{ type_counts.free }}枚</span><span class="example">写真例</span></h4>
+                    <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ご自由にお好きなシーン<span class="count">@{{ type_counts.free }}枚</span><span class="example" @click="is_overlay_free=true">写真例</span></h4>
                     <div class="space-y-[10px]" :class="{'opacity-60':sorting_key=='free'}">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                             <div v-if="medium.type=='free'" class="
@@ -537,6 +537,63 @@
     </form>
 
 {{--    <button class="block w-full fixed bottom-0 left-0 text-16px] py-[15px] font-bold text-white bg-slate-400" type="submit" value="2"><i class="fa-solid fa-download mr-[5px]"></i> 途中保存する</button>--}}
+
+    <div v-if="is_overlay_echo" class="flex items-center justify-center" style="width:100%;height:100%;position:fixed;top:0;left:0;background: rgba(0,0,0,.15);" @click="is_overlay_echo=false">
+        <div class="w-[80%] p-[20px] border border-slate-300 bg-white">
+            <p class="mb-[30px] text-red text-[18px] font-bold text-center">エコーの写真例</p>
+            <div class="flex justify-center">
+                <div class="mr-[10px]"><img src="/images/sample-echo-1.png" alt="" /></div>
+                <div class=""><img src="/images/sample-echo-2.png" alt="" /></div>
+            </div>
+            <p class="mt-[10px] text-center text-[14px] text-slate-500">タップで閉じる</p>
+        </div>
+    </div>
+
+    <div v-if="is_overlay_namecard" class="flex items-center justify-center" style="width:100%;height:100%;position:fixed;top:0;left:0;background: rgba(0,0,0,.15);" @click="is_overlay_namecard=false">
+        <div class="w-[80%] p-[20px] border border-slate-300 bg-white">
+            <p class="mb-[30px] text-red text-[18px] font-bold text-center">ネームカードなど</p>
+            <div class="flex justify-center">
+                <div class="mr-[10px]"><img src="/images/sample-name-card-1.png" alt="" /></div>
+                <div class=""><img src="/images/sample-name-card-2.png" alt="" /></div>
+            </div>
+            <p class="mt-[10px] text-center text-[14px] text-slate-500">タップで閉じる</p>
+        </div>
+    </div>
+
+    <div v-if="is_overlay_pregnancy" class="flex items-center justify-center" style="width:100%;height:100%;position:fixed;top:0;left:0;background: rgba(0,0,0,.15);" @click="is_overlay_pregnancy=false">
+        <div class="w-[80%] p-[20px] border border-slate-300 bg-white">
+            <p class="mb-[30px] text-red text-[18px] font-bold text-center">出産前後の写真例</p>
+            <div class="flex justify-center mb-[20px]">
+                <div class="mr-[10px] w-[46%]"><img class="mx-auto" src="/images/sample-pregnancy-1.png" alt="" /></div>
+                <div class=" w-[46%]"><img class="mx-auto" src="/images/sample-pregnancy-2.png" alt="" /></div>
+            </div>
+
+            <div class="text-center mb-[20px] w-[46%] mx-auto"><img src="/images/sample-pregnancy-3.png" alt="" /></div>
+
+            <div class="flex justify-center">
+                <div class="mr-[10px] w-[46%]"><img class="mx-auto" src="/images/sample-pregnancy-4.png" alt="" /></div>
+                <div class="w-[46%]"><img class="mx-auto" src="/images/sample-pregnancy-5.png" alt="" /></div>
+            </div>
+            <p class="mt-[10px] text-center text-[14px] text-slate-500">タップで閉じる</p>
+        </div>
+    </div>
+    <div v-if="is_overlay_free" class="flex items-center justify-center" style="width:100%;height:100%;position:fixed;top:0;left:0;background: rgba(0,0,0,.15);" @click="is_overlay_free=false">
+        <div class="w-[80%] p-[20px] border border-slate-300 bg-white">
+            <p class="mb-[30px] text-red text-[18px] font-bold text-center">自由写真の例</p>
+            <div class="flex justify-center mb-[20px]">
+                <div class="mr-[10px] w-[46%]"><img class="mx-auto" src="/images/sample-free-1.png" alt="" /></div>
+                <div class="w-[46%]"><img class="mx-auto" src="/images/sample-free-2.png" alt="" /></div>
+            </div>
+
+            <div class="text-center mb-[20px] w-[46%] mx-auto"><img src="/images/sample-free-3.png" alt="" /></div>
+
+            <div class="flex justify-center">
+                <div class="mr-[10px] w-[46%]"><img class="mx-auto" src="/images/sample-free-4.png" alt="" /></div>
+                <div class="w-[46%]"><img class="mx-auto" src="/images/sample-free-5.png" alt="" /></div>
+            </div>
+            <p class="mt-[10px] text-center text-[14px] text-slate-500">タップで閉じる</p>
+        </div>
+    </div>
 </main>
 
 <script>
@@ -548,6 +605,10 @@
                 loading_input_key:'',
                 sorting_key:'',
                 errors:[],
+                is_overlay_echo:false,
+                is_overlay_namecard:false,
+                is_overlay_pregnancy:false,
+                is_overlay_free:false,
                 sex_types:{!! json_encode(App\Models\TblPatient::$sex_types,JSON_UNESCAPED_UNICODE )!!},
                 type_counts:{!! json_encode(App\Models\TblPatientMedium::$type_counts,JSON_UNESCAPED_UNICODE )!!},
 

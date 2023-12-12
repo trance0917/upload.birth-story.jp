@@ -12,8 +12,7 @@
             <section class="border border-main rounded mx-[15px] bg-main/5 py-[20px] px-[15px] mt-[30px]">
                 <h2 class="text-center leading-none text-[15px] font-bold text-brown">バースストーリーから産院アンケートのお願い</h2>
 
-
-                <div class="text-red text-[12px] font-bold text-center mt-[5px]">(Amazonギフトカード<span class="text-red underline">{{$tbl_patient->review_point}}ポイント</span>進呈)</div>
+                @if($tbl_patient->review_point)<div class="text-red text-[12px] font-bold text-center mt-[5px]">(Amazonギフトカード<span class="text-red underline">{{$tbl_patient->review_point}}ポイント</span>進呈)</div>@endif
 
                 <p class="text-[14px] mt-[15px]">お客様の声は、産院さまにとって非常に重要であり、今後のサービス向上の参考にさせていただいております。</p>
                 <p class="text-[14px] mt-[10px]">産院さまご利用時の<span class="underline">良かった点や改善点</span>など、お客様の貴重なご意見をお聞かせください。</p>
@@ -54,8 +53,10 @@
                             <p class="text-[14px] mt-[15px] font-bold">アンケートのご協力をありがとうございました。<br />頂いた内容はサービスの向上ための参考として活用させていただきます。</p>
                         @endif
 
+                        @if($tbl_patient->review_point)
                         <p class="text-center text-[14px] mt-[12px]">ポイント進呈状況：<span class="font-bold">手続中</span></p>
                         <p class="text-center text-[12px] mt-[2px]">進呈先：{{$tbl_patient->amazon_id}}</p>
+                        @endif
                     </section>
             @endif
         @endif

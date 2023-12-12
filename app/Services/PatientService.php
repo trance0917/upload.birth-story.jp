@@ -40,14 +40,17 @@ class PatientService{
         ];
     }
     public function storeReview($tbl_patient,$tbl_patient_input){
-        $validator = Validator:: make([
-            'tbl_patient' => $tbl_patient_input,
-        ], [
+        $rules = [
             //tbl_supplier
             'tbl_patient.review' => 'required',
-            'tbl_patient.amazon_id' => 'required',
             'tbl_patient.tbl_patient_reviews.*.score' => 'required',
-        ]);
+        ];
+        if($tbl_patient->review_point){
+            $rules['tbl_patient.amazon_id'] = 'required';
+        }
+        $validator = Validator:: make([
+            'tbl_patient' => $tbl_patient_input,
+        ], $rules);
         if ($validator->fails()) {
             return [
                 'result' => false,
@@ -66,7 +69,7 @@ class PatientService{
                 $tbl_patient_review->save();
             }
             $tbl_patient->review = $tbl_patient_input['review'];
-            $tbl_patient->amazon_id = $tbl_patient_input['amazon_id'];
+            $tbl_patient->amazon_id = $tbl_patient_input['amazon_id']??null;
             $tbl_patient->save();
 
             DB::commit();
