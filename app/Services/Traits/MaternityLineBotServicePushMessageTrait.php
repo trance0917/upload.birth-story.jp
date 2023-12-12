@@ -90,6 +90,7 @@ trait MaternityLineBotServicePushMessageTrait
         ],
     ];
     public function pushMessageFollow(TblPatient $tbl_patient){
+
         $message = [
             'type' => 'flex', 'altText' => 'ご出産おめでとうございます！',
             'contents' =>[
@@ -115,20 +116,23 @@ trait MaternityLineBotServicePushMessageTrait
                                 'type' => 'uri','label' => '写真を提出する','uri' => route('guide',$tbl_patient ). '?openExternalBrowser=1'
                             ]
                         ],
-                        ['type' => 'separator','color' => '#999999','margin' => 'xxl'],
-                        [
-                            'type' => 'text','wrap' => true,'margin' => 'xl','size' => 'sm',
-                            'text' => 'お写真の提出が完了し、簡単なアンケートをにお答えいただけますと、バースストーリーからAmazonギフト'.$tbl_patient->review_point.'ptを進呈しております。',
-                            'contents' => [
-                                ['type' => 'span','text' => 'お写真の提出が完了し、簡単なアンケートにお答えいただけますと、バースストーリーから'],
-                                ['type' => 'span','text' => 'Amazonギフト'.$tbl_patient->review_point.'pt','color' => '#ee3333','weight' => 'bold'],
-                                ['type' => 'span','text' => 'を進呈しております。']
-                            ],
-                        ]
                     ]
                 ]
             ],
         ];
+
+        if($tbl_patient->review_point){
+            $message['contents']['body']['contents'][] = ['type' => 'separator','color' => '#999999','margin' => 'xxl'];
+            $message['contents']['body']['contents'][] = [
+                'type' => 'text','wrap' => true,'margin' => 'xl','size' => 'sm',
+                'text' => 'お写真の提出が完了し、簡単なアンケートをにお答えいただけますと、バースストーリーからAmazonギフト'.$tbl_patient->review_point.'ptを進呈しております。',
+                'contents' => [
+                    ['type' => 'span','text' => 'お写真の提出が完了し、簡単なアンケートにお答えいただけますと、バースストーリーから'],
+                    ['type' => 'span','text' => 'Amazonギフト'.$tbl_patient->review_point.'pt','color' => '#ee3333','weight' => 'bold'],
+                    ['type' => 'span','text' => 'を進呈しております。']
+                ]
+            ];
+        }
         $this->pushMessage($tbl_patient->line_user_id, new RawMessageBuilder($message), $tbl_patient);
     }
 
