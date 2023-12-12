@@ -608,15 +608,11 @@
                 <div class="w-[46%]"><img class="mx-auto" src="/images/sample-photoart-4.png" alt="" /></div>
             </div>
 
-            <div class="flex justify-center mb-[10px]">
+            <div class="flex justify-center">
                 <div class="mr-[10px] w-[46%]"><img class="mx-auto" src="/images/sample-photoart-5.png" alt="" /></div>
                 <div class="w-[46%]"><img class="mx-auto" src="/images/sample-photoart-6.png" alt="" /></div>
             </div>
 
-            <div class="flex justify-center">
-                <div class="mr-[10px] w-[46%]"><img class="mx-auto" src="/images/sample-photoart-7.png" alt="" /></div>
-                <div class="w-[46%]"><img class="mx-auto" src="/images/sample-photoart-8.png" alt="" /></div>
-            </div>
             <p class="mt-[10px] text-center text-[14px] text-slate-500">タップで閉じる</p>
         </div>
     </div>
