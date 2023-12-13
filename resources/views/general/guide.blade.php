@@ -67,7 +67,7 @@
 
         <h1 class="mt-[50px] md:mt-[30px] text-center"><span class="px-[25px] md:px-[15px] pb-[15px] pt-[18px] bg-sub-light font-bold text-[24px] md:text-[16px] inline-block leading-none">ご出産記念DVD「バースストーリー」とは？</span></h1>
 
-        <img class="w-[400px] md:w-[260px] mx-auto mt-[30px] md:mt-[20px]" src="/images/maternities/{{$tbl_patient->mst_maternity_id}}/guide.png" alt="" />
+        <img class="w-[400px] md:w-[260px] mx-auto mt-[30px] md:mt-[20px] shadow-[8px_8px_0_rgba(246,234,209,1)]" src="/images/maternities/{{$tbl_patient->mst_maternity_id}}/guide.png" alt="" />
 
         <p class="w-[550px] md:w-[350px] mx-auto mt-[30px] md:mt-[20px] text-[18px] md:text-[14px] font-bold">ご出産記念DVD「バースストーリー」は人生最高の思い出にしていただきたいという気持ちを込めた当院からのプレゼントです。<br />
             お写真とともにメッセージが流れてご出産の感動をいつまでも残していきます。</p>
