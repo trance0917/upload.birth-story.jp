@@ -35,10 +35,14 @@
                             いただけませんか？<br />
                             星の評価のみであれば下記リンクから30秒で回答いただけます。</p>
 
-                        <p @click.prevent="review_copy" class="relative text-[14px] border-dotted border-slate-400 text-slate-250 bg-slate-50 border p-[5px] rounded overflow-hidden text-ellipsis h-[3.3em] leading-[1.3em] mt-[10px]">{{$tbl_patient->review}}
-                            <span class="absolute block w-full top-[calc(50%-8px)] font-bold text-center text-[16px]">タップしてコピー</span>
+                            <p @click.prevent="review_copy"
+                               class="relative text-[14px] border-dotted border-slate-400 text-slate-350 bg-slate-100 border p-[5px] rounded overflow-hidden text-ellipsis h-[5em] leading-[1.3em] mt-[10px]"
+                               :class="{'!bg-green-50 !border-green-400':is_copy}"
+                            >
+                            {{$tbl_patient->review}}
+                                <span v-if="!is_copy" class="absolute block w-full top-[calc(50%-8px)] font-bold text-center text-[16px]">タップしてコピー</span>
+                                <span v-else class="absolute block w-full top-[calc(50%-9px)] font-bold text-center text-[18px] text-green">コピーしました</span>
                         </p>
-                        <p v-if="is_copy" class="mt-[3px] font-bold text-green text-center">コピーしました</p>
                         <p v-if="is_fail_copy" class="mt-[3px] font-bold text-red text-[12px] text-center">端末の制限によりコピーできませんでした。</p>
 
 
@@ -47,7 +51,6 @@
                                target="_blank" href="{{$tbl_patient->mst_maternity->review_link}}"
                             >評価する<i class="fa-solid fa-angle-right absolute top-[16px] md:top-[14px] right-[10px]"></i></a>
                         </p>
-
                             <ul class="hidden star star-30 star-31 star-32 star-33 star-34 star-35 star-36 star-37 star-38 star-39 star-40 star-41 star-42 star-43 star-44 star-45 star-46 star-47 star-48 star-49 star-50"></ul>
                         @else
                             <p class="text-[14px] mt-[15px] font-bold">アンケートのご協力をありがとうございました。<br />頂いた内容はサービスの向上ための参考として活用させていただきます。</p>

@@ -64,6 +64,8 @@ Route::get('/contact/complete', function(){
 Route::get('/{tbl_patient:code}/check', [CheckController::class,'index'])->name('check-index');
 
 
+Route::get('/{tbl_patient:code}/instagram', [IndexController::class,'instagram'])->name('instagram-index');
+
 Route::get('/{tbl_patient:code}/story', [StoryController::class,'index'])->name('story-index');
 Route::get('/{tbl_patient:code}/story_json', [StoryController::class,'index_json'])->name('story-index_json');
 

@@ -64,4 +64,7 @@ class IndexController extends Controller
         return response()->json($inputs);
     }
 
+    public function instagram(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
+        return view('general.instagram',compact('tbl_patient'));
+    }
 }

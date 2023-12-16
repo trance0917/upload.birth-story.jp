@@ -321,7 +321,7 @@ trait MaternityLineBotServicePushMessageTrait
             'type' => 'box','layout' => 'vertical','margin' => 'lg',
             'contents' => [
                 ['type' => 'text','text' => '[レビュー]','size' => 'sm'],
-                ['text' => '初診だと予約できないみたいでした。 産科ではなく、婦人科目的行きました。平日の午前中でしたが、めちゃくちゃ人が多くてびっくり……！ モニターに番号が出ますが、小さくて見えない（笑） 1時間ぐらい待ったかな？ 若い女医さんでしたが、ハキハキしてて好印象でした。 受付の人たちも親切である。忙しそうだったけど……！ 横の施設で子どもも見てくれるみたいなので、次から予約して使ってみたいです(´ω｀)','type' => 'text','wrap' => true,'size' => 'sm','margin' => 'sm']
+                ['text' => $tbl_patient->review,'type' => 'text','wrap' => true,'size' => 'sm','margin' => 'sm']
             ]
         ];
 
