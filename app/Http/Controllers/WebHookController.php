@@ -1,12 +1,10 @@
 <?php
-namespace App\Http\Controllers\General;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use LINE\LINEBot\HTTPClient\CurlHTTPClient;
-use App\Services\MaternityLineBotService;
-use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
-use App\Models\MstMaternity;
+namespace App\Http\Controllers;
 use App\Models\LogLineWebhook;
+use App\Models\MstMaternity;
+use App\Services\MaternityLineBotService;
+use Illuminate\Http\Request;
+use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 
 
 final class WebHookController extends Controller

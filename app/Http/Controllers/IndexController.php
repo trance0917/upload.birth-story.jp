@@ -1,23 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\General;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\TblPatient;
 use App\Services\MaternityLineBotService;
 use App\Services\MaternityService;
 use App\Services\PatientService;
 use Illuminate\Http\Request;
-use App\Models\TblPatient;
-use App\Models\TblPatientReview;
-use App\Models\MstMaternityQuestion;
-use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
-use LINE\LINEBot\MessageBuilder\FlexMessageBuilder;
-use LINE\LINEBot\RichMenuBuilder;
-use LINE\LINEBot\RichMenuBuilder\RichMenuSizeBuilder;
-use LINE\LINEBot\RichMenuBuilder\RichMenuAreaBuilder;
-use LINE\LINEBot\RichMenuBuilder\RichMenuAreaBoundsBuilder;
-
-use LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder;
 
 class IndexController extends Controller
 {

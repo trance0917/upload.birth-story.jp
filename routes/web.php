@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\CheckController;
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\StoryController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\General\IndexController;
-use App\Http\Controllers\General\StoryController;
-use App\Http\Controllers\General\CheckController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,11 +34,11 @@ Route::get('/{tbl_patient:code}/policy', function () {
 })->name('policy');
 
 
-Route::post('/github/webhook/', [App\Http\Controllers\General\WebHookController::class,'github'])->name('github-webhook');
-Route::get('/line/webhook', [App\Http\Controllers\General\WebHookController::class,'index'])->name('line-webhook');
-Route::post('/line/webhook', [App\Http\Controllers\General\WebHookController::class,'index'])->name('line-webhook');
-Route::get('/line/webhook/test', [App\Http\Controllers\General\WebHookController::class,'test'])->name('line-webhook-test');
-Route::get('/line/webhook/test2', [App\Http\Controllers\General\WebHookController::class,'test2'])->name('line-webhook-test2');
+Route::post('/github/webhook/', [\App\Http\Controllers\WebHookController::class,'github'])->name('github-webhook');
+Route::get('/line/webhook', [\App\Http\Controllers\WebHookController::class,'index'])->name('line-webhook');
+Route::post('/line/webhook', [\App\Http\Controllers\WebHookController::class,'index'])->name('line-webhook');
+Route::get('/line/webhook/test', [\App\Http\Controllers\WebHookController::class,'test'])->name('line-webhook-test');
+Route::get('/line/webhook/test2', [\App\Http\Controllers\WebHookController::class,'test2'])->name('line-webhook-test2');
 
 
 
@@ -49,8 +49,8 @@ Route::get('/contact', function () {
     return view('general.contact.index');
 })->name('contact');
 
-Route::post('/contact/confirm', [App\Http\Controllers\General\ContactController::class,'confirm'])->name('contact-confirm');
-Route::post('/contact/complete', [App\Http\Controllers\General\ContactController::class,'complete'])->name('contact-complete');
+Route::post('/contact/confirm', [\App\Http\Controllers\ContactController::class,'confirm'])->name('contact-confirm');
+Route::post('/contact/complete', [\App\Http\Controllers\ContactController::class,'complete'])->name('contact-complete');
 
 Route::get('/contact/confirm', function(){
     abort(400);

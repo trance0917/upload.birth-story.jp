@@ -1,10 +1,8 @@
 <?php
-namespace App\Http\Controllers\General;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Http\Requests\General\ContactRequest;
-
+namespace App\Http\Controllers;
 use App\Events\ContactSendEvent;
+use App\Http\Requests\General\ContactRequest;
+use Illuminate\Http\Request;
 
 final class ContactController extends Controller
 {

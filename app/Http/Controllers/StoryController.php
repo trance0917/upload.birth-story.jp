@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\General;
+namespace App\Http\Controllers;
 
-use App\Events\ContactSendEvent;
-use App\Http\Controllers\Controller;
+use App\Models\TblPatient;
 use App\Services\MaternityLineBotService;
 use App\Services\PatientService;
 use Illuminate\Http\Request;
-use App\Models\TblPatient;
 
 class StoryController extends Controller
 {
@@ -66,7 +64,7 @@ class StoryController extends Controller
         $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
         $maternity_line_bot_service->pushMessageStorySubmitted($tbl_patient->tbl_patient_id);
         $maternity_line_bot_service->makeStorySubmittedRichMenu($tbl_patient);
-        
+
 
         $tbl_patient->submitted_at = now();
         $tbl_patient->save();
