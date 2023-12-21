@@ -28,7 +28,6 @@ final class WebHookController extends Controller
 
 
         $mst_maternity = MstMaternity::where('line_destination', $request->destination)->first();
-        dump($mst_maternity);
         if($mst_maternity){
 
                 $line_bot_service = new MaternityLineBotService($mst_maternity);
@@ -65,6 +64,7 @@ final class WebHookController extends Controller
                         }
                     }elseif($event_type=='follow'){
                         //フォロワーを手続き
+                        dump('follow');
                         $line_bot_service->follow($event['source']['userId']);
                     }elseif($event_type=='unfollow'){
                         $line_bot_service->unfollow($event['source']['userId']);
