@@ -91,7 +91,6 @@ class MaternityLineBotService extends LINEBot
             }
 
             $profile = $this->getProfile($line_user_id)->getJSONDecodedBody();
-            dump($profile);
 
             $tbl_patient->mst_maternity_id = $this->mst_maternity->mst_maternity_id;
             $tbl_patient->code = $code;
