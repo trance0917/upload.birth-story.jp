@@ -7,6 +7,7 @@ use App\Services\MaternityLineBotService;
 use App\Services\MaternityService;
 use App\Services\PatientService;
 use Illuminate\Http\Request;
+use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 
 class IndexController extends Controller
 {
@@ -21,7 +22,10 @@ class IndexController extends Controller
 //        $maternity_line_bot_service->makeFirstRichMenu($tbl_patient);
 //        $maternity_line_bot_service->makeStorySubmittedRichMenu($tbl_patient);
 //        $maternity_line_bot_service->makeStorySubmittedHighScoreReviewRichMenu($tbl_patient);
+
+//        $maternity_line_bot_service->pushMessage($tbl_patient->line_user_id, new TextMessageBuilder(view('lines/review-patient-low-rating', ['tbl_patient' => $tbl_patient,])->render()), $tbl_patient);
 //        $maternity_line_bot_service->makeStorySubmittedLowScoreReviewRichMenu($tbl_patient);
+
 //        $maternity_line_bot_service->makeHealthCheckRichMenu($tbl_patient);
 //        $maternity_line_bot_service->makeHealthCheckHighScoreReviewRichMenu($tbl_patient);
 //        $maternity_line_bot_service->makeHealthCheckLowScoreReviewRichMenu($tbl_patient);
