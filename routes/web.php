@@ -21,12 +21,16 @@ Route::get('/', function () {
 })->name('toppage');
 
 
+Route::group(['middleware' => 'basicauth'], function() {
+    // ここに対象のページを記述
+    // 例）
+    Route::get('/{tbl_patient:code}/howto', function () {
+        return view('general.howto');
+    })->name('howto');
+
+});
 
 
-
-Route::get('/{tbl_patient:code}/howto', function () {
-    return view('general.howto');
-})->name('howto');
 
 
 Route::get('/{tbl_patient:code}/policy', function () {
