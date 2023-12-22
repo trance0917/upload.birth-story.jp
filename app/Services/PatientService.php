@@ -8,6 +8,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use ZipArchive;
 
 class PatientService{
 
@@ -74,7 +75,7 @@ class PatientService{
             }else{
                 $tbl_patient->payment_status = 3;
             }
-            
+
             $tbl_patient->amazon_id = $tbl_patient_input['amazon_id']??null;
             $tbl_patient->save();
 
@@ -181,7 +182,9 @@ class PatientService{
             ];
         }
 
+        //上書きの時に削除するための古いID
         $tbl_patient_medium_id=$tbl_patient_input['tbl_patient_mediums'][$key]['tbl_patient_medium_id']??null;
+
         $type=$tbl_patient_input['tbl_patient_mediums'][$key]['type'];
         $file=$tbl_patient_input['tbl_patient_mediums'][$key]['file'];
 
@@ -203,7 +206,7 @@ class PatientService{
             }
             $filepath = pathinfo($file->getClientOriginalName());
             $filename = preg_replace('/[^0-9]/' ,'' , microtime());
-
+            $medium=null;
             DB::beginTransaction();
             try {
                 //新規の場合
@@ -211,7 +214,7 @@ class PatientService{
                     $medium = [
                         'tbl_patient_id' => $tbl_patient->tbl_patient_id,
                         'file_name' => $filename,
-                        'extension' => $filepath['extension'],
+                        'extension' => $mime_type=='image'?'jpg':$filepath['extension'],
                         'type' => $type,
                         'registered_at' => now(),
                         'order' => $order+1,
@@ -224,13 +227,13 @@ class PatientService{
                     //更新の場合
                     $medium = [
                         'file_name' => $filename,
-                        'extension' => $filepath['extension'],
+                        'extension' => $mime_type=='image'?'jpg':$filepath['extension'],
                         'type' => $type,
                         'registered_at' => now(),
                     ];
                     $tbl_patient_medium = TblPatientMedium::find($tbl_patient_medium_id);
 
-                    //古い情報を取得しておく
+                    //古い情報を取得しておくために事前にデータを取得
                     $old_file_name = $tbl_patient_medium->file_name;
                     $old_extension = $tbl_patient_medium->extension;
 
@@ -238,8 +241,12 @@ class PatientService{
                     $tbl_patient_medium->save();
                 }
 
+                $img = \Image::make($file);
+                $img->orientate();
+                $img->save(storage_path('app/'.$original_directory_path.'/'.$filename . '.' . $medium['extension']),100,$medium['extension']);
+
                 //原本の保存
-                $file->storeAs($original_directory_path, $filename . '.' . $filepath['extension']);
+//                $file->storeAs($original_directory_path, $filename . '.' . $medium['extension']);
 
                 if($mime_type=='image'){
                     //サムネイルの保存
@@ -249,9 +256,9 @@ class PatientService{
                         $constraint->upsize(); // 元画像より大きくならないようにする
                     });
                     $img->orientate();
-                    $img->save(storage_path('app/'.$directory_path.'/'.$filename . '.' . $filepath['extension']),100);
+                    $img->save(storage_path('app/'.$directory_path.'/'.$filename . '.' . $medium['extension']),100,$medium['extension']);
                 }else{
-                    $file->storeAs($directory_path, $filename . '.' . $filepath['extension']);
+                    $file->storeAs($directory_path, $filename . '.' . $medium['extension']);
                 }
 
                 //古いファイルは消しておく
@@ -286,7 +293,18 @@ class PatientService{
             \Storage::makeDirectory($directory_path,0777);
         }
         foreach($tbl_patient->tbl_patient_mediums AS $tbl_patient_medium_key => $tbl_patient_medium){
-            \Storage::putFileAs('public/patients/'.$tbl_patient->tbl_patient_id.'_'.$tbl_patient->code.'/adoption',$tbl_patient_medium->local_original_src,$tbl_patient_medium->submitted_file_name);
+            \Storage::putFileAs($directory_path,$tbl_patient_medium->local_original_src,$tbl_patient_medium->submitted_file_name);
         }
+
+        $zip = new \ZipArchive();
+        $zip_path = storage_path('app/public/patients/'.$tbl_patient->tbl_patient_id.'_'.$tbl_patient->code.'/data.zip');
+
+        $zip->open($zip_path, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+
+        foreach(glob(storage_path('app/'.$directory_path).'/*') AS $key=>$val){
+            $zip->addFile($val,basename($val));
+        }
+        $zip->close();
+        \Storage::disk('local')->deleteDirectory($directory_path);
     }
 }

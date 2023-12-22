@@ -6,6 +6,8 @@ use App\Models\TblPatient;
 use App\Services\MaternityLineBotService;
 use App\Services\PatientService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class StoryController extends Controller
 {
@@ -66,11 +68,21 @@ class StoryController extends Controller
         $maternity_line_bot_service->makeStorySubmittedRichMenu($tbl_patient);
 
 
-        $tbl_patient->submitted_at = now();
-        $tbl_patient->save();
+        DB::beginTransaction();
+        try {
+            $tbl_patient->submitted_at = now();
+            $tbl_patient->save();
 
-        //受け取るファイルの作成
-        $patient_service->createAdoptMediums($tbl_patient);
+            //受け取るファイルの作成
+            $patient_service->createAdoptMediums($tbl_patient);
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollback();
+            Log::error($e);
+            echo('エラーが発生しました。提出が完了していません。');
+            exit;
+        }
+
 
         return redirect()->route('review',$tbl_patient);
 //        return view('general.story.complete',compact('tbl_patient'));

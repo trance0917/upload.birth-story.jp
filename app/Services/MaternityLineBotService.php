@@ -55,7 +55,6 @@ class MaternityLineBotService extends LINEBot
             $log_line_message->message = json_encode($messageBuilder->buildMessage());
             $log_line_message->save();
         }
-
         $res = parent::pushMessage($to, $messageBuilder);
         return $res;
     }
