@@ -115,4 +115,9 @@ class TblPatient extends Model
     {
         return sprintf("%.1f",round($this->tbl_patient_reviews->average('score'),1));
     }
+
+    public function getLocalSrcAttribute()
+    {
+        return storage_path('app/public/patients/'.$this->tbl_patient_id.'_'.$this->code);
+    }
 }

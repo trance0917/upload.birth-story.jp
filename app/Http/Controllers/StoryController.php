@@ -8,6 +8,8 @@ use App\Services\PatientService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
+
 
 class StoryController extends Controller
 {
@@ -86,5 +88,17 @@ class StoryController extends Controller
 
         return redirect()->route('review',$tbl_patient);
 //        return view('general.story.complete',compact('tbl_patient'));
+    }
+    public function dl(TblPatient $tbl_patient){
+
+        $zip_file_name = $tbl_patient->local_src.'/data.zip';
+        if(File::exists($zip_file_name)){
+            header('Content-Type: application/force-download;');
+            header('Content-Length: '.filesize($zip_file_name));
+            header('Content-Disposition: attachment; filename="'.$tbl_patient->mst_maternity->name.'_'.$tbl_patient->tbl_patient_id.'_'.$tbl_patient->name.'.zip"');
+            readfile($zip_file_name);
+        }else{
+            abort(404);
+        }
     }
 }

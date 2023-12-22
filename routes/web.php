@@ -20,15 +20,11 @@ Route::get('/', function () {
     return view('general.index');
 })->name('toppage');
 
+Route::get('/{tbl_patient:code}/howto', function () {
+    return view('general.howto');
+})->name('howto');
 
-Route::group(['middleware' => 'basicauth'], function() {
-    // ここに対象のページを記述
-    // 例）
-    Route::get('/{tbl_patient:code}/howto', function () {
-        return view('general.howto');
-    })->name('howto');
 
-});
 
 
 
@@ -81,3 +77,7 @@ Route::get('/{tbl_patient:code}/review', [IndexController::class,'review'])->nam
 Route::get('/{tbl_patient:code}/review_json', [IndexController::class,'review_json'])->name('review_json');
 
 Route::get('/{tbl_patient:code}', [IndexController::class,'index'])->name('guide');
+
+Route::group(['middleware' => 'basicauth'], function() {
+    Route::get('/dl/{tbl_patient:code}', [StoryController::class,'dl'])->name('story-dl');
+});
