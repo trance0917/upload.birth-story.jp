@@ -57,7 +57,9 @@
                         @endif
 
                         @if($tbl_patient->review_point)
-                        <p class="text-center text-[14px] mt-[12px]">ポイント進呈状況：<span class="font-bold">手続中</span></p>
+                            
+                        
+                        <p class="text-center text-[14px] mt-[12px]">ポイント進呈状況：@if($tbl_patient->payment_status==2)<span class="font-bold">手続中</span>@elseif($tbl_patient->payment_status==3)<span class="font-bold text-green">支払済</span>@endif</p>
                         <p class="text-center text-[12px] mt-[2px]">進呈先：{{$tbl_patient->amazon_id}}</p>
                         @endif
                     </section>

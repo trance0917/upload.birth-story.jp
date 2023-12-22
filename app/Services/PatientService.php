@@ -69,6 +69,12 @@ class PatientService{
                 $tbl_patient_review->save();
             }
             $tbl_patient->review = $tbl_patient_input['review'];
+            if($tbl_patient->review_point){
+                $tbl_patient->payment_status = 2;
+            }else{
+                $tbl_patient->payment_status = 3;
+            }
+            
             $tbl_patient->amazon_id = $tbl_patient_input['amazon_id']??null;
             $tbl_patient->save();
 
