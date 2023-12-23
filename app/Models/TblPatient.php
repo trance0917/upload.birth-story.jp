@@ -37,7 +37,7 @@ use App\Traits\SerializeDate;
  * @property string|null $amazon_id
  * @property Carbon|null $completed_at
  * @property Carbon|null $undertook_at
- * @property int $undertook_by
+ * @property int $working_by
  * @property string|null $memo
  * @property string|null $deleted_at
  * @property Carbon|null $created_at
@@ -64,7 +64,7 @@ class TblPatient extends Model
 		'is_use_instagram' => 'int',
 		'completed_at' => 'datetime',
 		'undertook_at' => 'datetime',
-		'undertook_by' => 'int'
+		'working_by' => 'int'
 	];
 
 	protected $fillable = [
@@ -90,7 +90,7 @@ class TblPatient extends Model
 		'amazon_id',
 		'completed_at',
 		'undertook_at',
-		'undertook_by',
+		'working_by',
 		'memo'
 	];
 
