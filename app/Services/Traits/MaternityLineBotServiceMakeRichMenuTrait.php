@@ -110,12 +110,11 @@ trait MaternityLineBotServiceMakeRichMenuTrait
     {
         $this->deleteRichMenu($tbl_patient->richmenu_id);
         $rich_menu_builder = new RichMenuBuilder(
-            RichMenuSizeBuilder::getFull(),true,$tbl_patient->line_name . 'さん(' . $tbl_patient->code . ')の写真提出後、レビューが有り、低評価リッチメニュー','メニューを開く',
+            RichMenuSizeBuilder::getHalf(),true,$tbl_patient->line_name . 'さん(' . $tbl_patient->code . ')の写真提出後、レビューが有り、低評価リッチメニュー','メニューを開く',
             [
-                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(0, 0, 834, 843), new UriTemplateActionBuilder('産院HP', $tbl_patient->mst_maternity->official_url)),
-                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(0, 844, 834, 843), new UriTemplateActionBuilder('産院インスタ', $tbl_patient->mst_maternity->instagram_url)),
-                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(835, 0, 1666, 843), new UriTemplateActionBuilder('写真提出', route('guide', $tbl_patient) . '?openExternalBrowser=1')),
-                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(835, 844, 1666, 843), new UriTemplateActionBuilder('Voomへのリンク', $tbl_patient->mst_maternity->voom_link)),
+                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(0, 0, 833, 843), new UriTemplateActionBuilder('産院HP', $tbl_patient->mst_maternity->official_url)),
+                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(834, 0, 834, 843), new UriTemplateActionBuilder('産院インスタ', $tbl_patient->mst_maternity->instagram_url)),
+                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(1667, 0, 833, 843), new UriTemplateActionBuilder('写真提出', route('guide', $tbl_patient) . '?openExternalBrowser=1')),
             ],
         );
         try {
@@ -194,12 +193,11 @@ trait MaternityLineBotServiceMakeRichMenuTrait
     {
         $this->deleteRichMenu($tbl_patient->richmenu_id);
         $rich_menu_builder = new RichMenuBuilder(
-            RichMenuSizeBuilder::getFull(),true,$tbl_patient->line_name . 'さん(' . $tbl_patient->code . ')の1ヶ月健診、レビューが有り、低評価の場合のリッチメニュー','メニューを開く',
+            RichMenuSizeBuilder::getHalf(),true,$tbl_patient->line_name . 'さん(' . $tbl_patient->code . ')の1ヶ月健診、レビューが有り、低評価の場合のリッチメニュー','メニューを開く',
             [
-                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(0, 0, 834, 843), new UriTemplateActionBuilder('産院HP', $tbl_patient->mst_maternity->official_url)),
-                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(0, 844, 834, 843), new UriTemplateActionBuilder('産院インスタ', $tbl_patient->mst_maternity->instagram_url)),
-                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(835, 0, 1666, 843), new UriTemplateActionBuilder('写真提出', route('guide', $tbl_patient) . '?openExternalBrowser=1')),
-                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(835, 844, 1666, 843), new UriTemplateActionBuilder('Voomへのリンク', $tbl_patient->mst_maternity->voom_link)),
+                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(0, 0, 833, 843), new UriTemplateActionBuilder('産院HP', $tbl_patient->mst_maternity->official_url)),
+                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(834, 0, 834, 843), new UriTemplateActionBuilder('産院インスタ', $tbl_patient->mst_maternity->instagram_url)),
+                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(1667, 0, 833, 843), new UriTemplateActionBuilder('写真提出', route('guide', $tbl_patient) . '?openExternalBrowser=1')),
             ],
         );
         try {
@@ -222,11 +220,11 @@ trait MaternityLineBotServiceMakeRichMenuTrait
     {
         $this->deleteRichMenu($tbl_patient->richmenu_id);
         $rich_menu_builder = new RichMenuBuilder(
-            RichMenuSizeBuilder::getFull(),true,$tbl_patient->line_name . 'さん(' . $tbl_patient->code . ')の初期リッチメニュー','メニューを開く',
+            RichMenuSizeBuilder::getHalf(),true,$tbl_patient->line_name . 'さん(' . $tbl_patient->code . ')の初期リッチメニュー','メニューを開く',
             [
-                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(0, 0, 834, 843), new UriTemplateActionBuilder('産院HP', $tbl_patient->mst_maternity->official_url)),
-                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(0, 844, 834, 843), new UriTemplateActionBuilder('産院インスタ', $tbl_patient->mst_maternity->instagram_url)),
-                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(835, 844, 1666, 843), new UriTemplateActionBuilder('Voomへのリンク', $tbl_patient->mst_maternity->voom_link)),
+                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(0, 0, 833, 843), new UriTemplateActionBuilder('産院HP', $tbl_patient->mst_maternity->official_url)),
+                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(834, 0, 834, 843), new UriTemplateActionBuilder('産院インスタ', $tbl_patient->mst_maternity->instagram_url)),
+                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(1667, 0, 833, 843), new UriTemplateActionBuilder('写真提出', route('guide', $tbl_patient) . '?openExternalBrowser=1')),
             ],
         );
         try {

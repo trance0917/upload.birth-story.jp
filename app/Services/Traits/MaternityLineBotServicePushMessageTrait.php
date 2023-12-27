@@ -14,81 +14,8 @@ use LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder;
 
 trait MaternityLineBotServicePushMessageTrait
 {
-    public $total_stars = [
-        1 => [
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'lg'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'lg'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'lg'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'lg'],
-        ],
-        2 => [
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'lg'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'lg'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'lg'],
-        ],
-        3 => [
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'lg'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'lg'],
-        ],
-        4 => [
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'lg'],
-        ],
-        5 => [
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'lg'],
-        ],
-    ];
 
-    public $small_stars = [
-        1 => [
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'sm'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'sm'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'sm'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'sm'],
-        ],
-        2 => [
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'sm'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'sm'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'sm'],
-        ],
-        3 => [
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'sm'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'sm'],
-        ],
-        4 => [
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png','type' => 'icon','size' => 'sm'],
-        ],
-        5 => [
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-            ['url' => 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png','type' => 'icon','size' => 'sm'],
-        ],
-    ];
+
     public function pushMessageFollow(TblPatient $tbl_patient){
 
         $message = [
