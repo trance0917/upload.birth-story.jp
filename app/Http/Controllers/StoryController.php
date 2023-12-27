@@ -85,8 +85,7 @@ class StoryController extends Controller
             exit;
         }
 
-
-        return redirect()->route('review',$tbl_patient);
+        return redirect()->route('review',$tbl_patient)->with('flash_message', '提出が完了しました');
 //        return view('general.story.complete',compact('tbl_patient'));
     }
     public function dl(TblPatient $tbl_patient){

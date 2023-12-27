@@ -221,7 +221,7 @@
                     </div>
                     <div class="item pt-[10px]">
                         <dd>
-                            <div class="text-center text-[12px] font-bold">ベビー写真を色補正してインスタグラムに<br />
+                            <div class="text-center text-[12px] font-bold">ベビーの写真を色補正してインスタグラムに<br />
                                 掲載することがあります。</div>
                             <div class="text-center mt-[5px]" v-if="tbl_patient.is_use_instagram==1"><i class="text-green fa-regular fa-circle mr-[3px]"></i>許可する</div>
                             <div class="text-center mt-[5px]" v-if="tbl_patient.is_use_instagram==2"><i class="text-red fa-solid fa-xmark mr-[3px]"></i>許可しない</div>

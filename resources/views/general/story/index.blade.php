@@ -507,7 +507,7 @@
                     </div>
                     <div class="item pt-[10px]">
                         <dd>
-                            <div class="text-center text-[12px] font-bold">ベビー写真を色補正してインスタグラムに<br />
+                            <div class="text-center text-[12px] font-bold">ベビーの写真を色補正してインスタグラムに<br />
                                 掲載することがあります。</div>
                             <ul class="flex space-x-[15px] mt-[5px] justify-center">
                                 <li><input class="mr-[3px]" name="is_use_instagram" type="radio" id="is_use_instagram_1" value="1" v-model="tbl_patient.is_use_instagram" @change="input_save('is_use_instagram',tbl_patient.is_use_instagram)"><label for="is_use_instagram_1" class="flex items-center">許可する</label></li>

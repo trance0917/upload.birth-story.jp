@@ -16,9 +16,12 @@
 
     @if($tbl_patient->tbl_patient_reviews->count())
         <div class="mt-[50px] md:mt-[30px] text-center"><span class="w-[80%] px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">ご協力ありがとうございます</span></div>
-    @elseif($tbl_patient->submitted_at)
-        <div class="mt-[50px] md:mt-[30px] text-center"><span class="w-[80%] px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">提出が完了しました</span></div>
     @endif
+
+    @if(session('flash_message'))
+        <div class="mt-[50px] md:mt-[30px] text-center"><span class="w-[80%] px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">{{ session('flash_message') }}</span></div>
+    @endif
+
 
     @if($tbl_patient->submitted_at)
         @if(!$tbl_patient->tbl_patient_reviews->count())
@@ -128,8 +131,8 @@
                                 <li v-for="n in 5" :key="n" class="leading-none"><i class="fa-solid fa-star" :class="{'!text-[#FBBC04]':tbl_patient_review.score>=n}"></i></li>
                             </ul>
                             <p class="text-gray-400 mt-[7px] text-[18px] ">
-                                <template v-if="score_type[tbl_patient_review.score]">@{{score_type[tbl_patient_review.score]}}</template>
-                                <template v-else="score_type[tbl_patient_review.score]">星をタップで選択</template>
+                                <template v-if="score_types[tbl_patient_review.score]">@{{score_types[tbl_patient_review.score]}}</template>
+                                <template v-else="score_types[tbl_patient_review.score]">星をタップで選択</template>
                             </p>
                             <p class="error" v-if="errors['tbl_patient.tbl_patient_reviews.'+tbl_patient_review_key+'.score']">@{{ errors['tbl_patient.tbl_patient_reviews.'+tbl_patient_review_key+'.score'][0] }}</p>
 
@@ -174,7 +177,7 @@
                 is_loading:false,
                 errors:[],
                 mst_maternity_questions:{!! json_encode($mst_maternity_questions,JSON_UNESCAPED_UNICODE )!!},
-                score_type:{!! json_encode(App\Models\MstMaternityQuestion::$score_type,JSON_UNESCAPED_UNICODE )!!},
+                score_types:{!! json_encode(App\Models\MstMaternityQuestion::$score_types,JSON_UNESCAPED_UNICODE )!!},
                 tbl_patient:{
                     tbl_patient_reviews:{
 
@@ -184,7 +187,6 @@
         },
         beforeMount:async function(){
             this.tbl_patient = {!! json_encode($inputs,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT )!!};
-            @if(old('inputs')) @endif
             this.errors = {!! json_encode($errors->toArray(),JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT )!!};
         },
         methods:{
