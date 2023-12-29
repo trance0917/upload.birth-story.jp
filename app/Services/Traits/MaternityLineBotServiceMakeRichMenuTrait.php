@@ -211,13 +211,4 @@ trait MaternityLineBotServiceMakeRichMenuTrait
         $tbl_patient->richmenu_id = $richmenu_id;
         $tbl_patient->save();
     }
-
-    /**
-     * デフォルト(すべての手続きが終わった)のリッチメニュー
-     * @return void
-     */
-    public function makeDefaultRichMenu(TblPatient $tbl_patient)
-    {
-        $this->deleteRichMenu($tbl_patient->richmenu_id);
-    }
 }

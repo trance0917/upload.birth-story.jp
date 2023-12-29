@@ -47,19 +47,27 @@
 ※・[動画]音声とテロップの感覚を調整する
 ※・[動画]レクチャー動画とイメージ動画の部分を分け、テキストを仮で置いておく。
 ※・[フロント]リッチメニューデザインする
-※ starアイコンサーバー内に入れる
-------------------------------------------------------------
+※・[フロント]starアイコンサーバー内に入れる
 ※・赤井本番実装まで
     ヘッダーにバナー
     pdfリンク
     本番サーバー実装
+------------------------------------------------------------
+※・[管理画面]詳細：患者さま詳細画面(データが確認できる)
+※・[管理画面]詳細：フォトアート登録機能
+※・[管理画面]詳細：動画登録機能
+    html ファイルアップロード プログレスバー
+※・赤井本番実装まで
+    画像待ち
+※・[フロント]アップロード：動画の部分、videoタグにできるかどうか？
+movie_path
+photoart_path
+
+
+
 
 ※・[その他]フロー図も作っていく
 
-・[管理画面]詳細：患者さま詳細画面(データが確認できる)
-・[管理画面]詳細：フォトアート登録機能
-・[管理画面]詳細：動画登録機能
-    html ファイルアップロード プログレスバー
 
 ・[管理画面]1ヶ月健診時に送るフレックスメッセージ→flex message simulatorで作る
     [共通]
@@ -315,7 +323,33 @@ Thanks for your excellent review!
 
 
 
+<section class="right" style="
+">
+		<ul class="" style="display: flex;justify-content: right;align-items: center;">
+			<li>大阪府堺市南区深阪南167<br><a href="tel:0722395988" style="text-decoration:underline;font-size:24px;" onclick="ga('send','event','電話番号','タップ','ヘッダー');">072-239-5988</a></li>
+			<li><a href="/information/access/">アクセス</a></li>
+		</ul>
+		<p style="display: flex;">
+    <a href="http://akai.atat.jp/i/f.php" target="_blank" style="
+    height: auto;
+    width: auto;
+    background: none;
+    padding: 0;
+    margin-right: 10px;
+">
+    <img src="https://www.akai-maternity.com/img/h_btn_2.png">
 
+    </a>
+    <a href="http://akai.atat.jp/i/f.php" target="_blank" style="
+    width: auto;
+    height: auto;
+    background: none;
+    padding: 0;
+">
+    <img src="https://www.akai-maternity.com/img/h_btn_2.png">
+
+</a></p>
+	</section>
 
 
 

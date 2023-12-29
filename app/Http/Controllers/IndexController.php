@@ -13,7 +13,7 @@ class IndexController extends Controller
 {
     public function index(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
         $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
-
+//        $maternity_line_bot_service->deleteRichMenu($tbl_patient->richmenu_id);
 //        $maternity_line_bot_service->pushMessageReviewHighRatingToMaternityUser($tbl_patient->mst_maternity->mst_maternity_users[0],$tbl_patient);
 //        $maternity_line_bot_service->pushMessageFollow($tbl_patient);
 //        $maternity_line_bot_service->pushMessageReviewPatientHighRating($tbl_patient);
@@ -26,10 +26,9 @@ class IndexController extends Controller
 //        $maternity_line_bot_service->pushMessage($tbl_patient->line_user_id, new TextMessageBuilder(view('lines/review-patient-low-rating', ['tbl_patient' => $tbl_patient,])->render()), $tbl_patient);
 //        $maternity_line_bot_service->makeStorySubmittedLowScoreReviewRichMenu($tbl_patient);
 
-//        $maternity_line_bot_service->makeHealthCheckRichMenu($tbl_patient);
+        $maternity_line_bot_service->makeHealthCheckRichMenu($tbl_patient);
 //        $maternity_line_bot_service->makeHealthCheckHighScoreReviewRichMenu($tbl_patient);
 //        $maternity_line_bot_service->makeHealthCheckLowScoreReviewRichMenu($tbl_patient);
-//        $maternity_line_bot_service->makeDefaultRichMenu($tbl_patient);
 
         return view('general.guide',compact('tbl_patient'));
     }
