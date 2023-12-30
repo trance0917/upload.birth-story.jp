@@ -97,8 +97,10 @@
                     <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                         <div v-if="medium.type=='first_cry'" class="item w-[48.5%]">
                             <div class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
-                            <div class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px] py-[40px] bg-green-50">保存済み</div>
-                            <p class="mt-[8px] text-center text-center"><a :href="medium.src" class="border rounded-sm border-main px-[7px] py-[3px] inline-block underline text-main font-bold text-[14px]" target="_blank">内容を確認</a></p>
+                            <video class="aspect-video" controls>
+                                <source :src="'/storage/patients/'+tbl_patient.tbl_patient_id+'_'+tbl_patient.code+'/'+medium.file_name+'.'+medium.extension">
+                                <p>動画を再生するには、videoタグをサポートしたブラウザが必要です。</p>
+                            </video>
                         </div>
                     </template>
                     <div class="nothing w-[48.5%]">
@@ -109,8 +111,10 @@
                     <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                         <div v-if="medium.type=='movie'" class="item w-[48.5%]">
                             <div class="text-[14px] font-bold text-center mb-[3px]">動画(横アングル)</div>
-                            <div class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px] py-[40px] bg-green-50">保存済み</div>
-                            <p class="mt-[8px] text-center text-center"><a :href="medium.src" class="border rounded-sm border-main px-[7px] py-[3px] inline-block underline text-main font-bold text-[14px]" target="_blank">内容を確認</a></p>
+                            <video class="aspect-video" controls>
+                                <source :src="'/storage/patients/'+tbl_patient.tbl_patient_id+'_'+tbl_patient.code+'/'+medium.file_name+'.'+medium.extension">
+                                <p>動画を再生するには、videoタグをサポートしたブラウザが必要です。</p>
+                            </video>
                         </div>
                     </template>
                     <div class="nothing w-[48.5%]">
