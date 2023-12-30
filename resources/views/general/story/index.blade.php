@@ -8,7 +8,7 @@
 [&_.error]:leading-none
 [&_.error]:mt-[5px]
 " >
-
+    <div v-show="medium_progress" :style="medium_progress" class="bg-emerald-400 fixed top-0 left-0 h-[5px] z-50"></div>
     <div v-if="is_loading" class="fixed h-full w-full top-[0] left-[0] bg-amber-50/70 z-50 flex flex-col items-center justify-center pb-[100px]">
         <div class="flower-loader !ml-[-8px] !mt-[-8px]"></div>
         <p class="mt-[35px] text-center font-bold">送信中です。<br />しばらくお待ちください。</p>
@@ -301,8 +301,6 @@
         [&_.box_.lbl_.choice]:bg-slate-100
 
         [&_.box_.lbl_.choice]:text-[16px]
-        [&_.box_.lbl_.choice]:block
-        [&_.box_.lbl_.choice]:text-center
         [&_.box_.lbl_.choice]:border
         [&_.box_.lbl_.choice]:border-dashed
         [&_.box_.lbl_.choice]:border-slate-300
@@ -314,13 +312,14 @@
                     <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                         <div v-if="medium.type=='first_cry'" class="w-[48.5%]">
                             <div class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
-                            <div class="">
-                                <label class="lbl" :for="'medium_'+medium_key">
-                                    <i v-if="'first_cry_'+medium_key==loading_input_key"
-                                       class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
-                                    <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px] py-[40px] bg-green-50">保存済(タップで変更)</div>
-                                </label>
-                                <p class="mt-[8px] text-center text-center"><a :href="medium.src" class="border rounded-sm border-main px-[7px] py-[3px] inline-block underline text-main font-bold text-[14px]" target="_blank">内容を確認</a></p>
+                            <div class="relative">
+                                <video class="aspect-video" controls>
+                                    <source :src="'/storage/patients/'+tbl_patient.tbl_patient_id+'_'+tbl_patient.code+'/'+medium.file_name+'.'+medium.extension">
+                                    <p>動画を再生するには、videoタグをサポートしたブラウザが必要です。</p>
+                                </video>
+                                <p class="mt-[8px] text-center text-center"><label :for="'medium_'+medium_key" class="border rounded-sm border-main px-[15px] py-[3px] inline-block underline text-main font-bold text-[14px]">変更</label></p>
+                                <i v-if="'first_cry_'+medium_key==loading_input_key"
+                                   class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-50px)] left-[calc(50%-20px)]"></i>
                                 <input :id="'medium_'+medium_key" type="file" accept="video/*" v-on:change="medium_save(medium_key,$event,medium)" />
                             </div>
                         </div>
@@ -328,7 +327,7 @@
                     <div class="w-[48.5%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='first_cry'}).length<type_counts.movie">
                         <div class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
                         <label class="lbl">
-                            <div class="choice py-[40px]">動画を追加</div>
+                            <div class="choice aspect-video flex justify-center items-center">動画を追加</div>
                             <input type="file" accept="video/*" v-on:change="medium_save('new',$event,{type:'first_cry'})" />
                             <i v-if="'first_cry_new'==loading_input_key"
                                class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
@@ -337,17 +336,17 @@
                     </div>
 
 
-
                     <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                         <div v-if="medium.type=='movie'" class="w-[48.5%]">
                             <div class="text-[14px] font-bold text-center mb-[3px]">動画(横アングル)</div>
-                            <div class="">
-                                <label class="lbl" :for="'medium_'+medium_key">
-                                    <i v-if="'movie_'+medium_key==loading_input_key"
-                                       class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
-                                    <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px] py-[40px] bg-green-50">保存済(タップで変更)</div>
-                                </label>
-                                <p class="mt-[8px] text-center text-center"><a :href="medium.src" class="border rounded-sm border-main px-[7px] py-[3px] inline-block underline text-main font-bold text-[14px]" target="_blank">内容を確認</a></p>
+                            <div class="relative">
+                                <video class="aspect-video" controls>
+                                    <source :src="'/storage/patients/'+tbl_patient.tbl_patient_id+'_'+tbl_patient.code+'/'+medium.file_name+'.'+medium.extension">
+                                    <p>動画を再生するには、videoタグをサポートしたブラウザが必要です。</p>
+                                </video>
+                                <p class="mt-[8px] text-center text-center"><label :for="'medium_'+medium_key" class="border rounded-sm border-main px-[15px] py-[3px] inline-block underline text-main font-bold text-[14px]">変更</label></p>
+                                <i v-if="'movie_'+medium_key==loading_input_key"
+                                   class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-50px)] left-[calc(50%-20px)]"></i>
                                 <input :id="'medium_'+medium_key" type="file" accept="video/*" v-on:change="medium_save(medium_key,$event,medium)" />
                             </div>
                         </div>
@@ -356,7 +355,7 @@
                     <div class="w-[48.5%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='movie'}).length<type_counts.movie">
                         <div class="text-[14px] font-bold text-center mb-[3px]">動画(横アングル)</div>
                         <label class="lbl">
-                            <div class="choice py-[40px]">動画を追加</div>
+                            <div class="choice aspect-video flex justify-center items-center">動画を追加</div>
                             <input type="file" accept="video/*" v-on:change="medium_save('new',$event,{type:'movie'})" />
                             <i v-if="'movie_new'==loading_input_key"
                                class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
@@ -628,6 +627,8 @@
                 loading_input_key:'',
                 sorting_key:'',
                 errors:[],
+
+                medium_progress:'',
                 is_overlay_echo:false,
                 is_overlay_namecard:false,
                 is_overlay_pregnancy:false,
@@ -737,7 +738,13 @@
                         },
                         key:key,
                     }
-                    ,{headers: {'content-type': 'multipart/form-data'}}
+                    ,{
+                        headers: {'content-type': 'multipart/form-data'},
+                        onUploadProgress: (event) => {
+                            let percent_completed = Math.round( (event.loaded * 100) / event.total );
+                            this.medium_progress='width:'+(percent_completed)+'%;';
+                        }
+                    }
                 ).then((response) => {//リクエストの成功
 
                     if(!medium.tbl_patient_medium_id){
@@ -745,9 +752,14 @@
                     }
                     for(let tbl_patient_medium_key in t.tbl_patient.tbl_patient_mediums){
                         if(medium.tbl_patient_medium_id == t.tbl_patient.tbl_patient_mediums[tbl_patient_medium_key].tbl_patient_medium_id){
-                            t.tbl_patient.tbl_patient_mediums[tbl_patient_medium_key] = response.data.result;
+                            t.tbl_patient.tbl_patient_mediums[tbl_patient_medium_key] = {};
+                            setTimeout(() => {
+                                t.tbl_patient.tbl_patient_mediums[tbl_patient_medium_key] = response.data.result;
+                            }, 1);
+
                         }
                     }
+                    this.medium_progress='';
                 }).catch((error) => {//リクエストの失敗
                     alert(get_error_status_message(error.response.status));
                 }).finally(() => {

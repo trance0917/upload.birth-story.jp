@@ -52,18 +52,17 @@
     ヘッダーにバナー
     pdfリンク
     本番サーバー実装
-------------------------------------------------------------
-※・[管理画面]詳細：患者さま詳細画面(データが確認できる)
 ※・[管理画面]詳細：フォトアート登録機能
-※・[管理画面]詳細：動画登録機能
-    html ファイルアップロード プログレスバー
+※・[管理画面]詳細：動画登録機能(バリデート)
+------------------------------------------------------------
+※・[フロント]アップロード：動画の部分、videoタグにできるかどうか？
 ※・赤井本番実装まで
     画像待ち
-※・[フロント]アップロード：動画の部分、videoタグにできるかどうか？
-movie_path
-photoart_path
+※・[管理画面]詳細：患者さま詳細画面(データが確認できる)
+・[管理画面]一か月健診時の提出処理(バッチ処理)
 
 
+・[フロント]プランごとの処理分け
 
 
 ※・[その他]フロー図も作っていく
@@ -80,8 +79,6 @@ photoart_path
             送る
 
 
-・[管理画面]一か月健診時の提出処理(バッチ処理)
-・[フロント]プランごとの処理分け
 
 
 
@@ -103,21 +100,11 @@ photoart_path
 Google口コミデータを自動で収集するツール
 
 
-https://mamaworks.jp/job/14599
-https://mamaworks.jp/job/15094
-https://mamaworks.jp/job/15105
-https://mamaworks.jp/job/15106
-https://mamaworks.jp/job/15498
-https://mamaworks.jp/job/17057
-https://mamaworks.jp/job/17861
-https://mamaworks.jp/job/19136
-https://mamaworks.jp/job/19354
 
 --おかん確認事項----------------------------------------------------------
 ・プラン
-・リッチメニューの進捗
-・動画のBGM
-・動画テストデータ
+・動画撮影
+
 ------------------------------------------
 [共通]
 こんにちは。
@@ -287,6 +274,15 @@ Thanks for your excellent review!
 集患特化型の出産記念プレゼント。
 詳細はぜひお問合せください。
 
+https://mamaworks.jp/job/14599
+https://mamaworks.jp/job/15094
+https://mamaworks.jp/job/15105
+https://mamaworks.jp/job/15106
+https://mamaworks.jp/job/15498
+https://mamaworks.jp/job/17057
+https://mamaworks.jp/job/17861
+https://mamaworks.jp/job/19136
+https://mamaworks.jp/job/19354
 
 
 

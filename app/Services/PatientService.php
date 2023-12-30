@@ -241,14 +241,12 @@ class PatientService{
                     $tbl_patient_medium->save();
                 }
 
-                $img = \Image::make($file);
-                $img->orientate();
-                $img->save(storage_path('app/'.$original_directory_path.'/'.$filename . '.' . $medium['extension']),100,$medium['extension']);
-
-                //原本の保存
-//                $file->storeAs($original_directory_path, $filename . '.' . $medium['extension']);
 
                 if($mime_type=='image'){
+                    $img = \Image::make($file);
+                    $img->orientate();
+                    $img->save(storage_path('app/'.$original_directory_path.'/'.$filename . '.' . $medium['extension']),100,$medium['extension']);
+
                     //サムネイルの保存
                     $img = \Image::make($file);
                     $img->resize(350, null, function($constraint){
@@ -258,6 +256,7 @@ class PatientService{
                     $img->orientate();
                     $img->save(storage_path('app/'.$directory_path.'/'.$filename . '.' . $medium['extension']),100,$medium['extension']);
                 }else{
+                    $file->storeAs($original_directory_path, $filename . '.' . $medium['extension']);
                     $file->storeAs($directory_path, $filename . '.' . $medium['extension']);
                 }
 
