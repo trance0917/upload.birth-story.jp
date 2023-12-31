@@ -314,7 +314,7 @@
                             <div class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
                             <div class="relative">
                                 <video class="aspect-video" controls>
-                                    <source :src="'/storage/patients/'+tbl_patient.tbl_patient_id+'_'+tbl_patient.code+'/'+medium.file_name+'.'+medium.extension">
+                                    <source :src="medium.src">
                                     <p>動画を再生するには、videoタグをサポートしたブラウザが必要です。</p>
                                 </video>
                                 <p class="mt-[8px] text-center text-center"><label :for="'medium_'+medium_key" class="border rounded-sm border-main px-[15px] py-[3px] inline-block underline text-main font-bold text-[14px]">変更</label></p>
@@ -341,7 +341,7 @@
                             <div class="text-[14px] font-bold text-center mb-[3px]">動画(横アングル)</div>
                             <div class="relative">
                                 <video class="aspect-video" controls>
-                                    <source :src="'/storage/patients/'+tbl_patient.tbl_patient_id+'_'+tbl_patient.code+'/'+medium.file_name+'.'+medium.extension">
+                                    <source :src="medium.src">
                                     <p>動画を再生するには、videoタグをサポートしたブラウザが必要です。</p>
                                 </video>
                                 <p class="mt-[8px] text-center text-center"><label :for="'medium_'+medium_key" class="border rounded-sm border-main px-[15px] py-[3px] inline-block underline text-main font-bold text-[14px]">変更</label></p>

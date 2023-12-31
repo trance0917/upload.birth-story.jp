@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="box">
-                    <h4><i class="fa-solid fa-pencil"></i>フォトアートにしたい写真を</h4>
+                    <h4><i class="fa-solid fa-pencil"></i>フォトアートにしたい写真</h4>
                     <p class="text-red font-bold text-[14px] leading-none mb-[10px]">※ この中から1枚選んで「ふぉとあーと」にいたします</p>
                     <div class="flex justify-between flex-wrap [&>div:nth-last-child(2)]:mb-[0px]">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
@@ -98,7 +98,7 @@
                         <div v-if="medium.type=='first_cry'" class="item w-[48.5%]">
                             <div class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
                             <video class="aspect-video" controls>
-                                <source :src="'/storage/patients/'+tbl_patient.tbl_patient_id+'_'+tbl_patient.code+'/'+medium.file_name+'.'+medium.extension">
+                                <source :src="medium.src">
                                 <p>動画を再生するには、videoタグをサポートしたブラウザが必要です。</p>
                             </video>
                         </div>
@@ -112,7 +112,7 @@
                         <div v-if="medium.type=='movie'" class="item w-[48.5%]">
                             <div class="text-[14px] font-bold text-center mb-[3px]">動画(横アングル)</div>
                             <video class="aspect-video" controls>
-                                <source :src="'/storage/patients/'+tbl_patient.tbl_patient_id+'_'+tbl_patient.code+'/'+medium.file_name+'.'+medium.extension">
+                                <source :src="medium.src">
                                 <p>動画を再生するには、videoタグをサポートしたブラウザが必要です。</p>
                             </video>
                         </div>
