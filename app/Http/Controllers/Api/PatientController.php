@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\TblPatient;
 
-use App\Services\MaternityLineBotService;
+use App\Services\LineBotService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use App\Services\PatientService;
@@ -29,7 +29,7 @@ class PatientController extends Controller
             throw new HttpResponseException($res);
         }
 
-        $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
+        $line_bot_service = new LineBotService();
 
         //最新を取り直す
         $tbl_patient = TblPatient::find($tbl_patient->tbl_patient_id);
@@ -38,12 +38,12 @@ class PatientController extends Controller
         //指定評価以上だった場合のメッセージ
         if ($tbl_patient->average_score >= $tbl_patient->mst_maternity->minimum_review_score) {
             //googleの口コミをプッシュする
-            $maternity_line_bot_service->pushMessageReviewPatientHighRating($tbl_patient);
-            $maternity_line_bot_service->makeStorySubmittedHighScoreReviewRichMenu($tbl_patient);
+            $line_bot_service->pushMessageReviewPatientHighRating($tbl_patient);
+            $line_bot_service->makeStorySubmittedHighScoreReviewRichMenu($tbl_patient);
         } else {
             //そうでなかった場合のメッセージ
-            $maternity_line_bot_service->pushMessage($tbl_patient->line_user_id, new TextMessageBuilder(view('lines/review-patient-low-rating', ['tbl_patient' => $tbl_patient,])->render()), $tbl_patient);
-            $maternity_line_bot_service->makeStorySubmittedLowScoreReviewRichMenu($tbl_patient);
+            $line_bot_service->pushMessage($tbl_patient->line_user_id, new TextMessageBuilder(view('lines/review-patient-low-rating', ['tbl_patient' => $tbl_patient,])->render()), $tbl_patient);
+            $line_bot_service->makeStorySubmittedLowScoreReviewRichMenu($tbl_patient);
         }
 
         //産院スタッフに送る処理
@@ -53,7 +53,7 @@ class PatientController extends Controller
                 if ($mst_maternity_user->is_review_notification) {
                     //通知を受けるべき点数の場合
                     if ($tbl_patient->average_score >= $tbl_patient->mst_maternity->notification_review_score) {
-                        $maternity_line_bot_service->pushMessageReviewHighRatingToMaternityUser($mst_maternity_user,$tbl_patient);
+                        $line_bot_service->pushMessageReviewHighRatingToMaternityUser($mst_maternity_user,$tbl_patient);
                     }
                 }
             }

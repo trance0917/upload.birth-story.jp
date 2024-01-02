@@ -20,12 +20,90 @@ class LineBotService extends LINEBot
     /** @var HTTPClient */
     private $httpClient;
 
+    public $total_stars = [];
+    public $small_stars = [];
+
     public function __construct() {
         $httpClient = new CurlHTTPClient(config('birthstory.line_message_channel_token'));
         $args = ['channelSecret' => config('birthstory.line_message_channel_secret')];
         parent::__construct($httpClient, $args);
         $this->httpClient = $httpClient;
         $this->channelSecret = $args['channelSecret'];
+
+        $this->total_stars = [
+            1 => [
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'lg'],
+                ['url' => asset('images/review_gray_star.png'),'type' => 'icon','size' => 'lg'],
+                ['url' => asset('images/review_gray_star.png'),'type' => 'icon','size' => 'lg'],
+                ['url' => asset('images/review_gray_star.png'),'type' => 'icon','size' => 'lg'],
+                ['url' => asset('images/review_gray_star.png'),'type' => 'icon','size' => 'lg'],
+            ],
+            2 => [
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'lg'],
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'lg'],
+                ['url' => asset('images/review_gray_star.png'),'type' => 'icon','size' => 'lg'],
+                ['url' => asset('images/review_gray_star.png'),'type' => 'icon','size' => 'lg'],
+                ['url' => asset('images/review_gray_star.png'),'type' => 'icon','size' => 'lg'],
+            ],
+            3 => [
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'lg'],
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'lg'],
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'lg'],
+                ['url' => asset('images/review_gray_star.png'),'type' => 'icon','size' => 'lg'],
+                ['url' => asset('images/review_gray_star.png'),'type' => 'icon','size' => 'lg'],
+            ],
+            4 => [
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'lg'],
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'lg'],
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'lg'],
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'lg'],
+                ['url' => asset('images/review_gray_star.png'),'type' => 'icon','size' => 'lg'],
+            ],
+            5 => [
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'lg'],
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'lg'],
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'lg'],
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'lg'],
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'lg'],
+            ],
+        ];
+        $this->small_stars = [
+            1 => [
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'sm'],
+                ['url' => asset('images/review_gray_star.png'),'type' => 'icon','size' => 'sm'],
+                ['url' => asset('images/review_gray_star.png'),'type' => 'icon','size' => 'sm'],
+                ['url' => asset('images/review_gray_star.png'),'type' => 'icon','size' => 'sm'],
+                ['url' => asset('images/review_gray_star.png'),'type' => 'icon','size' => 'sm'],
+            ],
+            2 => [
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'sm'],
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'sm'],
+                ['url' => asset('images/review_gray_star.png'),'type' => 'icon','size' => 'sm'],
+                ['url' => asset('images/review_gray_star.png'),'type' => 'icon','size' => 'sm'],
+                ['url' => asset('images/review_gray_star.png'),'type' => 'icon','size' => 'sm'],
+            ],
+            3 => [
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'sm'],
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'sm'],
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'sm'],
+                ['url' => asset('images/review_gray_star.png'),'type' => 'icon','size' => 'sm'],
+                ['url' => asset('images/review_gray_star.png'),'type' => 'icon','size' => 'sm'],
+            ],
+            4 => [
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'sm'],
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'sm'],
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'sm'],
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'sm'],
+                ['url' => asset('images/review_gray_star.png'),'type' => 'icon','size' => 'sm'],
+            ],
+            5 => [
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'sm'],
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'sm'],
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'sm'],
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'sm'],
+                ['url' => asset('images/review_gold_star.png'),'type' => 'icon','size' => 'sm'],
+            ],
+        ];
     }
 
     public function pushMessage($to, MessageBuilder $messageBuilder, $model = null)

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TblPatient;
-use App\Services\MaternityLineBotService;
+use App\Services\LineBotService;
 use App\Services\PatientService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -65,9 +65,9 @@ class StoryController extends Controller
         }
 
 
-        $maternity_line_bot_service = new MaternityLineBotService($tbl_patient->mst_maternity);
-        $maternity_line_bot_service->pushMessageStorySubmitted($tbl_patient);
-        $maternity_line_bot_service->makeStorySubmittedRichMenu($tbl_patient);
+        $line_bot_service = new LineBotService();
+        $line_bot_service->pushMessageStorySubmitted($tbl_patient);
+        $line_bot_service->makeStorySubmittedRichMenu($tbl_patient);
 
 
         DB::beginTransaction();
