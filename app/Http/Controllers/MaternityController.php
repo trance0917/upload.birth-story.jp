@@ -14,7 +14,7 @@ class MaternityController extends Controller
     public function index(MstMaternity $mst_maternity,Request $request){
 
         //1分 60分 24時間 30日
-        Cookie::queue('maternity_code', $mst_maternity->mst_maternity_id, 1*60*24*30);
+        Cookie::queue('mst_maternity_id', $mst_maternity->mst_maternity_id, 1*60*24*30);
         return view('general.maternity.index',compact('mst_maternity'));
     }
 

@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 use App\Models\LogLineWebhook;
 use App\Models\MstMaternity;
 use App\Services\MaternityLineBotService;
+use App\Services\LineBotService;
+
 use Illuminate\Http\Request;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 
@@ -10,28 +12,10 @@ use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 final class WebHookController extends Controller
 {
     public function index(Request $request){
-        if ($_SERVER['HTTP_HOST']=='local.upload.birth-story.jp:8087') {
-//            $request->destination = 'U521b4fe8ebf2b9d99383034188975e81';//テストマタニティクリニック
-//            $request->destination = 'U92d0798c12c2fdf7cca244be08611be5';//テスト産婦人科
-
-            //type:message
-//            $request->events = json_decode('[{"type": "message","message": {"type": "text","id": "483138207442010130","quoteToken": "Ne0LeVWnZDKvQsb5ZZNbVSHy0jehLqIdr16xZvNvwBqd60WIL72P7rCpvFDB_brEfEASjqMHD-ZgX7x9rMs8sa9lcZ2Y4_gLw886MydK8I32-jBKqq5RcETDrcD1mueQGYjlEc-tD0qk1POPzTUdjg","text": "産院担当"},"webhookEventId": "01HFZX6FZCXQ40FW3M7F94CKK9","deliveryContext": {"isRedelivery": false},"timestamp": 1700804116338,"source": {"type": "user","userId": "U42daeeae41b7d137194c58c41fab5306"},"replyToken": "4bd7423be7be440689c4fcc8c77b4e87","mode": "active"}]',true);
-
-            //type:follow
-//            $request->events = json_decode('[{"mode": "active", "type": "follow", "source": {"type": "user", "userId": "U801f291d7fb7b7a3d102a7b2d31662e9"}, "timestamp": 1700828414699, "replyToken": "38eae19242ac4fc9bea25fc1e5f5cdb0", "webhookEventId": "01HG0MC0Z458YSJ6CYR1E3F5EH", "deliveryContext": {"isRedelivery": false}}]',true);
-//
-            //type:unfollow
-//            $request->events = json_decode('[{"mode": "active", "type": "unfollow", "source": {"type": "user", "userId": "U801f291d7fb7b7a3d102a7b2d31662e9"}, "timestamp": 1700828412192, "webhookEventId": "01HG0MBYS4V5C4272Z1DQ1PXZ1", "deliveryContext": {"isRedelivery": false}}]',true);
-
-        }
-
-
 
         $mst_maternity = MstMaternity::where('line_destination', $request->destination)->first();
         if($mst_maternity){
-
-                $line_bot_service = new MaternityLineBotService($mst_maternity);
-//            $line_bot_service = new LineBotService(new CurlHTTPClient($mst_maternity->line_message_channel_token),['channelSecret' => $mst_maternity->line_message_channel_secret]);
+            $line_bot_service = new LineBotService();
 
             if($request->events){
 
@@ -39,7 +23,7 @@ final class WebHookController extends Controller
                     $event_type = $event['type'];
                     $log_line_webhook = new LogLineWebhook;
                     $log_line_webhook->type = $event['type'];
-                    $log_line_webhook->mst_maternity_id = $mst_maternity->mst_maternity_id;
+//                    $log_line_webhook->mst_maternity_id = $mst_maternity->mst_maternity_id;
                     $log_line_webhook->line_user_id = $event['source']['userId'];
                     $log_line_webhook->api_data = $request->all();
                     $log_line_webhook->save();
@@ -98,7 +82,7 @@ final class WebHookController extends Controller
         return;
     }
     public function github(Request $request){
-        exec("cd /var/www/dev.upload.birth-story.jp ; git pull",$opt, $return_ver);
+        exec("cd /var/www/dev.upload.birth-story.jp ; git reset --hard origin/main",$opt, $return_ver);
 //        exec("cd /var/www/dev.upload.birth-story.jp ; echo 'sakura0917' | sudo -S git pull",$opt, $return_ver);
 //        $a = chdir('/var/www/dev.upload.birth-story.jp');
 //        dump($a);
