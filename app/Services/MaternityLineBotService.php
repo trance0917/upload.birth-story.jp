@@ -136,6 +136,11 @@ class MaternityLineBotService extends LINEBot
         $log_line_message->http_status = $http_status;
         $log_line_message->save();
 
+        if($http_status!=200){
+            event(new \App\Events\LineErrorSendEvent($log_line_message));
+        }
+
+
         return $res;
     }
 

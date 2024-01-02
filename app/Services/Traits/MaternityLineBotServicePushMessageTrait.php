@@ -27,7 +27,7 @@ trait MaternityLineBotServicePushMessageTrait
                     'contents' => [
                         ['type' => 'text','text' => 'ご出産おめでとうございます！','weight' => 'bold','align' => 'center','wrap' => true],
                         ['type' => 'separator','color' => '#999999','margin' => 'md'],
-                        ['type' => 'text','text' => $tbl_patient->mst_maternity->name.'でのご出産、おめでとうございます。','wrap' => true,'margin' => 'lg'],
+                        ['type' => 'text','text' =>'ご出産おめでとうございます。','wrap' => true,'margin' => 'lg'],
                         ['type' => 'text','text' => '産院からのプレゼントで、一生に一度しかないご出産を記念した、感動する出産記念ムービーをプレゼントしております。','margin' => 'md','wrap' => true],
                         [
                             'type' => 'text','text' => '無料でお作りいただけます。','margin' => 'md','wrap' => true,

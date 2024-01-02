@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\LogLineMessage;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -10,20 +11,19 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ContactSendEvent
+class LineErrorSendEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $contact;
+    public $log_line_message;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($contact)
+    public function __construct(LogLineMessage $log_line_message)
     {
-        $this->contact = $contact;
-        //
+        $this->log_line_message = $log_line_message;
     }
 
     /**

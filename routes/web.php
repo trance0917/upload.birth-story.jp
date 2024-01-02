@@ -41,26 +41,6 @@ Route::get('/line/webhook/test', [\App\Http\Controllers\WebHookController::class
 Route::get('/line/webhook/test2', [\App\Http\Controllers\WebHookController::class,'test2'])->name('line-webhook-test2');
 
 
-
-
-
-
-Route::get('/contact', function () {
-    return view('general.contact.index');
-})->name('contact');
-
-Route::post('/contact/confirm', [\App\Http\Controllers\ContactController::class,'confirm'])->name('contact-confirm');
-Route::post('/contact/complete', [\App\Http\Controllers\ContactController::class,'complete'])->name('contact-complete');
-
-Route::get('/contact/confirm', function(){
-    abort(400);
-})->name('contact-confirm-400');
-
-Route::get('/contact/complete', function(){
-    return redirect('');
-});
-
-
 Route::get('/{tbl_patient:code}/check', [CheckController::class,'index'])->name('check-index');
 
 

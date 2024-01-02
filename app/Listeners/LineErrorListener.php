@@ -2,12 +2,12 @@
 
 namespace App\Listeners;
 
-use App\Events\ContactSendEvent;
+use App\Events\LineErrorSendEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 
-class ContactSendListener
+class LineErrorListener
 {
     /**
      * Create the event listener.
@@ -22,11 +22,11 @@ class ContactSendListener
     /**
      * Handle the event.
      *
-     * @param  ContactSendEvent  $event
+     * @param  LineErrorSendEvent  $event
      * @return void
      */
-    public function handle(ContactSendEvent $event)
+    public function handle(LineErrorSendEvent $event)
     {
-        Mail::send(new \App\Mails\ContactMail($event->contact));
+        Mail::send(new \App\Mails\LineErrorMail($event->log_line_message));
     }
 }
