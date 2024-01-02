@@ -47,6 +47,7 @@ final class WebHookController extends Controller
 //                        $profile['pictureUrl']
                         }
                     }elseif($event_type=='follow'){
+                        dump($event_type);
                         //フォロワーを手続き
                         $line_bot_service->follow($event['source']['userId']);
                     }elseif($event_type=='unfollow'){

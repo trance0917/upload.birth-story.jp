@@ -18,8 +18,6 @@ class LineBotService extends LINEBot
     private $httpClient;
 
     public function __construct() {
-        dump(config('birthstory.line_message_channel_token'));
-        dump(config('birthstory.line_message_channel_secret'));
         $httpClient = new CurlHTTPClient(config('birthstory.line_message_channel_token'));
         $args = ['channelSecret' => config('birthstory.line_message_channel_secret')];
         parent::__construct($httpClient, $args);
@@ -61,7 +59,6 @@ class LineBotService extends LINEBot
 
     public function follow($line_user_id)
     {
-        dump('follow');
         $tbl_patient = new TblPatient;
         $code = '';
         $m = null;
