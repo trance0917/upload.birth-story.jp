@@ -15,6 +15,7 @@ class IndexController extends Controller
 {
     public function index(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
         $line_bot_service = new LineBotService();
+
 //        $line_bot_service->pushMessageFollow($tbl_patient);
 //        $maternity_line_bot_service->deleteRichMenu($tbl_patient->richmenu_id);
 //        $maternity_line_bot_service->pushMessageReviewHighRatingToMaternityUser($tbl_patient->mst_maternity->mst_maternity_users[0],$tbl_patient);

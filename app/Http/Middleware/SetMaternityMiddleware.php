@@ -30,6 +30,7 @@ class SetMaternityMiddleware
         }
 
         if(is_null($tbl_patient->mst_maternity_id)){
+            $line_bot_service->pushMessage($tbl_patient->line_user_id,new TextMessageBuilder('お手数ですが、ご利用された産院の名前をこちらのメッセージでお知らせください。'));
             $line_bot_service->pushMessage(config('birthstory.admin_line_user_id'),new TextMessageBuilder(view('lines/error-488',
                 [
                     'tbl_patient'=>$tbl_patient,

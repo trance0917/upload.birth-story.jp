@@ -50,6 +50,7 @@
     [&>li>a]:rounded-sm
 
     ">
+
         <li><a class="bg-[#00B900]" href="https://lin.ee/FWdoFmb">LINEお問い合わせ</a></li>
         <li><a class="bg-slate-400" href="/faq">よくある質問</a></li>
     </ul>
