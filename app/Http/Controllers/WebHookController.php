@@ -47,7 +47,6 @@ final class WebHookController extends Controller
 //                        $profile['pictureUrl']
                         }
                     }elseif($event_type=='follow'){
-                        dump($event_type);
                         //フォロワーを手続き
                         $line_bot_service->follow($event['source']['userId']);
                     }elseif($event_type=='unfollow'){
@@ -83,7 +82,7 @@ final class WebHookController extends Controller
         return;
     }
     public function github(Request $request){
-        exec("cd /var/www/dev.upload.birth-story.jp ; git reset --hard origin/main",$opt, $return_ver);
+        exec("cd /var/www/dev.upload.birth-story.jp ; git pull",$opt, $return_ver);
 //        exec("cd /var/www/dev.upload.birth-story.jp ; echo 'sakura0917' | sudo -S git pull",$opt, $return_ver);
 //        $a = chdir('/var/www/dev.upload.birth-story.jp');
 //        dump($a);

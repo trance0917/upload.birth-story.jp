@@ -39,9 +39,12 @@ trait LineBotServiceMakeRichMenuTrait
         } catch (\Throwable $e) {
             return ['result' => false,'messages' => $e->getMessage(),'errors' => [],];
         }
-        $this->uploadRichMenuImage($richmenu_id, public_path('images/richmenu/first.jpg'), 'image/jpeg');
-        $this->linkRichMenu($tbl_patient->line_user_id, $richmenu_id);
+        $a = $this->uploadRichMenuImage($richmenu_id, public_path('images/richmenu/first.jpg'), 'image/jpeg');
+        $b = $this->linkRichMenu($tbl_patient->line_user_id, $richmenu_id);
 
+        dump($a);
+        dump($b);
+        dump($richmenu_id);
         $tbl_patient->richmenu_id = $richmenu_id;
         $tbl_patient->save();
     }
