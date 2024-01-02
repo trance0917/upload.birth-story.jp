@@ -9,9 +9,12 @@ use Illuminate\Support\Facades\Log;
 use LINE\LINEBot;
 use LINE\LINEBot\MessageBuilder;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
+use App\Services\Traits\LineBotServiceMakeRichMenuTrait;
+use App\Services\Traits\LineBotServicePushMessageTrait;
 
 class LineBotService extends LINEBot
 {
+    use LineBotServiceMakeRichMenuTrait,LineBotServicePushMessageTrait;
     /** @var string */
     private $channelSecret;
     /** @var HTTPClient */
@@ -59,6 +62,7 @@ class LineBotService extends LINEBot
 
     public function follow($line_user_id)
     {
+
         $tbl_patient = new TblPatient;
         $code = '';
         $m = null;
