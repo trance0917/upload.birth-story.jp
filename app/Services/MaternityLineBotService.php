@@ -121,20 +121,21 @@ class MaternityLineBotService extends LINEBot
     {
         $log_line_message = new LogLineMessage;
 
+        $res = parent::pushMessage($to, $messageBuilder);
+        $http_status = $res->getHTTPStatus();
         if ($model instanceof TblPatient) {
             $log_line_message->type = 1;
             $log_line_message->tbl_patient_id = $model->tbl_patient_id;
             $log_line_message->line_user_id = $model->line_user_id;
-            $log_line_message->message = json_encode($messageBuilder->buildMessage());
-            $log_line_message->save();
         } elseif ($model instanceof MstMaternityUser) {
             $log_line_message->type = 2;
             $log_line_message->mst_maternity_user_id = $model->mst_maternity_user_id;
             $log_line_message->line_user_id = $model->line_user_id;
-            $log_line_message->message = json_encode($messageBuilder->buildMessage());
-            $log_line_message->save();
         }
-        $res = parent::pushMessage($to, $messageBuilder);
+        $log_line_message->message = json_encode($messageBuilder->buildMessage());
+        $log_line_message->http_status = $http_status;
+        $log_line_message->save();
+
         return $res;
     }
 

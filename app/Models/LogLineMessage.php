@@ -12,13 +12,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class LogLineMessage
- * 
+ *
  * @property int $log_line_message_id
  * @property string $type
  * @property int|null $tbl_patient_id
  * @property int|null $mst_maternity_user_id
  * @property string $line_user_id
- * @property string|null $memo
+ * @property string|null $message
+ * @property int|null $http_status
  * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -41,6 +42,7 @@ class LogLineMessage extends Model
 		'tbl_patient_id',
 		'mst_maternity_user_id',
 		'line_user_id',
-		'memo'
+		'message',
+        'http_status'
 	];
 }
