@@ -200,7 +200,7 @@ class PatientService{
             $mime_type = explode('/',$file->getMimeType())[0];
             $directory_path = 'public/patients/'.$tbl_patient->tbl_patient_id.'_'.$tbl_patient->code;
             $original_directory_path = $directory_path.'/original';
-            if(\Storage::exists($directory_path)){
+            if(!\Storage::exists($directory_path)){
                 \Storage::makeDirectory($directory_path);
                 \Storage::makeDirectory($original_directory_path);
             }
