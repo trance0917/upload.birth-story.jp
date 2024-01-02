@@ -20,16 +20,18 @@ class SetMaternityMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        $line_bot_service = new LineBotService();
         $mst_maternity_id = Cookie::get('mst_maternity_id');
         $tbl_patient = $request->route()->parameter('tbl_patient');
         if($mst_maternity_id && is_null($tbl_patient->mst_maternity_id)){
             $tbl_patient->mst_maternity_id = $mst_maternity_id;
             $tbl_patient->save();
+            $line_bot_service->makeSetMaternityRichMenu($tbl_patient);
         }
 
 
         if(!is_null($tbl_patient->mst_maternity_id)){
-            $line_bot_service = new LineBotService();
+
             $line_bot_service->pushMessage(config('birthstory.admin_line_user_id'),new TextMessageBuilder(view('lines/error-488',
                 [
                     'tbl_patient'=>$tbl_patient,

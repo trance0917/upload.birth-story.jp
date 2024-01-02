@@ -27,7 +27,29 @@ trait LineBotServiceMakeRichMenuTrait
     {
         $this->deleteRichMenu($tbl_patient->richmenu_id);
         $rich_menu_builder = new RichMenuBuilder(
-            RichMenuSizeBuilder::getFull(),true,$tbl_patient->line_name . 'さん(' . $tbl_patient->code . ')の初期リッチメニュー','メニューを開く',
+            RichMenuSizeBuilder::getHalf(),true,$tbl_patient->line_name . 'さん(' . $tbl_patient->code . ')の初期リッチメニュー','メニューを開く',
+            [
+                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(0, 0, 2500, 843), new UriTemplateActionBuilder('写真提出', route('guide', $tbl_patient).'?openExternalBrowser=1')),
+            ],
+        );
+        try {
+            $richmenu_id = $this->createRichMenu($rich_menu_builder)->getJSONDecodedBody()['richMenuId'];
+        } catch (\Throwable $e) {
+            return ['result' => false,'messages' => $e->getMessage(),'errors' => [],];
+        }
+        $this->uploadRichMenuImage($richmenu_id, public_path('images/richmenu/first.jpg'), 'image/jpeg');
+        $this->linkRichMenu($tbl_patient->line_user_id, $richmenu_id);
+
+        $tbl_patient->richmenu_id = $richmenu_id;
+        $tbl_patient->save();
+    }
+
+
+    public function makeSetMaternityRichMenu(TblPatient $tbl_patient)
+    {
+        $this->deleteRichMenu($tbl_patient->richmenu_id);
+        $rich_menu_builder = new RichMenuBuilder(
+            RichMenuSizeBuilder::getFull(),true,$tbl_patient->line_name . 'さん(' . $tbl_patient->code . ')の産院が決まった時のリッチメニュー','メニューを開く',
             [
                 new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(0, 0, 834, 843), new UriTemplateActionBuilder('産院HP', $tbl_patient->mst_maternity->official_url)),
                 new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(0, 844, 834, 843), new UriTemplateActionBuilder('産院インスタ', $tbl_patient->mst_maternity->instagram_url)),
@@ -35,19 +57,13 @@ trait LineBotServiceMakeRichMenuTrait
             ],
         );
         try {
-
             $richmenu_id = $this->createRichMenu($rich_menu_builder)->getJSONDecodedBody()['richMenuId'];
-            dump($richmenu_id);
         } catch (\Throwable $e) {
-            dump($e);
             return ['result' => false,'messages' => $e->getMessage(),'errors' => [],];
         }
-        $a = $this->uploadRichMenuImage($richmenu_id, public_path('images/richmenu/first.jpg'), 'image/jpeg');
-        $b = $this->linkRichMenu($tbl_patient->line_user_id, $richmenu_id);
+        $this->uploadRichMenuImage($richmenu_id, public_path('images/richmenu/first.jpg'), 'image/jpeg');
+        $this->linkRichMenu($tbl_patient->line_user_id, $richmenu_id);
 
-        dump($a);
-        dump($b);
-        dump($richmenu_id);
         $tbl_patient->richmenu_id = $richmenu_id;
         $tbl_patient->save();
     }
