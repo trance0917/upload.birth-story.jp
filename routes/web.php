@@ -3,6 +3,7 @@
 use App\Http\Controllers\CheckController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\StoryController;
+use App\Http\Controllers\MaternityController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,3 +62,5 @@ Route::get('/{tbl_patient:code}', [IndexController::class,'index'])->name('guide
 Route::group(['middleware' => 'basicauth'], function() {
     Route::get('/dl/{tbl_patient:code}', [StoryController::class,'dl'])->name('story-dl');
 });
+
+Route::get('maternity/{mst_maternity:code}', [MaternityController::class,'index'])->name('maternity');

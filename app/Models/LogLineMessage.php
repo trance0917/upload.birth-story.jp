@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property int $log_line_message_id
  * @property string $type
+ * @property int $application_type
  * @property int|null $tbl_patient_id
  * @property int|null $mst_maternity_user_id
  * @property string $line_user_id
@@ -39,6 +40,7 @@ class LogLineMessage extends Model
 
 	protected $fillable = [
 		'type',
+        'application_type',
 		'tbl_patient_id',
 		'mst_maternity_user_id',
 		'line_user_id',

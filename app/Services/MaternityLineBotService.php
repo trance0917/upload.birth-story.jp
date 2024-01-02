@@ -125,10 +125,12 @@ class MaternityLineBotService extends LINEBot
         $http_status = $res->getHTTPStatus();
         if ($model instanceof TblPatient) {
             $log_line_message->type = 1;
+            $log_line_message->application_type = 1;
             $log_line_message->tbl_patient_id = $model->tbl_patient_id;
             $log_line_message->line_user_id = $model->line_user_id;
         } elseif ($model instanceof MstMaternityUser) {
             $log_line_message->type = 2;
+            $log_line_message->application_type = 1;
             $log_line_message->mst_maternity_user_id = $model->mst_maternity_user_id;
             $log_line_message->line_user_id = $model->line_user_id;
         }
