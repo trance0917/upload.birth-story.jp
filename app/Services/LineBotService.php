@@ -61,6 +61,7 @@ class LineBotService extends LINEBot
 
     public function follow($line_user_id)
     {
+        dump('follow');
         $tbl_patient = new TblPatient;
         $code = '';
         $m = null;
