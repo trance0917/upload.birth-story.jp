@@ -35,8 +35,11 @@ trait LineBotServiceMakeRichMenuTrait
             ],
         );
         try {
+
             $richmenu_id = $this->createRichMenu($rich_menu_builder)->getJSONDecodedBody()['richMenuId'];
+            dump($richmenu_id);
         } catch (\Throwable $e) {
+            dump($e);
             return ['result' => false,'messages' => $e->getMessage(),'errors' => [],];
         }
         $a = $this->uploadRichMenuImage($richmenu_id, public_path('images/richmenu/first.jpg'), 'image/jpeg');
