@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * Class LogLineMessage
  *
  * @property int $log_line_message_id
- * @property string $type
+ * @property int $type
  * @property int $application_type
  * @property int|null $tbl_patient_id
  * @property int|null $mst_maternity_user_id

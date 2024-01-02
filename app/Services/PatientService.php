@@ -287,7 +287,7 @@ class PatientService{
 
     public function createAdoptMediums($tbl_patient){
         $directory_path = 'public/patients/'.$tbl_patient->tbl_patient_id.'_'.$tbl_patient->code.'/adoption';
-        if(\Storage::exists($directory_path)) {
+        if(!\Storage::exists($directory_path)) {
             umask(0);
             \Storage::makeDirectory($directory_path,0777);
         }

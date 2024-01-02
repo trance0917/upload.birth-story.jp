@@ -48,18 +48,18 @@ trait LineBotServicePushMessageTrait
             ],
         ];
 
-        if($tbl_patient->review_point){
-            $message['contents']['body']['contents'][] = ['type' => 'separator','color' => '#999999','margin' => 'xxl'];
-            $message['contents']['body']['contents'][] = [
-                'type' => 'text','wrap' => true,'margin' => 'xl','size' => 'sm',
-                'text' => 'お写真の提出が完了し、簡単なアンケートをにお答えいただけますと、バースストーリーからAmazonギフト'.$tbl_patient->review_point.'ptを進呈しております。',
-                'contents' => [
-                    ['type' => 'span','text' => 'お写真の提出が完了し、簡単なアンケートにお答えいただけますと、バースストーリーから'],
-                    ['type' => 'span','text' => 'Amazonギフト'.$tbl_patient->review_point.'pt','color' => '#ee3333','weight' => 'bold'],
-                    ['type' => 'span','text' => 'を進呈しております。']
-                ]
-            ];
-        }
+//        if($tbl_patient->review_point){
+//            $message['contents']['body']['contents'][] = ['type' => 'separator','color' => '#999999','margin' => 'xxl'];
+//            $message['contents']['body']['contents'][] = [
+//                'type' => 'text','wrap' => true,'margin' => 'xl','size' => 'sm',
+//                'text' => 'お写真の提出が完了し、簡単なアンケートをにお答えいただけますと、バースストーリーからAmazonギフト'.$tbl_patient->review_point.'ptを進呈しております。',
+//                'contents' => [
+//                    ['type' => 'span','text' => 'お写真の提出が完了し、簡単なアンケートにお答えいただけますと、バースストーリーから'],
+//                    ['type' => 'span','text' => 'Amazonギフト'.$tbl_patient->review_point.'pt','color' => '#ee3333','weight' => 'bold'],
+//                    ['type' => 'span','text' => 'を進呈しております。']
+//                ]
+//            ];
+//        }
         $this->pushMessage($tbl_patient->line_user_id, new RawMessageBuilder($message), $tbl_patient);
     }
 
@@ -144,8 +144,7 @@ trait LineBotServicePushMessageTrait
                         ['type' => 'separator', 'margin' => 'md'],
                         [
                             'type' => 'image',
-                            //todo 下記画像URLは変える必要がある
-                            'url' => 'https://dev.upload.birth-story.jp/images/line-star.png?sadf',
+                            'url' => asset('images/line-star.png'),
                             'margin' => 'lg', 'offsetTop' => '0px', 'offsetBottom' => '0px', 'offsetStart' => '0px', 'offsetEnd' => '0px',
                             'aspectRatio' => '5:1','size' => '3xl'
                         ],
