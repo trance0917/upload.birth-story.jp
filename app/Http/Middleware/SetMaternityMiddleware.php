@@ -29,16 +29,12 @@ class SetMaternityMiddleware
             $line_bot_service->makeSetMaternityRichMenu($tbl_patient);
         }
 
-
-        if(!is_null($tbl_patient->mst_maternity_id)){
-
+        if(is_null($tbl_patient->mst_maternity_id)){
             $line_bot_service->pushMessage(config('birthstory.admin_line_user_id'),new TextMessageBuilder(view('lines/error-488',
                 [
                     'tbl_patient'=>$tbl_patient,
                 ]
             )->render()));
-
-
             abort(488);
         }
 
