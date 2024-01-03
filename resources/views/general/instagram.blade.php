@@ -53,7 +53,7 @@
             },
             methods:{
                 review_copy:function(){
-                    let review = '#{{$tbl_patient->mst_maternity->name}} #バースストーリー #birth-story #出産 #出産記念品 #産婦人科';
+                    let review = '#{{$tbl_patient->mst_maternity->name}} #バースストーリー #birth-story #出産 #出産記念品 #産婦人科 ';
 
                     navigator.clipboard.writeText(review).then(
                         () => {
