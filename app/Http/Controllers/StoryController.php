@@ -22,7 +22,6 @@ class StoryController extends Controller
             'tbl_patient_mediums.tbl_patient:tbl_patient_id,code',
             'mst_maternity:mst_maternity_id,name',
         ])->select(['tbl_patient_id','mst_maternity_id','line_picture_url','code','name','roman_alphabet','baby_name','baby_roman_alphabet','birth_day','birth_time','weight','height','sex','what_number','health_check_date','message','is_use_instagram','submitted_at'])->find($tbl_patient->tbl_patient_id);
-        dump($tbl_patient->tbl_patient_id);
         return view('general.story.index',compact('tbl_patient'));
     }
 

@@ -185,7 +185,6 @@ trait LineBotServicePushMessageTrait
             ],
         ];
 
-//        dump(json_encode($message));
         $this->pushMessage($tbl_patient->line_user_id, new RawMessageBuilder($message), $tbl_patient);
     }
 
@@ -251,7 +250,6 @@ trait LineBotServicePushMessageTrait
             ]
         ];
 
-//        dump(($message));
         $this->pushMessage($tbl_patient->line_user_id, new RawMessageBuilder($message), $mst_maternity_user);
     }
 }
