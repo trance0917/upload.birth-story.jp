@@ -3,8 +3,7 @@
 @section('contents')
     <main id="main" class="w-[1200px] mx-auto md:w-full">
         <div class="w-[800px] mx-auto md:w-full">
-            @if($tbl_patient->submitted_at)
-                <div class="mt-[50px] md:mt-[30px] text-center"><span class="w-[80%] px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">提出が完了しました</span></div>
+
                 <section class="border border-main rounded mx-[15px] bg-main/5 py-[20px] px-[15px] mt-[30px]">
                     <h2 class="text-center leading-none text-[16px] font-bold text-brown">インスタグラムへの投稿</h2>
 
@@ -38,6 +37,7 @@
                     </p>
                     <ul class="hidden star star-30 star-31 star-32 star-33 star-34 star-35 star-36 star-37 star-38 star-39 star-40 star-41 star-42 star-43 star-44 star-45 star-46 star-47 star-48 star-49 star-50"></ul>
                 </section>
+            @if($tbl_patient->submitted_at)
             @endif
 
         </div>
