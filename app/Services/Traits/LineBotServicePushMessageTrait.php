@@ -250,6 +250,6 @@ trait LineBotServicePushMessageTrait
             ]
         ];
 
-        $this->pushMessage($tbl_patient->line_user_id, new RawMessageBuilder($message), $mst_maternity_user);
+        $this->pushMessage($mst_maternity_user->line_user_id, new RawMessageBuilder($message), $mst_maternity_user);
     }
 }

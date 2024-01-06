@@ -185,9 +185,15 @@ class LineBotService extends LINEBot
         $tbl_patients = TblPatient::where('line_user_id', $line_user_id)->get();
         foreach ($tbl_patients as $tbl_patient_key => $tbl_patient) {
             $this->deleteRichMenu($tbl_patient->richmenu_id);
+
+            //リッチメニューも削除
             $tbl_patient->richmenu_id = null;
             $tbl_patient->save();
-            $tbl_patient->delete();
+
+            //提出済みの場合は削除しない。データを有効のものとして残す。フォロー解除のみ。
+            if(!$tbl_patient->submitted_at){
+                $tbl_patient->delete();
+            }
         }
     }
 }
