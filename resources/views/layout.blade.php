@@ -13,6 +13,8 @@
 @include('includes.footer')
 
 @yield('javascript')
-@env(['local','staging'])<span id="test-flg-88">テスト</span>@endenv
+@env(['local','staging'])
+{{--    <span id="test-flg-88">テスト</span>--}}
+@endenv
 
 

@@ -30,7 +30,7 @@
                         @if($tbl_patient->average_score >= $tbl_patient->mst_maternity->minimum_review_score)
                         <div class="mt-[15px] flex justify-center"><ul class="star star-{{str_replace('.','',(string)$tbl_patient->average_score)}} flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>
                         <div class="text-slate-600 text-[20px] font-bold text-center mt-[10px]">{{$tbl_patient->average_score}}</div>
-                        <p class="text-[14px] mt-[15px] font-bold">高評価をありがとうございます！<br />
+                        <p class="text-[14px] mt-[15px] font-bold">良い評価をありがとうございます！<br />
                             この評価をそのままGoogle口コミに投稿して<br />
                             いただけませんか？<br />
                             星の評価のみであれば下記リンクから30秒で回答いただけます。</p>

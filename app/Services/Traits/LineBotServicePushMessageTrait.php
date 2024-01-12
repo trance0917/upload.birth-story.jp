@@ -134,13 +134,13 @@ trait LineBotServicePushMessageTrait
 
     public function pushMessageReviewPatientHighRating(TblPatient $tbl_patient){
         $message = [
-            'type' => 'flex', 'altText' => '高評価ありがとうございます！',
+            'type' => 'flex', 'altText' => 'レビューをありがとうございます！',
             'contents' => [
                 'type' => 'bubble', 'size' => 'kilo', 'direction' => 'ltr',
                 'body' => [
                     'type' => 'box', 'layout' => 'vertical','spacing' => 'none', 'margin' => 'none',
                     'contents' => [
-                        ['type' => 'text', 'text' => '高評価ありがとうございます！', 'size' => 'md', 'weight' => 'bold', 'align' => 'center',"wrap" => true],
+                        ['type' => 'text', 'text' => 'レビューをありがとうございます！', 'size' => 'md', 'weight' => 'bold', 'align' => 'center',"wrap" => true],
                         ['type' => 'separator', 'margin' => 'md'],
                         [
                             'type' => 'image',
@@ -149,10 +149,10 @@ trait LineBotServicePushMessageTrait
                             'aspectRatio' => '5:1','size' => '3xl'
                         ],
                         [
-                            'type' => 'text', 'text' => $tbl_patient->mst_maternity->name.'の高評価レビューをありがとうございます！よろしければこの内容をそのままgoogleに投稿いただけませんか？',
+                            'type' => 'text', 'text' => $tbl_patient->mst_maternity->name.'のレビューを提出していただき、ありがとうございます！よろしければこの内容をそのままgoogleに投稿いただけませんか？',
                             'wrap' => true, 'color' => '#555555', 'size' => 'md', 'weight' => 'regular','margin' => 'lg',
                             'contents' => [
-                                ['type' => 'span', 'text' => $tbl_patient->mst_maternity->name."の高評価レビューをありがとうございます！\nよろしければこの内容をそのまま"],
+                                ['type' => 'span', 'text' => $tbl_patient->mst_maternity->name."のレビューを提出していただき、ありがとうございます！\nよろしければこの内容をそのまま"],
                                 ['type' => 'span', 'text' => 'googleの口コミに投稿','decoration' => 'underline', 'weight' => 'bold'],
                                 ['type' => 'span', 'text' => 'いただけませんか？']
                             ],
