@@ -134,13 +134,13 @@ trait LineBotServicePushMessageTrait
 
     public function pushMessageReviewPatientHighRating(TblPatient $tbl_patient){
         $message = [
-            'type' => 'flex', 'altText' => 'レビューをありがとうございます！',
+            'type' => 'flex', 'altText' => 'レビューをありがとうございます',
             'contents' => [
                 'type' => 'bubble', 'size' => 'kilo', 'direction' => 'ltr',
                 'body' => [
                     'type' => 'box', 'layout' => 'vertical','spacing' => 'none', 'margin' => 'none',
                     'contents' => [
-                        ['type' => 'text', 'text' => 'レビューをありがとうございます！', 'size' => 'md', 'weight' => 'bold', 'align' => 'center',"wrap" => true],
+                        ['type' => 'text', 'text' => 'レビューをありがとうございます', 'size' => 'md', 'weight' => 'bold', 'align' => 'center',"wrap" => true],
                         ['type' => 'separator', 'margin' => 'md'],
                         [
                             'type' => 'image',

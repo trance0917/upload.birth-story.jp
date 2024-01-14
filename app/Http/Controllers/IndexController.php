@@ -20,7 +20,7 @@ class IndexController extends Controller
 //        $maternity_line_bot_service->deleteRichMenu($tbl_patient->richmenu_id);
 //        $line_bot_service->pushMessageReviewHighRatingToMaternityUser($tbl_patient->mst_maternity->mst_maternity_users[0],$tbl_patient);
 //        $maternity_line_bot_service->pushMessageFollow($tbl_patient);
-//        $maternity_line_bot_service->pushMessageReviewPatientHighRating($tbl_patient);
+//        $line_bot_service->pushMessageReviewPatientHighRating($tbl_patient);
 
 //        $maternity_line_bot_service->pushMessageStorySubmitted($tbl_patient);
 //        $maternity_line_bot_service->makeFirstRichMenu($tbl_patient);
