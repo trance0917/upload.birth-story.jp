@@ -16,6 +16,7 @@
 
     @if($tbl_patient->tbl_patient_reviews->count())
         <div class="mt-[50px] md:mt-[30px] text-center"><span class="w-[80%] px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">ご協力ありがとうございます</span></div>
+        <p class="mt-[20px] text-center"><a class="underline text-[14px] text-slate-600" href="{{route('guide',$tbl_patient)}}">トップページへ</a></p>
     @endif
 
     @if(session('flash_message'))
@@ -165,6 +166,8 @@
     <div class="mt-[50px] md:mt-[30px] w-[340px] md:w-[240px] mx-auto text-center">
         <p class="relative block bg-main text-white font-bold py-[20px] md:py-[15px] rounded-sm text-[22px] md:text-[16px]"
             @click.prevent="submit">提出<i class="fa-solid fa-angle-right absolute top-[26px] md:top-[18px] right-[15px]"></i></p></div>
+    @else
+        <p class="mt-[20px] text-center"><a class="underline text-[14px] text-slate-600" href="{{route('guide',$tbl_patient)}}">トップページへ</a></p>
     @endif
 
 </main>

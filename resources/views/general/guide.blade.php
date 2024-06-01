@@ -30,10 +30,16 @@
                         @if($tbl_patient->average_score >= $tbl_patient->mst_maternity->minimum_review_score)
                         <div class="mt-[15px] flex justify-center"><ul class="star star-{{str_replace('.','',(string)$tbl_patient->average_score)}} flex justify-center text-[32px] space-x-[10px]"><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li><li><i class="fa-solid fa-star"></i></li></ul></div>
                         <div class="text-slate-600 text-[20px] font-bold text-center mt-[10px]">{{$tbl_patient->average_score}}</div>
-                        <p class="text-[14px] mt-[15px] font-bold">良い評価をありがとうございます！<br />
-                            この評価をそのままGoogle口コミに投稿して<br />
-                            いただけませんか？<br />
-                            星の評価のみであれば下記リンクから30秒で回答いただけます。</p>
+
+
+                            <div class="flex justify-center items-center">
+                                <img class="mr-[15px] md:mr-[10px]" src="/images/complete-high-girl.png" width="60" alt="">
+                                <p class="mt-[5px] font-bold text-[16px]"><span class="text-red">高評価</span>をありがとうございます🌟<br />
+                                    この評価を<span class="text-[#4285F4]">Googleレビュー</span>に投稿していただけませんか？<br />
+                                    コピー機能を利用すると10秒で投稿できます✨<br />
+                                    レビュー投稿時にはご感想も記入いただけますと、スタッフ一同励みになります✨
+                                </p>
+                            </div>
 
                             <p @click.prevent="review_copy"
                                class="relative text-[14px] border-dotted border-slate-400 text-slate-350 bg-slate-100 border p-[5px] rounded overflow-hidden text-ellipsis h-[5em] leading-[1.3em] mt-[10px]"
@@ -66,16 +72,18 @@
             @endif
         @endif
 
-        @if($tbl_patient->submitted_at)
-        <p class="mt-[10px] text-center"><a class="underline text-[14px] text-slate-600" href="{{route('story-index',$tbl_patient)}}">提出データの確認</a></p>
+        @if($tbl_patient->submitted_at && $tbl_patient->tbl_patient_reviews->count())
+        <p class="mt-[10px] text-center"><a class="underline text-[14px] text-slate-600" href="{{route('review',$tbl_patient)}}">アンケート内容の確認</a></p>
         @endif
 
+        @if(!$tbl_patient->submitted_at)
         <h1 class="mt-[50px] md:mt-[30px] text-center"><span class="px-[25px] md:px-[15px] pb-[15px] pt-[18px] bg-sub-light font-bold text-[24px] md:text-[16px] inline-block leading-none">ご出産記念DVD「バースストーリー」とは？</span></h1>
 
         <img class="w-[400px] md:w-[260px] mx-auto mt-[30px] md:mt-[20px] shadow-[8px_8px_0_rgba(246,234,209,1)]" src="/images/maternities/{{$tbl_patient->mst_maternity_id}}/guide.png" alt="" />
 
         <p class="w-[550px] md:w-[350px] mx-auto mt-[30px] md:mt-[20px] text-[18px] md:text-[14px] font-bold">ご出産記念DVD「バースストーリー」は人生最高の思い出にしていただきたいという気持ちを込めた当院からのプレゼントです。<br />
             お写真とともにメッセージが流れてご出産の感動をいつまでも残していきます。</p>
+
 
         <div class="mt-[60px] md:mt-[30px]">
             <h2 class="text-center mb-[40px] md:mb-[20px]"><span class="inline-block font-bold text-white px-[20px] py-[5px] bg-main text-[22px] md:text-[16px]">作成の流れ</span></h2>
@@ -151,10 +159,14 @@
         <div class="mt-[50px] md:mt-[30px] bg-red font-bold text-[18px] md:text-[14px] text-white text-center py-[13px] md:py-[10px]">
             <span class="text-[16px] md:text-[14px] text-white">[お願い]</span><i class="fa-solid fa-circle-exclamation mx-[5px]"></i>出産から10日以内にお送りください
         </div>
+            @endif
 
-            <p class="mt-[50px] md:mt-[30px] w-[340px] md:w-[240px] mx-auto text-center"><a class="relative block bg-main text-white font-bold py-[20px] md:py-[15px] rounded-sm text-[22px] md:text-[16px]" href="{{route('story-index',$tbl_patient)}}">
-                    @if(!$tbl_patient->submitted_at){{'作成を開始する'}}@else{{'提出データの確認'}}@endif
-            <i class="fa-solid fa-angle-right absolute top-[26px] md:top-[18px] right-[15px]"></i></a></p>
+            @if(!$tbl_patient->submitted_at)
+                <p class="mt-[50px] md:mt-[30px] w-[340px] md:w-[240px] mx-auto text-center"><a class="relative block bg-main text-white font-bold py-[20px] md:py-[15px] rounded-sm text-[22px] md:text-[16px]" href="{{route('story-index',$tbl_patient)}}">作成を開始する<i class="fa-solid fa-angle-right absolute top-[26px] md:top-[18px] right-[15px]"></i></a></p>
+            @else
+                <p class="mt-[10px] text-center"><a class="underline text-[14px] text-slate-600" href="{{route('story-index',$tbl_patient)}}">提出データの確認</a></p>
+            @endif
+
 
     </div>
 </main>

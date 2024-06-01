@@ -29,13 +29,6 @@ trait LineBotServicePushMessageTrait
                         ['type' => 'separator','color' => '#999999','margin' => 'md'],
                         ['type' => 'text','text' =>'ご出産おめでとうございます。','wrap' => true,'margin' => 'lg'],
                         ['type' => 'text','text' => '産院からのプレゼントで、一生に一度しかないご出産を記念した、感動する出産記念ムービーをプレゼントしております。','margin' => 'md','wrap' => true],
-                        [
-                            'type' => 'text','text' => '無料でお作りいただけます。','margin' => 'md','wrap' => true,
-                            'contents' => [
-                                ['type' => 'span','text' => '無料','weight' => 'bold','decoration' => 'underline'],
-                                ['type' => 'span','text' => 'でお作りいただけます。']
-                            ]
-                        ],
                         ['type' => 'text','text' => '下記からお写真を提出してください。','margin' => 'md','wrap' => true],
                         [
                             'type' => 'button','style' => 'primary','color' => '#F68CA9','margin' => 'lg',
