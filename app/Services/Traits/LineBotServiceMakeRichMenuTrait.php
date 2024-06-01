@@ -109,8 +109,8 @@ trait LineBotServiceMakeRichMenuTrait
             [
                 new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(0, 0, 834, 843), new UriTemplateActionBuilder('産院HP', $tbl_patient->mst_maternity->official_url)),
                 new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(0, 844, 834, 843), new UriTemplateActionBuilder('産院インスタ', $tbl_patient->mst_maternity->instagram_url)),
-                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(835, 0, 1666, 843), new UriTemplateActionBuilder('写真提出', route('guide', $tbl_patient) . '?openExternalBrowser=1')),
-                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(835, 844, 1666, 843), new UriTemplateActionBuilder('Google口コミへのリンク', $tbl_patient->mst_maternity->review_link)),
+                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(835, 0, 1666, 843), new UriTemplateActionBuilder('写真提出', route('story-index', $tbl_patient) . '?openExternalBrowser=1')),
+                new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(835, 844, 1666, 843), new UriTemplateActionBuilder('Google口コミへのリンク', route('guide', $tbl_patient) . '?openExternalBrowser=1')),
             ],
         );
         try {
