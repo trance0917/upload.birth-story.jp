@@ -29,6 +29,7 @@ trait LineBotServiceMakeRichMenuTrait
         $rich_menu_builder = new RichMenuBuilder(
             RichMenuSizeBuilder::getHalf(),true,$tbl_patient->line_name . 'さん(tbl_patient_id:' . $tbl_patient->tbl_patient_id . ')の初期リッチメニュー','メニューを開く',
             [
+                //メニューが１個というのは、まだ産院が確定していない状態だから、産院HPも産院インスタも引き当てられないため
                 new RichMenuAreaBuilder(new RichMenuAreaBoundsBuilder(0, 0, 2500, 843), new UriTemplateActionBuilder('写真提出', route('guide', $tbl_patient).'?openExternalBrowser=1')),
             ],
         );

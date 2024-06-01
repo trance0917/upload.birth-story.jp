@@ -108,6 +108,12 @@ class LineBotService extends LINEBot
 
     public function pushMessage($to, MessageBuilder $messageBuilder, $model = null)
     {
+        //LINEを送れなくする
+        if(!config('const.is_line_enabled')){
+            return false;
+        }
+
+
         $log_line_message = new LogLineMessage;
 
         $res = parent::pushMessage($to, $messageBuilder);
