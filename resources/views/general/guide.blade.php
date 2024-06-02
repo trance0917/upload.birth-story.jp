@@ -42,7 +42,7 @@
                             </div>
 
                             <p @click.prevent="review_copy"
-                               class="relative text-[14px] border-dotted border-slate-400 text-slate-350 bg-slate-100 border p-[5px] rounded overflow-hidden text-ellipsis h-[5em] leading-[1.3em] mt-[10px]"
+                               class="relative text-[16px] border-dotted border-slate-400 text-slate-350 bg-slate-100 border p-[5px] rounded overflow-hidden text-ellipsis h-[7em] leading-[1.3em] mt-[10px]"
                                :class="{'!bg-green-50 !border-green-400':is_copy}"
                             >
                             {{$tbl_patient->review}}
