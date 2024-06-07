@@ -654,7 +654,7 @@
                 let t = this;
                 this.errors={};
                 this.is_loading=true;
-                await axios.post('/api/v1/g/{{$tbl_patient->code}}/story/',
+                await axios.post('/api/v1/g/{{$tbl_patient->code}}/story',
                     {
                         tbl_patient:t.tbl_patient,
                     }
