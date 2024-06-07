@@ -197,12 +197,12 @@
                 let t = this;
                 this.errors={};
                 this.is_loading=true;
-                await axios.post('/api/v1/g/{{$tbl_patient->code}}/review/',
+                await axios.post('/api/v1/g/{{$tbl_patient->code}}/review',
                     {
                         tbl_patient:t.tbl_patient,
                     }
                 ).then((response) => {//リクエストの成功
-                    location.href='/{{$tbl_patient->code}}/';
+                    location.href='/{{$tbl_patient->code}}';
                 }).catch((error) => {//リクエストの失敗
                     window.scroll({
                         top: 0,
