@@ -25,8 +25,8 @@
         }).then(() => {
             // Start to use liff's api
         }).catch((err) => {
-            console.log(err);
-        }
+            alert(err);
+        });
 
     </script>
 @endsection
