@@ -30,6 +30,8 @@
             console.log(liff.isLoggedIn());
             console.log(liff.getOS());
             console.log(liff.getLineVersion());
+            console.log(liff.getContext());
+
         }).catch((err) => {
             alert(err);
         });
