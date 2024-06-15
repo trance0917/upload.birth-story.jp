@@ -24,6 +24,7 @@
             withLoginOnExternalBrowser: true, // Enable automatic login process
         }).then(() => {
             // Start to use liff's api
+            alert(9);
         }).catch((err) => {
             alert(err);
         });
