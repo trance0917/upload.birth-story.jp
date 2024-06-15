@@ -24,7 +24,12 @@
             withLoginOnExternalBrowser: true, // Enable automatic login process
         }).then(() => {
             // Start to use liff's api
-            alert(9);
+            console.log(liff.getLanguage());
+            console.log(liff.getVersion());
+            console.log(liff.isInClient());
+            console.log(liff.isLoggedIn());
+            console.log(liff.getOS());
+            console.log(liff.getLineVersion());
         }).catch((err) => {
             alert(err);
         });
