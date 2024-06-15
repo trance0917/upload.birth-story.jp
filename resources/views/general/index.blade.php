@@ -1,5 +1,8 @@
 @extends('layout')
-@section('meta')@endsection
+@section('meta')
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/versions/2.22.3/sdk.js"></script>
+
+@endsection
 @section('contents')
     <div class=" ">
         <div class="max-w-[800px] bg-sub-light/50 mx-auto pt-15 pb-20 px-10 md:px-7 -mb-30">
@@ -15,6 +18,20 @@
         </div>
 
     </div>
+    <script>
+        liff.init({
+            liffId: '2005625466-mbaA19yo', // Use own liffId
+            withLoginOnExternalBrowser: true, // Enable automatic login process
+        }).then(() => {
+            // Start to use liff's api
+        }).catch((err) => {
+            console.log(err);
+        }
+
+    </script>
 @endsection
 
-@section('javascript')@endsection
+@section('javascript')
+
+
+@endsection
