@@ -21,7 +21,7 @@
     <script>
         liff.init({
             liffId: '2005625466-mbaA19yo', // Use own liffId
-            withLoginOnExternalBrowser: true, // Enable automatic login process
+            withLoginOnExternalBrowser: false, // Enable automatic login process
         }).then(() => {
             // Start to use liff's api
             console.log(liff.getLanguage());
