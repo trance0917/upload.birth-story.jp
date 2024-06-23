@@ -23,7 +23,7 @@
             liffId: '2005625466-mbaA19yo', // Use own liffId
             withLoginOnExternalBrowser: true, // Enable automatic login process
         }).then(() => {
-            return false;
+
             // Start to use liff's api
             console.log(liff.getLanguage());
             console.log(liff.getVersion());
