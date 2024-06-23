@@ -27,10 +27,10 @@ Route::get('/{tbl_patient:code}/howto', function () {
 
 
 Route::get('/liff/777', function () {
-    return view('general.liff');
+    return view('general.liff-777');
 })->name('liff');
 Route::get('/liff/999', function () {
-    return view('general.liff');
+    return view('general.liff-999');
 })->name('liff');
 
 
