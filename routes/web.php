@@ -26,7 +26,10 @@ Route::get('/{tbl_patient:code}/howto', function () {
 })->name('howto');
 
 
-Route::get('/liff', function () {
+Route::get('/liff/777', function () {
+    return view('general.liff');
+})->name('liff');
+Route::get('/liff/999', function () {
     return view('general.liff');
 })->name('liff');
 
