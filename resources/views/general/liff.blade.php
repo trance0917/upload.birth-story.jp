@@ -32,6 +32,7 @@
             console.log(liff.getOS());
             console.log(liff.getLineVersion());
             console.log(liff.getContext());
+
             console.log(liff.permission.requestAll());
 
 
