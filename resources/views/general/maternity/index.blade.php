@@ -26,9 +26,9 @@
 
         console.log(liff.permission.requestAll());
 
-        setTimeout(() => {
-            location.href = 'https://lin.ee/FWdoFmb';
-        }, 1000);
+        // setTimeout(() => {
+        //     location.href = 'https://lin.ee/FWdoFmb';
+        // }, 1000);
 
 
         {{--await axios.post('/api/v1/g/{{$tbl_patient->code}}/story/input',--}}
