@@ -164,7 +164,7 @@ class LineBotService extends LINEBot
                 break;
             }
 
-            $tbl_liff = TblLiff::where('line_user_id', $line_user_id)->orderByDesc('tbl_liff_id')->first();
+            $tbl_liff = TblLiff::where('line_user_id', $line_user_id)->orderByDesc('updated_at')->first();
 
             $profile = $this->getProfile($line_user_id)->getJSONDecodedBody();
 
