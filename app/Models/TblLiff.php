@@ -22,15 +22,16 @@ use Illuminate\Database\Eloquent\Model;
  */
 class TblLiff extends Model
 {
-	protected $table = 'tbl_liffs';
+    protected $table = 'tbl_liffs';
 
-	protected $primaryKey = 'tbl_liff_id';
+    protected $primaryKey = 'tbl_liff_id';
 
-	protected $casts = [
-		'mst_maternity_id' => 'int'
-	];
+    protected $casts = [
+        'mst_maternity_id' => 'int'
+    ];
 
-	protected $fillable = [
-		'mst_maternity_id',
-		'line_user_id'
-	];
+    protected $fillable = [
+        'mst_maternity_id',
+        'line_user_id'
+    ];
+}
