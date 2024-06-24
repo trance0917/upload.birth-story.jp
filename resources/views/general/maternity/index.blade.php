@@ -10,7 +10,7 @@
 </main>
 
 <script>
-    let maternity_id = {{$mst_maternity->mst_maternity_id}};
+    let mst_maternity_id = {{$mst_maternity->mst_maternity_id}};
     liff.init({
         liffId: '{{$mst_maternity->liff_id}}', // Use own liffId
         withLoginOnExternalBrowser: true, // Enable automatic login process
@@ -33,7 +33,7 @@
 
         axios.post('/api/v1/g/maternity/set',
             {
-                maternity_id:maternity_id,
+                mst_maternity_id:mst_maternity_id,
                 line_user_id:liff.getContext().userId,
             }
         ).then((response) => {//リクエストの成功
