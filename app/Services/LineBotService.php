@@ -175,7 +175,7 @@ class LineBotService extends LINEBot
             $tbl_patient->line_picture_url = $profile['pictureUrl'];
 //            $tbl_patient->review_point = $this->mst_maternity->review_point;
 
-            $tbl_patient->tbl_maternity_id = $tbl_liff->tbl_maternity_id;
+            $tbl_patient->mst_maternity_id = $tbl_liff->mst_maternity_id;
             $tbl_patient->save();
 
             //リッチメニューIDを紐づける対応が必要
