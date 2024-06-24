@@ -8,9 +8,9 @@
         </div>
     </div>
 </main>
-{{$mst_maternity->mst_maternity_id}}
-<script>
 
+<script>
+    let maternity_id = {{$mst_maternity->mst_maternity_id}};
     liff.init({
         liffId: '{{$mst_maternity->liff_id}}', // Use own liffId
         withLoginOnExternalBrowser: true, // Enable automatic login process
@@ -23,28 +23,27 @@
         console.log(liff.isLoggedIn());
         console.log(liff.getOS());
         console.log(liff.getLineVersion());
-        console.log(liff.getContext());
+        console.log(liff.getContext().userId);
 
-        console.log(liff.permission.requestAll());
 
         // setTimeout(() => {
-        //     location.href = 'https://lin.ee/FWdoFmb';
+        //
         // }, 1000);
 
 
-        {{--await axios.post('/api/v1/g/{{$tbl_patient->code}}/story/input',--}}
-        {{--    {--}}
-        {{--        tbl_patient:data,--}}
-        {{--        key:'tbl_patient.'+key,--}}
-        {{--    }--}}
-        {{--).then((response) => {//リクエストの成功--}}
-        {{--    delete t.errors['tbl_patient.'+key];--}}
-        {{--}).catch((error) => {//リクエストの失敗--}}
-        {{--    let errors = error_message_translate(error.response.data.errors);--}}
-        {{--    t.errors['tbl_patient.'+key] = errors['tbl_patient.'+key];--}}
-        {{--}).finally(() => {--}}
-        {{--    this.loading_input_key='';--}}
-        {{--});--}}
+        axios.post('/api/v1/g/maternity/set',
+            {
+                maternity_id:maternity_id,
+                line_user_id:liff.getContext().userId,
+            }
+        ).then((response) => {//リクエストの成功
+            location.href = 'https://lin.ee/FWdoFmb';
+        }).catch((error) => {//リクエストの失敗
+            alert('エラーが発生しました。');
+
+        }).finally(() => {
+
+        });
 
     }).catch((err) => {
         alert(err);

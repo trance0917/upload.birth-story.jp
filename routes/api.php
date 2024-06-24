@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\PatientController;
+use App\Http\Controllers\Api\MaternityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,5 @@ Route::prefix('v1/g')->group(function () {
     Route::post('/{tbl_patient:code}/story/input', [PatientController::class, 'storeStoryInput']);
     Route::post('/{tbl_patient:code}/story/medium', [PatientController::class, 'storeStoryMedium']);
     Route::post('/{tbl_patient:code}/story/medium/sort', [PatientController::class, 'storeStoryMediumSort']);
+    Route::post('/maternity/set', [MaternityController::class, 'index']);
 });
