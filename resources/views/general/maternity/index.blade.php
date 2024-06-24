@@ -8,6 +8,7 @@
         </div>
     </div>
 </main>
+{{$mst_maternity->id}}
 <script>
 
     liff.init({
