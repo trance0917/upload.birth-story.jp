@@ -49,6 +49,8 @@
 @endproduction
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/versions/2.22.3/sdk.js"></script>
+
 <link href="https://use.fontawesome.com/releases/v5.8.0/css/all.css" rel="stylesheet">
 
 <link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">

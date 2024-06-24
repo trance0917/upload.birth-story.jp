@@ -15,5 +15,4 @@ class MaternityController extends Controller
         Cookie::queue('mst_maternity_id', $mst_maternity->mst_maternity_id, 1*60*24*30);
         return view('general.maternity.index',compact('mst_maternity'));
     }
-
 }

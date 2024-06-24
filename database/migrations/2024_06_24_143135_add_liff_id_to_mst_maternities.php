@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('tbl_patient_mediums', function (Blueprint $table) {
-            $table->string('file_name', 255)->after('type')->comment('ファイル名');
+        Schema::table('mst_maternities', function (Blueprint $table) {
+            $table->string('liff_id', 255)->nullable()->default(null)->after('code')->comment('liff_id');
         });
     }
 
@@ -25,9 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('tbl_patient_mediums', function (Blueprint $table) {
-            //カラムの削除
-            $table->dropColumn('file_name');
+        Schema::table('mst_maternities', function (Blueprint $table) {
+            $table->dropColumn('liff_id');
         });
     }
 };

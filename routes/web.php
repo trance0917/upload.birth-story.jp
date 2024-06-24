@@ -26,14 +26,6 @@ Route::get('/{tbl_patient:code}/howto', function () {
 })->name('howto');
 
 
-Route::get('/liff/777', function () {
-    return view('general.liff-777');
-})->name('liff');
-Route::get('/liff/999', function () {
-    return view('general.liff-999');
-})->name('liff');
-
-
 
 Route::get('/{tbl_patient:code}/policy', function () {
     return view('general.policy');
@@ -72,3 +64,4 @@ Route::group(['middleware' => 'basicauth'], function() {
 });
 
 Route::get('maternity/{mst_maternity:code}', [MaternityController::class,'index'])->name('maternity');
+
