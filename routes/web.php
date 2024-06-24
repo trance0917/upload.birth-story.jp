@@ -39,23 +39,24 @@ Route::get('/line/webhook/test', [\App\Http\Controllers\WebHookController::class
 Route::get('/line/webhook/test2', [\App\Http\Controllers\WebHookController::class,'test2'])->name('line-webhook-test2');
 
 
-Route::group(['middleware' => 'set_maternity'], function() {
-    Route::get('/{tbl_patient:code}/check', [CheckController::class,'index'])->name('check-index');
 
-    Route::get('/{tbl_patient:code}/instagram', [IndexController::class,'instagram'])->name('instagram-index');
+Route::get('/{tbl_patient:code}/check', [CheckController::class,'index'])->name('check-index');
 
-    Route::get('/{tbl_patient:code}/story', [StoryController::class,'index'])->name('story-index');
-    Route::get('/{tbl_patient:code}/story_json', [StoryController::class,'index_json'])->name('story-index_json');
+Route::get('/{tbl_patient:code}/instagram', [IndexController::class,'instagram'])->name('instagram-index');
 
-    Route::post('/{tbl_patient:code}/story/confirm', [StoryController::class,'confirm'])->name('story-confirm');
+Route::get('/{tbl_patient:code}/story', [StoryController::class,'index'])->name('story-index');
+Route::get('/{tbl_patient:code}/story_json', [StoryController::class,'index_json'])->name('story-index_json');
 
-    Route::post('/{tbl_patient:code}/story/complete', [StoryController::class,'complete'])->name('story-complete');
+Route::post('/{tbl_patient:code}/story/confirm', [StoryController::class,'confirm'])->name('story-confirm');
 
-    Route::get('/{tbl_patient:code}/review', [IndexController::class,'review'])->name('review');
-    Route::get('/{tbl_patient:code}/review_json', [IndexController::class,'review_json'])->name('review_json');
+Route::post('/{tbl_patient:code}/story/complete', [StoryController::class,'complete'])->name('story-complete');
+
+Route::get('/{tbl_patient:code}/review', [IndexController::class,'review'])->name('review');
+Route::get('/{tbl_patient:code}/review_json', [IndexController::class,'review_json'])->name('review_json');
 
     Route::get('/{tbl_patient:code}', [IndexController::class,'index'])->name('guide');
-});
+
+//Route::group(['middleware' => 'set_maternity'], function() {});
 
 
 

@@ -68,7 +68,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         'basicauth' => \App\Http\Middleware\BasicAuthMiddleware::class,
-        'set_maternity' => \App\Http\Middleware\SetMaternityMiddleware::class,
+//        'set_maternity' => \App\Http\Middleware\SetMaternityMiddleware::class,
 
 
     ];

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('tbl_liffs', function (Blueprint $table) {
             $table->integer('tbl_liff_id', true);
             $table->integer('mst_maternity_id');
-            $table->string('line_user_id', 32);
+            $table->string('line_user_id', 256);
             $table->timestamps();
         });
     }

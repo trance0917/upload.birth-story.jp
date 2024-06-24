@@ -15,22 +15,6 @@
         liffId: '{{$mst_maternity->liff_id}}', // Use own liffId
         withLoginOnExternalBrowser: true, // Enable automatic login process
     }).then(() => {
-
-        // Start to use liff's api
-        console.log(liff.getLanguage());
-        console.log(liff.getVersion());
-        console.log(liff.isInClient());
-        console.log(liff.isLoggedIn());
-        console.log(liff.getOS());
-        console.log(liff.getLineVersion());
-        console.log(liff.getContext().userId);
-
-
-        // setTimeout(() => {
-        //
-        // }, 1000);
-
-
         axios.post('/api/v1/g/maternity/set',
             {
                 mst_maternity_id:mst_maternity_id,
@@ -40,11 +24,8 @@
             location.href = 'https://lin.ee/FWdoFmb';
         }).catch((error) => {//リクエストの失敗
             alert('エラーが発生しました。');
-
         }).finally(() => {
-
         });
-
     }).catch((err) => {
         alert(err);
     });

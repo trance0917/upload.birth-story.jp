@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Models\LogLineMessage;
 use App\Models\MstMaternityUser;
+use App\Models\TblLiff;
 use App\Models\TblPatient;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -163,6 +164,8 @@ class LineBotService extends LINEBot
                 break;
             }
 
+            $tbl_liff = TblLiff::where('code', $code)->orderByDesc('tbl_liff_id')->first();
+
             $profile = $this->getProfile($line_user_id)->getJSONDecodedBody();
 
 //            $tbl_patient->mst_maternity_id = $this->mst_maternity->mst_maternity_id;
@@ -172,6 +175,7 @@ class LineBotService extends LINEBot
             $tbl_patient->line_picture_url = $profile['pictureUrl'];
 //            $tbl_patient->review_point = $this->mst_maternity->review_point;
 
+            $tbl_patient->tbl_maternity_id = $tbl_liff->tbl_maternity_id;
             $tbl_patient->save();
 
             //リッチメニューIDを紐づける対応が必要
