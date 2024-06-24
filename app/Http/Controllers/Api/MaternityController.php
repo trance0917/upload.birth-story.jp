@@ -19,6 +19,8 @@ class MaternityController extends Controller
             $tbl_liff->mst_maternity_id = $request->mst_maternity_id;
             $tbl_liff->line_user_id = $request->line_user_id;
             $tbl_liff->save();
+        }else{
+            $m->touch();
         }
         //todo: 規定評価以上なら産院にメッセージを送る
         return response()->json([
