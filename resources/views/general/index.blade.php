@@ -18,25 +18,7 @@
         </div>
 
     </div>
-    <script>
-        liff.init({
-            liffId: '2005625466-mbaA19yo', // Use own liffId
-            withLoginOnExternalBrowser: true, // Enable automatic login process
-        }).then(() => {
-            // Start to use liff's api
-            console.log(liff.getLanguage());
-            console.log(liff.getVersion());
-            console.log(liff.isInClient());
-            console.log(liff.isLoggedIn());
-            console.log(liff.getOS());
-            console.log(liff.getLineVersion());
-            console.log(liff.getContext());
 
-        }).catch((err) => {
-            alert(err);
-        });
-
-    </script>
 @endsection
 
 @section('javascript')
