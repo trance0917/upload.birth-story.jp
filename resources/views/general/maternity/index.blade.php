@@ -11,7 +11,7 @@
 
 <script>
     let mst_maternity_id = {{$mst_maternity->mst_maternity_id}};
-    liff.init({
+    liff.ready.init({
         liffId: '{{$mst_maternity->liff_id}}', // Use own liffId
         withLoginOnExternalBrowser: true, // Enable automatic login process
     }).then(() => {
