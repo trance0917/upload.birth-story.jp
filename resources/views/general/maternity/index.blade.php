@@ -19,6 +19,7 @@
             {
                 mst_maternity_id:mst_maternity_id,
                 line_user_id:liff.getContext().userId,
+                withLoginOnExternalBrowser: true,
             }
         ).then((response) => {//リクエストの成功
             location.href = 'https://lin.ee/FWdoFmb';
