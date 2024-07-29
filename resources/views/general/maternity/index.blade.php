@@ -11,10 +11,10 @@
 
 <script>
     let mst_maternity_id = {{$mst_maternity->mst_maternity_id}};
-    liff.ready.init({
+    liff.init({
         liffId: '{{$mst_maternity->liff_id}}', // Use own liffId
         withLoginOnExternalBrowser: true, // Enable automatic login process
-    }).then(() => {
+    }).ready.then(() => {
         axios.post('/api/v1/g/maternity/set',
             {
                 mst_maternity_id:mst_maternity_id,
