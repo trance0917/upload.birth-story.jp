@@ -13,13 +13,12 @@
     let mst_maternity_id = {{$mst_maternity->mst_maternity_id}};
     liff.init({
         liffId: '{{$mst_maternity->liff_id}}', // Use own liffId
-        withLoginOnExternalBrowser: true, // Enable automatic login process
+        withLoginOnExternalBrowser: false, // Enable automatic login process
     }).then(() => {
         axios.post('/api/v1/g/maternity/set',
             {
                 mst_maternity_id:mst_maternity_id,
                 line_user_id:liff.getContext().userId,
-                withLoginOnExternalBrowser: true,
             }
         ).then((response) => {//リクエストの成功
             location.href = 'https://lin.ee/FWdoFmb';
