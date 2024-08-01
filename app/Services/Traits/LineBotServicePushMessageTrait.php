@@ -27,7 +27,7 @@ trait LineBotServicePushMessageTrait
                     'contents' => [
                         ['type' => 'text','text' =>'✨'.$tbl_patient->mst_maternity->name.'✨','wrap' => true,'margin' => 'xs'],
                         ['type' => 'text','text' => 'ご出産記念DVD「バースストーリー」','margin' => 'md','wrap' => true],
-                        ['type' => 'text','text' => '❤️映像サンプルはこちら❤️','margin' => 'md','wrap' => true],
+                        ['type' => 'text','text' => '❤️映像サンプルはこちら❤️','margin' => 'lg','wrap' => true],
                         ['type' => 'text','text' => 'https://www.instagram.com/p/C3kCsx5x28E/?hl=ja','margin' => 'xs','wrap' => true,
                             'action' => [
                                 'type' => 'uri',
@@ -37,7 +37,7 @@ trait LineBotServicePushMessageTrait
                             'color' => '#0000ee',
                             'decoration' => 'underline',
                         ],
-                        ['type' => 'text','text' => '❤️デジタルニューボーンフォトのサンプルはこちら❤️','margin' => 'md','wrap' => true],
+                        ['type' => 'text','text' => '❤️デジタルニューボーンフォトのサンプルはこちら❤️','margin' => 'lg','wrap' => true],
                         ['type' => 'text','text' => 'https://www.instagram.com/birthstory.jp','margin' => 'xs','wrap' => true,
                             'action' => [
                                 'type' => 'uri',
