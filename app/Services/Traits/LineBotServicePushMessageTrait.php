@@ -25,11 +25,30 @@ trait LineBotServicePushMessageTrait
                 'body' => [
                     'type' => 'box','layout' => 'vertical','margin' => 'none','spacing' => 'none',
                     'contents' => [
-                        ['type' => 'text','text' => 'ご出産おめでとうございます！','weight' => 'bold','align' => 'center','wrap' => true],
-                        ['type' => 'separator','color' => '#999999','margin' => 'md'],
-                        ['type' => 'text','text' =>'ご出産おめでとうございます。','wrap' => true,'margin' => 'lg'],
-                        ['type' => 'text','text' => '産院からのプレゼントで、一生に一度しかないご出産を記念した、感動する出産記念ムービーをプレゼントしております。','margin' => 'md','wrap' => true],
-                        ['type' => 'text','text' => '下記からお写真を提出してください。','margin' => 'md','wrap' => true],
+                        ['type' => 'text','text' =>'✨'.$tbl_patient->mst_maternity->name.'✨','wrap' => true,'margin' => 'xs'],
+                        ['type' => 'text','text' => 'ご出産記念DVD「バースストーリー」','margin' => 'md','wrap' => true],
+                        ['type' => 'text','text' => '❤️映像サンプルはこちら❤️','margin' => 'md','wrap' => true],
+                        ['type' => 'text','text' => 'https://www.instagram.com/p/C3kCsx5x28E/?hl=ja','margin' => 'xs','wrap' => true,
+                            'action' => [
+                                'type' => 'uri',
+                                'label' => 'action',
+                                'uri' => 'https://www.instagram.com/p/C3kCsx5x28E/?hl=ja',
+                            ],
+                            'color' => '#0000ee',
+                            'decoration' => 'underline',
+                        ],
+                        ['type' => 'text','text' => '❤️デジタルニューボーンフォトのサンプルはこちら❤️','margin' => 'md','wrap' => true],
+                        ['type' => 'text','text' => 'https://www.instagram.com/birthstory.jp','margin' => 'xs','wrap' => true,
+                            'action' => [
+                                'type' => 'uri',
+                                'label' => 'action',
+                                'uri' => 'https://www.instagram.com/birthstory.jp',
+                            ],
+                            'color' => '#0000ee',
+                            'decoration' => 'underline',
+                        ],
+                        ['type' => 'text','text' => 'ご出産日より10日以内にお送りください。️','margin' => 'xl','wrap' => true],
+                        ['type' => 'text','text' => 'プレゼント企画もこちらのLINEから配信いたします、お楽しみに✨️','margin' => 'xl','wrap' => true],
                         [
                             'type' => 'button','style' => 'primary','color' => '#F68CA9','margin' => 'lg',
                             'action' => [
