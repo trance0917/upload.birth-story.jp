@@ -106,10 +106,11 @@
         [&_.box_.lbl_.number]:top-0
         [&_.box_.lbl_.number]:absolute
         [&_.box_.lbl_.number]:inline-block
-        [&_.box_.lbl_.number]:p-[1px_4px]
-        [&_.box_.lbl_.number]:bg-white/70
+        [&_.box_.lbl_.number]:p-[1px_6px]
+        [&_.box_.lbl_.number]:bg-white/80
         [&_.box_.lbl_.number]:border
         [&_.box_.lbl_.number]:border-slate-200
+        [&_.box_.lbl_.number]:text-[10px]
 
         ">
             <div class="flex justify-center mb-[30px]">
