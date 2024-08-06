@@ -189,7 +189,7 @@
                                 <div class="flex items-center">
                                     <div class="w-[65%]">
                                         <label class="lbl" :for="'medium_'+medium_key">
-                                            <span class="number">@{{ medium_key+1 }}</span>
+                                            <span class="number">@{{ medium.order }}</span>
                                             <div><img :src="medium.src" alt="" /></div>
                                             <i v-if="'pregnancy_'+medium_key==loading_input_key"
                                                class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
@@ -236,7 +236,7 @@
                                 <div class="flex items-center">
                                     <div class="w-[65%]">
                                         <label class="lbl" :for="'medium_'+medium_key">
-                                            <span class="number">@{{ medium_key+1 }}</span>
+                                            <span class="number">@{{ medium.order }}</span>
                                             <div><img :src="medium.src" alt="" /></div>
                                             <i v-if="'free_'+medium_key==loading_input_key"
                                                class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
@@ -279,7 +279,7 @@
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                             <div v-if="medium.type=='photoart'" class="w-[80%]">
                                 <label class="lbl" :for="'medium_'+medium_key">
-                                    <span class="number">@{{ medium_key+1 }}</span>
+                                    <span class="number">@{{ medium.order }}</span>
                                     <div><img :src="medium.src" alt="" /></div>
                                     <i v-if="'photoart_'+medium_key==loading_input_key"
                                        class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
