@@ -76,7 +76,7 @@
         [&_h4]:p-[2px_20px]
         [&_h4]:border-t
         [&_h4]:border-b
-        [&_h4]:border-slate-100
+        [&_h4]:border-slate-200
 
 
         [&_h4>i]:mr-[8px] md:[&_h4>i]:mr-[5px]
@@ -101,6 +101,14 @@
         [&_.box_.lbl_.choice]:border-slate-300
 
         [&_.box_.lbl_div]:text-slate-400
+
+        [&_.box_.lbl_.number]:left-0
+        [&_.box_.lbl_.number]:top-0
+        [&_.box_.lbl_.number]:inline-block
+        [&_.box_.lbl_.number]:p-[3px]
+        [&_.box_.lbl_.number]:bg-white
+        [&_.box_.lbl_.number]:border
+        [&_.box_.lbl_.number]:border-slate-200
 
         ">
             <div class="flex justify-center mb-[30px]">
@@ -227,6 +235,7 @@
                                 <div class="flex items-center">
                                     <div class="w-[65%]">
                                         <label class="lbl" :for="'medium_'+medium_key">
+                                            <span class="number">@{{ medium_key+1 }}</span>
                                             <div><img :src="medium.src" alt="" /></div>
                                             <i v-if="'free_'+medium_key==loading_input_key"
                                                class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
@@ -269,6 +278,7 @@
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                             <div v-if="medium.type=='photoart'" class="w-[80%]">
                                 <label class="lbl" :for="'medium_'+medium_key">
+                                    <span class="number">@{{ medium_key+1 }}</span>
                                     <div><img :src="medium.src" alt="" /></div>
                                     <i v-if="'photoart_'+medium_key==loading_input_key"
                                        class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
