@@ -104,6 +104,7 @@
 
         [&_.box_.lbl_.number]:left-0
         [&_.box_.lbl_.number]:top-0
+        [&_.box_.lbl_.number]:absolute
         [&_.box_.lbl_.number]:inline-block
         [&_.box_.lbl_.number]:p-[3px]
         [&_.box_.lbl_.number]:bg-white

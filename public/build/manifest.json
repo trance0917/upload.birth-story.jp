@@ -25,14 +25,14 @@
   },
   "resources/js/app.js": {
     "css": [
-      "assets/app-c422b561.css"
+      "assets/app-7b65baff.css"
     ],
-    "file": "assets/app-09f7db62.js",
+    "file": "assets/app-aaffe291.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/scss/app.scss": {
-    "file": "assets/app-c422b561.css",
+    "file": "assets/app-7b65baff.css",
     "isEntry": true,
     "src": "resources/scss/app.scss"
   }
