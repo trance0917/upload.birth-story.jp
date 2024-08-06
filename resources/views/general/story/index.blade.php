@@ -68,6 +68,17 @@
         [&_h4]:text-brown
         [&_h4]:text-[18px]
         [&_h4]:font-bold
+        [&_h4]:sticky
+        [&_h4]:top-[0]
+        [&_h4]:z-10
+        [&_h4]:bg-white
+        [&_h4]:m-[0_-20px_5px]
+        [&_h4]:p-[2px_20px]
+        [&_h4]:border-t
+        [&_h4]:border-b
+        [&_h4]:border-slate-100
+
+
         [&_h4>i]:mr-[8px] md:[&_h4>i]:mr-[5px]
         [&_h4>.count]:ml-[3px]
         [&_h4>.count]:text-red
