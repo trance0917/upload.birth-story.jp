@@ -110,7 +110,8 @@
         [&_.box_.lbl_.number]:bg-white/80
         [&_.box_.lbl_.number]:border
         [&_.box_.lbl_.number]:border-slate-200
-        [&_.box_.lbl_.number]:text-[10px]
+        [&_.box_.lbl_.number]:text-[12px]
+        [&_.box_.lbl_.number]:font-bold
 
         ">
             <div class="flex justify-center mb-[30px]">
