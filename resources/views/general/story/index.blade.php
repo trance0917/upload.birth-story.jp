@@ -76,7 +76,7 @@
         [&_h4]:p-[2px_20px]
         [&_h4]:border-t
         [&_h4]:border-b
-        [&_h4]:border-slate-200
+        [&_h4]:border-main
 
 
         [&_h4>i]:mr-[8px] md:[&_h4>i]:mr-[5px]
@@ -182,8 +182,8 @@
 
                 <div class="box">
                     <h4><i class="fa-solid fa-pencil"></i>出産前・出産中・出産直後<span class="count">@{{ type_counts.pregnancy }}枚</span><span class="example" @click="is_overlay_pregnancy=true">写真例</span></h4>
-                    <p class="text-red font-bold text-[14px] leading-none mb-[10px]">※ 表示順に作成されます</p>
-                    <div class="space-y-[10px]" :class="{'opacity-60':sorting_key=='pregnancy'}">
+                    <p class="text-red font-bold text-[14px] leading-none">※ 表示順に作成されます</p>
+                    <div class="space-y-[10px] mt-[10px]" :class="{'opacity-60':sorting_key=='pregnancy'}">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                             <div v-if="medium.type=='pregnancy'" class="
                                 [&_.sort-btns_li:first-child]:first:hidden
@@ -277,7 +277,7 @@
 
                 <div class="box">
                     <h4><i class="fa-solid fa-pencil"></i>フォトアートにしたい写真を<span class="count">@{{ type_counts.photoart }}枚</span><span class="example" @click="is_overlay_photoart=true">写真例</span></h4>
-                    <p class="text-red font-bold text-[14px] leading-none mb-[10px]">※ この中から1枚選んで「ふぉとあーと」にいたします</p>
+                    <p class="text-red font-bold text-[14px] leading-none">※ この中から1枚選んで「ふぉとあーと」にいたします</p>
                     <div class="space-y-[10px]">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                             <div v-if="medium.type=='photoart'" class="w-[80%]">
@@ -393,7 +393,7 @@
 
 
             </div>
-            <p class="text-red font-bold text-[14px] leading-none text-center mt-[10px]">※ 動画は20秒前後でお願いします</p>
+            <p class="text-red font-bold text-[14px] leading-none text-center mt-[10px]">※ 動画は25～30秒でお願いします</p>
         </div>
 
     </section>
