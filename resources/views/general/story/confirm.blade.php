@@ -11,6 +11,10 @@
         </div>
     </div>
 
+    <p class="mt-[20px] md:mt-[15px] w-[140px] md:w-[120px] mx-auto text-center">
+        <button type="submit" name="action" value="return"
+                class="w-full block bg-slate-400 text-white font-bold py-[8px] md:py-[8px] rounded-sm text-[16px] md:text-[14px]">戻る</button></p>
+
     <section class="mt-[50px] md:mt-[25px]">
         <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>ご出産情報を入力</h3>
         <div class="

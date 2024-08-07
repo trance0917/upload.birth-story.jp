@@ -280,7 +280,7 @@
             <div class="space-y-[25px]">
                 <div class="box">
                     <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>エコー写真<span class="count">@{{ type_counts.echo }}枚</span><span class="example" @click="is_overlay_echo=true">写真例</span></h4>
-                    <div class="flex justify-between flex-wrap">
+                    <div class="flex justify-between flex-wrap mt-[10px]">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                         <div v-if="medium.type=='echo'" class="w-[48.5%]">
                             <label class="lbl" :for="'medium_'+medium_key">
@@ -306,7 +306,7 @@
 
                 <div class="box">
                     <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ネームカード<span class="font-normal text-[#999] text-[14px]">(お名前が分かるもの)</span><span class="example" @click="is_overlay_namecard=true">写真例</span></h4>
-                    <div class="">
+                    <div class="mt-[10px]">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                         <div v-if="medium.type=='namecard'" class="w-[80%]">
                             <label class="lbl" :for="'medium_'+medium_key">
