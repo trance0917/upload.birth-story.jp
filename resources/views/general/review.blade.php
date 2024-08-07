@@ -44,70 +44,70 @@
         <p class="text-[14px] md:text-[12px] inline-block font-bold bg-red shadow text-white px-[15px] py-[10px] md:px-[10px] md:py-[5px]">※ エラーがあります。ご確認のうえ再送信してください</p>
     </div>
 
-    <div class="mt-[60px] md:mt-[30px]">
-        <section class="bg-[#866827]/10 p-[20px] md:p-[10px]">
-            <dl class="space-y-[20px] md:space-y-[5px]
+{{--    <div class="mt-[60px] md:mt-[30px]">--}}
+{{--        <section class="bg-[#866827]/10 p-[20px] md:p-[10px]">--}}
+{{--            <dl class="space-y-[20px] md:space-y-[5px]--}}
 
-            [&>div]:bg-white
-            [&>div]:flex
-            [&>div]:items-center
-            [&>div]:py-[15px] md:[&>div]:py-[7px]
-            [&>div]:px-[15px] md:[&>div]:px-[7px]
+{{--            [&>div]:bg-white--}}
+{{--            [&>div]:flex--}}
+{{--            [&>div]:items-center--}}
+{{--            [&>div]:py-[15px] md:[&>div]:py-[7px]--}}
+{{--            [&>div]:px-[15px] md:[&>div]:px-[7px]--}}
 
-            [&>div_dt]:mr-[13px] md:[&>div_dt]:mr-[7px]
-            [&>div_dt]:bg-main
-            [&>div_dt]:text-white
-            [&>div_dt]:leading-none
-            [&>div_dt]:font-bold
-            [&>div_dt]:py-[7px] md:[&>div_dt]:py-[5px]
-            [&>div_dt]:px-[13px] md:[&>div_dt]:px-[8px]
-            [&>div_dt]:text-[16px] md:[&>div_dt]:text-[14px]
+{{--            [&>div_dt]:mr-[13px] md:[&>div_dt]:mr-[7px]--}}
+{{--            [&>div_dt]:bg-main--}}
+{{--            [&>div_dt]:text-white--}}
+{{--            [&>div_dt]:leading-none--}}
+{{--            [&>div_dt]:font-bold--}}
+{{--            [&>div_dt]:py-[7px] md:[&>div_dt]:py-[5px]--}}
+{{--            [&>div_dt]:px-[13px] md:[&>div_dt]:px-[8px]--}}
+{{--            [&>div_dt]:text-[16px] md:[&>div_dt]:text-[14px]--}}
 
-            [&>div_dd]:text-[16px] md:[&>div_dd]:text-[14px]
+{{--            [&>div_dd]:text-[16px] md:[&>div_dd]:text-[14px]--}}
 
-            [&>div_dd]:font-bold
-            [&>div_dd]:text-slate-700
-            [&>div_dd]:leading-none
+{{--            [&>div_dd]:font-bold--}}
+{{--            [&>div_dd]:text-slate-700--}}
+{{--            [&>div_dd]:leading-none--}}
 
-            ">
-                <div>
-                    <dt>1</dt>
-                    <dd>星の評価付け</dd>
-                </div>
-                <div>
-                    <dt>2</dt>
-                    <dd>テキストでのレビュー</dd>
-                </div>
-                @if($tbl_patient->review_point)
-                <div>
-                    <dt>3</dt>
-                    <dd>進呈先の情報を入力</dd>
-                </div>
-                @endif
-            </dl>
-        </section>
-    </div>
+{{--            ">--}}
+{{--                <div>--}}
+{{--                    <dt>1</dt>--}}
+{{--                    <dd>星の評価付け</dd>--}}
+{{--                </div>--}}
+{{--                <div>--}}
+{{--                    <dt>2</dt>--}}
+{{--                    <dd>テキストでのレビュー</dd>--}}
+{{--                </div>--}}
+{{--                @if($tbl_patient->review_point)--}}
+{{--                <div>--}}
+{{--                    <dt>3</dt>--}}
+{{--                    <dd>進呈先の情報を入力</dd>--}}
+{{--                </div>--}}
+{{--                @endif--}}
+{{--            </dl>--}}
+{{--        </section>--}}
+{{--    </div>--}}
 
 
-    <p class="h-[15px] my-[20px] relative
-                after:content-['.']
-                after:w-0
-                after:h-0
-                after:overflow-hidden
-                after:block
-                after:border
-                after:absolute
-                after:border-t-[15px]
-                after:border-r-[15px]
-                after:border-b-[0]
-                after:border-l-[15px]
-                after:border-t-main
-                after:border-r-transparent
-                after:border-b-transparent
-                after:border-l-transparent
-                after:top-[0]
-                after:right-[calc(50%-7px)]
-                md:text-[16px]"></p>
+{{--    <p class="h-[15px] my-[20px] relative--}}
+{{--                after:content-['.']--}}
+{{--                after:w-0--}}
+{{--                after:h-0--}}
+{{--                after:overflow-hidden--}}
+{{--                after:block--}}
+{{--                after:border--}}
+{{--                after:absolute--}}
+{{--                after:border-t-[15px]--}}
+{{--                after:border-r-[15px]--}}
+{{--                after:border-b-[0]--}}
+{{--                after:border-l-[15px]--}}
+{{--                after:border-t-main--}}
+{{--                after:border-r-transparent--}}
+{{--                after:border-b-transparent--}}
+{{--                after:border-l-transparent--}}
+{{--                after:top-[0]--}}
+{{--                after:right-[calc(50%-7px)]--}}
+{{--                md:text-[16px]"></p>--}}
 
 
 
