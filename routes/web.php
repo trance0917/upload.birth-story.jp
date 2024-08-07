@@ -25,6 +25,9 @@ Route::get('/{tbl_patient:code}/howto', function () {
     return view('general.howto');
 })->name('howto');
 
+Route::get('/faq', function () {
+    return view('general.faq');
+})->name('faq');
 
 
 Route::get('/{tbl_patient:code}/policy', function () {
