@@ -11,7 +11,116 @@
         </div>
     </div>
 
+    <section class="mt-[50px] md:mt-[25px]">
+        <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>ご出産情報を入力</h3>
+        <div class="
+    space-y-[20px]
+    mx-[20px] py-[15px]
+    [&_h4]:text-brown
+    [&_h4]:text-[18px]
+    [&_h4]:font-bold
+    [&_h4>i]:mr-[8px] md:[&_h4>i]:mr-[5px]
 
+    [&_.box]:mt-[10px]
+    [&_.box]:space-y-[10px]
+    [&_.box>.item]:flex
+    [&_.box>.item>dt]:w-[120px]
+    [&_.box>.item]:text-[14px]
+
+    [&_.box>.item>dd_.complement]:text-[12px]
+    [&_.box>.item>dd_.complement]:text-[#666]
+    [&_.box>.item>dd_.complement]:font-bold
+    [&_.box>.item>dd_.complement]:leading-none
+    [&_.box>.item>dd_.unit]:ml-[3px]
+    [&_.box>.item>dd]:flex-grow
+">
+            <div class="outer">
+                <h4><i class="fa-solid fa-pencil"></i>ママの情報</h4>
+                <dl class="box">
+                    <div class="item">
+                        <dt class="!h-[1.4em] !leading-[1.4em]">産院名</dt>
+                        <dd class="!h-[1.4em] !leading-[1.4em] font-bold">@{{tbl_patient.mst_maternity.name}}</dd>
+                    </div>
+                    <div class="item">
+                        <dt>ママのお名前</dt>
+                        <dd>@{{tbl_patient.name}}</dd>
+                    </div>
+                    <div class="item">
+                        <dt>ローマ字表記</dt>
+                        <dd>@{{tbl_patient.roman_alphabet}}</dd>
+                    </div>
+                </dl>
+            </div>
+
+            <div class="outer">
+                <h4><i class="fa-solid fa-pencil"></i>ベビーの情報</h4>
+                <dl class="box">
+                    <div class="item">
+                        <dt>お名前</dt>
+                        <dd>
+                            <template v-if="tbl_patient.baby_name">@{{ tbl_patient.baby_name }}</template>
+                            <template v-else>--</template>
+                        </dd>
+                    </div>
+                    <div class="item">
+                        <dt>ローマ字表記</dt>
+                        <dd>
+                            <template v-if="tbl_patient.baby_roman_alphabet">@{{ tbl_patient.baby_roman_alphabet }}</template>
+                            <template v-else>--</template>
+                        </dd>
+                    </div>
+                    <div class="item">
+                        <dt>生まれた日</dt>
+                        <dd>@{{tbl_patient.birth_day}}</dd>
+                    </div>
+                    <div class="item">
+                        <dt>生まれた時刻</dt>
+                        <dd>@{{tbl_patient.birth_time}}</dd>
+                    </div>
+                    <div class="item">
+                        <dt>体重</dt>
+                        <dd>@{{tbl_patient.weight}}<span class="unit">g</span></dd>
+                    </div>
+                    <div class="item">
+                        <dt>身長</dt>
+                        <dd>@{{tbl_patient.height}}<span class="unit">cm</span></dd>
+                    </div>
+                    <div class="item">
+                        <dt>性別</dt>
+
+
+                        <dd>@{{ sex_types[tbl_patient.sex] }} / 第@{{ tbl_patient.what_number }}子</dd>
+                    </div>
+                </dl>
+            </div>
+
+            <div class="outer">
+                <h4><i class="fa-solid fa-pencil"></i>確認事項</h4>
+                <dl class="box">
+                    <div class="item">
+                        <dt>1ヶ月健診日</dt>
+                        <dd>@{{ tbl_patient.health_check_date }}</dd>
+                    </div>
+                    <div class="item">
+                        <dt>備考</dt>
+                        <dd>
+                            <template v-if="tbl_patient.message">@{{ tbl_patient.message }}</template>
+                            <template v-else>--</template>
+                        </dd>
+                    </div>
+                    <div class="item pt-[10px]">
+                        <dd>
+                            <div class="text-center text-[12px] font-bold">ベビーの写真を色補正してインスタグラムに<br />
+                                掲載することがあります。</div>
+                            <div class="text-center mt-[5px]" v-if="tbl_patient.is_use_instagram==1"><i class="text-green fa-regular fa-circle mr-[3px]"></i>許可する</div>
+                            <div class="text-center mt-[5px]" v-if="tbl_patient.is_use_instagram==2"><i class="text-red fa-solid fa-xmark mr-[3px]"></i>許可しない</div>
+
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </section>
 
     <section class="mt-[50px] md:mt-[25px]">
         <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>お写真を登録</h3>
@@ -124,116 +233,7 @@
         </div>
     </section>
 
-    <section class="mt-[50px] md:mt-[25px]">
-        <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>ご出産情報を入力</h3>
-        <div class="
-    space-y-[20px]
-    mx-[20px] py-[15px]
-    [&_h4]:text-brown
-    [&_h4]:text-[18px]
-    [&_h4]:font-bold
-    [&_h4>i]:mr-[8px] md:[&_h4>i]:mr-[5px]
 
-    [&_.box]:mt-[10px]
-    [&_.box]:space-y-[10px]
-    [&_.box>.item]:flex
-    [&_.box>.item>dt]:w-[120px]
-    [&_.box>.item]:text-[14px]
-
-    [&_.box>.item>dd_.complement]:text-[12px]
-    [&_.box>.item>dd_.complement]:text-[#666]
-    [&_.box>.item>dd_.complement]:font-bold
-    [&_.box>.item>dd_.complement]:leading-none
-    [&_.box>.item>dd_.unit]:ml-[3px]
-    [&_.box>.item>dd]:flex-grow
-">
-            <div class="outer">
-                <h4><i class="fa-solid fa-pencil"></i>ママの情報</h4>
-                <dl class="box">
-                    <div class="item">
-                        <dt class="!h-[1.4em] !leading-[1.4em]">産院名</dt>
-                        <dd class="!h-[1.4em] !leading-[1.4em] font-bold">@{{tbl_patient.mst_maternity.name}}</dd>
-                    </div>
-                    <div class="item">
-                        <dt>ママのお名前</dt>
-                        <dd>@{{tbl_patient.name}}</dd>
-                    </div>
-                    <div class="item">
-                        <dt>ローマ字表記</dt>
-                        <dd>@{{tbl_patient.roman_alphabet}}</dd>
-                    </div>
-                </dl>
-            </div>
-
-            <div class="outer">
-                <h4><i class="fa-solid fa-pencil"></i>ベビーの情報</h4>
-                <dl class="box">
-                    <div class="item">
-                        <dt>お名前</dt>
-                        <dd>
-                            <template v-if="tbl_patient.baby_name">@{{ tbl_patient.baby_name }}</template>
-                            <template v-else>--</template>
-                        </dd>
-                    </div>
-                    <div class="item">
-                        <dt>ローマ字表記</dt>
-                        <dd>
-                            <template v-if="tbl_patient.baby_roman_alphabet">@{{ tbl_patient.baby_roman_alphabet }}</template>
-                            <template v-else>--</template>
-                        </dd>
-                    </div>
-                    <div class="item">
-                        <dt>生まれた日</dt>
-                        <dd>@{{tbl_patient.birth_day}}</dd>
-                    </div>
-                    <div class="item">
-                        <dt>生まれた時刻</dt>
-                        <dd>@{{tbl_patient.birth_time}}</dd>
-                    </div>
-                    <div class="item">
-                        <dt>体重</dt>
-                        <dd>@{{tbl_patient.weight}}<span class="unit">g</span></dd>
-                    </div>
-                    <div class="item">
-                        <dt>身長</dt>
-                        <dd>@{{tbl_patient.height}}<span class="unit">cm</span></dd>
-                    </div>
-                    <div class="item">
-                        <dt>性別</dt>
-
-
-                        <dd>@{{ sex_types[tbl_patient.sex] }} / 第@{{ tbl_patient.what_number }}子</dd>
-                    </div>
-                </dl>
-            </div>
-
-            <div class="outer">
-                <h4><i class="fa-solid fa-pencil"></i>確認事項</h4>
-                <dl class="box">
-                    <div class="item">
-                        <dt>1ヶ月健診日</dt>
-                        <dd>@{{ tbl_patient.health_check_date }}</dd>
-                    </div>
-                    <div class="item">
-                        <dt>備考</dt>
-                        <dd>
-                            <template v-if="tbl_patient.message">@{{ tbl_patient.message }}</template>
-                            <template v-else>--</template>
-                        </dd>
-                    </div>
-                    <div class="item pt-[10px]">
-                        <dd>
-                            <div class="text-center text-[12px] font-bold">ベビーの写真を色補正してインスタグラムに<br />
-                                掲載することがあります。</div>
-                            <div class="text-center mt-[5px]" v-if="tbl_patient.is_use_instagram==1"><i class="text-green fa-regular fa-circle mr-[3px]"></i>許可する</div>
-                            <div class="text-center mt-[5px]" v-if="tbl_patient.is_use_instagram==2"><i class="text-red fa-solid fa-xmark mr-[3px]"></i>許可しない</div>
-
-                        </dd>
-                    </div>
-                </dl>
-            </div>
-        </div>
-    </section>
 
     <div class="flex items-center flex-col mt-[40px] md:mt-[20px] bg-red text-[18px] md:text-[14px] py-[18px] md:py-[15px]">
         <div class="flex items-center">

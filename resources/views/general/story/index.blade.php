@@ -62,6 +62,156 @@
         <p class="text-[14px] md:text-[12px] inline-block font-bold bg-red shadow text-white px-[15px] py-[10px] md:px-[10px] md:py-[5px]">※</p>
     </div>
 
+
+    <section class="mt-[50px] md:mt-[25px]">
+        <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>ご出産情報を入力<span class="py-[2px] ml-[5px] inline-block w-[50px] bg-red font-bold text-[14px] text-center text-white">必須</span></h3>
+        <div class="
+        space-y-[20px]
+        mx-[20px] py-[15px]
+        [&_h4]:text-brown
+        [&_h4]:text-[18px]
+        [&_h4]:font-bold
+        [&_h4>i]:mr-[8px] md:[&_h4>i]:mr-[5px]
+
+        [&_.box]:mt-[10px]
+        [&_.box]:space-y-[10px]
+        [&_.box>.item]:flex
+        [&_.box>.item>dt]:w-[120px]
+        [&_.box>.item>dt]:h-[34px]
+        [&_.box>.item>dt]:leading-[34px]
+        [&_.box>.item]:text-[14px]
+        [&_.box>.item>dd_.txt]:h-[34px]
+
+        [&_.box>.item>dd_.complement]:text-[12px]
+        [&_.box>.item>dd_.complement]:text-slate-500
+        [&_.box>.item>dd_.complement]:font-bold
+        [&_.box>.item>dd_.complement]:leading-none
+        [&_.box>.item>dd_.unit]:ml-[3px]
+        [&_.box>.item>dd]:flex-grow
+">
+            <div class="outer">
+                <h4><i class="fa-solid fa-pencil"></i>ママの情報</h4>
+                <dl class="box">
+                    <div class="item">
+                        <dt class="!h-[1.4em] !leading-[1.4em]">産院名</dt>
+                        <dd class="!h-[1.4em] !leading-[1.4em] font-bold">@{{tbl_patient.mst_maternity.name}}</dd>
+                    </div>
+                    <div class="item">
+                        <dt>ママのお名前</dt>
+                        <dd><input class="txt w-[150px]" type="text" placeholder="例：山田 花子" v-model="tbl_patient.name" @change="input_save('name',tbl_patient.name)" /><span v-if="'name'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span>
+                            <div class="error" v-if="errors['tbl_patient.name']">@{{ errors['tbl_patient.name'][0] }}</div>
+                        </dd>
+                    </div>
+                    <div class="item">
+                        <dt>ローマ字表記</dt>
+                        <dd><input class="txt w-[190px]" type="text" placeholder="例：YAMADA HANAKO" v-model="tbl_patient.roman_alphabet" @change="input_save('roman_alphabet',tbl_patient.roman_alphabet)" /><span v-if="'roman_alphabet'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
+                            <span class="complement">※ 大文字または小文字</span>
+                            <div class="error" v-if="errors['tbl_patient.roman_alphabet']">@{{ errors['tbl_patient.roman_alphabet'][0] }}</div>
+                        </dd>
+                    </div>
+                    {{--                    <div class="item">--}}
+                    {{--                        <dt>電話番号</dt>--}}
+                    {{--                        <dd><input class="txt w-[130px]" type="tel" value="" placeholder="例：08012345678" /><br />--}}
+                    {{--                        <span class="complement">※ ハイフン不要</span>--}}
+                    {{--                        </dd>--}}
+                    {{--                    </div><div class="item">--}}
+                    {{--                        <dt>メールアドレス</dt>--}}
+                    {{--                        <dd><input class="txt w-[210px]" type="email" value="" placeholder="例：info@birth-story.jp" /></dd>--}}
+                    {{--                    </div>--}}
+                </dl>
+            </div>
+
+            <div class="outer">
+                <h4><i class="fa-solid fa-pencil"></i>ベビーの情報</h4>
+                <dl class="box">
+                    <div class="item">
+                        <dt>お名前</dt>
+                        <dd><input class="txt w-[110px]" type="text" placeholder="例：花子" v-model="tbl_patient.baby_name" @change="input_save('baby_name',tbl_patient.baby_name)" /><span v-if="'baby_name'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
+                            <span class="complement">※ 未記入可</span>
+                            <div class="error" v-if="errors['tbl_patient.baby_name']">@{{ errors['tbl_patient.baby_name'][0] }}</div>
+                        </dd>
+                    </div>
+                    <div class="item">
+                        <dt>ローマ字表記</dt>
+                        <dd><input class="txt w-[140px]" type="text" placeholder="例：HANAKO" v-model="tbl_patient.baby_roman_alphabet" @change="input_save('baby_roman_alphabet',tbl_patient.baby_roman_alphabet)" /><span v-if="'baby_roman_alphabet'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
+                            <span class="complement">※ 未記入可</span>
+                            <div class="error" v-if="errors['tbl_patient.baby_roman_alphabet']">@{{ errors['tbl_patient.baby_roman_alphabet'][0] }}</div>
+                        </dd>
+                    </div>
+                    <div class="item">
+                        <dt>生まれた日</dt>
+                        <dd><input class="txt w-[120px]" type="date" placeholder="年 / 月 / 日" v-model="tbl_patient.birth_day" @change="input_save('birth_day',tbl_patient.birth_day)" /><span v-if="'birth_day'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
+                            <div class="error" v-if="errors['tbl_patient.birth_day']">@{{ errors['tbl_patient.birth_day'][0] }}</div>
+                        </dd>
+                    </div>
+                    <div class="item">
+                        <dt>生まれた時刻</dt>
+                        <dd><input class="txt w-[100px]" type="time" placeholder="--:--" v-model="tbl_patient.birth_time" @change="input_save('birth_time',tbl_patient.birth_time)" /><span v-if="'birth_time'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
+                            <div class="error" v-if="errors['tbl_patient.birth_time']">@{{ errors['tbl_patient.birth_time'][0] }}</div>
+                        </dd>
+                    </div>
+                    <div class="item">
+                        <dt>体重</dt>
+                        <dd><input class="txt w-[80px]" type="number" v-model="tbl_patient.weight" @change="input_save('weight',tbl_patient.weight)" /><span class="unit">g</span><span v-if="'weight'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
+                            <div class="error" v-if="errors['tbl_patient.weight']">@{{ errors['tbl_patient.weight'][0] }}</div>
+                        </dd>
+                    </div>
+                    <div class="item">
+                        <dt>身長</dt>
+                        <dd><input class="txt w-[70px]" type="number" v-model="tbl_patient.height" @change="input_save('height',tbl_patient.height)" /><span class="unit">cm</span><span v-if="'height'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
+                            <div class="error" v-if="errors['tbl_patient.height']">@{{ errors['tbl_patient.height'][0] }}</div>
+                        </dd>
+                    </div>
+                    <div class="item">
+                        <dt>性別</dt>
+                        <dd><select class="txt text-center w-[70px] mr-[10px]" v-model="tbl_patient.sex" @change="input_save('sex',tbl_patient.sex)">
+                                <option value="">--</option>
+                                <option v-for="(sex_type,sex_type_key) in sex_types" :value="sex_type_key">@{{ sex_type }}</option>
+                            </select>
+                            <span class="unit ml-[10px]">第</span>
+                            <select class="txt text-center w-[50px] ml-[5px]" v-model="tbl_patient.what_number" @change="input_save('what_number',tbl_patient.what_number)">
+                                <option value="">--</option>
+                                <option v-for="n in 9" :key="n" :value="n">@{{ n }}</option>
+                            </select><span class="unit">子</span><span v-if="'sex'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><span v-if="'what_number'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span>
+                            <div class="error" v-if="errors['tbl_patient.sex']">@{{ errors['tbl_patient.sex'][0] }}</div>
+                            <div class="error" v-if="errors['tbl_patient.what_number']">@{{ errors['tbl_patient.what_number'][0] }}</div>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+
+            <div class="outer">
+                <h4><i class="fa-solid fa-pencil"></i>確認事項</h4>
+                <dl class="box">
+                    <div class="item">
+                        <dt>1ヶ月健診日</dt>
+                        <dd><input class="w-[140px]" type="date" placeholder="例：YAMADA HANAKO" v-model="tbl_patient.health_check_date" @change="input_save('health_check_date',tbl_patient.health_check_date)" /><span v-if="'health_check_date'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
+                            <div class="error" v-if="errors['tbl_patient.health_check_date']">@{{ errors['tbl_patient.health_check_date'][0] }}</div>
+                        </dd>
+                    </div>
+                    <div class="item">
+                        <dt>備考 <span class="text-slate-600 text-[12px]">(任意)</span></dt>
+                        <dd><textarea class="w-full" rows="4" placeholder="伝えておきたいことなど" v-model="tbl_patient.message" @change="input_save('message',tbl_patient.message)"></textarea><span v-if="'message'==loading_input_key" class="text-green font-bold">保存中</span>
+                            <div class="error" v-if="errors['tbl_patient.message']">@{{ errors['tbl_patient.message'][0] }}</div>
+                        </dd>
+                    </div>
+                    <div class="item pt-[10px]">
+                        <dd>
+                            <div class="text-center text-[12px] font-bold">ベビーの写真を色補正してインスタグラムに<br />
+                                掲載することがあります。</div>
+                            <ul class="flex space-x-[15px] mt-[5px] justify-center">
+                                <li><input class="mr-[3px]" name="is_use_instagram" type="radio" id="is_use_instagram_1" value="1" v-model="tbl_patient.is_use_instagram" @change="input_save('is_use_instagram',tbl_patient.is_use_instagram)"><label for="is_use_instagram_1" class="flex items-center">許可する</label></li>
+                                <li><input class="mr-[3px]" name="is_use_instagram" type="radio" id="is_use_instagram_2" value="2" v-model="tbl_patient.is_use_instagram" @change="input_save('is_use_instagram',tbl_patient.is_use_instagram)"><label for="is_use_instagram_2" class="flex items-center">許可しない</label></li>
+                            </ul>
+                            <div class="error text-center" v-if="errors['tbl_patient.is_use_instagram']">@{{ errors['tbl_patient.is_use_instagram'][0] }}</div>
+                            <div class="text-center mt-[20px]"><a class="text-main underline" href="https://www.instagram.com/birthstory.jp/" target="_blank">BIRTH STORY公式インスタはこちら</a></div>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </section>
+
     <section class="mt-[50px] md:mt-[25px]">
         <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>お写真を登録<span class="py-[2px] ml-[5px] inline-block w-[50px] bg-red font-bold text-[14px] text-center text-white">必須</span></h3>
         <div class="mx-[20px] py-[15px]
@@ -230,7 +380,7 @@
 
                 <div class="box">
                     <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ご自由にお好きなシーン<span class="count">@{{ type_counts.free }}枚</span><span class="example" @click="is_overlay_free=true">写真例</span></h4>
-                    <div class="space-y-[10px]" :class="{'opacity-60':sorting_key=='free'}">
+                    <div class="space-y-[10px] mt-[10px]" :class="{'opacity-60':sorting_key=='free'}">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                             <div v-if="medium.type=='free'" class="
                                 [&_.sort-btns_li:first-child]:first:hidden
@@ -278,7 +428,7 @@
                 <div class="box">
                     <h4><i class="fa-solid fa-pencil"></i>フォトアートにしたい写真を<span class="count">@{{ type_counts.photoart }}枚</span><span class="example" @click="is_overlay_photoart=true">写真例</span></h4>
                     <p class="text-red font-bold text-[14px] leading-none">※ この中から1枚選んで「ふぉとあーと」にいたします</p>
-                    <div class="space-y-[10px]">
+                    <div class="space-y-[10px] mt-[10px]">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                             <div v-if="medium.type=='photoart'" class="w-[80%]">
                                 <label class="lbl" :for="'medium_'+medium_key">
@@ -398,154 +548,7 @@
 
     </section>
 
-    <section class="mt-[50px] md:mt-[25px]">
-        <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>ご出産情報を入力<span class="py-[2px] ml-[5px] inline-block w-[50px] bg-red font-bold text-[14px] text-center text-white">必須</span></h3>
-        <div class="
-        space-y-[20px]
-        mx-[20px] py-[15px]
-        [&_h4]:text-brown
-        [&_h4]:text-[18px]
-        [&_h4]:font-bold
-        [&_h4>i]:mr-[8px] md:[&_h4>i]:mr-[5px]
 
-        [&_.box]:mt-[10px]
-        [&_.box]:space-y-[10px]
-        [&_.box>.item]:flex
-        [&_.box>.item>dt]:w-[120px]
-        [&_.box>.item>dt]:h-[34px]
-        [&_.box>.item>dt]:leading-[34px]
-        [&_.box>.item]:text-[14px]
-        [&_.box>.item>dd_.txt]:h-[34px]
-
-        [&_.box>.item>dd_.complement]:text-[12px]
-        [&_.box>.item>dd_.complement]:text-slate-500
-        [&_.box>.item>dd_.complement]:font-bold
-        [&_.box>.item>dd_.complement]:leading-none
-        [&_.box>.item>dd_.unit]:ml-[3px]
-        [&_.box>.item>dd]:flex-grow
-">
-            <div class="outer">
-                <h4><i class="fa-solid fa-pencil"></i>ママの情報</h4>
-                <dl class="box">
-                    <div class="item">
-                        <dt class="!h-[1.4em] !leading-[1.4em]">産院名</dt>
-                        <dd class="!h-[1.4em] !leading-[1.4em] font-bold">@{{tbl_patient.mst_maternity.name}}</dd>
-                    </div>
-                    <div class="item">
-                        <dt>ママのお名前</dt>
-                        <dd><input class="txt w-[150px]" type="text" placeholder="例：山田 花子" v-model="tbl_patient.name" @change="input_save('name',tbl_patient.name)" /><span v-if="'name'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span>
-                            <div class="error" v-if="errors['tbl_patient.name']">@{{ errors['tbl_patient.name'][0] }}</div>
-                        </dd>
-                    </div>
-                    <div class="item">
-                        <dt>ローマ字表記</dt>
-                        <dd><input class="txt w-[190px]" type="text" placeholder="例：YAMADA HANAKO" v-model="tbl_patient.roman_alphabet" @change="input_save('roman_alphabet',tbl_patient.roman_alphabet)" /><span v-if="'roman_alphabet'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
-                            <span class="complement">※ 大文字または小文字</span>
-                            <div class="error" v-if="errors['tbl_patient.roman_alphabet']">@{{ errors['tbl_patient.roman_alphabet'][0] }}</div>
-                        </dd>
-                    </div>
-                    {{--                    <div class="item">--}}
-                    {{--                        <dt>電話番号</dt>--}}
-                    {{--                        <dd><input class="txt w-[130px]" type="tel" value="" placeholder="例：08012345678" /><br />--}}
-                    {{--                        <span class="complement">※ ハイフン不要</span>--}}
-                    {{--                        </dd>--}}
-                    {{--                    </div><div class="item">--}}
-                    {{--                        <dt>メールアドレス</dt>--}}
-                    {{--                        <dd><input class="txt w-[210px]" type="email" value="" placeholder="例：info@birth-story.jp" /></dd>--}}
-                    {{--                    </div>--}}
-                </dl>
-            </div>
-
-            <div class="outer">
-                <h4><i class="fa-solid fa-pencil"></i>ベビーの情報</h4>
-                <dl class="box">
-                    <div class="item">
-                        <dt>お名前</dt>
-                        <dd><input class="txt w-[110px]" type="text" placeholder="例：花子" v-model="tbl_patient.baby_name" @change="input_save('baby_name',tbl_patient.baby_name)" /><span v-if="'baby_name'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
-                            <span class="complement">※ 未記入可</span>
-                            <div class="error" v-if="errors['tbl_patient.baby_name']">@{{ errors['tbl_patient.baby_name'][0] }}</div>
-                        </dd>
-                    </div>
-                    <div class="item">
-                        <dt>ローマ字表記</dt>
-                        <dd><input class="txt w-[140px]" type="text" placeholder="例：HANAKO" v-model="tbl_patient.baby_roman_alphabet" @change="input_save('baby_roman_alphabet',tbl_patient.baby_roman_alphabet)" /><span v-if="'baby_roman_alphabet'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
-                            <span class="complement">※ 未記入可</span>
-                            <div class="error" v-if="errors['tbl_patient.baby_roman_alphabet']">@{{ errors['tbl_patient.baby_roman_alphabet'][0] }}</div>
-                        </dd>
-                    </div>
-                    <div class="item">
-                        <dt>生まれた日</dt>
-                        <dd><input class="txt w-[120px]" type="date" placeholder="年 / 月 / 日" v-model="tbl_patient.birth_day" @change="input_save('birth_day',tbl_patient.birth_day)" /><span v-if="'birth_day'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
-                            <div class="error" v-if="errors['tbl_patient.birth_day']">@{{ errors['tbl_patient.birth_day'][0] }}</div>
-                        </dd>
-                    </div>
-                    <div class="item">
-                        <dt>生まれた時刻</dt>
-                        <dd><input class="txt w-[100px]" type="time" placeholder="--:--" v-model="tbl_patient.birth_time" @change="input_save('birth_time',tbl_patient.birth_time)" /><span v-if="'birth_time'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
-                            <div class="error" v-if="errors['tbl_patient.birth_time']">@{{ errors['tbl_patient.birth_time'][0] }}</div>
-                        </dd>
-                    </div>
-                    <div class="item">
-                        <dt>体重</dt>
-                        <dd><input class="txt w-[80px]" type="number" v-model="tbl_patient.weight" @change="input_save('weight',tbl_patient.weight)" /><span class="unit">g</span><span v-if="'weight'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
-                            <div class="error" v-if="errors['tbl_patient.weight']">@{{ errors['tbl_patient.weight'][0] }}</div>
-                        </dd>
-                    </div>
-                    <div class="item">
-                        <dt>身長</dt>
-                        <dd><input class="txt w-[70px]" type="number" v-model="tbl_patient.height" @change="input_save('height',tbl_patient.height)" /><span class="unit">cm</span><span v-if="'height'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
-                            <div class="error" v-if="errors['tbl_patient.height']">@{{ errors['tbl_patient.height'][0] }}</div>
-                        </dd>
-                    </div>
-                    <div class="item">
-                        <dt>性別</dt>
-                        <dd><select class="txt text-center w-[70px] mr-[10px]" v-model="tbl_patient.sex" @change="input_save('sex',tbl_patient.sex)">
-                                <option value="">--</option>
-                                <option v-for="(sex_type,sex_type_key) in sex_types" :value="sex_type_key">@{{ sex_type }}</option>
-                            </select>
-                            <span class="unit ml-[10px]">第</span>
-                            <select class="txt text-center w-[50px] ml-[5px]" v-model="tbl_patient.what_number" @change="input_save('what_number',tbl_patient.what_number)">
-                                <option value="">--</option>
-                                <option v-for="n in 9" :key="n" :value="n">@{{ n }}</option>
-                            </select><span class="unit">子</span><span v-if="'sex'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><span v-if="'what_number'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span>
-                            <div class="error" v-if="errors['tbl_patient.sex']">@{{ errors['tbl_patient.sex'][0] }}</div>
-                            <div class="error" v-if="errors['tbl_patient.what_number']">@{{ errors['tbl_patient.what_number'][0] }}</div>
-                        </dd>
-                    </div>
-                </dl>
-            </div>
-
-            <div class="outer">
-                <h4><i class="fa-solid fa-pencil"></i>確認事項</h4>
-                <dl class="box">
-                    <div class="item">
-                        <dt>1ヶ月健診日</dt>
-                        <dd><input class="w-[140px]" type="date" placeholder="例：YAMADA HANAKO" v-model="tbl_patient.health_check_date" @change="input_save('health_check_date',tbl_patient.health_check_date)" /><span v-if="'health_check_date'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
-                            <div class="error" v-if="errors['tbl_patient.health_check_date']">@{{ errors['tbl_patient.health_check_date'][0] }}</div>
-                        </dd>
-                    </div>
-                    <div class="item">
-                        <dt>備考 <span class="text-slate-600 text-[12px]">(任意)</span></dt>
-                        <dd><textarea class="w-full" rows="4" placeholder="伝えておきたいことなど" v-model="tbl_patient.message" @change="input_save('message',tbl_patient.message)"></textarea><span v-if="'message'==loading_input_key" class="text-green font-bold">保存中</span>
-                            <div class="error" v-if="errors['tbl_patient.message']">@{{ errors['tbl_patient.message'][0] }}</div>
-                        </dd>
-                    </div>
-                    <div class="item pt-[10px]">
-                        <dd>
-                            <div class="text-center text-[12px] font-bold">ベビーの写真を色補正してインスタグラムに<br />
-                                掲載することがあります。</div>
-                            <ul class="flex space-x-[15px] mt-[5px] justify-center">
-                                <li><input class="mr-[3px]" name="is_use_instagram" type="radio" id="is_use_instagram_1" value="1" v-model="tbl_patient.is_use_instagram" @change="input_save('is_use_instagram',tbl_patient.is_use_instagram)"><label for="is_use_instagram_1" class="flex items-center">許可する</label></li>
-                                <li><input class="mr-[3px]" name="is_use_instagram" type="radio" id="is_use_instagram_2" value="2" v-model="tbl_patient.is_use_instagram" @change="input_save('is_use_instagram',tbl_patient.is_use_instagram)"><label for="is_use_instagram_2" class="flex items-center">許可しない</label></li>
-                            </ul>
-                            <div class="error text-center" v-if="errors['tbl_patient.is_use_instagram']">@{{ errors['tbl_patient.is_use_instagram'][0] }}</div>
-                            <div class="text-center mt-[20px]"><a class="text-main underline" href="https://www.instagram.com/birthstory.jp/" target="_blank">BIRTH STORY公式インスタはこちら</a></div>
-                        </dd>
-                    </div>
-                </dl>
-            </div>
-        </div>
-    </section>
 
     @if(!$tbl_patient->submitted_at)
 
