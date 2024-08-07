@@ -5,7 +5,7 @@
     <div class="w-[800px] mx-auto md:w-full">
 
         @if($tbl_patient->submitted_at)
-            <div class="mt-[50px] md:mt-[30px] text-center"><span class="w-[80%] px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">提出が完了しました</span></div>
+            <div class="mt-[50px] md:mt-[30px] text-center"><span class="w-[80%] px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">お写真の提出が完了しました</span></div>
 
 
             @if(!$tbl_patient->tbl_patient_reviews->count())
