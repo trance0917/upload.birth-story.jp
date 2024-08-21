@@ -51,7 +51,7 @@
 
     ">
 
-        <li><a class="bg-[#00B900]" href="https://lin.ee/FWdoFmb">LINEお問い合わせ</a></li>
+        <li><a class="bg-[#00B900]" href="https://lin.ee/{{config('const.line_official_id')}}">LINEお問い合わせ</a></li>
         <li><a class="bg-slate-400" href="/faq" target="_blank">よくある質問</a></li>
     </ul>
 
