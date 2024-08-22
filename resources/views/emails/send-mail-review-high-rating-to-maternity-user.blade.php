@@ -17,8 +17,8 @@
 @endforeach
 
 [レビュー]
-@if($tbl_patient->tbl_user_store->review)
-{{(String)$tbl_patient->tbl_user_store->review}}
+@if($tbl_patient->review)
+{{(String)$tbl_patient->review}}
 @else
 --
 @endif
