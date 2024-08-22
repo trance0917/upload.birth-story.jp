@@ -53,7 +53,13 @@ class PatientController extends Controller
                 if ($mst_maternity_user->is_review_notification) {
                     //通知を受けるべき点数の場合
                     if ($tbl_patient->average_score >= $tbl_patient->mst_maternity->notification_review_score) {
-                        $line_bot_service->pushMessageReviewHighRatingToMaternityUser($mst_maternity_user,$tbl_patient);
+                        if ($tbl_patient->mst_maternity->mst_maternity_users->is_send_line) {
+                            $line_bot_service->pushMessageReviewHighRatingToMaternityUser($mst_maternity_user,$tbl_patient);
+                        }
+                        //メール通知を許可しているか
+                        if ($tbl_patient->mst_maternity->mst_maternity_users->is_send_mail) {
+                            event(new \App\Events\SendMailReviewHighRatingToMaternityUserEvent($mst_maternity_user,$tbl_patient));
+                        }
                     }
                 }
             }

@@ -24,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         \App\Events\SendMailLogEvent::class => [
             \App\Listeners\SendMailLogListener::class,
         ],
+        \App\Events\SendMailReviewHighRatingToMaternityUserEvent::class => [
+            \App\Listeners\SendMailReviewHighRatingToMaternityUserListener::class,
+        ],
     ];
 
     /**
