@@ -27,6 +27,6 @@ class SendMailReviewHighRatingToMaternityUserListener
      */
     public function handle(SendMailReviewHighRatingToMaternityUserEvent $event)
     {
-        Mail::send(new \App\Mails\SendMailReviewHighRatingToMaternityUserListener($event->mst_maternity_user,$event->tbl_patient));
+        Mail::send(new \App\Mails\SendMailReviewHighRatingToMaternityUserMail($event->mst_maternity_user,$event->tbl_patient));
     }
 }
