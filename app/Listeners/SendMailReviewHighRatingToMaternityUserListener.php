@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\SendMailReviewHighRatingToStoreUserEvent;
+use App\Events\SendMailReviewHighRatingToMaternityUserEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
@@ -22,10 +22,10 @@ class SendMailReviewHighRatingToMaternityUserListener
     /**
      * Handle the event.
      *
-     * @param  SendMailReviewHighRatingToMaternityUserListener  $event
+     * @param  SendMailReviewHighRatingToMaternityUserEvent  $event
      * @return void
      */
-    public function handle(SendMailReviewHighRatingToMaternityUserListener $event)
+    public function handle(SendMailReviewHighRatingToMaternityUserEvent $event)
     {
         Mail::send(new \App\Mails\SendMailReviewHighRatingToMaternityUserListener($event->mst_maternity_user,$event->tbl_patient));
     }
