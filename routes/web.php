@@ -55,9 +55,9 @@ Route::post('/{tbl_patient:code}/story/confirm', [StoryController::class,'confir
 Route::post('/{tbl_patient:code}/story/complete', [StoryController::class,'complete'])->name('story-complete');
 
 Route::get('/{tbl_patient:code}/review', [IndexController::class,'review'])->name('review');
-Route::get('/{tbl_patient:code}/review_json', [IndexController::class,'review_json'])->name('review_json');
+//Route::get('/{tbl_patient:code}/review_json', [IndexController::class,'review_json'])->name('review_json');
 
-    Route::get('/{tbl_patient:code}', [IndexController::class,'index'])->name('guide');
+Route::get('/{tbl_patient:code}', [IndexController::class,'index'])->name('guide');
 
 //Route::group(['middleware' => 'set_maternity'], function() {});
 
