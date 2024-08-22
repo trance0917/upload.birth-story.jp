@@ -20,7 +20,7 @@ class SendMailReviewHighRatingToMaternityUserEvent
      *
      * @return void
      */
-    public function __construct(\App\Models\MstMaternityUser $mst_store_user,\App\Models\TblPatient $tbl_patient)
+    public function __construct(\App\Models\MstMaternityUser $mst_maternity_user,\App\Models\TblPatient $tbl_patient)
     {
         $this->mst_maternity_user = $mst_maternity_user;
         $this->tbl_patient = $tbl_patient;
