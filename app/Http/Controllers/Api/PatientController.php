@@ -58,7 +58,10 @@ class PatientController extends Controller
                         }
                         //メール通知を許可しているか
                         if ($mst_maternity_user->is_send_mail) {
-                            event(new \App\Events\SendMailReviewHighRatingToMaternityUserEvent($mst_maternity_user,$tbl_patient));
+                            //メアドはあるか
+                            if($mst_maternity_user->email){
+                                event(new \App\Events\SendMailReviewHighRatingToMaternityUserEvent($mst_maternity_user,$tbl_patient));
+                            }
                         }
                     }
                 }
