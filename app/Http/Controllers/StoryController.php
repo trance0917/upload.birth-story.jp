@@ -79,6 +79,7 @@ class StoryController extends Controller
             //受け取るファイルの作成
             $patient_service->createAdoptMediums($tbl_patient);
             DB::commit();
+            event(new \App\Events\StoryCompleteEvent($tbl_patient));
         } catch (\Throwable $e) {
             DB::rollback();
             Log::error($e);
