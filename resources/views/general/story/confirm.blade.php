@@ -182,7 +182,7 @@
                 </div>
 
                 <div class="box">
-                    <h4><i class="fa-solid fa-pencil"></i>フォトアートにしたい写真</h4>
+                    <h4><i class="fa-solid fa-pencil"></i>バースフォトにしたい写真</h4>
                     <p class="text-red font-bold text-[14px] leading-none mb-[10px]">※ この中から1枚選んで「ふぉとあーと」にいたします</p>
                     <div class="flex justify-between flex-wrap [&>div:nth-last-child(2)]:mb-[0px]">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
