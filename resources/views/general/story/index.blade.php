@@ -566,7 +566,7 @@
 
 {{--    <button class="block w-full fixed bottom-0 left-0 text-16px] py-[15px] font-bold text-white bg-slate-400" type="submit" value="2"><i class="fa-solid fa-download mr-[5px]"></i> 途中保存する</button>--}}
 
-    <div v-if="is_overlay_echo" class="flex items-center justify-center w-full h-full fixed top-0 left-0 bg-[#000000]/20" @click="is_overlay_echo=false">
+    <div v-if="is_overlay_echo" class="z-20 flex items-center justify-center w-full h-full fixed top-0 left-0 bg-[#000000]/20" @click="is_overlay_echo=false">
         <div class="w-[80%] p-[15px] border border-slate-300 bg-white">
             <p class="mb-[15px] text-red text-[18px] font-bold text-center">エコーの写真例</p>
             <div class="flex justify-center">
@@ -577,7 +577,7 @@
         </div>
     </div>
 
-    <div v-if="is_overlay_namecard" class="flex items-center justify-center w-full h-full fixed top-0 left-0 bg-[#000000]/20" @click="is_overlay_namecard=false">
+    <div v-if="is_overlay_namecard" class="z-20 flex items-center justify-center w-full h-full fixed top-0 left-0 bg-[#000000]/20" @click="is_overlay_namecard=false">
         <div class="w-[80%] p-[15px] border border-slate-300 bg-white">
             <p class="mb-[15px] text-red text-[18px] font-bold text-center">ネームカードなど</p>
             <div class="flex justify-center">
@@ -588,7 +588,7 @@
         </div>
     </div>
 
-    <div v-if="is_overlay_pregnancy" class="flex items-center justify-center w-full h-full fixed top-0 left-0 bg-[#000000]/20" @click="is_overlay_pregnancy=false">
+    <div v-if="is_overlay_pregnancy" class="z-20 flex items-center justify-center w-full h-full fixed top-0 left-0 bg-[#000000]/20" @click="is_overlay_pregnancy=false">
         <div class="w-[80%] p-[15px] border border-slate-300 bg-white">
             <p class="mb-[15px] text-red text-[18px] font-bold text-center">出産前後の写真例</p>
             <div class="flex justify-center mb-[10px]">
@@ -605,7 +605,7 @@
             <p class="mt-[10px] text-center text-[14px] text-slate-500">タップで閉じる</p>
         </div>
     </div>
-    <div v-if="is_overlay_free" class="flex items-center justify-center w-full h-full fixed top-0 left-0 bg-[#000000]/20" @click="is_overlay_free=false">
+    <div v-if="is_overlay_free" class="z-20 flex items-center justify-center w-full h-full fixed top-0 left-0 bg-[#000000]/20" @click="is_overlay_free=false">
         <div class="w-[80%] p-[15px] border border-slate-300 bg-white">
             <p class="mb-[15px] text-red text-[18px] font-bold text-center">自由写真の例</p>
             <div class="flex justify-center mb-[10px]">
@@ -623,7 +623,7 @@
         </div>
     </div>
 
-    <div v-if="is_overlay_photoart" class="flex items-center justify-center w-full h-full fixed top-0 left-0 bg-[#000000]/20" @click="is_overlay_photoart=false">
+    <div v-if="is_overlay_photoart" class="z-20 flex items-center justify-center w-full h-full fixed top-0 left-0 bg-[#000000]/20" @click="is_overlay_photoart=false">
         <div class="w-[80%] p-[15px] border border-slate-300 bg-white">
             <p class="mb-[15px] text-red text-[18px] font-bold text-center">バースフォトにしたい写真の例</p>
             <div class="flex justify-center mb-[10px]">
