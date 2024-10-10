@@ -92,7 +92,7 @@ class TblPatient extends Model
 		'is_use_instagram',
 		'review',
         'reviewed_at',
-        'is_google_review' => 'int',
+        'is_google_review',
 		'amazon_id',
 		'completed_at',
 		'undertook_at',
