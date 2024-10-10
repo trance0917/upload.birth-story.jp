@@ -70,6 +70,8 @@ class PatientService{
                 $tbl_patient_review->save();
             }
             $tbl_patient->review = $tbl_patient_input['review'];
+            $tbl_patient->reviewed_at = now();
+
             if($tbl_patient->review_point){
                 $tbl_patient->payment_status = 2;
             }else{

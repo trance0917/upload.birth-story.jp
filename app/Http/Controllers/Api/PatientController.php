@@ -15,7 +15,7 @@ use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 class PatientController extends Controller
 {
     public function storeReview(TblPatient $tbl_patient,Request $request,PatientService $patient_service,MaternityService $maternity_service) {
-        if($tbl_patient->tbl_patient_reviews->count()){
+        if($tbl_patient->reviewed_at){
             return response()->json(['result' => true,'messages' => '','errors' => [],]);
         }
 

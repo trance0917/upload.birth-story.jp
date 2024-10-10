@@ -14,7 +14,7 @@
         <p class="mt-[35px] text-center font-bold">送信中です。<br />しばらくお待ちください。</p>
     </div>
 
-    @if($tbl_patient->tbl_patient_reviews->count())
+    @if($tbl_patient->reviewed_at)
         <div class="mt-[50px] md:mt-[30px] text-center"><span class="w-[80%] px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">ご協力ありがとうございます</span></div>
         <p class="mt-[20px] text-center"><a class="underline text-[14px] text-slate-600" href="{{route('guide',$tbl_patient)}}">トップページへ</a></p>
     @endif
@@ -25,7 +25,7 @@
 
 
     @if($tbl_patient->submitted_at)
-        @if(!$tbl_patient->tbl_patient_reviews->count())
+        @if(!$tbl_patient->reviewed_at)
             <section class="border border-main rounded mx-[15px] bg-main/5 py-[20px] px-[15px] mt-[30px]">
                 <h2 class="text-center leading-none text-[15px] font-bold text-brown">バースストーリーから産院アンケートのお願い</h2>
 
@@ -162,7 +162,7 @@
         </section>
     </div>
 
-    @if(!$tbl_patient->tbl_patient_reviews->count())
+    @if(!$tbl_patient->reviewed_at)
     <div class="mt-[50px] md:mt-[30px] w-[340px] md:w-[240px] mx-auto text-center">
         <p class="relative block bg-main text-white font-bold py-[20px] md:py-[15px] rounded-sm text-[22px] md:text-[16px]"
             @click.prevent="submit">提出<i class="fa-solid fa-angle-right absolute top-[26px] md:top-[18px] right-[15px]"></i></p></div>
@@ -176,7 +176,7 @@
         name: 'main',
         data(){
             return {
-                is_answer:@if($tbl_patient->tbl_patient_reviews->count()) true @else false @endif,
+                is_answer:@if($tbl_patient->reviewed_at) true @else false @endif,
                 is_loading:false,
                 errors:[],
                 mst_maternity_questions:{!! json_encode($mst_maternity_questions,JSON_UNESCAPED_UNICODE )!!},

@@ -42,7 +42,7 @@ class IndexController extends Controller
         //質問事項
         $mst_maternity_questions =  $maternity_service->getMstMaternityQuestions($tbl_patient->mst_maternity->mst_maternity_id);
         //登録済みであればそのデータを返す
-        if($tbl_patient->tbl_patient_reviews->count()){
+        if($tbl_patient->reviewed_at){
             $inputs = TblPatient::with(['tbl_patient_reviews:tbl_patient_review_id,tbl_patient_id,mst_maternity_question_id,score'])
                 ->select(['*'])->where(['tbl_patient_id'=>$tbl_patient->tbl_patient_id])->first();
         }else{

@@ -34,6 +34,8 @@ use App\Traits\SerializeDate;
  * @property string|null $message
  * @property int|null $is_use_instagram
  * @property string|null $review
+ * @property Carbon|null $reviewed_at
+ * @property int|null $is_google_review
  * @property string|null $amazon_id
  * @property Carbon|null $completed_at
  * @property Carbon|null $undertook_at
@@ -62,6 +64,8 @@ class TblPatient extends Model
 		'what_number' => 'int',
 		'health_check_date' => 'datetime:Y-m-d',
 		'is_use_instagram' => 'int',
+        'reviewed_at' => 'datetime',
+        'is_google_review' => 'int',
 		'completed_at' => 'datetime',
 		'undertook_at' => 'datetime',
 		'working_by' => 'int'
@@ -87,6 +91,8 @@ class TblPatient extends Model
 		'message',
 		'is_use_instagram',
 		'review',
+        'reviewed_at',
+        'is_google_review' => 'int',
 		'amazon_id',
 		'completed_at',
 		'undertook_at',

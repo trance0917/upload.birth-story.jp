@@ -8,7 +8,7 @@
             <div class="mt-[50px] md:mt-[30px] text-center"><span class="w-[80%] px-[20px] md:px-[17px] py-[17px] md:py-[12px] border-2 border-green bg-white text-green font-bold text-[20px] md:text-[16px] inline-block leading-none">お写真の提出が完了しました</span></div>
 
 
-            @if(!$tbl_patient->tbl_patient_reviews->count())
+            @if(!$tbl_patient->reviewed_at)
             <section class="border border-main rounded mx-[15px] bg-main/5 py-[20px] px-[15px] mt-[30px]">
                 <h2 class="text-center leading-none text-[15px] font-bold text-brown">バースストーリーから産院アンケートのお願い</h2>
 
@@ -72,7 +72,7 @@
             @endif
         @endif
 
-        @if($tbl_patient->submitted_at && $tbl_patient->tbl_patient_reviews->count())
+        @if($tbl_patient->submitted_at && $tbl_patient->reviewed_at)
         <p class="mt-[10px] text-center"><a class="underline text-[14px] text-slate-600" href="{{route('review',$tbl_patient)}}">アンケート内容の確認</a></p>
         @endif
 
