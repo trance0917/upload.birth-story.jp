@@ -152,7 +152,7 @@ trait LineBotServicePushMessageTrait
                 'body' => [
                     'type' => 'box', 'layout' => 'vertical','spacing' => 'none', 'margin' => 'none',
                     'contents' => [
-                        ['type' => 'text', 'text' => 'レビューをありがとうございます', 'size' => 'md', 'weight' => 'bold', 'align' => 'center',"wrap" => true],
+                        ['type' => 'text', 'text' => 'レビューをありがとうございます', 'size' => 'md', 'weight' => 'bold', 'align' => 'start',"wrap" => true],
                         ['type' => 'separator', 'margin' => 'md'],
                         [
                             'type' => 'image',
