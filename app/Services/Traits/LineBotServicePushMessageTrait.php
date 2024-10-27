@@ -52,7 +52,7 @@ trait LineBotServicePushMessageTrait
                         [
                             'type' => 'button','style' => 'primary','color' => '#F68CA9','margin' => 'lg',
                             'action' => [
-                                'type' => 'uri','label' => '写真を提出する','uri' => route('guide',$tbl_patient ). '?openExternalBrowser=1'
+                                'type' => 'uri','label' => '写真を提出する','uri' => route('guide',$tbl_patient )
                             ]
                         ],
                     ]
@@ -117,7 +117,7 @@ trait LineBotServicePushMessageTrait
                             'type' => 'button','style' => 'primary','color' => '#F68CA9',
                             'action' => [
                                 'type' => 'uri','label' => 'アンケートに答える',
-                                'uri' => route('review',$tbl_patient ). '?openExternalBrowser=1'
+                                'uri' => route('review',$tbl_patient )
                             ]
                         ]
                     ]
@@ -189,7 +189,7 @@ trait LineBotServicePushMessageTrait
                             'type' => 'button', 'style' => 'primary', 'color' => '#F68CA9', 'margin' => 'none','height' => 'md',
                             'action' => [
                                 'type' => 'uri', 'label' => 'コピーして投稿する',
-                                'uri' => route('guide',$tbl_patient ). '?openExternalBrowser=1'
+                                'uri' => route('guide',$tbl_patient )
                             ]
                         ]
                     ]
