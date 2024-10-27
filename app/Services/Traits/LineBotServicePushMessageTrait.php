@@ -188,9 +188,13 @@ trait LineBotServicePushMessageTrait
                         [
                             'type' => 'button', 'style' => 'primary', 'color' => '#F68CA9', 'margin' => 'none','height' => 'md',
                             'action' => [
-                                'type' => 'uri', 'label' => 'コピーして投稿する',
+                                'type' => 'uri', 'label' => 'レビューの確認',
                                 'uri' => route('guide',$tbl_patient )
                             ]
+                        ],
+                        [
+                            'type' => 'text', 'text' => '✨タップして貼り付けるだけ✨',
+                            'wrap' => true, 'color' => '#888888', 'size' => 'sm', 'weight' => 'regular','margin' => 'md', 'align' => 'center',
                         ]
                     ]
                 ]
