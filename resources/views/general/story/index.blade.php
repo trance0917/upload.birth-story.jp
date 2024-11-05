@@ -287,7 +287,10 @@
                                 <div><img :src="medium.src" alt="" /></div>
                                 <i v-if="'echo_'+medium_key==loading_input_key"
                                    class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
-                                <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</div>
+                                <ul class="flex justify-between gap-x-[5px]">
+                                    <li v-if="medium.src" class="grow text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</li>
+                                    <li @click.prevent class="w-[36px] text-center mt-[3px] pb-[1px] border font-bold border-dashed border-slate-350 !text-slate-500 text-[10px] pt-[3px]" @click="delete_medium(medium)">削除</li>
+                                </ul>
                             </label>
                             <input :id="'medium_'+medium_key" type="file" accept="image/*" :disabled="is_medium_saving" v-on:change="medium_save(medium_key,$event,medium)" />
                         </div>
@@ -313,7 +316,10 @@
                                 <div><img :src="medium.src" alt="" /></div>
                                 <i v-if="'namecard_'+medium_key==loading_input_key"
                                    class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
-                                <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</div>
+                                <ul class="flex justify-between gap-x-[5px]">
+                                    <li v-if="medium.src" class="grow text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</li>
+                                    <li @click.prevent class="w-[36px] text-center mt-[3px] pb-[1px] border font-bold border-dashed border-slate-350 !text-slate-500 text-[10px] pt-[3px]" @click="delete_medium(medium)">削除</li>
+                                </ul>
                             </label>
                             <input :id="'medium_'+medium_key" type="file" accept="image/*" :disabled="is_medium_saving" v-on:change="medium_save(medium_key,$event,medium)" />
                         </div>
@@ -346,7 +352,10 @@
                                             <div><img :src="medium.src" alt="" /></div>
                                             <i v-if="'pregnancy_'+medium_key==loading_input_key"
                                                class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
-                                            <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</div>
+                                            <ul class="flex justify-between gap-x-[5px]">
+                                                <li v-if="medium.src" class="grow text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</li>
+                                                <li @click.prevent class="w-[36px] text-center mt-[3px] pb-[1px] border font-bold border-dashed border-slate-350 !text-slate-500 text-[10px] pt-[3px]" @click="delete_medium(medium)">削除</li>
+                                            </ul>
                                         </label>
                                         <input :id="'medium_'+medium_key" type="file" accept="image/*" :disabled="is_medium_saving" v-on:change="medium_save(medium_key,$event,medium)" />
                                     </div>
@@ -393,7 +402,10 @@
                                             <div><img :src="medium.src" alt="" /></div>
                                             <i v-if="'free_'+medium_key==loading_input_key"
                                                class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
-                                            <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</div>
+                                            <ul class="flex justify-between gap-x-[5px]">
+                                                <li v-if="medium.src" class="grow text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</li>
+                                                <li @click.prevent class="w-[36px] text-center mt-[3px] pb-[1px] border font-bold border-dashed border-slate-350 !text-slate-500 text-[10px] pt-[3px]" @click="delete_medium(medium)">削除</li>
+                                            </ul>
                                         </label>
                                         <input :id="'medium_'+medium_key" type="file" accept="image/*" :disabled="is_medium_saving" v-on:change="medium_save(medium_key,$event,medium)" />
                                     </div>
@@ -436,7 +448,10 @@
                                     <div><img :src="medium.src" alt="" /></div>
                                     <i v-if="'photoart_'+medium_key==loading_input_key"
                                        class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px-12px)] left-[calc(50%-20px)]"></i>
-                                    <div v-if="medium.src" class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</div>
+                                    <ul class="flex justify-between gap-x-[5px]">
+                                        <li v-if="medium.src" class="grow text-center mt-[3px] py-[2px] border font-bold border-dashed border-green !text-green text-[12px]">保存済(タップで変更)</li>
+                                        <li @click.prevent class="w-[36px] text-center mt-[3px] pb-[1px] border font-bold border-dashed border-slate-350 !text-slate-500 text-[10px] pt-[3px]" @click="delete_medium(medium)">削除</li>
+                                    </ul>
                                 </label>
                                 <input :id="'medium_'+medium_key" type="file" accept="image/*" :disabled="is_medium_saving" v-on:change="medium_save(medium_key,$event,medium)" />
                             </div>
@@ -493,7 +508,11 @@
                                     <source :src="medium.src">
                                     <p>動画を再生するには、videoタグをサポートしたブラウザが必要です。</p>
                                 </video>
-                                <p class="mt-[8px] text-center text-center"><label :for="'medium_'+medium_key" class="border rounded-sm border-main px-[15px] py-[3px] inline-block underline text-main font-bold text-[14px]">変更</label></p>
+                                <p class="mt-[8px] text-center text-center"></p>
+                                <ul class="flex justify-center items-center gap-x-[7px]">
+                                    <li><label :for="'medium_'+medium_key" class="border rounded-sm border-main px-[15px] py-[2px] inline-block underline text-main font-bold text-[14px]">変更</label></li>
+                                    <li @click.prevent class="w-[36px] text-center pb-[2px] border font-bold border-dashed border-slate-350 !text-slate-500 text-[10px] pt-[2px]" @click="delete_medium(medium)">削除</li>
+                                </ul>
                                 <i v-if="'first_cry_'+medium_key==loading_input_key"
                                    class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-50px)] left-[calc(50%-20px)]"></i>
                                 <input :id="'medium_'+medium_key" type="file" accept="video/*" :disabled="is_medium_saving" v-on:change="medium_save(medium_key,$event,medium)" />
@@ -520,7 +539,11 @@
                                     <source :src="medium.src">
                                     <p>動画を再生するには、videoタグをサポートしたブラウザが必要です。</p>
                                 </video>
-                                <p class="mt-[8px] text-center text-center"><label :for="'medium_'+medium_key" class="border rounded-sm border-main px-[15px] py-[3px] inline-block underline text-main font-bold text-[14px]">変更</label></p>
+                                <p class="mt-[8px] text-center text-center"></p>
+                                <ul class="flex justify-center items-center gap-x-[7px]">
+                                    <li><label :for="'medium_'+medium_key" class="border rounded-sm border-main px-[15px] py-[2px] inline-block underline text-main font-bold text-[14px]">変更</label></li>
+                                    <li @click.prevent class="w-[36px] text-center pb-[2px] border font-bold border-dashed border-slate-350 !text-slate-500 text-[10px] pt-[2px]" @click="delete_medium(medium)">削除</li>
+                                </ul>
                                 <i v-if="'movie_'+medium_key==loading_input_key"
                                    class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-50px)] left-[calc(50%-20px)]"></i>
                                 <input :id="'medium_'+medium_key" type="file" :disabled="is_medium_saving" accept="video/*" v-on:change="medium_save(medium_key,$event,medium)" />
@@ -778,19 +801,20 @@
                         }
                     }
                 ).then((response) => {//リクエストの成功
-
-                    if(!medium.tbl_patient_medium_id){
-                        t.tbl_patient.tbl_patient_mediums.push(response.data.result);
-                    }
-                    for(let tbl_patient_medium_key in t.tbl_patient.tbl_patient_mediums){
-                        if(medium.tbl_patient_medium_id == t.tbl_patient.tbl_patient_mediums[tbl_patient_medium_key].tbl_patient_medium_id){
-                            t.tbl_patient.tbl_patient_mediums[tbl_patient_medium_key] = {};
-                            setTimeout(() => {
-                                t.tbl_patient.tbl_patient_mediums[tbl_patient_medium_key] = response.data.result;
-                            }, 1);
-
-                        }
-                    }
+                    t.tbl_patient.tbl_patient_mediums = response.data.result.tbl_patient.tbl_patient_mediums;
+                    //idがない場合は新規なのでpushで登録する
+                    // if(!medium.tbl_patient_medium_id){
+                    //     t.tbl_patient.tbl_patient_mediums.push(response.data.result);
+                    // }
+                    // for(let tbl_patient_medium_key in t.tbl_patient.tbl_patient_mediums){
+                    //     //idがヒットする場合は更新なので最新のデータでリフレッシュする。
+                    //     if(medium.tbl_patient_medium_id == t.tbl_patient.tbl_patient_mediums[tbl_patient_medium_key].tbl_patient_medium_id){
+                    //         t.tbl_patient.tbl_patient_mediums[tbl_patient_medium_key] = {};
+                    //         setTimeout(() => {
+                    //             t.tbl_patient.tbl_patient_mediums[tbl_patient_medium_key] = response.data.result;
+                    //         }, 1);
+                    //     }
+                    // }
                     this.medium_progress='';
                 }).catch((error) => {//リクエストの失敗
                     alert(get_error_status_message(error.response.status));
@@ -822,6 +846,21 @@
                 this.tbl_patient.tbl_patient_mediums.sort(function(a,b) {
                     return a.type < b.type ? -1 : 1;
                 });
+            },
+            async delete_medium(medium){
+                let t =this;
+                if(window.confirm('この画像を削除します。\nよろしいですか？')) {
+                    await axios.post('/api/v1/g/{{$tbl_patient->code}}/story/delete_medium',
+                        {
+                            tbl_patient_medium_id:medium.tbl_patient_medium_id,
+                        }
+                    ).then((response) => {//リクエストの成功
+                        this.tbl_patient.tbl_patient_mediums = response.data.result.tbl_patient.tbl_patient_mediums;
+                    }).catch((error) => {//リクエストの失敗
+                    }).finally(() => {
+                    });
+                }
+
             },
         },
         watch:{

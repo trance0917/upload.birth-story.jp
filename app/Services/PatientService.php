@@ -4,6 +4,8 @@ namespace App\Services;
 use App\Models\MstMaternityQuestion;
 use App\Models\TblPatientMedium;
 use App\Models\TblPatientReview;
+use App\Models\TblPatient;
+
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -307,5 +309,74 @@ class PatientService{
         }
         $zip->close();
         \Storage::disk('local')->deleteDirectory($directory_path);
+    }
+    public function getPatient(int $tbl_patient_id){
+        $validator = Validator:: make(['tbl_patient_id' => $tbl_patient_id], [
+            'tbl_patient_id' => 'required|integer|exists:tbl_patients,tbl_patient_id,deleted_at,NULL',
+        ]);
+
+        if ($validator->fails()) {
+            return [];
+        }
+
+        $tbl_patient = TblPatient::with([
+            'tbl_patient_mediums'=>function ($query){
+                //ファイル名 空にしているのはミューテタで取得できるため
+                $query->select(['tbl_patient_id','extension','tbl_patient_medium_id','type','file_name','order','registered_at'])->selectRaw('\'\' AS `src`');
+            },
+            'tbl_patient_mediums.tbl_patient:tbl_patient_id,code',
+            'tbl_patient_reviews'=>function ($query){
+                //ファイル名 空にしているのはミューテタで取得できるため
+                $query->select(['tbl_patient_review_id','tbl_patient_id','mst_maternity_question_id','score']);
+            },
+            'mst_maternity:mst_maternity_id,name',
+
+        ])->select(
+            'tbl_patient_id',
+            'mst_maternity_id',
+            'code',
+            'line_name',
+            'line_user_id',
+            'line_picture_url',
+            'richmenu_id',
+            'name',
+            'roman_alphabet',
+            'baby_name',
+            'baby_roman_alphabet',
+            'birth_day',
+            'birth_time',
+            'weight',
+            'height',
+            'sex',
+            'what_number',
+            'health_check_date',
+            'message',
+            'is_use_instagram',
+            'submitted_at',
+            'review',
+            'reviewed_at',
+            'is_google_review',
+            'review_point',
+            'amazon_id',
+            'payment_status',
+            'payment_by',
+            'undertook_at',
+            'working_by',
+            'task_retouch_by',
+            'present_movie_path',
+            'present_photoart_path',
+            'present_after_notified_at',
+            'is_present_after_notified',
+            'completed_at',
+            'presented_at',
+            'memo',
+            'created_at',
+            'updated_at',
+        )
+            ->selectRaw('\'\' AS `old_working_by`')
+            ->selectRaw('\'\' AS `average_score`')
+            ->find($tbl_patient_id);
+
+        return $tbl_patient;
     }
 }

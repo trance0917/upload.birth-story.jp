@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\TblPatient;
 
+use App\Models\TblPatientMedium;
 use App\Services\LineBotService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -118,6 +119,7 @@ class PatientController extends Controller
         ]);
     }
     public function storeStoryMedium(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
+        //万が一提出済みにpostされてもブロックして返す
         if($tbl_patient->submitted_at){
             return response()->json([
                 'result' => true,
@@ -135,12 +137,25 @@ class PatientController extends Controller
             throw new HttpResponseException($res);
         }
 
+        $tbl_patient = $patient_service->getPatient($tbl_patient->tbl_patient_id);
         return response()->json([
-            'result' => $result['result'],
+            'result' => ['tbl_patient' => $tbl_patient],
             'messages' => '',
             'errors' => [],
         ]);
     }
+
+    public function storeStoryDeleteMedium(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
+        TblPatientMedium::where('tbl_patient_medium_id',$request->tbl_patient_medium_id)
+            ->where('tbl_patient_id',$tbl_patient->tbl_patient_id)
+            ->delete();
+        $tbl_patient = $patient_service->getPatient($tbl_patient->tbl_patient_id);
+        return response()->json([
+            'result' => ['tbl_patient'=>$tbl_patient]
+        ],200);
+    }
+
+
 
     public function storeStoryMediumSort(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
         if($request->tbl_patient_medium_ids){
