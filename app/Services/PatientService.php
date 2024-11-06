@@ -303,9 +303,9 @@ class PatientService{
         $zip_path = storage_path('app/public/patients/'.$tbl_patient->tbl_patient_id.'_'.$tbl_patient->code.'/data.zip');
 
         $zip->open($zip_path, ZipArchive::CREATE | ZipArchive::OVERWRITE);
-
+        $folder_name = sprintf('%02d', $tbl_patient->birth_day->day).'_'.$tbl_patient->name.' '. (($tbl_patient->is_use_instagram=='1')?'〇':'×');
         foreach(glob(storage_path('app/'.$directory_path).'/*') AS $key=>$val){
-            $zip->addFile($val,basename($val));
+            $zip->addFile($val,$folder_name.'/'.basename($val));
         }
         $zip->close();
         \Storage::disk('local')->deleteDirectory($directory_path);
