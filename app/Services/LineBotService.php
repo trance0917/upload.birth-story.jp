@@ -198,6 +198,7 @@ class LineBotService extends LINEBot
 
             //リッチメニューも削除
             $tbl_patient->richmenu_id = null;
+            $tbl_patient->is_blocked = 1;
             $tbl_patient->save();
 
             //提出済みの場合は削除しない。データを有効のものとして残す。フォロー解除のみ。
