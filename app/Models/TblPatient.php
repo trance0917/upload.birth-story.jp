@@ -66,6 +66,7 @@ class TblPatient extends Model
 		'is_use_instagram' => 'int',
         'reviewed_at' => 'datetime',
         'is_google_review' => 'int',
+        'is_blocked' => 'int',
 		'completed_at' => 'datetime',
 		'undertook_at' => 'datetime',
 		'working_by' => 'int'
@@ -97,6 +98,7 @@ class TblPatient extends Model
 		'completed_at',
 		'undertook_at',
 		'working_by',
+        'is_blocked',
 		'memo'
 	];
 
