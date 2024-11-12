@@ -179,6 +179,7 @@ class PatientService{
             'tbl_patient.tbl_patient_mediums.*.file' => 'mimes:jpg,bmp,png,mp4,mp3,mov',
         ]);
         if ($validator->fails()) {
+            Log::error('アップロードのチェックバリデートにひかかった。(tbl_patient_id:'.$tbl_patient->tbl_patient_id.')');
             return [
                 'result' => false,
                 'messages' => '',
@@ -225,7 +226,7 @@ class PatientService{
                     ];
                     $tbl_patient_medium = TblPatientMedium::create($medium);
                     if (empty($tbl_patient_medium)) {
-                        throw new \Exception('');
+                        throw new \Exception('新規のmediumレコードの作成が失敗');
                     }
                 }else{
                     //更新の場合
