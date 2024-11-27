@@ -5,7 +5,7 @@
 {{$tbl_patient->mst_maternity->name}}
 
 [回答した患者さま]
-{{$tbl_patient->line_name}}さま
+{{$tbl_patient->name}}さま
 
 [総合評価]
 {{$tbl_patient->average_score}}点
