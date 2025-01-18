@@ -146,6 +146,14 @@ class PatientController extends Controller
     }
 
     public function storeStoryDeleteMedium(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
+        if($tbl_patient->submitted_at){
+            return response()->json([
+                'result' => true,
+                'messages' => '',
+                'errors' => [],
+            ]);
+        }
+
         TblPatientMedium::where('tbl_patient_medium_id',$request->tbl_patient_medium_id)
             ->where('tbl_patient_id',$tbl_patient->tbl_patient_id)
             ->delete();
