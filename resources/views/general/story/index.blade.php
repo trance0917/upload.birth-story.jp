@@ -127,14 +127,14 @@
                     <div class="item">
                         <dt>お名前</dt>
                         <dd><input class="txt w-[110px]" type="text" placeholder="例：花子" v-model="tbl_patient.baby_name" @change="input_save('baby_name',tbl_patient.baby_name)" /><span v-if="'baby_name'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
-                            <span class="complement">※ 未記入可</span>
+                            <span class="complement">※ 未入力の場合、名前は表記されません</span>
                             <div class="error" v-if="errors['tbl_patient.baby_name']">@{{ errors['tbl_patient.baby_name'][0] }}</div>
                         </dd>
                     </div>
                     <div class="item">
                         <dt>ローマ字表記</dt>
                         <dd><input class="txt w-[140px]" type="text" placeholder="例：HANAKO" v-model="tbl_patient.baby_roman_alphabet" @change="input_save('baby_roman_alphabet',tbl_patient.baby_roman_alphabet)" /><span v-if="'baby_roman_alphabet'==loading_input_key" class="ml-[5px] text-green font-bold">保存中</span><br />
-                            <span class="complement">※ 未記入可</span>
+                            <span class="complement">※ 未入力の場合、名前は表記されません</span>
                             <div class="error" v-if="errors['tbl_patient.baby_roman_alphabet']">@{{ errors['tbl_patient.baby_roman_alphabet'][0] }}</div>
                         </dd>
                     </div>
@@ -264,6 +264,10 @@
         [&_.box_.lbl_.number]:font-bold
 
         ">
+            <p class="text-center">
+                <span class="bg-red text-white p-[6px_8px] mb-[15px] inline-block font-bold text-[14px] leading-none">※ 登録順に作成されます</span>
+
+            </p>
             <div class="flex justify-center mb-[30px]">
                 <div class="inline-block">
                     <div class="flex justify-center items-center bg-sub-light px-[30px] md:px-[15px] py-[20px] md:py-[10px]">
@@ -338,7 +342,7 @@
 
                 <div class="box">
                     <h4><i class="fa-solid fa-pencil"></i>出産前・出産中・出産直後<span class="count">@{{ type_counts.pregnancy }}枚</span><span class="example" @click="is_overlay_pregnancy=true">写真例</span></h4>
-                    <p class="text-red font-bold text-[14px] leading-none">※ 表示順に作成されます</p>
+
                     <div class="space-y-[10px] mt-[10px]" :class="{'opacity-60':sorting_key=='pregnancy'}">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                             <div v-if="medium.type=='pregnancy'" class="
