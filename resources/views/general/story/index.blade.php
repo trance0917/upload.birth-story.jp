@@ -265,7 +265,7 @@
 
         ">
             <p class="text-center">
-                <span class="bg-red text-white p-[6px_8px] mb-[15px] inline-block font-bold text-[14px] leading-none">※ 登録順に作成されます</span>
+                <span class="bg-red text-white p-[6px_8px] mb-[15px] inline-block font-bold leading-none">※ 登録順に作成されます</span>
 
             </p>
             <div class="flex justify-center mb-[30px]">
