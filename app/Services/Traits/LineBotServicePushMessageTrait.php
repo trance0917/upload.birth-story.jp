@@ -18,6 +18,12 @@ trait LineBotServicePushMessageTrait
 
     public function pushMessageFollow(TblPatient $tbl_patient){
 
+        // ▼ 追加：ここでIDによって文言を切り替える変数を作る ▼
+        $photo_text = '❤️バースフォトのサンプルはこちら❤️'; // デフォルトの文言
+        if ($tbl_patient->mst_maternity->id == 1) {
+            $photo_text = '❤️デジタルニューボーンフォトはこちら❤️';
+        }
+
         $message = [
             'type' => 'flex', 'altText' => 'ご出産おめでとうございます！',
             'contents' =>[
@@ -37,12 +43,12 @@ trait LineBotServicePushMessageTrait
                             'color' => '#0000ee',
                             'decoration' => 'underline',
                         ],
-                        ['type' => 'text','text' => '❤️デジタルニューボーンフォトのサンプルはこちら❤️','margin' => 'lg','wrap' => true],
-                        ['type' => 'text','text' => 'https://www.instagram.com/birthstory.jp','margin' => 'xs','wrap' => true,
+                        ['type' => 'text','text' => $photo_text,'margin' => 'lg','wrap' => true],
+                        ['type' => 'text','text' => str_replace('?openExternalBrowser=1', '', $tbl_patient->mst_maternity->instagram_url),'margin' => 'xs','wrap' => true,
                             'action' => [
                                 'type' => 'uri',
                                 'label' => 'action',
-                                'uri' => 'https://www.instagram.com/birthstory.jp',
+                                'uri' => $tbl_patient->mst_maternity->instagram_url,
                             ],
                             'color' => '#0000ee',
                             'decoration' => 'underline',
@@ -60,18 +66,6 @@ trait LineBotServicePushMessageTrait
             ],
         ];
 
-//        if($tbl_patient->review_point){
-//            $message['contents']['body']['contents'][] = ['type' => 'separator','color' => '#999999','margin' => 'xxl'];
-//            $message['contents']['body']['contents'][] = [
-//                'type' => 'text','wrap' => true,'margin' => 'xl','size' => 'sm',
-//                'text' => 'お写真の提出が完了し、簡単なアンケートをにお答えいただけますと、バースストーリーからAmazonギフト'.$tbl_patient->review_point.'ptを進呈しております。',
-//                'contents' => [
-//                    ['type' => 'span','text' => 'お写真の提出が完了し、簡単なアンケートにお答えいただけますと、バースストーリーから'],
-//                    ['type' => 'span','text' => 'Amazonギフト'.$tbl_patient->review_point.'pt','color' => '#ee3333','weight' => 'bold'],
-//                    ['type' => 'span','text' => 'を進呈しております。']
-//                ]
-//            ];
-//        }
         $this->pushMessage($tbl_patient->line_user_id, new RawMessageBuilder($message), $tbl_patient);
     }
 
