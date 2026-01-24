@@ -20,7 +20,7 @@ trait LineBotServicePushMessageTrait
 
         // ▼ 追加：ここでIDによって文言を切り替える変数を作る ▼
         $photo_text = '❤️バースフォトのサンプルはこちら❤️'; // デフォルトの文言
-        if ($tbl_patient->mst_maternity->id == 1) {
+        if ($tbl_patient->mst_maternity->mst_maternity_id == 1) {
             $photo_text = '❤️デジタルニューボーンフォトはこちら❤️';
         }
 
