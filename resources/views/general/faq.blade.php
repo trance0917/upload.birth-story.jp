@@ -91,6 +91,9 @@
                             <dd>生まれて間もない映像や、パパママやお兄ちゃんお姉ちゃんからのメッセージ映像などなど是非残したい動画お送りください。</dd>
                         </div>
                     </div>
+
+
+                    {{request()->submission_type??null}}
                     <div>
                         <dt><span>Q-3</span>泣き声の入った動画とは？</dt>
                         <div class="answer">
