@@ -281,8 +281,9 @@
                 </div>
             </div>
 
+
             <div class="space-y-[25px]">
-                <div class="box">
+                <div v-if="tbl_patient.mst_maternity.submission_type == 1" class="box">
                     <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>エコー写真<span class="count">@{{ type_counts.echo }}枚</span><span class="example" @click="is_overlay_echo=true">写真例</span></h4>
                     <div class="flex justify-between flex-wrap mt-[10px]">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
@@ -311,7 +312,7 @@
                     <div class="error text-center" v-if="errors['tbl_patient.tbl_patient_mediums.echo']">@{{ errors['tbl_patient.tbl_patient_mediums.echo'][0] }}</div>
                 </div>
 
-                <div class="box">
+                <div v-if="tbl_patient.mst_maternity.submission_type == 1" class="box">
                     <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ネームカード<span class="font-normal text-[#999] text-[14px]">(お名前が分かるもの)</span><span class="example" @click="is_overlay_namecard=true">写真例</span></h4>
                     <div class="mt-[10px]">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
@@ -340,7 +341,7 @@
                     <div class="error text-center" v-if="errors['tbl_patient.tbl_patient_mediums.namecard']">@{{ errors['tbl_patient.tbl_patient_mediums.namecard'][0] }}</div>
                 </div>
 
-                <div class="box">
+                <div v-if="tbl_patient.mst_maternity.submission_type == 1" class="box">
                     <h4><i class="fa-solid fa-pencil"></i>出産前・出産中・出産直後<span class="count">@{{ type_counts.pregnancy }}枚</span><span class="example" @click="is_overlay_pregnancy=true">写真例</span></h4>
 
                     <div class="space-y-[10px] mt-[10px]" :class="{'opacity-60':sorting_key=='pregnancy'}">
@@ -477,7 +478,8 @@
     </section>
 
     <section class="mt-[50px] md:mt-[25px]">
-        <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>産声・動画の登録<span class="py-[2px] ml-[5px] inline-block w-[50px] bg-green font-bold text-[14px] text-center text-white">任意</span></h3>
+        <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i><template v-if="tbl_patient.mst_maternity.submission_type == 1">産声・</template>動画の登録<span class="py-[2px] ml-[5px] inline-block w-[50px] bg-green font-bold text-[14px] text-center text-white">任意</span></h3>
+
 
         <div class="mx-[20px] py-[15px]
         [&_h4]:text-brown
