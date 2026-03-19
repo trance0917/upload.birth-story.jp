@@ -93,7 +93,7 @@
                     </div>
 
 
-                    {{request()->submission_type??null}}
+                    @if((request()->submission_type??null) == 1)
                     <div>
                         <dt><span>Q-3</span>泣き声の入った動画とは？</dt>
                         <div class="answer">
@@ -102,6 +102,7 @@
                                 生まれた瞬間の産声でなくてもOKです。</dd>
                         </div>
                     </div>
+                    @endif
                 </dl>
             </div>
 
