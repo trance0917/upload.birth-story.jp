@@ -114,8 +114,9 @@ class PatientService{
         $valid = [
             'tbl_patient' => $tbl_patient->toArray(),
         ];
-
+        dump($tbl_patient);
         foreach(TblPatientMedium::$type_counts AS $type_count_key=>$type_count){
+            dump($type_count_key);
             $valid['tbl_patient']['tbl_patient_mediums'][$type_count_key] = $tbl_patient->tbl_patient_mediums->filter(function ($value) use($type_count_key) {return $value->type==$type_count_key;})->toArray();
             if(!$valid['tbl_patient']['tbl_patient_mediums'][$type_count_key]){
                 $valid['tbl_patient']['tbl_patient_mediums'][$type_count_key]=null;
