@@ -201,7 +201,7 @@
 
         <div class="mx-[20px] py-[15px]">
             <div class="box">
-                <div class="flex justify-between flex-wrap
+                <div class="flex justify-center flex-wrap gap-[15px]
                 [&_.nothing]:block
                 [&_.item+.nothing]:hidden
                 ">
