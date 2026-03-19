@@ -115,6 +115,7 @@ class PatientService{
         $valid = [
             'tbl_patient' => $tbl_patient->toArray(),
         ];
+        dump($valid);
 
         foreach(TblPatientMedium::$type_counts AS $type_count_key=>$type_count){
             if($tbl_patient->mst_maternity->submission_type==MstMaternity::SUBMISSION_TYPE_NORMAL && in_array($type_count_key, ['echo', 'namecard', 'first_cry', 'pregnancy'])){
@@ -124,6 +125,8 @@ class PatientService{
                 }
             }
         }
+
+        dump($valid);
 
         $validator = Validator:: make($valid, $rules,['size'=>'枚数が不足しています。']);
         if ($validator->fails()) {
