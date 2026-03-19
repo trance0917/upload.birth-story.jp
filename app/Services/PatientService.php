@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Models\MstMaternity;
 use App\Models\MstMaternityQuestion;
 use App\Models\TblPatientMedium;
 use App\Models\TblPatientReview;
@@ -114,12 +115,13 @@ class PatientService{
         $valid = [
             'tbl_patient' => $tbl_patient->toArray(),
         ];
-        dump($tbl_patient);
+
         foreach(TblPatientMedium::$type_counts AS $type_count_key=>$type_count){
-            dump($type_count_key);
-            $valid['tbl_patient']['tbl_patient_mediums'][$type_count_key] = $tbl_patient->tbl_patient_mediums->filter(function ($value) use($type_count_key) {return $value->type==$type_count_key;})->toArray();
-            if(!$valid['tbl_patient']['tbl_patient_mediums'][$type_count_key]){
-                $valid['tbl_patient']['tbl_patient_mediums'][$type_count_key]=null;
+            if($tbl_patient->mst_maternities->submission_type==MstMaternity::SUBMISSION_TYPE_NORMAL && in_array($type_count_key, ['echo', 'namecard', 'first_cry', 'pregnancy'])){
+                $valid['tbl_patient']['tbl_patient_mediums'][$type_count_key] = $tbl_patient->tbl_patient_mediums->filter(function ($value) use($type_count_key) {return $value->type==$type_count_key;})->toArray();
+                if(!$valid['tbl_patient']['tbl_patient_mediums'][$type_count_key]){
+                    $valid['tbl_patient']['tbl_patient_mediums'][$type_count_key]=null;
+                }
             }
         }
 

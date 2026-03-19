@@ -78,7 +78,6 @@ class PatientController extends Controller
     }
 
     public function storeStory(TblPatient $tbl_patient,Request $request,PatientService $patient_service){
-        dump(654);
         $result = $patient_service->storeStory($tbl_patient);
         if (!$result['result']) {
             $res = response()->json([

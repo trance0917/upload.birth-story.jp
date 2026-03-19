@@ -283,8 +283,8 @@
 
 
             <div class="space-y-[25px]">
-{{--                v-if="tbl_patient.mst_maternity.submission_type == 1"--}}
-                <div class="box">
+
+                <div v-if="tbl_patient.mst_maternity.submission_type == 1" class="box">
                     <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>エコー写真<span class="count">@{{ type_counts.echo }}枚</span><span class="example" @click="is_overlay_echo=true">写真例</span></h4>
                     <div class="flex justify-between flex-wrap mt-[10px]">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
