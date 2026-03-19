@@ -283,7 +283,8 @@
 
 
             <div class="space-y-[25px]">
-                <div v-if="tbl_patient.mst_maternity.submission_type == 1" class="box">
+{{--                v-if="tbl_patient.mst_maternity.submission_type == 1"--}}
+                <div class="box">
                     <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>エコー写真<span class="count">@{{ type_counts.echo }}枚</span><span class="example" @click="is_overlay_echo=true">写真例</span></h4>
                     <div class="flex justify-between flex-wrap mt-[10px]">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
@@ -505,7 +506,7 @@
         ">
 
             <div class="box">
-                <div class="flex justify-center flex-wrap gap-[20px]">
+                <div class="flex justify-center flex-wrap gap-[15px]">
                     <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                         <div v-if="medium.type=='first_cry'" class="w-[48.5%]">
                             <div class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
