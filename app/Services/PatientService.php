@@ -108,6 +108,7 @@ class PatientService{
             if($type_count_key=='first_cry' || $type_count_key=='movie'){
                 $rules['tbl_patient.tbl_patient_mediums.'.$type_count_key] = 'nullable|array|max:'.$type_count;
             }else{
+                dump($tbl_patient->mst_maternity->submission_type);
                 if(
                     $tbl_patient->mst_maternity->submission_type==MstMaternity::SUBMISSION_TYPE_MINIMUM
                     &&
@@ -124,6 +125,13 @@ class PatientService{
         ];
 
         foreach(TblPatientMedium::$type_counts AS $type_count_key=>$type_count){
+            if(
+                $tbl_patient->mst_maternity->submission_type==MstMaternity::SUBMISSION_TYPE_MINIMUM
+                &&
+                in_array($type_count_key, ['echo', 'namecard', 'first_cry', 'pregnancy'])
+            ){
+                continue;
+            }
             $valid['tbl_patient']['tbl_patient_mediums'][$type_count_key] = $tbl_patient->tbl_patient_mediums->filter(function ($value) use($type_count_key) {return $value->type==$type_count_key;})->toArray();
             if(!$valid['tbl_patient']['tbl_patient_mediums'][$type_count_key]){
                 $valid['tbl_patient']['tbl_patient_mediums'][$type_count_key]=null;
