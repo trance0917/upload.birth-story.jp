@@ -93,7 +93,7 @@
                     </div>
 
 
-                    @if((request()->submission_type??null) == 1)
+                    @if((request()->submission_type??null) == \App\Models\MstMaternity::SUBMISSION_TYPE_NORMAL)
                     <div>
                         <dt><span>Q-3</span>泣き声の入った動画とは？</dt>
                         <div class="answer">

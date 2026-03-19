@@ -132,15 +132,20 @@
                         <div class="left"><img src="/images/guide-step-2.png" alt=""></div>
                         <div>
                             <h3><span>Step2</span>お写真を登録</h3>
-                            <p>スマホでお写真を17枚撮影し、作成フォームに登録してください。</p>
+                            @if($tbl_patient->mst_maternity->submission_type == \App\Models\MstMaternity::SUBMISSION_TYPE_NORMAL)
+                                <p>スマホでお写真を17枚撮影し、作成フォームに登録してください。</p>
+                            @else
+                                <p>作成フォームから写真を登録してください</p>
+                            @endif
                         </div>
                     </section>
-                    {{ $tbl_patient->mst_maternity->submission_type }}
+
+
                     <section>
                         <div class="left"><img src="/images/guide-step-3.png" alt=""></div>
                         <div>
-                            <h3><span>Step3</span>動画・産声の登録</h3>
-                            <p>産声や動画を映像に差し込みたい方は登録してください。</p>
+                            <h3><span>Step3</span>動画@if($tbl_patient->mst_maternity->submission_type == \App\Models\MstMaternity::SUBMISSION_TYPE_NORMAL)・産声@endifの登録</h3>
+                            <p>@if($tbl_patient->mst_maternity->submission_type == \App\Models\MstMaternity::SUBMISSION_TYPE_NORMAL)産声や@endif動画を映像に差し込みたい方は登録してください。</p>
                         </div>
                     </section>
                 </div>
