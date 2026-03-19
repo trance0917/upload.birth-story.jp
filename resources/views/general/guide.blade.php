@@ -135,6 +135,7 @@
                             <p>スマホでお写真を17枚撮影し、作成フォームに登録してください。</p>
                         </div>
                     </section>
+                    {{ $tbl_patient->tbl_maternity->submission_type }}
                     <section>
                         <div class="left"><img src="/images/guide-step-3.png" alt=""></div>
                         <div>
