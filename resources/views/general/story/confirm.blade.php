@@ -136,7 +136,7 @@
     [&_.box_img]:mx-auto
     ">
             <div class="space-y-[25px]">
-                <div class="box">
+                <div v-if="tbl_patient.mst_maternity.submission_type == 1" class="box">
                     <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>エコー写真</h4>
                     <div class="flex justify-between flex-wrap">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
@@ -147,7 +147,7 @@
                     </div>
                 </div>
 
-                <div class="box">
+                <div v-if="tbl_patient.mst_maternity.submission_type == 1" class="box">
                     <h4 class="mb-[10px]"><i class="fa-solid fa-pencil"></i>ネームカード</h4>
                     <div class="flex justify-between flex-wrap">
                         <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
@@ -158,7 +158,7 @@
                     </div>
                 </div>
 
-                <div class="box">
+                <div v-if="tbl_patient.mst_maternity.submission_type == 1" class="box">
                     <h4><i class="fa-solid fa-pencil"></i>出産前・出産中・出産直後</h4>
                     <p class="text-red font-bold text-[14px] leading-none mb-[10px]">※ 表示順に作成されます</p>
                     <div class="flex justify-between flex-wrap [&>div:nth-last-child(2)]:mb-[0px]">
@@ -205,7 +205,7 @@
                 [&_.nothing]:block
                 [&_.item+.nothing]:hidden
                 ">
-                    <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
+                    <template v-if="tbl_patient.mst_maternity.submission_type == 1" v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                         <div v-if="medium.type=='first_cry'" class="item w-[48.5%]">
                             <div class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
                             <video class="aspect-video" controls>

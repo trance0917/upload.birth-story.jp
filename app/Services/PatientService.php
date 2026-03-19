@@ -108,7 +108,6 @@ class PatientService{
             if($type_count_key=='first_cry' || $type_count_key=='movie'){
                 $rules['tbl_patient.tbl_patient_mediums.'.$type_count_key] = 'nullable|array|max:'.$type_count;
             }else{
-                dump($tbl_patient->mst_maternity->submission_type);
                 if(
                     $tbl_patient->mst_maternity->submission_type==MstMaternity::SUBMISSION_TYPE_MINIMUM
                     &&
