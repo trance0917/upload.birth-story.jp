@@ -31,11 +31,11 @@
                 <h2>「バースストーリー」 について</h2>
                 <dl>
                     <div>
-                        <dt><span>Q-1</span>「バースストーリー」　DVD</dt>
+                        <dt><span>Q-1</span>「バースストーリー」とは？</dt>
                         <div class="answer">
                             <div>A</div>
                             <dd>お送りいただいた写真や動画で　感動フォトムービーをお作りいたします。<br />
-                                DVDプレーヤーやPCでご覧いただけます。</dd>
+                                データでのお渡しですので、スマホ・タブレット、TVなどでご覧いただけます。</dd>
                         </div>
                     </div>
                 </dl>
@@ -44,31 +44,53 @@
             <div class="box">
                 <h2>「バースストーリー」 に使用する写真について</h2>
                 <dl>
-                    <div>
-                        <dt><span>Q-1</span>エコー写真や名前のわかる写真がないのですが。</dt>
-                        <div class="answer">
-                            <div>A</div>
-                            <dd>他の写真で代用いたします。<br />
-                                お気に入りの写真をお送りください。全部で17枚あれば大丈夫です。</dd>
+                    @if((request()->submission_type??null) == \App\Models\MstMaternity::SUBMISSION_TYPE_NORMAL)
+                        <div>
+                            <dt><span>Q-1</span>エコー写真や名前のわかる写真がないのですが。</dt>
+                            <div class="answer">
+                                <div>A</div>
+                                <dd>他の写真で代用いたします。<br />
+                                    お気に入りの写真をお送りください。全部で17枚あれば大丈夫です。</dd>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <dt><span>Q-2</span>縦向きで撮ってしまったのですが。</dt>
-                        <div class="answer">
-                            <div>A</div>
-                            <dd>左右に黒い背景ができてしまいます。<br />
-                                また　トリミングして画質が低下する場合もございますので<br />
-                                できるだけ横向き写真でお願いします。</dd>
+                        <div>
+                            <dt><span>Q-2</span>縦向きで撮ってしまったのですが。</dt>
+                            <div class="answer">
+                                <div>A</div>
+                                <dd>左右に黒い背景ができてしまいます。<br />
+                                    また　トリミングして画質が低下する場合もございますので<br />
+                                    できるだけ横向き写真でお願いします。</dd>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <dt><span>Q-3</span>全体的に暗い写真ですが・・。</dt>
-                        <div class="answer">
-                            <div>A</div>
-                            <dd>こちらで　色補正いたしますので撮ったままのデータをお送りください。<br />
-                                アプリで加工などもしないようにしてください。</dd>
+                        <div>
+                            <dt><span>Q-3</span>全体的に暗い写真ですが・・。</dt>
+                            <div class="answer">
+                                <div>A</div>
+                                <dd>こちらで　色補正いたしますので撮ったままのデータをお送りください。<br />
+                                    アプリで加工などもしないようにしてください。</dd>
+                            </div>
                         </div>
-                    </div>
+                    @else
+                        <div>
+                            <dt><span>Q-1</span>縦向きで撮ってしまったのですが。</dt>
+                            <div class="answer">
+                                <div>A</div>
+                                <dd>左右に黒い背景ができてしまいます。<br />
+                                    また　トリミングして画質が低下する場合もございますので<br />
+                                    できるだけ横向き写真でお願いします。</dd>
+                            </div>
+                        </div>
+                        <div>
+                            <dt><span>Q-2</span>全体的に暗い写真ですが・・。</dt>
+                            <div class="answer">
+                                <div>A</div>
+                                <dd>こちらで　色補正いたしますので撮ったままのデータをお送りください。<br />
+                                    アプリで加工などもしないようにしてください。</dd>
+                            </div>
+                        </div>
+                    @endif
+
+
                 </dl>
             </div>
 
