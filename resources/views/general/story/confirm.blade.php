@@ -205,7 +205,7 @@
                 [&_.nothing]:block
                 [&_.item+.nothing]:hidden
                 ">
-                    <template v-if="tbl_patient.mst_maternity.submission_type == 1" v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
+                    <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                         <div v-if="medium.type=='first_cry'" class="item w-[48.5%]">
                             <div class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
                             <video class="aspect-video" controls>
@@ -214,7 +214,7 @@
                             </video>
                         </div>
                     </template>
-                    <div class="nothing w-[48.5%]">
+                    <div v-if="tbl_patient.mst_maternity.submission_type == 1" class="nothing w-[48.5%]">
                         <div class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
                         <div class="text-center mt-[3px] py-[2px] border font-bold border-dashed border-slate !text-slate text-[12px] py-[40px] bg-slate-50">未保存</div>
                     </div>
