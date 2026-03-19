@@ -17,6 +17,7 @@ return new class extends Migration
             // is_case の次に int型の submission_type を追加
             $table->integer('submission_type')
                 ->nullable() // ※既存レコードがある場合エラーにならないようにnullableにしています
+                ->default(1)
                 ->after('is_case')
                 ->comment('提出タイプ');
         });

@@ -50,11 +50,11 @@
     [&>li>a]:rounded-sm
 
     ">
-
         <li><a class="bg-[#00B900]" href="https://lin.ee/{{config('const.line_official_id')}}">LINEお問い合わせ</a></li>
         <li><a class="bg-slate-400" href="/faq" target="_blank">よくある質問</a></li>
     </ul>
 
+    @{{tbl_patient.mst_maternity.submission_type}}
     <div v-if="Object.keys(errors).length" class="mt-[30px] flex justify-center">
         <p class="text-[14px] md:text-[12px] inline-block font-bold bg-red shadow text-white px-[15px] py-[10px] md:px-[10px] md:py-[5px]">※ 不足があります。ご確認のうえ再送信してください</p>
     </div>

@@ -35,7 +35,8 @@ class MstMaternity extends Model
 
 	protected $casts = [
 		'notification_review_score' => 'float',
-		'minimum_review_score' => 'float'
+		'minimum_review_score' => 'float',
+        'submission_type' => 'int',
 	];
 
 	protected $hidden = [
@@ -50,8 +51,12 @@ class MstMaternity extends Model
 		'notification_review_score',
 		'minimum_review_score',
 		'review_link',
-		'memo'
+		'memo',
+        'submission_type',
 	];
+
+    public const SUBMISSION_TYPE_NORMAL = 1;
+    public const SUBMISSION_TYPE_MINIMUM = 2;
 
     public function mst_maternity_users()
     {
