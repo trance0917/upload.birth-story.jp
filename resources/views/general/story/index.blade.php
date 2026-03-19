@@ -525,7 +525,7 @@
                             </div>
                         </div>
                     </template>
-                    <div class="w-[48.5%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='first_cry'}).length<type_counts.movie">
+                    <div v-if="tbl_patient.mst_maternity.submission_type == 1" class="w-[48.5%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='first_cry'}).length<type_counts.movie">
                         <div class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
                         <label class="lbl">
                             <div class="choice aspect-video flex justify-center items-center">動画を追加</div>
