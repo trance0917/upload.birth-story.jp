@@ -505,7 +505,7 @@
         ">
 
             <div class="box">
-                <div class="flex justify-between flex-wrap">
+                <div class="flex justify-center flex-wrap">
                     <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
                         <div v-if="medium.type=='first_cry'" class="w-[48.5%]">
                             <div class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
