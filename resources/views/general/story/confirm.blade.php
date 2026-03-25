@@ -197,7 +197,7 @@
     </section>
 
     <section class="mt-[50px] md:mt-[25px]">
-        <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i>産声・動画の登録</h3>
+        <h3 class="bg-main text-white font-bold py-[15px] text-[18px] pl-[20px] flex items-center"><i class="fa-solid fa-pencil mr-[8px] md:mr-[5px]"></i><template v-if="tbl_patient.mst_maternity.submission_type == 1">産声・</template>動画の登録</h3>
 
         <div class="mx-[20px] py-[15px]">
             <div class="box">
