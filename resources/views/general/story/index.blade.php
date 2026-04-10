@@ -526,16 +526,18 @@
                             </div>
                         </div>
                     </template>
-                    <div v-if="tbl_patient.mst_maternity.submission_type == 1" class="w-[48.5%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='first_cry'}).length<type_counts.first_cry">
-                        <div class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
-                        <label class="lbl">
-                            <div class="choice aspect-video flex justify-center items-center">動画を追加</div>
-                            <input type="file" accept="video/*" :disabled="is_medium_saving" v-on:change="medium_save('new',$event,{type:'first_cry'})" />
-                            <i v-if="'first_cry_new'==loading_input_key"
-                               class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
-                        </label>
-                        <div class="error text-center" v-if="errors['tbl_patient.tbl_patient_mediums.first_cry']">@{{ errors['tbl_patient.tbl_patient_mediums.first_cry'][0] }}</div>
-                    </div>
+                    <template v-if="tbl_patient.mst_maternity.submission_type == 1">
+                        <div class="w-[48.5%]" v-if="tbl_patient.tbl_patient_mediums.filter((e) => {return e.type=='first_cry'}).length<type_counts.first_cry">
+                            <div class="text-[14px] font-bold text-center mb-[3px]">入れたい産声</div>
+                            <label class="lbl">
+                                <div class="choice aspect-video flex justify-center items-center">動画を追加</div>
+                                <input type="file" accept="video/*" :disabled="is_medium_saving" v-on:change="medium_save('new',$event,{type:'first_cry'})" />
+                                <i v-if="'first_cry_new'==loading_input_key"
+                                   class="fa-solid fa-spinner fa-spin text-green-200 text-[40px] absolute top-[calc(50%-20px)] left-[calc(50%-20px)]"></i>
+                            </label>
+                            <div class="error text-center" v-if="errors['tbl_patient.tbl_patient_mediums.first_cry']">@{{ errors['tbl_patient.tbl_patient_mediums.first_cry'][0] }}</div>
+                        </div>
+                    </template>
 
 
                     <template v-for="(medium,medium_key) in tbl_patient.tbl_patient_mediums">
