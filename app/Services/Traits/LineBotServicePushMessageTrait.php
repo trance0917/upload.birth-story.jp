@@ -25,7 +25,7 @@ trait LineBotServicePushMessageTrait
         }
 
         $message = [
-            'type' => 'flex', 'altText' => 'ご出産おめでとうございます！',
+            'type' => 'flex', 'altText' => 'ご登録ありがとうございます',
             'contents' =>[
                 'type' => 'bubble','size' => 'kilo','direction' => 'ltr',
                 'body' => [
